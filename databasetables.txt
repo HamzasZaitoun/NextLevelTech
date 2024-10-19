@@ -1,0 +1,82 @@
+Users Table
+
+user_id (Primary Key)
+username
+email
+password
+address
+phone_number
+created_at
+updated_at
+
+
+2. Products Table
+
+product_id (Primary Key)
+product_name
+description
+price
+category_id (Foreign Key to Categories)
+stock_quantity
+image_url
+created_at
+updated_at
+
+
+3. Categories Table
+
+category_id (Primary Key)
+category_name
+
+
+
+4. Orders Table
+
+
+order_id (Primary Key)
+user_id (Foreign Key to Users)
+order_date
+total_amount
+shipping_address
+payment_status (e.g., pending, completed)
+created_at
+updated_at
+
+
+5. Order_Items Table (Many-to-Many relationship between Orders and Products)
+
+
+order_item_id (Primary Key)
+order_id (Foreign Key to Orders)
+product_id (Foreign Key to Products)
+quantity
+price_at_purchase
+
+
+6. Wishlist Table
+
+
+wishlist_id (Primary Key)
+user_id (Foreign Key to Users)
+product_id (Foreign Key to Products)
+
+
+7. Cart Table
+
+
+
+cart_id (Primary Key)
+user_id (Foreign Key to Users)
+product_id (Foreign Key to Products)
+quantity
+
+
+8. Reviews Table
+
+
+review_id (Primary Key)
+user_id (Foreign Key to Users)
+product_id (Foreign Key to Products)
+rating (e.g., 1-5)
+review_text
+created_at
