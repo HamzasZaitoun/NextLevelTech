@@ -128,7 +128,7 @@
               <button class="search-button">
                 <i class="bi bi-search"></i>
               </button>
-              <a href="#">
+              <a href="wishList.php">
                 <i class="bi bi-heart"></i>
               </a>
               <div class="header-cart">
