@@ -1,6 +1,6 @@
 const productsContainer = document.getElementById("product-list")
 const productsContainer2 = document.getElementById("product-list-2")
-
+// 
 export function product1() {
     const config = {
         perView: 4,
