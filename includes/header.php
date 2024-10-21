@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="css/main.css" />
   <!-- !Glide.js Css CDN -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.6.0/css/glide.core.min.css" />
-
+  <meta name="description" content="GameTech is your ultimate destination for gaming enthusiasts, providing high-quality gaming devices to enhance your gaming experience. Learn more about our mission and meet our team." />
 <header>
     <div class="global-notification">
       <div class="container">
