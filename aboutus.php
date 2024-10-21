@@ -49,7 +49,7 @@
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       margin-bottom: 20px;
       transition: transform 0.3s;
-    }
+    } 
 
     .col-md-4:hover {
       transform: translateY(-10px);
