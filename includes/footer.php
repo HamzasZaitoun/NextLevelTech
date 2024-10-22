@@ -1,5 +1,5 @@
 <section class="footer">
-    <div class="subscribe-contact-row">
+    <!-- <div class="subscribe-contact-row">
       <div class="container">
         <div class="subscribe-contact-wrapper">
           <div class="subscribe-wrapper">
@@ -50,7 +50,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <div class="widgets-row">
       <div class="container">
         <div class="footer-widgets">
@@ -73,7 +73,7 @@
             <h4>Information</h4>
             <ul class="menu-list">
               <li>
-                <a href="#">About Us</a>
+                <a href="aboutus.php">About Us</a>
               </li>
               <li>
                 <a href="#">Privacy Policy</a>
@@ -87,6 +87,9 @@
               <li>
                 <a href="#">Dropshipping</a>
               </li>
+              <li>
+                <a href="contact.php">Contact us</a>
+              </li>
             </ul>
           </div>
           <div class="widget-nav-menu">
@@ -99,7 +102,7 @@
                 <a href="#">My Orders</a>
               </li>
               <li>
-                <a href="#">My Wishlist</a>
+                <a href="wishList.php">My Wishlist</a>
               </li>
               <li>
                 <a href="#">Account details</a>
@@ -109,7 +112,7 @@
               </li>
             </ul>
           </div>
-          <div class="widget-nav-menu">
+          <!-- <div class="widget-nav-menu">
             <h4>Shop</h4>
             <ul class="menu-list">
               <li>
@@ -128,7 +131,7 @@
                 <a href="#">Sale Products</a>
               </li>
             </ul>
-          </div>
+          </div> -->
           <div class="widget-nav-menu">
             <h4>Categories</h4>
             <ul class="menu-list">
@@ -183,3 +186,5 @@
       </div>
     </div>
   </section>
+
+

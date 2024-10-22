@@ -33,12 +33,12 @@
             <nav class="navigation">
               <ul class="menu-list">
                 <li class="menu-list-item">
-                  <a href="/" class="menu-link active">Home
-                    <i class="bi bi-chevron-down"></i>
+                  <a href="index.php" class="menu-link active">Home
+                    <!-- <i class="bi bi-chevron-down"></i> -->
                   </a>
-                  <div class="menu-dropdown-wrapper">
+                  <!-- <div class="menu-dropdown-wrapper">
                     <ul class="menu-dropdown-content">
-                      <li><a href="#">Home Clean</a></li>
+                      <li><a href="index.php">Home Clean</a></li>
                       <li><a href="#">Home Collection</a></li>
                       <li><a href="#">Home Minimal</a></li>
                       <li><a href="#">Home Modern</a></li>
@@ -48,7 +48,7 @@
                       <li><a href="#">Home Unique</a></li>
                       <li><a href="#">Home RTL</a></li>
                     </ul>
-                  </div>
+                  </div> -->
                 </li>
                 <li class="menu-list-item megamenu-wrapper">
                   <a href="shop.php" class="menu-link">Shop
@@ -113,9 +113,9 @@
                   <a href="blog.php" class="menu-link">Blog
                   </a>
                 </li>
-                <li class="menu-list-item">
+                <!-- <li class="menu-list-item">
                   <a href="contact.php" class="menu-link">Contact</a>
-                </li>
+                </li> -->
               </ul>
             </nav>
             <i class="bi-x-circle" id="close-sidebar"></i>

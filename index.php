@@ -36,7 +36,7 @@
   <!-- ! modal search end -->
 
   <!-- ! modal dialog start -->
-  <div class="modal-dialog">
+  <!-- <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-close">
         <i class="bi bi-x"></i>
@@ -63,7 +63,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
   <!-- ! modal dialog end -->
 
   <!-- ! slider start -->
@@ -79,7 +79,7 @@
           <a href="#" class="btn btn-lg btn-primary">Explore Now</a>
         </div>
       </div>
-      <div class="slider-item fade">
+      <!-- <div class="slider-item fade">
         <div class="slider-image">
           <img src="img/slider/slider2.jpg" class="img-fluid" alt="" />
         </div>
@@ -88,8 +88,8 @@
           <h2 class="slider-heading">Save up to 70%</h2>
           <a href="#" class="btn btn-lg btn-primary">Explore Now</a>
         </div>
-      </div>
-      <div class="slider-item fade">
+      </div> -->
+      <!-- <div class="slider-item fade">
         <div class="slider-image">
           <img src="img/slider/slider3.jpg" class="img-fluid" alt="" />
         </div>
@@ -97,9 +97,9 @@
           <p class="slider-title">SUMMER 2022</p>
           <h2 class="slider-heading">Save up to 70%</h2>
           <a href="#" class="btn btn-lg btn-primary">Explore Now</a>
-        </div>
+        </div> -->
       </div>
-      <div class="slider-buttons">
+      <!-- <div class="slider-buttons">
         <button onclick="plusSlide(-1)">
           <i class="bi bi-chevron-left"></i>
         </button>
@@ -117,7 +117,7 @@
         <button class="slider-dot" onclick="currentSlide(3)">
           <span></span>
         </button>
-      </div>
+      </div> -->
     </div>
   </section>
   <!-- ! slider end -->
