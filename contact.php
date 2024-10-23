@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+ 
     <!-- !bootstrap icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" />
     <link rel="stylesheet" href="css/main.css" />
@@ -14,6 +11,9 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>E-Commerce | Contact</title>
+    <link rel="stylesheet" href="assets/css/contact.css">
+
+
 </head>
 
 <body>
@@ -23,30 +23,6 @@
   ?>
     <!-- ! header end -->
 
-    <!-- ! modal search start -->
-    <div class="modal-search">
-        <div class="modal-wrapper">
-            <h3 class="modal-title">Search for products</h3>
-            <p class="modal-text">
-                Start typing to see products you are looking for.
-            </p>
-            <div class="search">
-                <input type="text" placeholder="Search a product" />
-                <button><i class="bi bi-search"></i></button>
-            </div>
-            </form>
-            <div class="search-result">
-                <div class="search-heading">
-                    <h3>RESULT FROM PRODUCT</h3>
-                </div>
-                <div class="results">
-
-                </div>
-            </div>
-            <i class="bi bi-x-circle" id="close-modal-search"></i>
-        </div>
-    </div>
-    <!-- ! modal search end -->
 
 
 
@@ -155,7 +131,7 @@
     <!-- ! contact end -->
 
     <!-- ! policy start -->
-    <section class="policy">
+    <!-- <section class="policy">
         <div class="container">
             <ul class="policy-list">
                 <li class="policy-item">
@@ -188,7 +164,7 @@
                 </li>
             </ul>
         </div>
-    </section>
+    </section> -->
     <!-- ! policy end -->
 
     <!-- ! footer start -->
