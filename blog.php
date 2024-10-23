@@ -1,9 +1,63 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Commerce | Blog</title>
+
+<title>E-Commerce | Blog</title>
+<style>
+    .blog-list .blog-info {
+    text-align: center;
+}
+
+.blog-list .blog-image {
+    display: flex;
+}
+
+
+.blog-list .blog-image img {
+    width: 100%;
+}
+
+.blog-item .blog-info {
+    padding: 30px 10px 25px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0px 0px 29px 0px rgba(0, 0, 0, 0.75);
+}
+
+.blog-item .blog-info-top {
+    font-size: 14px;
+    color: #b2b3b8;
+    margin-bottom: 10px;
+}
+
+
+.blog-item .blog-info-center {
+    margin-bottom: 10px;
+
+}
+
+
+.blog-item .blog-info-center a {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.blog-item .blog-info-bottom a {
+    font-size: 14px;
+    border-bottom: 1px solid #b2b3b8;
+    padding: 4px;
+    transition: 0.2s all ease;
+}
+
+.blog-item .blog-info-bottom a:hover {
+    color: #1367ef;
+}
+
+.blog-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px; 
+}
+
+    </style>
 </head>
 
 <body>
@@ -12,25 +66,6 @@
     <!-- ! header end -->
 
     <!-- ! modal search start -->
-    <div class="modal-search">
-        <div class="modal-wrapper">
-            <h3 class="modal-title">Search for products</h3>
-            <p class="modal-text">
-                Start typing to see products you are looking for.
-            </p>
-            <div class="search">
-                <input type="text" placeholder="Search a product" />
-                <button><i class="bi bi-search"></i></button>
-            </div>
-            <div class="search-result">
-                <div class="search-heading">
-                    <h3>RESULT FROM PRODUCT</h3>
-                </div>
-                <div class="results"></div>
-            </div>
-            <i class="bi bi-x-circle" id="close-modal-search"></i>
-        </div>
-    </div>
     <!-- ! modal search end -->
 
     <!-- ! blogs start  -->
@@ -156,7 +191,7 @@
     <!-- ! blogs end -->
 
     <!-- ! policy start -->
-    <section class="policy">
+    <!-- <section class="policy">
         <div class="container">
             <ul class="policy-list">
                 <li class="policy-item">
@@ -189,7 +224,7 @@
                 </li>
             </ul>
         </div>
-    </section>
+    </section> -->
     <!-- ! policy end -->
 
     <!-- ! footer start -->
