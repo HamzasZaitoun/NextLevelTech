@@ -1521,8 +1521,8 @@ top: -1px;
   border: none;
 }
 
-.header .topbar .top-middle .useful-links li a {
-  color: #fff;
+.header .middle-right-area .top-middle .useful-links li a {
+  color: #0b0505;
   font-size: 14px;
   font-weight: 500;
 }
@@ -1531,13 +1531,13 @@ top: -1px;
   color: #0167F3;
 }
 
-.header .topbar .top-end {
+.header .middle-right-area .top-end {
   float: right;
   display: inline-block;
 }
 
 @media (max-width: 767px) {
-  .header .topbar .top-end {
+  .header .middle-right-area .top-end {
     float: none;
     text-align: center;
     display: block;
@@ -1545,50 +1545,50 @@ top: -1px;
   }
 }
 
-.header .topbar .top-end .user {
-  color: #fff;
+.header .middle-right-area .top-end .user {
+  color: #110b0b;
   display: inline-block;
   margin-right: 5px;
   font-weight: 500;
   font-size: 14px;
 }
 
-.header .topbar .top-end .user i {
-  color: #fff;
+.header .middle-right-area .top-end .user i {
+  color: #090101;
   display: inline-block;
   margin-right: 5px;
 }
 
-.header .topbar .top-end .user-login {
+.header .middle-right-area .top-end .user-login {
   display: inline-block;
   white-space: nowrap;
 }
 
-.header .topbar .top-end .user-login li {
+.header .middle-right-area .top-end .user-login li {
   display: inline-block;
   border-right: 1px solid rgba(255, 255, 255, 0.459);
   padding: 0px 10px;
   white-space: nowrap;
 }
 
-.header .topbar .top-end .user-login li:first-child {
+.header .middle-right-area .top-end .user-login li:first-child {
   padding-right: 12px;
 }
 
-.header .topbar .top-end .user-login li:last-child {
+.header .middle-right-area .top-end .user-login li:last-child {
   margin-right: 0;
   padding-right: 0;
   border-right: none;
 }
 
-.header .topbar .top-end .user-login li a {
-  color: #fff;
+.header .middle-right-area .top-end .user-login li a {
+  color: #0f0404;
   font-weight: 500;
   font-size: 14px;
   white-space: nowrap;
 }
 
-.header .topbar .top-end .user-login li a:hover {
+.header .middle-right-area .top-end .user-login li a:hover {
   color: #0167F3;
 }
 
