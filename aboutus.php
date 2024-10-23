@@ -9,36 +9,52 @@
   <!-- Bootstrap CSS for easy styling -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" />
+  <!-- AOS CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.css" />
   <link rel="stylesheet" href="css/main.css" />
   <title>About Us - Gaming E-commerce</title>
 
   <style>
     /* Style for the About Us section */
-    .about-us-section {
-      background: #f8f9fa;
-      padding: 60px 0;
-    }
+.about-us-section {
+  background: #f8f9fa;
+  padding: 60px 0;
+  border-bottom: 2px solid #e0e0e0;
+}
 
-    .about-us-section .section-title h2 {
-      font-size: 2.5rem;
-      color: #333;
-      text-align: center;
-      margin-bottom: 20px;
-    }
+.about-us-section .section-title h2 {
+  font-size: 2.5rem;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
 
-    .about-us-section p {
-      text-align: center;
-      color: #666;
-      font-size: 1.1rem;
-      margin-bottom: 40px;
-    }
+.about-us-section p {
+  text-align: center;
+  color: #666;
+  font-size: 1.1rem;
+  margin-bottom: 40px;
+}
 
-    /* Equal height for all columns using Flexbox */
-    .row-equal-height {
-      display: flex;
-      flex-wrap: wrap;
-    }
+.row-equal-height {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 
+<<<<<<< HEAD
+/* Fade-in animation */
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+=======
     .col-md-4 {
       display: flex;
       flex-direction: column;
@@ -50,84 +66,123 @@
       margin-bottom: 20px;
       transition: transform 0.3s;
     } 
+>>>>>>> 65951a1418a05c83d2e8d14861662c025dd9cac4
 
-    .col-md-4:hover {
-      transform: translateY(-10px);
-    }
+.team-card {
+  border: none;
+  background: #fff;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+  margin: 15px;
+  height: 300px; /* Set a consistent height */
+  animation: fadeInLeft 0.5s ease forwards;
+  opacity: 0; 
+}
 
-    /* Consistent text styling for all card headers and paragraphs */
-    .col-md-4 h5,
-    .team-card h5 {
-      text-align: center;
-      font-size: 1.2rem;
-      font-weight: bold;
-      margin: 15px 0 10px;
-      color: #333;
-    }
+.team-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
 
-    .col-md-4 p,
-    .team-card p {
-      text-align: center;
-      font-size: 1rem;
-      color: #555;
-      margin: 0 0 15px;
-    }
+.team-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
 
-    /* Team card styling */
-    .team-section {
-      padding: 50px 0;
-    }
+.team-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
 
-    .team-card {
-      border: none;
-      background: #fff;
-      overflow: hidden;
-      border-radius: 10px;
-    }
+.card-body {
+  padding: 20px;
+  height: 100%; /* Allow body to take full height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center content vertically */
+}
 
-    .team-card img {
-      width: 100%;
-      height: 250px;
-      object-fit: cover;
-    }
+.card-body h5 {
+  font-weight: 700;
+  margin: 15px 0;
+  color: #4A55A2;
+  text-align: center;
+}
 
-    .team-card .social-icons i {
-      font-size: 18px;
-      margin: 0 10px;
-      color: #007bff;
-      transition: color 0.3s;
-    }
+.card-body p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 15px;
+  text-align: center;
+}
 
-    .team-card .social-icons i:hover {
-      color: #0056b3;
-    }
+/* Team Section */
+.team-section {
+  padding: 50px 0;
+}
 
-    .smaller-card {
-      width: 80%; /* Reduce card size */
-      margin: 0 auto; /* Center the card */
-    }
+.box {
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(74, 84, 161, 0.5);
+  transition: transform 0.3s;
+  margin: 15px;
+}
 
-    .smaller-card img {
-      height: 250px; /* Reduce image height */
-      object-fit: cover;
-    }
+.box:hover {
+  transform: translateY(-5px);
+}
 
-    .smaller-card .card-body {
-      padding: 10px; /* Adjust padding for a more compact look */
-    }
+.box img {
+  width: 100%;
+  height: auto;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 5px;
+}
 
-    .smaller-card h5 {
-      font-size: 1rem; /* Smaller font size for the heading */
-    }
+.title {
+  font-weight: 700;
+  margin: 15px 0 10px;
+  color: #4A55A2;
+  text-align: center;
+}
 
-    .smaller-card p {
-      font-size: 0.9rem; /* Smaller font size for the text */
-    }
+.description {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 15px;
+  text-align: center;
+}
 
-    .smaller-card .social-icons i {
-      font-size: 16px; /* Smaller icons */
-      margin: 0 5px;
-    }
+.social-icons {
+  text-align: center;
+}
+
+.social-icons i {
+  font-size: 18px;
+  margin: 0 10px;
+  color: #007bff;
+  transition: color 0.3s;
+}
+
+.social-icons i:hover {
+  color: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .about-us-section {
+    padding: 40px 0;
+  }
+
+  .team-card,
+  .box {
+    margin: 10px 0;
+  }
+}
+
   </style>
 </head>
 
@@ -267,126 +322,118 @@
   </header>
   <!-- ! header end -->
 
-  <!-- About Us Section -->
-  <section class="about-us-section">
-    <div class="container">
-      <div class="section-title">
-        <h2>About Us</h2>
-        <p>Welcome to GameTech, your ultimate destination for gaming enthusiasts! We provide high-quality gaming devices designed to take your gaming experience to the next level.</p>
-      </div>
-      <div class="row row-equal-height">
-        <div class="col-md-4">
-          <div class="card team-card">
-            <img src="img/test2.jpg" alt="Gaming Devices" />
-            <div class="card-body">
-              <h5>Level Up Your Game with GameTech</h5>
-              <p>Explore our wide range of gaming devices, from headsets to consoles, all built to help you stay ahead of the competition.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card team-card">
-            <img src="img/blogs/blog2.jpg" alt="Our Mission" />
-            <div class="card-body">
-              <h5>Our Mission</h5>
-              <p>To empower gamers with the best tools to enhance their gaming journey. We offer the latest and most innovative gaming devices at unbeatable prices.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card team-card">
-            <img src="img/blogs/blog4.jpg" alt="Customer Satisfaction" />
-            <div class="card-body">
-              <h5>Customer Satisfaction</h5>
-              <p>We’re here to ensure that every product meets your expectations. Our dedicated customer support team is always ready to assist you.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  
 
-  <!-- Team Members Section -->
-  <section class="team-section text-center">
-    <div class="container">
-      <div class="section-title">
-        <h2>Meet Our Team</h2>
-        <p>Feel free to contact with us</p>
+  <!-- About Us Section -->
+
+  <!-- About Us Section --> 
+<section class="about-us-section">
+  <div class="container">
+    <div class="section-title">
+      <h2>About Us</h2>
+      <p>Your ultimate destination for gaming enthusiasts! At GameTech, we are dedicated to providing high-quality gaming devices that elevate your gaming experience to the next level.</p>
+    </div>
+    <div class="row row-equal-height">
+      <div class="col-md-4">
+        <div class="card team-card">
+          <div class="card-body">
+            <h5>Explore Our Range</h5>
+            <p>Dive into our extensive selection of gaming devices, from immersive headsets to high-performance consoles. Our products are designed to keep you ahead of the competition and fully engaged in your gaming adventures.</p>
+          </div>
+        </div>
       </div>
-      <div class="row row-equal-height">
-        <div class="col-md-4">
-          <div class="card team-card smaller-card">
-            <img src="img/esraa.jpg" alt="Esra'a Eid" />
-            <div class="card-body">
-              <h5>Esra'a Eid</h5>
-              <p>Full-Stack Developer</p>
-              <div class="social-icons">
-                <a href="https://www.linkedin.com/in/esra-a-eid-a489b3280/" target="_blank"><i class="bi bi-linkedin"></i></a>
-                <a href="https://github.com/EsraaEid2" target="_blank"><i class="bi bi-github"></i></a>
-                <a href="mailto:esraa.eidd2@gmail.com" target="_blank"><i class="bi bi-envelope"></i></a>
-              </div>
-            </div>
+      <div class="col-md-4">
+        <div class="card team-card">
+          <div class="card-body">
+            <h5>Our Mission</h5>
+            <p>At GameTech, we empower gamers by offering the best tools to enhance their gaming journey. Our commitment is to deliver the latest and most innovative gaming devices at unbeatable prices, ensuring you have everything you need to succeed in your gaming endeavors.</p>
           </div>
         </div>
-        <div class="col-md-4">
-          <div class="card team-card smaller-card">
-            <img src="img/hamza.jpg" alt="Hamza Zaitoun" />
-            <div class="card-body">
-              <h5>Hamza Zaitoun</h5>
-              <p>Full Stack Developer</p>
-              <div class="social-icons">
-                <i class="bi bi-linkedin"></i>
-                <i class="bi bi-github"></i>
-                <i class="bi bi-twitter"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card team-card smaller-card">
-            <img src="img/team/member2.jpg" alt="Mays Alkhalil" />
-            <div class="card-body">
-              <h5>Mays Alkhalil</h5>
-              <p>Full Stack Developer</p>
-              <div class="social-icons">
-                <i class="bi bi-linkedin"></i>
-                <i class="bi bi-github"></i>
-                <i class="bi bi-twitter"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card team-card smaller-card">
-            <img src="img/motasem.jpg" alt="Motasem" />
-            <div class="card-body">
-              <h5>Motasem</h5>
-              <p>Full Stack Developer</p>
-              <div class="social-icons">
-                <i class="bi bi-linkedin"></i>
-                <i class="bi bi-github"></i>
-                <i class="bi bi-twitter"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card team-card smaller-card">
-            <img src="img/test.jpg" alt="Moawyiah" />
-            <div class="card-body">
-              <h5>Moawyiah</h5>
-              <p>Full Stack Developer</p>
-              <div class="social-icons">
-                <i class="bi bi-linkedin"></i>
-                <i class="bi bi-github"></i>
-                <i class="bi bi-twitter"></i>
-              </div>
-            </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card team-card">
+          <div class="card-body">
+            <h5>Our Commitment</h5>
+            <p>We’re here to ensure that every product meets your expectations. Our dedicated customer support team is always ready to assist you.</p>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
+<!-- Team Members Section -->
+<section class="team-section text-center"> 
+  <div class="container">
+    <div class="section-title">
+      <h2>Meet Our Team</h2>
+      <p>Our talented team is passionate about gaming and technology. Connect with us to see our latest projects and updates!</p>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-4">
+        <div class="box" data-aos="fade-right">
+          <img src="img/esraa.jpg" alt="Esraa" class="box-image" />
+          <h4 class="title">Esra'a Eid</h4>
+          <p class="description">Full Stack Developer</p>
+          <div class="social-icons">
+            <a href="https://www.linkedin.com/in/esra-a-eid-a489b3280/" target="_blank"><i class="bi bi-linkedin"></i></a>
+            <a href="https://github.com/EsraaEid2" target="_blank"><i class="bi bi-github"></i></a>
+            <a href="mailto:esraa.eidd2@gmail.com" target="_blank"><i class="bi bi-envelope"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="box" data-aos="fade-left">
+          <img src="img/hamza.jpg" alt="Esraa" class="box-image" />
+          <h4 class="title">Hamza Zaitoun</h4>
+          <p class="description">Full Stack Developer</p>
+          <div class="social-icons">
+            <a href="https://www.linkedin.com/in/hamza-zaitoun-9ab8512b1/" target="_blank"><i class="bi bi-linkedin"></i></a>
+            <a href="https://github.com/HamzasZaitoun" target="_blank"><i class="bi bi-github"></i></a>
+            <a href="mailto:hamzasaadzaitoun@gmail.com" target="_blank"><i class="bi bi-envelope"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="box" data-aos="fade-right">
+          <img src="img/mays.jpg" alt="Esraa" class="box-image" />
+          <h4 class="title">Mays Al-Khalil</h4>
+          <p class="description">Full Stack Developer</p>
+          <div class="social-icons">
+            <a href="www.linkedin.com/in/mays-al-khalil-94723b220" target="_blank"><i class="bi bi-linkedin"></i></a>
+            <a href="https://github.com/mays-alkhalil" target="_blank"><i class="bi bi-github"></i></a>
+            <a href="mailto:maysalkhalil02@gmail.com" target="_blank"><i class="bi bi-envelope"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="box" data-aos="fade-left">
+          <img src="img/motasem.jpg" alt="Esraa" class="box-image" />
+          <h4 class="title">Motasem Baseet</h4>
+          <p class="description">Full Stack Developer</p>
+          <div class="social-icons">
+            <a href="https://www.linkedin.com/in/motasem-baseet" target="_blank"><i class="bi bi-linkedin"></i></a>
+            <a href="https://github.com/Motasem-Baseet" target="_blank"><i class="bi bi-github"></i></a>
+            <a href="mailto:mmotasem.baseet@gmail.com" target="_blank"><i class="bi bi-envelope"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="box" data-aos="fade-right">
+          <img src="img/moawiah.jpg" alt="moawiah" class="box-image" />
+          <h4 class="title">Moawiah Eqailan</h4>
+          <p class="description">Full Stack Developer</p>
+          <div class="social-icons">
+            <a href="https://www.linkedin.com/in/moawiah-eqailan-2ba635178/" target="_blank"><i class="bi bi-linkedin"></i></a>
+            <a href="https://github.com/Moawiah-Eqailan" target="_blank"><i class="bi bi-github"></i></a>
+            <a href="mailto:moawiah.eqailan@gmail.com" target="_blank"><i class="bi bi-envelope"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
       <!-- ! footer start -->
       <section class="footer">
         <div class="subscribe-contact-row">
@@ -579,6 +626,11 @@
 
     <!-- scripts start -->
     <script src="js/main.js" type="module"></script>
+    <!-- AOS JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.js"></script>
+    <script>
+    AOS.init();
+    </script>
     <!-- scripts end -->
 </body>
 
