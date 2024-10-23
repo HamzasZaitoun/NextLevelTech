@@ -1,881 +1,548 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="no-js" lang="zxx">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- !bootstrap icon -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" />
-  <link rel="stylesheet" href="css/main.css" />
-  <!-- !Glide.js Css CDN -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.6.0/css/glide.core.min.css" />
-  <title>E-Commerce | Home</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>ShopGrids - Bootstrap 5 eCommerce HTML Template.</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.svg" />
+
+    <!-- ========================= CSS here ========================= -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/css/LineIcons.3.0.css" />
+    <link rel="stylesheet" href="assets/css/tiny-slider.css" />
+    <link rel="stylesheet" href="assets/css/glightbox.min.css" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+
 </head>
 
 <body>
-  <!-- ! header start -->
-  <header>
-    <div class="global-notification">
-      <div class="container">
-        <p>
-          SUMMER SALE FOR ALL SWIM SUITS AND FREE EXPRESS INTERNATIONAL
-          DELIVERY - OFF 50%! <a href="shop.php">SHOP NOW</a>
-        </p>
-      </div>
-    </div>
-    <div class="header-row">
-      <div class="container">
-        <div class="header-wrapper">
-          <div class="header-mobile">
-            <i class="bi bi-list" id="btn-menu"></i>
-          </div>
-          <div class="header-left">
-            <a href="/" class="logo">LOGO</a>
-          </div>
-          <div class="header-center" id="sidebar">
-            <nav class="navigation">
-              <ul class="menu-list">
-                <li class="menu-list-item">
-                  <a href="/" class="menu-link active">Home
-                    <i class="bi bi-chevron-down"></i>
-                  </a>
-                  <div class="menu-dropdown-wrapper">
-                    <ul class="menu-dropdown-content">
-                      <li><a href="#">Home Clean</a></li>
-                      <li><a href="#">Home Collection</a></li>
-                      <li><a href="#">Home Minimal</a></li>
-                      <li><a href="#">Home Modern</a></li>
-                      <li><a href="#">Home Parallax</a></li>
-                      <li><a href="#">Home Strong</a></li>
-                      <li><a href="#">Home Style</a></li>
-                      <li><a href="#">Home Unique</a></li>
-                      <li><a href="#">Home RTL</a></li>
-                    </ul>
-                  </div>
-                </li>
-                <li class="menu-list-item megamenu-wrapper">
-                  <a href="shop.php" class="menu-link">Shop
-                    <i class="bi bi-chevron-down"></i>
-                  </a>
-                  <div class="menu-dropdown-wrapper">
-                    <div class="menu-dropdown-megamenu">
-                      <div class="megamenu-links">
-                        <div class="megamenu-products">
-                          <h3 class="megamenu-product-title">Shop Style</h3>
-                          <ul class="megamenu-menu-list">
-                            <li><a href="#">Shop Standart</a></li>
-                            <li><a href="#">Shop Full</a></li>
-                            <li><a href="#">Shop Only Categories</a></li>
-                            <li><a href="#">Shop Image Categories</a></li>
-                            <li><a href="#">Shop Sub Categories</a></li>
-                            <li><a href="#">Shop List</a></li>
-                            <li><a href="#">Hover Style 1</a></li>
-                            <li><a href="#">Hover Style 2</a></li>
-                            <li><a href="#">Hover Style 3</a></li>
-                          </ul>
-                        </div>
-                        <div class="megamenu-products">
-                          <h3 class="megamenu-product-title">
-                            Filter Layout
-                          </h3>
-                          <ul class="megamenu-menu-list">
-                            <li><a href="#">Sidebar</a></li>
-                            <li><a href="#">Filter Side Out</a></li>
-                            <li><a href="#">Filter Dropdown</a></li>
-                            <li><a href="#">Filter Drawer</a></li>
-                          </ul>
-                        </div>
-                        <div class="megamenu-products">
-                          <h3 class="megamenu-product-title">Shop Loader</h3>
-                          <ul class="megamenu-menu-list">
-                            <li><a href="#">Shop Pagination</a></li>
-                            <li><a href="#">Shop Infinity</a></li>
-                            <li><a href="#">Shop Load More</a></li>
-                            <li><a href="#">Cart Modal</a></li>
-                            <li><a href="#">Cart Drawer</a></li>
-                            <li><a href="#">Cart Page</a></li>
-                          </ul>
-                        </div>
-                      </div>
-                      <div class="megamenu-single">
-                        <a href="#">
-                          <img src="img/mega-menu.jpg" alt="" />
-                        </a>
-                        <h3 class="megamenu-single-title">
-                          JOIN THE LAYERING GANG
-                        </h3>
-                        <h4 class="megamenu-single-subtitle">
-                          Suspendisse faucibus nunc et pellentesque
-                        </h4>
-                        <a href="#" class="megamenu-single-button btn btn-sm">Shop Now</a>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <li class="menu-list-item">
-                  <a href="blog.php" class="menu-link">Blog
-                  </a>
-                </li>
-                <li class="menu-list-item">
-                  <a href="contact.php" class="menu-link">Contact</a>
-                </li>
-              </ul>
-            </nav>
-            <i class="bi-x-circle" id="close-sidebar"></i>
-          </div>
-          <div class="header-right">
-            <div class="header-right-links">
-              <a href="account.php">
-                <i class="bi bi-person"></i>
-              </a>
-              <button class="search-button">
-                <i class="bi bi-search"></i>
-              </button>
-              <a href="#">
-                <i class="bi bi-heart"></i>
-              </a>
-              <div class="header-cart">
-                <a href="cart.php" class="header-cart-link">
-                  <i class="bi bi-bag"></i>
-                  <span class="header-cart-count">0</span>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
-  <!-- ! header end -->
-
-  <!-- ! modal search start -->
-  <div class="modal-search">
-    <div class="modal-wrapper">
-      <h3 class="modal-title">Search for products</h3>
-      <p class="modal-text">
-        Start typing to see products you are looking for.
+    <!--[if lte IE 9]>
+      <p class="browserupgrade">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="https://browsehappy.com/">upgrade your browser</a> to improve
+        your experience and security.
       </p>
-      <div class="search">
-        <input type="text" placeholder="Search a product" />
-        <button><i class="bi bi-search"></i></button>
-      </div>
-      </form>
-      <div class="search-result">
-        <div class="search-heading">
-          <h3>RESULT FROM PRODUCT</h3>
-        </div>
-        <div class="results">
+    <![endif]-->
 
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-icon">
+                <span></span>
+                <span></span>
+            </div>
         </div>
-      </div>
-      <i class="bi bi-x-circle" id="close-modal-search"></i>
     </div>
-  </div>
-  <!-- ! modal search end -->
+    <!-- /End Preloader -->
 
-  <!-- ! modal dialog start -->
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-close">
-        <i class="bi bi-x"></i>
-      </div>
-      <div class="modal-image">
-        <img src="img/modal-dialog.jpg" alt="modal">
-      </div>
-      <div class="popup-wrapper">
-        <div class="popup-content">
-          <div class="popup-title">
-            <h3>NEWSLETTER</h3>
-          </div>
-          <p class="popup-text">
-            Sign up to our newsletter and get exclusive deals you won find any where else straight to your inbox!
-          </p>
-          <form class="popup-form">
-            <input type="text" placeholder="Enter Email Address Here">
-            <button class="btn btn-primary">SUBSCRIBE</button>
-            <label>
-              <input type="checkbox">
-              <span>Don't show this popup again</span>
-            </label>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- ! modal dialog end -->
 
-  <!-- ! slider start -->
-  <section class="slider">
-    <div class="slider-elements">
-      <div class="slider-item fade">
-        <div class="slider-image">
-          <img src="img/slider/slider1.jpg" class="img-fluid" alt="" />
-        </div>
+    <?php
+  include("includes/header.php");
+  ?>
+   
+    <!-- Start Hero Area -->
+    <section class="hero-area">
         <div class="container">
-          <p class="slider-title">SUMMER 2022</p>
-          <h2 class="slider-heading">Save up to 70%</h2>
-          <a href="#" class="btn btn-lg btn-primary">Explore Now</a>
+            <div class="row">
+                <div class="col-lg-8 col-12 custom-padding-right">
+                    <div class="slider-head">
+                        <!-- Start Hero Slider -->
+                        <div class="hero-slider">
+                            <!-- Start Single Slider -->
+                            <div class="single-slider"
+                                style="background-image: url(assets/images/hero/slider-bg1.jpg);">
+                                <div class="content">
+                                    <h2><span>No restocking fee ($35 savings)</span>
+                                        M75 Sport Watch
+                                    </h2>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                        incididunt ut labore et dolore magna aliqua.</p>
+                                    <h3><span>Now Only</span> $320.99</h3>
+                                    <div class="button">
+                                        <a href="product-grids.php" class="btn">Shop Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Single Slider -->
+                            <!-- Start Single Slider -->
+                            <div class="single-slider"
+                                style="background-image: url(assets/images/hero/slider-bg2.jpg);">
+                                <div class="content">
+                                    <h2><span>Big Sale Offer</span>
+                                        Get the Best Deal on CCTV Camera
+                                    </h2>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                        incididunt ut labore et dolore magna aliqua.</p>
+                                    <h3><span>Combo Only:</span> $590.00</h3>
+                                    <div class="button">
+                                        <a href="product-grids.php" class="btn">Shop Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Single Slider -->
+                        </div>
+                        <!-- End Hero Slider -->
+                    </div>
+                </div>
+                <div class="col-lg-4 col-12">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-6 col-12 md-custom-padding">
+                            <!-- Start Small Banner -->
+                            <div class="hero-small-banner"
+                                style="background-image: url('assets/images/hero/slider-bnr.jpg');">
+                                <div class="content">
+                                    <h2>
+                                        <span>New line required</span>
+                                        iPhone 12 Pro Max
+                                    </h2>
+                                    <h3>$259.99</h3>
+                                </div>
+                            </div>
+                            <!-- End Small Banner -->
+                        </div>
+                        <div class="col-lg-12 col-md-6 col-12">
+                            <!-- Start Small Banner -->
+                            <div class="hero-small-banner style2">
+                                <div class="content">
+                                    <h2>Weekly Sale!</h2>
+                                    <p>Saving up to 50% off all online store items this week.</p>
+                                    <div class="button">
+                                        <a class="btn" href="product-grids.php">Shop Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Start Small Banner -->
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="slider-item fade">
-        <div class="slider-image">
-          <img src="img/slider/slider2.jpg" class="img-fluid" alt="" />
-        </div>
+    </section>
+    <!-- End Hero Area -->
+
+
+
+    <!-- categories -->
+     <?php
+     include('./includes/test.php');
+     ?>
+
+
+
+
+
+
+    <!-- Start Trending Product Area -->
+    <section class="trending-product section" style="margin-top: 12px;">
         <div class="container">
-          <p class="slider-title">SUMMER 2022</p>
-          <h2 class="slider-heading">Save up to 70%</h2>
-          <a href="#" class="btn btn-lg btn-primary">Explore Now</a>
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-title">
+                        <h2>Trending Product</h2>
+                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have
+                            suffered alteration in some form.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-12">
+                    <!-- Start Single Product -->
+                    <div class="single-product">
+                        <div class="product-image">
+                            <img src="assets/images/products/product-1.jpg" alt="#">
+                            <div class="button">
+                                <a href="product-details.php" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="category">Watches</span>
+                            <h4 class="title">
+                                <a href="product-grids.php">Xiaomi Mi Band 5</a>
+                            </h4>
+                            <ul class="review">
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star"></i></li>
+                                <li><span>4.0 Review(s)</span></li>
+                            </ul>
+                            <div class="price">
+                                <span>$199.00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Single Product -->
+                </div>
+                <div class="col-lg-3 col-md-6 col-12">
+                    <!-- Start Single Product -->
+                    <div class="single-product">
+                        <div class="product-image">
+                            <img src="assets/images/products/product-2.jpg" alt="#">
+                            <span class="sale-tag">-25%</span>
+                            <div class="button">
+                                <a href="product-details.php" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="category">Speaker</span>
+                            <h4 class="title">
+                                <a href="product-grids.php">Big Power Sound Speaker</a>
+                            </h4>
+                            <ul class="review">
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><span>5.0 Review(s)</span></li>
+                            </ul>
+                            <div class="price">
+                                <span>$275.00</span>
+                                <span class="discount-price">$300.00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Single Product -->
+                </div>
+                <div class="col-lg-3 col-md-6 col-12">
+                    <!-- Start Single Product -->
+                    <div class="single-product">
+                        <div class="product-image">
+                            <img src="assets/images/products/product-3.jpg" alt="#">
+                            <div class="button">
+                                <a href="product-details.php" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="category">Camera</span>
+                            <h4 class="title">
+                                <a href="product-grids.php">WiFi Security Camera</a>
+                            </h4>
+                            <ul class="review">
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><span>5.0 Review(s)</span></li>
+                            </ul>
+                            <div class="price">
+                                <span>$399.00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Single Product -->
+                </div>
+                <div class="col-lg-3 col-md-6 col-12">
+                    <!-- Start Single Product -->
+                    <div class="single-product">
+                        <div class="product-image">
+                            <img src="assets/images/products/product-4.jpg" alt="#">
+                            <span class="new-tag">New</span>
+                            <div class="button">
+                                <a href="product-details.php" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="category">Phones</span>
+                            <h4 class="title">
+                                <a href="product-grids.php">iphone 6x plus</a>
+                            </h4>
+                            <ul class="review">
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><span>5.0 Review(s)</span></li>
+                            </ul>
+                            <div class="price">
+                                <span>$400.00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Single Product -->
+                </div>
+                <div class="col-lg-3 col-md-6 col-12">
+                    <!-- Start Single Product -->
+                    <div class="single-product">
+                        <div class="product-image">
+                            <img src="assets/images/products/product-5.jpg" alt="#">
+                            <div class="button">
+                                <a href="product-details.php" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="category">Headphones</span>
+                            <h4 class="title">
+                                <a href="product-grids.php">Wireless Headphones</a>
+                            </h4>
+                            <ul class="review">
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><span>5.0 Review(s)</span></li>
+                            </ul>
+                            <div class="price">
+                                <span>$350.00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Single Product -->
+                </div>
+                <div class="col-lg-3 col-md-6 col-12">
+                    <!-- Start Single Product -->
+                    <div class="single-product">
+                        <div class="product-image">
+                            <img src="assets/images/products/product-6.jpg" alt="#">
+                            <div class="button">
+                                <a href="product-details.php" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="category">Speaker</span>
+                            <h4 class="title">
+                                <a href="product-grids.php">Mini Bluetooth Speaker</a>
+                            </h4>
+                            <ul class="review">
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star"></i></li>
+                                <li><span>4.0 Review(s)</span></li>
+                            </ul>
+                            <div class="price">
+                                <span>$70.00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Single Product -->
+                </div>
+                <div class="col-lg-3 col-md-6 col-12">
+                    <!-- Start Single Product -->
+                    <div class="single-product">
+                        <div class="product-image">
+                            <img src="assets/images/products/product-7.jpg" alt="#">
+                            <span class="sale-tag">-50%</span>
+                            <div class="button">
+                                <a href="product-details.php" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="category">Headphones</span>
+                            <h4 class="title">
+                                <a href="product-grids.php">PX7 Wireless Headphones</a>
+                            </h4>
+                            <ul class="review">
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star"></i></li>
+                                <li><span>4.0 Review(s)</span></li>
+                            </ul>
+                            <div class="price">
+                                <span>$100.00</span>
+                                <span class="discount-price">$200.00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Single Product -->
+                </div>
+                <div class="col-lg-3 col-md-6 col-12">
+                    <!-- Start Single Product -->
+                    <div class="single-product">
+                        <div class="product-image">
+                            <img src="assets/images/products/product-8.jpg" alt="#">
+                            <div class="button">
+                                <a href="product-details.php" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="category">Laptop</span>
+                            <h4 class="title">
+                                <a href="product-grids.php">Apple MacBook Air</a>
+                            </h4>
+                            <ul class="review">
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><span>5.0 Review(s)</span></li>
+                            </ul>
+                            <div class="price">
+                                <span>$899.00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Single Product -->
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="slider-item fade">
-        <div class="slider-image">
-          <img src="img/slider/slider3.jpg" class="img-fluid" alt="" />
-        </div>
+    </section>
+    <!-- End Trending Product Area -->
+
+    <!-- Start Call Action Area -->
+    <section class="call-action section">
         <div class="container">
-          <p class="slider-title">SUMMER 2022</p>
-          <h2 class="slider-heading">Save up to 70%</h2>
-          <a href="#" class="btn btn-lg btn-primary">Explore Now</a>
-        </div>
-      </div>
-      <div class="slider-buttons">
-        <button onclick="plusSlide(-1)">
-          <i class="bi bi-chevron-left"></i>
-        </button>
-        <button onclick="plusSlide(1)">
-          <i class="bi bi-chevron-right"></i>
-        </button>
-      </div>
-      <div class="slider-dots">
-        <button class="slider-dot active" onclick="currentSlide(1)">
-          <span></span>
-        </button>
-        <button class="slider-dot" onclick="currentSlide(2)">
-          <span></span>
-        </button>
-        <button class="slider-dot" onclick="currentSlide(3)">
-          <span></span>
-        </button>
-      </div>
-    </div>
-  </section>
-  <!-- ! slider end -->
-
-  <!-- ! category start -->
-  <section class="categories">
-    <div class="container">
-      <div class="section-title">
-        <h2>All Categories</h2>
-        <p>Summer Collection New Modern Design</p>
-      </div>
-
-      <ul class="category-list">
-        <li class="category-item">
-          <a href="#">
-            <img src="img/categories/categories1.png" alt="" class="category-image" />
-            <span class="category-title">Smartphone</span>
-          </a>
-        </li>
-        <li class="category-item">
-          <a href="#">
-            <img src="img/categories/categories2.png" alt="" class="category-image" />
-            <span class="category-title">Watches</span>
-          </a>
-        </li>
-        <li class="category-item">
-          <a href="#">
-            <img src="img/categories/categories3.png" alt="" class="category-image" />
-            <span class="category-title">Electronics</span>
-          </a>
-        </li>
-        <li class="category-item">
-          <a href="#">
-            <img src="img/categories/categories4.png" alt="" class="category-image" />
-            <span class="category-title">Furnitures</span>
-          </a>
-        </li>
-        <li class="category-item">
-          <a href="#">
-            <img src="img/categories/categories5.png" alt="" class="category-image" />
-            <span class="category-title">Collections</span>
-          </a>
-        </li>
-        <li class="category-item">
-          <a href="#">
-            <img src="img/categories/categories6.png" alt="" class="category-image" />
-            <span class="category-title">Fashion</span>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </section>
-  <!-- ! category end-->
-
-  <!-- ! product start -->
-  <section class="products">
-    <div class="container">
-      <div class="section-title">
-        <h2>Featured Products</h2>
-        <p>Summer Collection New Modern Design</p>
-      </div>
-      <div class="product-wrapper product-carousel">
-        <div class="glide__track" data-glide-el="track">
-          <ul class="product-list glide__slides" id="product-list">
-            <li class="product-item glide__slide">
-              <div class="product-image">
-                <a href="#">
-                  <img src="img/products/product1/1.png" alt="" class="img1" />
-                  <img src="img/products/product1/2.png" alt="" class="img2" />
-                </a>
-              </div>
-              <div class="product-info">
-                <a href="#" class="product-title"> Analogue Resin Strap </a>
-                <ul class="product-star">
-                  <li>
-                    <i class="bi bi-star-fill"></i>
-                  </li>
-                  <li>
-                    <i class="bi bi-star-fill"></i>
-                  </li>
-                  <li>
-                    <i class="bi bi-star-fill"></i>
-                  </li>
-                  <li>
-                    <i class="bi bi-star-fill"></i>
-                  </li>
-                  <li>
-                    <i class="bi bi-star-half"></i>
-                  </li>
-                </ul>
-                <div class="product-prices">
-                  <strong class="new-price">$108.00</strong>
-                  <span class="old-price">$165</span>
+            <div class="row ">
+                <div class="col-lg-8 offset-lg-2 col-12">
+                    <div class="inner">
+                        <div class="content">
+                            <h2 class="wow fadeInUp" data-wow-delay=".4s">Currently You are using free<br>
+                                Lite version of ShopGrids</h2>
+                            <p class="wow fadeInUp" data-wow-delay=".6s">Please, purchase full version of the template
+                                to get all pages,<br> features and commercial license.</p>
+                            <div class="button wow fadeInUp" data-wow-delay=".8s">
+                                <a href="javascript:void(0)" class="btn">Purchase Now</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <span class="product-discount"> -17% </span>
-                <div class="product-links">
-                  <button>
-                    <i class="bi bi-basket-fill"></i>
-                  </button>
-                  <button>
-                    <i class="bi bi-heart-fill"></i>
-                  </button>
-                  <a href="#">
-                    <i class="bi bi-eye-fill"></i>
-                  </a>
-                  <a href="#">
-                    <i class="bi bi-share-fill"></i>
-                  </a>
-                </div>
-              </div>
-            </li>
-          </ul>
+            </div>
         </div>
-        <div class="glide__arrows" data-glide-el="controls">
-          <button class="glide__arrow glide__arrow--left" data-glide-dir="<">
-            <i class="bi bi-chevron-left"></i>
-          </button>
-          <button class="glide__arrow glide__arrow--right" data-glide-dir=">">
-            <i class="bi bi-chevron-right"></i>
-          </button>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- ! product end -->
+    </section>
+    <!-- End Call Action Area -->
 
-  <!-- ! campaigns start -->
-  <section class="campaigns">
-    <div class="container">
-      <div class="campaigns-wrapper">
-        <div class="campaign-item">
-          <h3 class="campaign-title">
-            Fashion Month <br />
-            Ready in Capital <br />
-            Shop
-          </h3>
-          <p class="campaing-desc">
-            Lorem ipsum dolor sit amet consectetur adipiscing elit dolor
-          </p>
-          <a href="#" class="btn btn-primary">
-            View All
-            <i class="bi bi-arrow-right"></i>
-          </a>
-        </div>
-        <div class="campaign-item">
-          <h3 class="campaign-title">
-            Fashion Month <br />
-            Ready in Capital <br />
-            Shop
-          </h3>
-          <p class="campaing-desc">
-            Lorem ipsum dolor sit amet consectetur adipiscing elit dolor
-          </p>
-          <a href="#" class="btn btn-primary">
-            View All
-            <i class="bi bi-arrow-right"></i>
-          </a>
-        </div>
-      </div>
-      <div class="campaigns-wrapper">
-        <div class="campaign-item">
-          <h3 class="campaign-title">
-            Fashion Month <br />
-            Ready in Capital <br />
-            Shop
-          </h3>
-          <p class="campaing-desc">
-            Lorem ipsum dolor sit amet consectetur adipiscing elit dolor
-          </p>
-          <a href="#" class="btn btn-primary">
-            View All
-            <i class="bi bi-arrow-right"></i>
-          </a>
-        </div>
-        <div class="campaign-item">
-          <h3 class="campaign-title">
-            Fashion Month <br />
-            Ready in Capital <br />
-            Shop
-          </h3>
-          <p class="campaing-desc">
-            Lorem ipsum dolor sit amet consectetur adipiscing elit dolor
-          </p>
-          <a href="#" class="btn btn-primary">
-            View All
-            <i class="bi bi-arrow-right"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- ! campaigns end -->
-
-  <!-- ! product start -->
-  <section class="products">
-    <div class="container">
-      <div class="section-title">
-        <h2>New Arrivals</h2>
-        <p>Summer Collection New Modern Design</p>
-      </div>
-      <div class="product-wrapper product-carousel2">
-        <div class="glide__track" data-glide-el="track">
-          <ul class="product-list glide__slides" id="product-list-2">
-            <li class="product-item glide__slide">
-              <div class="product-image">
-                <a href="#">
-                  <img src="img/products/product1/1.png" alt="" class="img1" />
-                  <img src="img/products/product1/2.png" alt="" class="img2" />
-                </a>
-              </div>
-              <div class="product-info">
-                <a href="#" class="product-title"> Analogue Resin Strap </a>
-                <ul class="product-star">
-                  <li>
-                    <i class="bi bi-star-fill"></i>
-                  </li>
-                  <li>
-                    <i class="bi bi-star-fill"></i>
-                  </li>
-                  <li>
-                    <i class="bi bi-star-fill"></i>
-                  </li>
-                  <li>
-                    <i class="bi bi-star-fill"></i>
-                  </li>
-                  <li>
-                    <i class="bi bi-star-half"></i>
-                  </li>
-                </ul>
-                <div class="product-prices">
-                  <strong class="new-price">$108.00</strong>
-                  <span class="old-price">$165</span>
-                </div>
-                <span class="product-discount"> -17% </span>
-                <div class="product-links">
-                  <button>
-                    <i class="bi bi-basket-fill"></i>
-                  </button>
-                  <button>
-                    <i class="bi bi-heart-fill"></i>
-                  </button>
-                  <a href="#">
-                    <i class="bi bi-eye-fill"></i>
-                  </a>
-                  <a href="#">
-                    <i class="bi bi-share-fill"></i>
-                  </a>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
-        <div class="glide__arrows" data-glide-el="controls">
-          <button class="glide__arrow glide__arrow--left" data-glide-dir="<">
-            <i class="bi bi-chevron-left"></i>
-          </button>
-          <button class="glide__arrow glide__arrow--right" data-glide-dir=">">
-            <i class="bi bi-chevron-right"></i>
-          </button>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- ! product end -->
-
-  <!-- ! blogs start  -->
-  <section class="blogs">
-    <div class="container">
-      <div class="section-title">
-        <h2>From Our Blog</h2>
-        <p>Summer Collection New Modern Design</p>
-      </div>
-      <ul class="blog-list">
-        <li class="blog-item">
-          <a href="blog.php" class="blog-image">
-            <img src="img/blogs/blog1.jpg" alt="" />
-          </a>
-          <div class="blog-info">
-            <div class="blog-info-top">
-              <span>25 Feb, 2021</span>
-              -
-              <span>0 Comments</span>
-            </div>
-            <div class="blog-info-center">
-              <a href="blog.php"> Aliquam hendrerit mi metus </a>
-            </div>
-            <div class="blog-info-bottom">
-              <a href="blog.php">Read More</a>
-            </div>
-          </div>
-        </li>
-        <li class="blog-item">
-          <a href="blog.php" class="blog-image">
-            <img src="img/blogs/blog2.jpg" alt="" />
-          </a>
-          <div class="blog-info">
-            <div class="blog-info-top">
-              <span>25 Feb, 2021</span>
-              -
-              <span>0 Comments</span>
-            </div>
-            <div class="blog-info-center">
-              <a href="blog.php"> Aliquam hendrerit mi metus </a>
-            </div>
-            <div class="blog-info-bottom">
-              <a href="blog.php">Read More</a>
-            </div>
-          </div>
-        </li>
-        <li class="blog-item">
-          <a href="blog.php" class="blog-image">
-            <img src="img/blogs/blog3.jpg" alt="" />
-          </a>
-          <div class="blog-info">
-            <div class="blog-info-top">
-              <span>25 Feb, 2021</span>
-              -
-              <span>0 Comments</span>
-            </div>
-            <div class="blog-info-center">
-              <a href="blog.php"> Aliquam hendrerit mi metus </a>
-            </div>
-            <div class="blog-info-bottom">
-              <a href="blog.php">Read More</a>
-            </div>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </section>
-  <!-- ! blogs end -->
-
-  <!-- ! brands start  -->
-  <section class="brands">
-    <div class="container">
-      <ul class="brand-list">
-        <li class="brand-item">
-          <a href="#">
-            <img src="img/brands/brand1.png" alt="" />
-          </a>
-        </li>
-        <li class="brand-item">
-          <a href="#">
-            <img src="img/brands/brand2.png" alt="" />
-          </a>
-        </li>
-        <li class="brand-item">
-          <a href="#">
-            <img src="img/brands/brand3.png" alt="" />
-          </a>
-        </li>
-        <li class="brand-item">
-          <a href="#">
-            <img src="img/brands/brand4.png" alt="" />
-          </a>
-        </li>
-        <li class="brand-item">
-          <a href="#">
-            <img src="img/brands/brand5.png" alt="" />
-          </a>
-        </li>
-        <li class="brand-item">
-          <a href="#">
-            <img src="img/brands/brand1.png" alt="" />
-          </a>
-        </li>
-      </ul>
-    </div>
-  </section>
-  <!-- ! brands end  -->
-
-  <!-- ! campaign single start -->
-  <section class="campaign-single">
-    <div class="container">
-      <div class="campaign-wrapper">
-        <h2>New Season Sale</h2>
-        <strong>40% OFF</strong>
-        <span></span>
-        <a href="#" class="btn btn-lg">
-          SHOP NOW
-          <i class="bi bi-arrow-right"></i>
-        </a>
-      </div>
-    </div>
-  </section>
-  <!-- ! campaign single end -->
-
-  <!-- ! policy start -->
-  <section class="policy">
-    <div class="container">
-      <ul class="policy-list">
-        <li class="policy-item">
-          <i class="bi bi-truck"></i>
-          <div class="policy-texts">
-            <strong>FREE DELIVERY</strong>
-            <span>From $59.89</span>
-          </div>
-        </li>
-        <li class="policy-item">
-          <i class="bi bi-headset"></i>
-          <div class="policy-texts">
-            <strong>SUPPORT 24/7</strong>
-            <span>Online 24 hours</span>
-          </div>
-        </li>
-        <li class="policy-item">
-          <i class="bi bi-arrow-clockwise"></i>
-          <div class="policy-texts">
-            <strong>30 DAYS RETURN</strong>
-            <span>Simply return it within 30 days</span>
-          </div>
-        </li>
-        <li class="policy-item">
-          <i class="bi bi-credit-card"></i>
-          <div class="policy-texts">
-            <strong>PAYMENT METHOD</strong>
-            <span>Secure Payment</span>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </section>
-  <!-- ! policy end -->
-
-  <!-- ! footer start -->
-  <section class="footer">
-    <div class="subscribe-contact-row">
-      <div class="container">
-        <div class="subscribe-contact-wrapper">
-          <div class="subscribe-wrapper">
-            <div class="footer-subscribe">
-              <div class="footer-subscribe-top">
-                <h3 class="subscribe-title">
-                  Get our emails for info on new items, sales and more.
-                </h3>
-                <p class="subscribe-desc">
-                  We'll email you a voucher worth $10 off your first order
-                  over $50.
-                </p>
-              </div>
-              <div class="footer-subscribe-bottom">
-                <form>
-                  <input type="text" placeholder="enter your email addres" />
-                  <button class="btn">Subscribe</button>
-                </form>
-                <p class="privacy-text">
-                  By subscribing you agree to our
-                  <a href="#">Terms & Conditions and Privacy & Cookies Policy.</a>
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="contact-wrapper">
-            <div class="footer-contact-top">
-              <h3 class="contact-title">Need help? <br>
-                (+90) 123 456 78 90
-              </h3>
-              <p class="contact-desc">We are available 8:00am – 7:00pm
-              </p>
-            </div>
-            <div class="footer-contact-bottom">
-              <div class="download-app">
-                <a href="#">
-                  <img src="img/footer/app-store.png" alt="">
-                </a>
-                <a href="#">
-                  <img src="img/footer/google-play.png" alt="">
-                </a>
-              </div>
-              <p class="privacy-text">
-                <strong>Shopping App:</strong> Try our View in Your Room feature, manage registries and save payment
-                info.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="widgets-row">
-      <div class="container">
-        <div class="footer-widgets">
-          <div class="brand-info">
-            <div class="footer-logo">
-              <a href="/" class="logo">LOGO</a>
-            </div>
-            <div class="footer-desc">
-              Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis in
-              termapol.
-            </div>
-            <div class="footer-contact">
-              <p>
-                <a href="tel:123456789">(+800) 1234 5678 90</a> -
-                <a href="mailto:info@example.com">info@example.com</a>
-              </p>
-            </div>
-          </div>
-          <div class="widget-nav-menu">
-            <h4>Information</h4>
-            <ul class="menu-list">
-              <li>
-                <a href="#">About Us</a>
-              </li>
-              <li>
-                <a href="#">Privacy Policy</a>
-              </li>
-              <li>
-                <a href="#">Returns Policy</a>
-              </li>
-              <li>
-                <a href="#">Shipping Policy</a>
-              </li>
-              <li>
-                <a href="#">Dropshipping</a>
-              </li>
-            </ul>
-          </div>
-          <div class="widget-nav-menu">
-            <h4>Account</h4>
-            <ul class="menu-list">
-              <li>
-                <a href="#">Dashboard</a>
-              </li>
-              <li>
-                <a href="#">My Orders</a>
-              </li>
-              <li>
-                <a href="#">My Wishlist</a>
-              </li>
-              <li>
-                <a href="#">Account details</a>
-              </li>
-              <li>
-                <a href="#">Track My Orders</a>
-              </li>
-            </ul>
-          </div>
-          <div class="widget-nav-menu">
-            <h4>Shop</h4>
-            <ul class="menu-list">
-              <li>
-                <a href="#">Affiliate</a>
-              </li>
-              <li>
-                <a href="#">Bestsellers</a>
-              </li>
-              <li>
-                <a href="#">Discount</a>
-              </li>
-              <li>
-                <a href="#">Latest Products</a>
-              </li>
-              <li>
-                <a href="#">Sale Products</a>
-              </li>
-            </ul>
-          </div>
-          <div class="widget-nav-menu">
-            <h4>Categories</h4>
-            <ul class="menu-list">
-              <li>
-                <a href="#">Women</a>
-              </li>
-              <li>
-                <a href="#">Men</a>
-              </li>
-              <li>
-                <a href="#">Bags</a>
-              </li>
-              <li>
-                <a href="#">Outerwear</a>
-              </li>
-              <li>
-                <a href="#">Shoes</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="copyright-row">
-      <div class="copyright-row">
+    <!-- Start Banner Area -->
+    <section class="banner section">
         <div class="container">
-          <div class="footer-copyright">
-            <div class="site-copyright">
-              <p>
-                Copyright 2022 © E-Commerce Theme. All right reserved.
-                Powered By Sinan Sarıçayır.
-              </p>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-12">
+                    <div class="single-banner" style="background-image:url('assets/images/banner/banner-1-bg.jpg')">
+                        <div class="content">
+                            <h2>Smart Watch 2.0</h2>
+                            <p>Space Gray Aluminum Case with <br>Black/Volt Real Sport Band </p>
+                            <div class="button">
+                                <a href="product-grids.php" class="btn">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-12">
+                    <div class="single-banner custom-responsive-margin"
+                        style="background-image:url('assets/images/banner/banner-2-bg.jpg')">
+                        <div class="content">
+                            <h2>Smart Headphone</h2>
+                            <p>Lorem ipsum dolor sit amet, <br>eiusmod tempor
+                                incididunt ut labore.</p>
+                            <div class="button">
+                                <a href="product-grids.php" class="btn">Shop Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <a href="#">
-              <img src="img/footer/cards.png" alt="">
-            </a>
-            <div class="footer-menu">
-              <ul class="footer-menu-list">
-                <li class="list-item">
-                  <a href="#">Privacy Policy</a>
+        </div>
+    </section>
+    <!-- End Banner Area -->
+
+    <!-- Start Shipping Info -->
+    <section class="shipping-info">
+        <div class="container">
+            <ul>
+                <!-- Free Shipping -->
+                <li>
+                    <div class="media-icon">
+                        <i class="lni lni-delivery"></i>
+                    </div>
+                    <div class="media-body">
+                        <h5>Free Shipping</h5>
+                        <span>On order over $99</span>
+                    </div>
                 </li>
-                <li class="list-item">
-                  <a href="#">Terms and Conditions</a>
+                <!-- Money Return -->
+                <li>
+                    <div class="media-icon">
+                        <i class="lni lni-support"></i>
+                    </div>
+                    <div class="media-body">
+                        <h5>24/7 Support.</h5>
+                        <span>Live Chat Or Call.</span>
+                    </div>
                 </li>
-                <li class="list-item">
-                  <a href="#">Returns Policy</a>
+                <!-- Support 24/7 -->
+                <li>
+                    <div class="media-icon">
+                        <i class="lni lni-credit-cards"></i>
+                    </div>
+                    <div class="media-body">
+                        <h5>Online Payment.</h5>
+                        <span>Secure Payment Services.</span>
+                    </div>
                 </li>
-              </ul>
-            </div>
-          </div>
+                <!-- Safe Payment -->
+                <li>
+                    <div class="media-icon">
+                        <i class="lni lni-reload"></i>
+                    </div>
+                    <div class="media-body">
+                        <h5>Easy Return.</h5>
+                        <span>Hassle Free Shopping.</span>
+                    </div>
+                </li>
+            </ul>
         </div>
-      </div>
-    </div>
-  </section>
-  <!-- ! footer end -->
+    </section>
+    <!-- End Shipping Info -->
 
-  <!-- scripts start -->
-  <script src="js/main.js" type="module"></script>
-  <script src="js/slider.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
-  <script src="js/glide.js" type="module"></script>
-  <!-- scripts end -->
+    <?php
+  include("includes/footer.php");
+  ?>
 
+    <!-- ========================= JS here ========================= -->
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/tiny-slider.js"></script>
+    <script src="assets/js/glightbox.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script type="text/javascript">
+        //========= Hero Slider 
+        tns({
+            container: '.hero-slider',
+            slideBy: 'page',
+            autoplay: true,
+            autoplayButtonOutput: false,
+            mouseDrag: true,
+            gutter: 0,
+            items: 1,
+            nav: false,
+            controls: true,
+            controlsText: ['<i class="lni lni-chevron-left"></i>', '<i class="lni lni-chevron-right"></i>'],
+        });
+
+        //======== Brand Slider
+        tns({
+            container: '.brands-logo-carousel',
+            autoplay: true,
+            autoplayButtonOutput: false,
+            mouseDrag: true,
+            gutter: 15,
+            nav: false,
+            controls: false,
+            responsive: {
+                0: {
+                    items: 1,
+                },
+                540: {
+                    items: 3,
+                },
+                768: {
+                    items: 5,
+                },
+                992: {
+                    items: 6,
+                }
+            }
+        });
+    </script>
 </body>
 
 </html>
