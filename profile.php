@@ -748,8 +748,8 @@
 <div class="row">
 <div class="col-12">
 <div class="form-group">
-<label for="userbio">Bio</label>
-<textarea class="form-control" id="userbio" rows="4" placeholder="Write something..."></textarea>
+<label for="userbio">Address</label>
+<input class="form-control" id="userbio" rows="4" placeholder="Write something..."></input>
 </div>
 </div> 
 </div> 
