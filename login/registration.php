@@ -7,15 +7,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="keywords" content="Gaming Login Form Widget Tab Form,Login Forms,Sign up Forms,Registration Forms,News letter Forms,Elements" />
     <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-    <style>
-        #li-login {
-            color: #fff;
-        }
+    <link rel="stylesheet" href="./css/registration.css">
 
-        #li-login:hover {
-            color: blue;
-        }
-    </style>
 </head>
 
 <body>
@@ -27,30 +20,66 @@
         <div class="design-w3l">
             <div class="mail-form-agile">
                 <form action="./registrationCode.php" method="POST">
-                    <input type="text" name="first_name" placeholder="First Name..." required />
-                    <input type="text" name="last_name" placeholder="Last Name..." required /><br><br>
-                    <label style="color: #fff;" for="gender">Gender:</label>
-                    <select name="gender" id="gender">
-                        <option value="female">Female</option>
-                        <option value="male">Male</option>
-                    </select><br><br>
+                    <div class="form-row">
+                        <input type="text" name="first_name" placeholder="First Name..." required />
+                        <input type="text" name="last_name" placeholder="Last Name..." required />
+                    </div>
 
+                    <div class="gender-dob-container">
+                        <label for="gender" class="styled-label">Gender :</label>
+                        <select name="gender" id="gender" class="styled-gender-select">
+                            <option value="female">Female</option>
+                            <option value="male">Male</option>
+                        </select>
+                        <br><br>
+                        <label for="dob" class="styled-label">Birth Day :</label>
+                        <div class="dob-container">
+                            <select name="day" class="styled-dob-select" required>
+                                <option value="">Day</option>
+                                <?php
+                                for ($day = 1; $day <= 31; $day++) {
+                                    echo "<option value='$day'>$day</option>";
+                                }
+                                ?>
+                            </select>
 
-                    <label style="color: #fff;" for="dob">Birth Day:</label>
-                    <input type="date" name="dob" required />
-                    <!-- <select aria-label="Day" name="birth_day" id="day" title="Day" class="_9407 _5dba _9hk6 _8esg"></select> -->
+                            <select name="month" class="styled-dob-select" required>
+                                <option value="">Month</option>
+                                <?php
+                                for ($month = 1; $month <= 12; $month++) {
+                                    echo "<option value='$month'>$month</option>";
+                                }
+                                ?>
+                            </select>
 
+                            <select name="year" class="styled-dob-select" required>
+                                <option value="">Year</option>
+                                <?php
+                                $currentYear = date("Y");
+                                for ($year = $currentYear; $year >= 1900; $year--) {
+                                    echo "<option value='$year'>$year</option>";
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
 
-                    <input type="text" name="address" placeholder="Address..." required />
-                    <input type="text" name="phone_number" placeholder="Phone Number..." required />
-                    <input type="text" name="email" placeholder="Email..." required />
-                    <input type="password" name="password" placeholder="Password..." required />
-                    <input type="password" name="conformpassword" placeholder="Conform Password..." required />
+                    <div class="form-row">
+                        <input type="text" name="address" placeholder="Address..." required />
+                        <input type="text" name="phone_number" placeholder="Phone Number..." required />
+                    </div>
+                    <div class="form-row">
+                        <input type="text" name="email" placeholder="Email..." required />
+                    </div>
+                    <div class="form-row">
+                        <input type="password" name="password" placeholder="Password..." required />
+                        <input type="password" name="conformpassword" placeholder="Confirm Password..." required />
+                    </div>
+
                     <br><br>
-                    <input type="submit" name="submit" value="submit">
-
+                    <input type="submit" name="submit" value="Submit">
                     <br><br>
-                    <a id="li-login" href="./login.php">Do you have account click here !!</a>
+                    <a id="li-login" href="./login.php">Do you have account? Click here!!</a>
 
                 </form>
             </div>
@@ -62,18 +91,16 @@
         </div>
     </div>
 
+    <script type="application/x-javascript">
+        addEventListener("load", function() {
+            setTimeout(hideURLbar, 0);
+        }, false);
 
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
 
 </body>
-
-<script type="application/x-javascript">
-    addEventListener("load", function() {
-        setTimeout(hideURLbar, 0);
-    }, false);
-
-    function hideURLbar() {
-        window.scrollTo(0, 1);
-    }
-</script>
 
 </html>
