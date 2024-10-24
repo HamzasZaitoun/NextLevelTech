@@ -20,69 +20,6 @@
 
      <!-- Start Header Area -->
      <header class="header navbar-area">
-        <!-- Start Topbar -->
-        <!-- <div class="topbar">
-            <div class="container">
-                <div class="row align-items-center justify-content-end">
-                    <div class="col-lg-4 col-md-4 col-12">
-                        <div class="top-left">
-                            <ul class="menu-top-link">
-                                <li>
-                                    <div class="select-position">
-                                        <select id="select4">
-                                            <option value="0" selected>$ USD</option>
-                                            <option value="1">€ EURO</option>
-                                            <option value="2">$ CAD</option>
-                                            <option value="3">₹ INR</option>
-                                            <option value="4">¥ CNY</option>
-                                            <option value="5">৳ BDT</option>
-                                        </select>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="select-position">
-                                        <select id="select5">
-                                            <option value="0" selected>English</option>
-                                            <option value="1">Español</option>
-                                            <option value="2">Filipino</option>
-                                            <option value="3">Français</option>
-                                            <option value="4">العربية</option>
-                                            <option value="5">हिन्दी</option>
-                                            <option value="6">বাংলা</option>
-                                        </select>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-12">
-                        <div class="top-middle">
-                            <ul class="useful-links">
-                                <li><a href="index.php">Home</a></li>
-                                <li><a href="about-us.php">About Us</a></li>
-                                <li><a href="contact.php">Contact Us</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-12">
-                        <div class="top-end">
-                            <div class="user">
-                                <i class="lni lni-user"></i>
-                                Hello
-                            </div>
-                            <ul class="user-login">
-                                <li>
-                                    <a href="login.php">Sign In</a>
-                                </li>
-                                <li>
-                                    <a href="register.php">Register</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
         <!-- End Topbar -->
         <!-- Start Header Middle -->
         <div class="header-middle">
@@ -126,60 +63,10 @@
                     <div class="col-lg-4 col-md-2 col-5">
                         <div class="middle-right-area">
                         <div class="row align-items-center justify-content-end"><!--justify end اضفت-->
-                    <!-- <div class="col-lg-4 col-md-4 col-12">
-                        <div class="top-left">
-                            <ul class="menu-top-link">
-                                <li>
-                                    <div class="select-position">
-                                        <select id="select4">
-                                            <option value="0" selected>$ USD</option>
-                                            <option value="1">€ EURO</option>
-                                            <option value="2">$ CAD</option>
-                                            <option value="3">₹ INR</option>
-                                            <option value="4">¥ CNY</option>
-                                            <option value="5">৳ BDT</option>
-                                        </select>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="select-position">
-                                        <select id="select5">
-                                            <option value="0" selected>English</option>
-                                            <option value="1">Español</option>
-                                            <option value="2">Filipino</option>
-                                            <option value="3">Français</option>
-                                            <option value="4">العربية</option>
-                                            <option value="5">हिन्दी</option>
-                                            <option value="6">বাংলা</option>
-                                        </select>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div> -->
-                    <!-- <div class="col-lg-4 col-md-4 col-12">
-                        <div class="top-middle">
-                            <ul class="useful-links">
-                                <li><a href="index.php">Home</a></li>
-                                <li><a href="about-us.php">About Us</a></li>
-                                <li><a href="contact.php">Contact Us</a></li>
-                            </ul>
-                        </div>
-                    </div> -->
+                   
                     <div class="col-lg-4 col-md-4 col-12">
-                        <div class="top-end">
-                        
-                            <ul class="user-login">
-                                <li>
-                                    <a href="login.php">Sign In</a>
-                                </li>
-                                <li>
-                                    <a href="register.php">Register</a>
-                                </li>
-                            </ul>
                         </div>
                     </div>
-                </div>
                             <div class="navbar-cart">
                                 <div class="wishlist">
                                     <a href="javascript:void(0)">
@@ -205,20 +92,20 @@
                                                 <div class="cart-img-head">
                                                     <a class="cart-img" href="product-details.php"><img
                                                             src="assets/images/header/cart-items/item1.jpg" alt="#"></a>
-                                                </div>
-
-                                                <div class="content">
+                                                        </div>
+                                                        
+                                                        <div class="content">
                                                     <h4><a href="product-details.php">
-                                                            Apple Watch Series 6</a></h4>
+                                                        Apple Watch Series 6</a></h4>
                                                     <p class="quantity">1x - <span class="amount">$99.00</span></p>
                                                 </div>
                                             </li>
                                             <li>
                                                 <a href="javascript:void(0)" class="remove" title="Remove this item"><i
                                                         class="lni lni-close"></i></a>
-                                                <div class="cart-img-head">
+                                                        <div class="cart-img-head">
                                                     <a class="cart-img" href="product-details.php"><img
-                                                            src="assets/images/header/cart-items/item2.jpg" alt="#"></a>
+                                                    src="assets/images/header/cart-items/item2.jpg" alt="#"></a>
                                                 </div>
                                                 <div class="content">
                                                     <h4><a href="product-details.php">Wi-Fi Smart Camera</a></h4>
@@ -242,6 +129,14 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="top-end">
+            
+                <ul class="user-login">
+                    <li>
+                        <a href="login/login.php"><button id="sign_in" style="background-color:blue; margin-right:0;">Sign In</button></a>
+                    </li>
+                </ul>
             </div>
         </div>
         <!-- End Header Middle -->
@@ -301,26 +196,13 @@
                                             data-bs-target="#submenu-1-2" aria-controls="navbarSupportedContent"
                                             aria-expanded="false" aria-label="Toggle navigation">Pages</a>
                                         <ul class="sub-menu collapse" id="submenu-1-2">
-                                            <li class="nav-item"><a href="about-us.php">About Us</a></li>
-                                            <li class="nav-item"><a href="faq.php">Faq</a></li>
-                                            <li class="nav-item"><a href="login.php">Login</a></li>
-                                            <li class="nav-item"><a href="register.php">Register</a></li>
-                                            <li class="nav-item"><a href="mail-success.php">Mail Success</a></li>
-                                            <li class="nav-item"><a href="404.php">404 Error</a></li>
+                                            <li class="nav-item"><a href="aboutus.php">About Us</a></li>
+                                            <li class="nav-item"><a href="contact.php">Contact Us</a></li>
+                                            <li class="nav-item"><a href="login/login.php">Login</a></li>
+                                            <li class="nav-item"><a href="login/registration.php">Register</a></li>
                                         </ul>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
-                                            data-bs-target="#submenu-1-3" aria-controls="navbarSupportedContent"
-                                            aria-expanded="false" aria-label="Toggle navigation">Shop</a>
-                                        <ul class="sub-menu collapse" id="submenu-1-3">
-                                            <li class="nav-item"><a href="product-grids.php">Shop Grid</a></li>
-                                            <li class="nav-item"><a href="product-list.php">Shop List</a></li>
-                                            <li class="nav-item"><a href="product-details.php">shop Single</a></li>
-                                            <li class="nav-item"><a href="cart.php">Cart</a></li>
-                                            <li class="nav-item"><a href="checkout.php">Checkout</a></li>
-                                        </ul>
-                                    </li>
+                                    
                                     <li class="nav-item">
                                         <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
                                             data-bs-target="#submenu-1-4" aria-controls="navbarSupportedContent"
@@ -334,8 +216,11 @@
                                         </ul>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="contact.php" aria-label="Toggle navigation">Contact Us</a>
+                                        <a href="contact.php" aria-label="Toggle navigation">Weekly Sales</a>
                                     </li>
+                                    <li class="nav-item">
+                                    <a href="#trend_product" aria-label="Toggle navigation">Trending Products</a>
+                                </li>
                                 </ul>
                             </div> <!-- navbar collapse -->
                         </nav>
@@ -344,23 +229,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6 col-12">
                     <!-- Start Nav Social -->
-                    <div class="nav-social">
-                        <h5 class="title">Follow Us:</h5>
-                        <ul>
-                            <li>
-                                <a href="javascript:void(0)"><i class="lni lni-facebook-filled"></i></a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)"><i class="lni lni-twitter-original"></i></a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)"><i class="lni lni-instagram"></i></a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)"><i class="lni lni-skype"></i></a>
-                            </li>
-                        </ul>
-                    </div>
+                    
                     <!-- End Nav Social -->
                 </div>
             </div>
