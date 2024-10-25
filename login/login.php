@@ -15,19 +15,29 @@
 		#li-regs:hover {
 			color: blue;
 		}
+
+		.error-message {
+			color: red;
+			margin-bottom: 10px;
+		}
 	</style>
 </head>
 
 <body>
 	<div class="padding-all">
 		<div class="header">
-			<h1><img src="./images/5.png" alt=" "> Gaming Login Form</h1>
+			<h1><img src="./images/5.png"> Gaming Login Form</h1>
 		</div>
 
 		<div class="design-w3l">
 			<div class="mail-form-agile">
-				<form action="./loginCode.php" method="POST">
+				<?php
+				if (isset($_GET['error'])) {
+					echo '<p class="error-message">' . htmlspecialchars($_GET['error']) . '</p>';
+				}
+				?>
 
+				<form action="./loginCode.php" method="POST">
 					<input type="text" name="email" placeholder="Email..." required />
 					<br><br>
 					<input type="password" name="password" placeholder="Password..." required />
