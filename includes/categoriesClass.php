@@ -23,4 +23,8 @@ class Category {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> ef3401913fd35d2faf7bf5e10b1e4f4eda1d9b45

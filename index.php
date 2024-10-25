@@ -130,7 +130,7 @@
 
 
     <!-- Start Trending Product Area -->
-    <section class="trending-product section" style="margin-top: 12px;">
+    <section id="trend_product" class="trending-product section" style="margin-top: 12px;">
         <div class="container">
             <div class="row">
                 <div class="col-12">
