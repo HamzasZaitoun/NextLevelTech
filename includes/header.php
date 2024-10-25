@@ -136,6 +136,10 @@
                     <li>
                         <a href="login/login.php"><button id="sign_in" style="background-color:blue; margin-right:0;">Sign In</button></a>
                     </li>
+                    <li>
+                        <a href="includes/logout.php">sign out</a>
+                    </li>
+                    
                 </ul>
             </div>
         </div>
@@ -196,6 +200,7 @@
                                             data-bs-target="#submenu-1-2" aria-controls="navbarSupportedContent"
                                             aria-expanded="false" aria-label="Toggle navigation">Pages</a>
                                         <ul class="sub-menu collapse" id="submenu-1-2">
+                                            <li class="nav-item"><a href="productsPage.php">product</a></li>
                                             <li class="nav-item"><a href="aboutus.php">About Us</a></li>
                                             <li class="nav-item"><a href="contact.php">Contact Us</a></li>
                                             <li class="nav-item"><a href="login/login.php">Login</a></li>

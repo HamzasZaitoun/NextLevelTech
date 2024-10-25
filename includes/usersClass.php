@@ -3,9 +3,11 @@
 class User {
     private $pdo;
 
-    public function __construct($pdo) {
-        $this->pdo = $pdo;
+    public function __construct() {
+        $database = new Database();
+        $this->pdo = $database->connect();
     }
+
 
     public function register($firstName, $lastName, $email, $password, $gender, $dob, $address, $phoneNumber) {
         $sql = "INSERT INTO users (user_first_name, user_last_name, user_gender, user_birth_date, user_address, user_phone_number, user_email, user_password) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
@@ -48,5 +50,8 @@ class User {
 
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
 };
+
+?>
 

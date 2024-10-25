@@ -1,6 +1,6 @@
 <?php
 session_start();
-include ('../includes/db_connection.php');
+include ('../includes/db_class.php');
 include ('../includes/usersClass.php');
 
 $user = new User($pdo);
@@ -19,8 +19,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["submit"])) {
     if ($password !== $confirmPassword) {
         echo "<script>
         alert('Passwords do not match.');
-         window.location.href = 'registration.php';
-              </script>";
+        window.location.href = 'registration.php';
+            </script>";
         exit();
     }
 
