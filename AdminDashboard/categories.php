@@ -1,5 +1,8 @@
 <?php
-include("includes/header.php")
+include "includes/header.php";
+include "classes/categoriesClass.php";
+$categories = new category();
+$allCategories = $categories->getAllCategories();
 ?>
 
                 <!-- Begin Page Content -->
@@ -32,19 +35,34 @@ include("includes/header.php")
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td data-label="Category ID">1</td>
-                                        <td data-label="Category Name">Electronics</td>
-                                        <td data-label="Category Description">Devices and gadgets</td>
-                                        <td data-label="Category Picture"><img src="electronics.jpg" alt="Electronics" width="50"></td>
-                                        <td data-label="Actions">
-                                            <div class="action-buttons">
-                                                <button class="edit-btn" onclick="openEditModalCategory(this)">Edit</button>
-                                                <button class="delete-btn">Delete</button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <!-- More rows can be added here -->
+                                    <?php
+                                    if ($allCategories)
+                                    {
+                                        foreach($allCategories as $category)
+                                        {
+                                            echo"<tr id='category-row-{$category['category_id']}'>
+                        <td data-label='Category ID'>{$category['category_id']}</td>
+                        <td data-label='Category Name'>{$category['category_name']}</td>
+                        <td data-label='Category Description'>{$category['category_description']}</td>
+                        <td data-label='Category Picture'>
+                            <img src='{$category['category_picture']}' alt='Category Picture' width='50'>
+                        </td>
+                        <td data-label='Actions'>
+                            <div class='action-buttons'>
+                                <button class='edit-btn' onclick='openEditModalCategory({$category['category_id']})'>Edit</button>
+                                <button class='delete-btn' onclick='softDeleteCategory({$category['category_id']})'>Delete</button>
+                            </div>
+                        </td>
+                    </tr>";
+                                        }
+
+                                    } else 
+                                    {
+                                        echo "<tr?><td colspan='5'>no categories found.</td></tr>";
+                                    }
+                                    ?>
+                                   
+                                   
                                 </tbody>
                             </table>
                         </div>
