@@ -42,7 +42,6 @@
   justify-content: center;
 }
 
-<<<<<<< HEAD
 /* Fade-in animation */
 @keyframes fadeInLeft {
   from {
@@ -54,7 +53,6 @@
     transform: translateX(0);
   }
 }
-=======
     .col-md-4 {
       display: flex;
       flex-direction: column;
@@ -66,7 +64,6 @@
       margin-bottom: 20px;
       transition: transform 0.3s;
     } 
->>>>>>> 65951a1418a05c83d2e8d14861662c025dd9cac4
 
 .team-card {
   border: none;

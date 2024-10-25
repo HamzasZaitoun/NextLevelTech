@@ -2,7 +2,6 @@
 
 $host = "localhost";
 $dbname = "gameshop";
-// $dbname = "db";
 $userName = "root";
 $password = "";
 
