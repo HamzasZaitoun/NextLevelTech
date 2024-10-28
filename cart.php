@@ -1,3 +1,9 @@
+
+<?php session_start();
+  
+  $userId = $_SESSION['user_id'];
+   ?>
+
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
     <!-- Google Fonts Roboto -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
@@ -22,19 +28,34 @@
   <section class="bg-light my-5">
     <div class="container">
       <div class="row">
+
+
+      
+
         <!-- cart -->
         <div class="col-lg-9">
           <div class="card border shadow-0">
             <div class="m-4">
               <h4 class="card-title mb-4">Your shopping cart</h4>
+  
+  <?php
+  include 'includes/cartClass.php';
+  
+  
+  $cart = new Cart();
+  $cartItems = $cart->getCart($userId);
+  $quantitiy = 1;
+  
+  ?>
+              <?php if(!empty($cartItems)): ?>
+                <?php foreach ($cartItems as $items) : ?>
               <div class="row gy-3 mb-4">
                 <div class="col-lg-5">
                   <div class="me-lg-5">
                     <div class="d-flex">
-                      <img src="https://mdbootstrap.com/img/bootstrap-ecommerce/items/11.webp" class="border rounded me-3" style="width: 96px; height: 96px;" />
+                      <img src="<?= htmlspecialchars($items['product_picture']); ?>" >
                       <div class="">
-                        <a href="#" class="nav-link">Winter jacket for men and lady</a>
-                        <p class="text-muted">Yellow, Jeans</p>
+                        <a href="#" class="nav-link"><?= htmlspecialchars($items['product_name']);?></a>
                       </div>
                     </div>
                   </div>
@@ -50,7 +71,7 @@
                   </div>
                   <div class="">
                     <text class="h6">$1156.00</text> <br />
-                    <small class="text-muted text-nowrap"> $460.00 / per item </small>
+                    <small class="text-muted text-nowrap"> <?= htmlspecialchars($items['product_price']); ?> JD / per item </small>
                   </div>
                 </div>
                 <div class="col-lg col-sm-6 d-flex justify-content-sm-center justify-content-md-start justify-content-lg-center justify-content-xl-end mb-2">
@@ -59,83 +80,20 @@
                     <a href="#" class="btn btn-light border text-danger icon-hover-danger"> Remove</a>
                   </div>
                 </div>
+
               </div>
+              <?php endforeach ?>
+              <?php else : ?>
+                <div>No items in your Cart</div>
+                <?php endif; ?>
+              
   
-              <div class="row gy-3 mb-4">
-                <div class="col-lg-5">
-                  <div class="me-lg-5">
-                    <div class="d-flex">
-                      <img src="https://mdbootstrap.com/img/bootstrap-ecommerce/items/12.webp" class="border rounded me-3" style="width: 96px; height: 96px;" />
-                      <div class="">
-                        <a href="#" class="nav-link">Mens T-shirt Cotton Base</a>
-                        <p class="text-muted">Blue, Medium</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-2 col-sm-6 col-6 d-flex flex-row flex-lg-column flex-xl-row text-nowrap">
-                  <div class="">
-                    <select style="width: 100px;" class="form-select me-4">
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                    </select>
-                  </div>
-                  <div class="">
-                    <text class="h6">$44.80</text> <br />
-                    <small class="text-muted text-nowrap"> $12.20 / per item </small>
-                  </div>
-                </div>
-                <div class="col-lg col-sm-6 d-flex justify-content-sm-center justify-content-md-start justify-content-lg-center justify-content-xl-end mb-2">
-                  <div class="float-md-end">
-                    <a href="#!" class="btn btn-light border px-2 icon-hover-primary"><i class="fas fa-heart fa-lg px-1 text-secondary"></i></a>
-                    <a href="#" class="btn btn-light border text-danger icon-hover-danger"> Remove</a>
-                  </div>
-                </div>
-              </div>
-  
-              <div class="row gy-3">
-                <div class="col-lg-5">
-                  <div class="me-lg-5">
-                    <div class="d-flex">
-                      <img src="https://mdbootstrap.com/img/bootstrap-ecommerce/items/13.webp" class="border rounded me-3" style="width: 96px; height: 96px;" />
-                      <div class="">
-                        <a href="#" class="nav-link">Blazer Suit Dress Jacket for Men</a>
-                        <p class="text-muted">XL size, Jeans, Blue</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-2 col-sm-6 col-6 d-flex flex-row flex-lg-column flex-xl-row text-nowrap">
-                  <div class="">
-                    <select style="width: 100px;" class="form-select me-4">
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                    </select>
-                  </div>
-                  <div class="">
-                    <text class="h6">$1156.00</text> <br />
-                    <small class="text-muted text-nowrap"> $460.00 / per item </small>
-                  </div>
-                </div>
-                <div class="col-lg col-sm-6 d-flex justify-content-sm-center justify-content-md-start justify-content-lg-center justify-content-xl-end mb-2">
-                  <div class="float-md-end">
-                    <a href="#!" class="btn btn-light border px-2 icon-hover-primary"><i class="fas fa-heart fa-lg px-1 text-secondary"></i></a>
-                    <a href="#" class="btn btn-light border text-danger icon-hover-danger"> Remove</a>
-                  </div>
-                </div>
-              </div>
+              
             </div>
   
             <div class="border-top pt-4 mx-4 mb-4">
               <p><i class="fas fa-truck text-muted fa-lg"></i> Free Delivery within 1-2 weeks</p>
-              <p class="text-muted">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                aliquip
-              </p>
+              
             </div>
           </div>
         </div>

@@ -259,7 +259,7 @@ a {
     margin: 20px 0 30px;
 }
 
-.mail-form-agile input[type="text"],
+/* .mail-form-agile input[type="text"],
 .mail-form-agile input[type="password"] {
     padding: 13px 10px;
     width: 92.5%;
@@ -277,7 +277,7 @@ a {
 ::-webkit-input-placeholder {
     color: #b4b0b0 !important;
     font-weight: 400;
-}
+} */
 
 .mail-form-agile input[type="submit"] {
     font-size: 18px;

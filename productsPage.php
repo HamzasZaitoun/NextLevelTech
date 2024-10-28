@@ -2,11 +2,22 @@
 <html class="no-js" lang="zxx">
 <?php
 
-require_once 'includes/productsClasss.php';
+require_once ("includes/productsClasss.php");
+require_once("includes/categoriesClass.php");
 
 $productObj = new Product();
-
 $products = $productObj->getAllProducts();
+
+
+if (isset($_GET['category_id'])) {
+    $categoryId = $_GET['category_id'];
+
+    $categoryObj = new Category();
+    $products = $categoryObj->getProductsByCategory($categoryId);
+} else {
+    echo "No category selected.";
+    exit;
+}
 ?>
 
 <head>

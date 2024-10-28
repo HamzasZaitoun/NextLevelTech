@@ -10,10 +10,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['email']) && isset($_PO
     $password = $_POST['password'];
 
     if ($user->login($email, $password)) {
-        header("Location: /NextLevelTech/index.php");
+        header("Location:../index.php");
         exit();
     } else {
-        header("Location: login.php?error=Invalid email or password");
+        $_SESSION['error'] = "Invalid email or password."; 
+        header("Location: login.php");
         exit();
     }
 }

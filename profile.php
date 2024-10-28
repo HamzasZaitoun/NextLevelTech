@@ -1,10 +1,11 @@
-<?php
 
+<?php
 session_start();
 
-if (!isset($_SESSION['user_id'])) {
 
-  header("Location: login/login.php");
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login/login.php");
+    exit(); 
 }
 
 include('./includes/db_class.php');
@@ -17,23 +18,24 @@ $user = new User();
 $userData = $user->displayUserById($userId);
 
 if ($userData) {
-  $fName =  htmlspecialchars($userData['user_first_name'] );
-  $fullName = htmlspecialchars($userData['user_first_name'] . ' ' . $userData['user_last_name']);
-  $phoneNumber = htmlspecialchars($userData['user_phone_number']);
-  $email = htmlspecialchars($userData['user_email']);
-  $address = htmlspecialchars($userData['user_address']);
-};
-
-
-
+    $fName = htmlspecialchars($userData['user_first_name']);
+    $lName = htmlspecialchars($userData['user_last_name']);
+    $fullName = htmlspecialchars($userData['user_first_name'] . ' ' . $userData['user_last_name']);
+    $phoneNumber = htmlspecialchars($userData['user_phone_number']);
+    $email = htmlspecialchars($userData['user_email']);
+    $address = htmlspecialchars($userData['user_address']);
+    $password = htmlspecialchars($userData['user_password']);
+}
 ?>
 
 
 
 <title>about me profile - Bootdey.com</title>
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
 <style type="text/css">
+
   body {
     color: #6c757d;
     background-color: #f5f6f8;
@@ -624,6 +626,7 @@ if ($userData) {
     opacity: 0.08;
   }
 </style>
+
 </head>
 
 <body>
@@ -639,16 +642,17 @@ if ($userData) {
       <div class="col-lg-4 col-xl-4">
         <div class="card-box text-center">
           <img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="rounded-circle avatar-xl img-thumbnail" alt="profile-image">
+          <br><br>
           <h4 class="mb-0"><?php echo htmlspecialchars($fName); ?></h4>
 
-          <div class="text-center mt-3">
+          <!-- <div class="text-center mt-3">
 
             <p class="text-muted mb-2 font-13"><strong>Full Name :</strong> <span class="ml-2"><?php echo htmlspecialchars($fullName); ?></span></p>
             <p class="text-muted mb-2 font-13"><strong>Mobile :</strong><span class="ml-2"><?php echo htmlspecialchars($phoneNumber); ?>
               </span></p>
             <p class="text-muted mb-2 font-13"><strong>Email :</strong> <span class="ml-2 "><?php echo htmlspecialchars($email); ?></span></p>
             <p class="text-muted mb-1 font-13"><strong>Location :</strong> <span class="ml-2"><?php echo htmlspecialchars($address); ?></span></p>
-          </div>
+          </div> -->
 
         </div>
       </div>
@@ -811,48 +815,68 @@ if ($userData) {
 
 
             <div class="tab-pane" id="settings">
-              <form>
+              <form action="./includes/user_edit_info.php" method="POST" >
                 <h5 class="mb-3 text-uppercase bg-light p-2"><i class="mdi mdi-account-circle mr-1"></i> Personal Info</h5>
+                <input type="hidden" name="user_id" value="<?php echo $userId; ?>">
+
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="firstname">First Name</label>
-                      <input type="text" class="form-control" id="firstname" placeholder="Enter first name">
+                      <input type="text" class="form-control" id="firstname" name="firstname"
+                        value="<?php echo htmlspecialchars($fName); ?>" placeholder="Enter first name" required>
                     </div>
                   </div>
+
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="lastname">Last Name</label>
-                      <input type="text" class="form-control" id="lastname" placeholder="Enter last name">
+                      <input type="text" class="form-control" id="lastname" name="lastname"
+                        value="<?php echo htmlspecialchars($lName); ?>" placeholder="Enter last name" required>
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-12">
                     <div class="form-group">
-                      <label for="userbio">Address</label>
-                      <input class="form-control" id="userbio" rows="4" placeholder="Write something..."></input>
+                      <label for="useremail">Email Address</label>
+                      <input type="email" class="form-control" id="useremail" name="useremail"
+                        value="<?php echo htmlspecialchars($email); ?>" placeholder="Enter email" required>
+                      <span class="form-text text-muted"><small>If you want to change email please <a href="javascript: void(0);">click</a> here.</small></span>
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="useremail">Email Address</label>
-                      <input type="email" class="form-control" id="useremail" placeholder="Enter email">
-                      <span class="form-text text-muted"><small>If you want to change email please <a href="javascript: void(0);">click</a> here.</small></span>
+                      <label for="userbio">Address</label>
+                      <input class="form-control" id="userbio" name="userbio"
+                        value="<?php echo htmlspecialchars($address); ?>" placeholder="Enter your address" required>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
+                      <label for="phone">Phone Number</label>
+                      <input type="text" class="form-control" id="phone" name="phone"
+                        value="<?php echo htmlspecialchars($phoneNumber); ?>" placeholder="Enter phone number" required>
+                      <span class="form-text text-muted"><small>If you want to change password please <a href="javascript: void(0);">click</a> here.</small></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="form-group">
                       <label for="userpassword">Password</label>
-                      <input type="password" class="form-control" id="userpassword" placeholder="Enter password">
+                      <input type="password" class="form-control" id="userpassword" name="userpassword"
+                        value="<?php echo htmlspecialchars($password); ?>" placeholder="Enter password" required>
                       <span class="form-text text-muted"><small>If you want to change password please <a href="javascript: void(0);">click</a> here.</small></span>
                     </div>
                   </div>
                 </div>
                 <div class="text-right">
-                  <button type="submit" class="btn btn-success waves-effect waves-light mt-2"><i class="mdi mdi-content-save"></i> Save</button>
+                  <button type="submit" class="btn btn-success waves-effect waves-light mt-2">
+                    <i class="mdi mdi-content-save"></i>Save
+                  </button>
                 </div>
               </form>
             </div>

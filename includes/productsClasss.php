@@ -36,4 +36,21 @@ class Product {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    //fetch trending products based on rating
+    public function fetchTrendingProducts() {
+        $stmt = $this->pdo->prepare("
+            SELECT products.*, category.category_name
+            FROM products
+            JOIN category ON products.category_id = category.category_id
+            ORDER BY products.product_rate DESC
+            LIMIT 8
+        ");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+    
+
+    
+
 }
