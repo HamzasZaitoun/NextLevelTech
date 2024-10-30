@@ -1,22 +1,57 @@
 <?php
-class Database {
-    private $host = 'localhost';
-    private $db_name = 'gameshop';
-    private $username = 'root';
-    private $password = '';
-    public $pdo;
 
-    public function connect() {
-        $this->pdo = null;
-        try {
-            $dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->db_name;
-            $this->pdo = new PDO($dsn, $this->username, $this->password);
-            $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch (PDOException $e) {
-            echo 'Connection Error: ' . $e->getMessage();
-        }
+class dbConnection
+{
+ private $host = 'localhost';
+ private $dbName ='gameshop';
+ private $username='root';
+ private $password='';
+ private $pdo;
+ private static $instence = null; 
 
-        return $this->pdo;
+ private function __construct()
+ {
+
+    try{
+        $dsn ='mysql:host='. $this->host . ';dbname=' . $this->dbName;
+        $options = [
+
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE =>PDO::FETCH_ASSOC,
+            PDO::ATTR_PERSISTENT => true,
+
+        ];
+        $this->pdo = new PDO($dsn,$this->username, $this->password,$options);
+        // echo "connection succefull";
+
+
+    } catch (PDOException $e)
+    {
+        die('Database connection failed: ' . $e->getMessage());
+
+    };
     }
-}
+    // singlton design pattern 
+    public static function getInstence(){
+        if (self::$instence===null)
+        {
+            self::$instence=new dbConnection();
+        }
+        return self::$instence;
+    }
+
+     public function getConnection()
+     {
+        return$this->pdo;
+    }
+ }
+
+
+//  $connect= new dbConnection();
+
+//  $connect->getConnection();
+
+
+
+
 ?>

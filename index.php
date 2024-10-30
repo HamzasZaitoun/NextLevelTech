@@ -1,245 +1,276 @@
 <?php
+
     include("includes/header.php");
     include("includes/productsClasss.php");
     include("includes/categoriesClass.php");
+ 
+    
 ?>
-<link rel = "stylesheet" href = "assets/css/test.css"> 
+<link rel="stylesheet" href="assets/css/test.css">
 <title>Game Shop</title>
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<style>
+.hero-slider {
+    width: 100%;
+    height: 500px;
+    position: relative;
+    overflow: hidden;
+}
+
+.single-slider {
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+}
+
+.swiper-pagination-bullet {
+    background: #fff;
+    /* لون النقاط */
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    color: #fff;
+    /* لون الأزرار */
+}
+</style>
 </head>
 
 <body>
     <!-- Preloader -->
-    <div class="preloader">
+    <!-- <div class="preloader">
         <div class="preloader-inner">
             <div class="preloader-icon">
                 <span></span>
                 <span></span>
             </div>
         </div>
-    </div>
+    </div> -->
+
     <!-- /End Preloader -->
 
     <!-- Start Hero Area -->
-    <section class="hero-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-12 custom-padding-right">
-                    <div class="slider-head">
-                        <!-- Start Hero Slider -->
-                        <div class="hero-slider">
-                            <!-- Start Single Slider -->
-                            <div class="single-slider"
-                                style="background-image: url(assets/images/hero/slider-bg1.jpg);">
-                                <div class="content">
-                                    <h2><span>No restocking fee ($35 savings)</span>
-                                        M75 Sport Watch
-                                    </h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                        tempor
-                                        incididunt ut labore et dolore magna aliqua.</p>
-                                    <h3><span>Now Only</span> $320.99</h3>
-                                    <div class="button">
-                                        <a href="product-grids.php" class="btn">Shop Now</a>
-                                    </div>
+<!-- Start Hero Area -->
+<section class="hero-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-12 custom-padding-right">
+                <div class="slider-head">
+                    <!-- Start Hero Slider -->
+                    <div class="hero-slider">
+                        <?php  
+                            $highestDiscountProductsObj = new product();
+                            $highestProducts = $highestDiscountProductsObj->fetchHighestDiscountProducts();        
+                            if (!empty($highestProducts)) : 
+                                foreach ($highestProducts as $highestProduct) : 
+                                    $calculateSaving = $highestProduct['product_price'] * ($highestProduct['product_discount'] / 100);
+                                    $priceAfterDiscount = $highestProduct['product_price'] * (1 - $highestProduct['product_discount'] / 100);
+                        ?>
+                        <!-- Start Single Slider -->
+                        <div class="single-slider"
+                             style="background-image: url(<?= htmlspecialchars($highestProduct['product_picture']); ?>);">
+                            <div class="content">
+                                <h2><span>No restocking fee (<?= htmlspecialchars($calculateSaving); ?> JOD savings)</span>
+                                    <?= htmlspecialchars($highestProduct['product_name']); ?>
+                                </h2>
+                                <p><?= htmlspecialchars($highestProduct['product_description']); ?></p>
+                                <h3><span>Now Only</span> <?= htmlspecialchars($priceAfterDiscount); ?> JOD</h3>
+                                <div class="button">
+                                    <a href="productDetails.php?id=<?= htmlspecialchars($highestProduct['product_id']); ?>" class="btn">Shop Now</a>
                                 </div>
                             </div>
-                            <!-- End Single Slider -->
-                            <!-- Start Single Slider -->
-                            <div class="single-slider"
-                                style="background-image: url(assets/images/hero/slider-bg2.jpg);">
-                                <div class="content">
-                                    <h2><span>Big Sale Offer</span>
-                                        Get the Best Deal on CCTV Camera
-                                    </h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                        tempor
-                                        incididunt ut labore et dolore magna aliqua.</p>
-                                    <h3><span>Combo Only:</span> $590.00</h3>
-                                    <div class="button">
-                                        <a href="product-grids.php" class="btn">Shop Now</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Single Slider -->
                         </div>
-                        <!-- End Hero Slider -->
+                        <!-- End Single Slider -->
+                        <?php 
+                                endforeach; 
+                            endif; 
+                        ?>
                     </div>
+                    <!-- End Hero Slider -->
                 </div>
-                <div class="col-lg-4 col-12">
-                    <div class="row">
-                        <div class="col-lg-12 col-md-6 col-12 md-custom-padding">
-                            <!-- Start Small Banner -->
-                            <div class="hero-small-banner"
-                                style="background-image: url('assets/images/hero/slider-bnr.jpg');">
-                                <div class="content">
-                                    <h2>
-                                        <span>New line required</span>
-                                        iPhone 12 Pro Max
-                                    </h2>
-                                    <h3>$259.99</h3>
+            </div>
+            <div class="col-lg-4 col-12">
+                <div class="row">
+                    <div class="col-lg-12 col-md-6 col-12 md-custom-padding">
+                        <!-- Start Small Banner -->
+                        <?php
+                            $lastProduct = new product();
+                            $lastProductData = $lastProduct->lastProduct(); 
+
+                            if (!empty($lastProductData)) : 
+                        ?>
+                        <div class="hero-small-banner"
+                             style="background-image: url(<?= htmlspecialchars($lastProductData['product_picture']); ?>);">
+                            <div class="content">
+                                <h2>
+                                    <span>New line required</span>
+                                    <?= htmlspecialchars($lastProductData['product_name']); ?>
+                                </h2>
+                                <h3><?= htmlspecialchars($lastProductData['product_price']); ?> JOD</h3>
+                            </div>
+                        </div>
+                        <?php endif; ?>
+                        <!-- End Small Banner -->
+                    </div>
+                    <div class="col-lg-12 col-md-6 col-12">
+                        <!-- Start Small Banner -->
+                        <div class="hero-small-banner style2">
+                            <?php
+                                $highestDiscountProduct = new product();
+                                $discountProduct = $highestDiscountProduct->fetchHighestDiscountProduct(); 
+
+                                if (!empty($discountProduct)) : 
+                            ?>
+                            <div class="content">
+                                <h2>Flash Sale!</h2>
+                                <p>Saving up to <?= htmlspecialchars($discountProduct['product_discount'] ); ?>% off
+                                    <?= htmlspecialchars($discountProduct['product_name']); ?></p>
+                                <h3>Now Only:
+                                    <?= htmlspecialchars($discountProduct['product_price'] * (1 - $discountProduct['product_discount'] / 100)); ?> JOD
+                                </h3>
+                                <div class="button">
+                                    <a class="btn" href="productDetails.php?id=<?= htmlspecialchars($discountProduct['product_id']); ?>">Shop Now</a>
                                 </div>
                             </div>
-                            <!-- End Small Banner -->
-                        </div>
-                        <div class="col-lg-12 col-md-6 col-12">
-                            <!-- Start Small Banner -->
-                            <div class="hero-small-banner style2">
-                                <div class="content">
-                                    <h2>Weekly Sale!</h2>
-                                    <p>Saving up to 50% off all online store items this week.</p>
-                                    <div class="button">
-                                        <a class="btn" href="product-grids.php">Shop Now</a>
-                                    </div>
-                                </div>
+                            <?php else: ?>
+                            <div class="content">
+                                <h2>No Discounts Available</h2>
+                                <p>Check back later for great deals!</p>
                             </div>
-                            <!-- Start Small Banner -->
+                            <?php endif; ?>
                         </div>
+                        <!-- End Small Banner -->
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+<!-- End Hero Area -->
     <!-- End Hero Area -->
 
     <!-- categories -->
-    <section class="categories">
-    <div class="container">
-        <div class="section-title">
-            <h2>Product Categories</h2>
-        </div>
+    <section class="categories" id="product_Categories">
+        <div class="container">
+            <div class="section-title">
+                <h2>Product Categories</h2>
+            </div>
 
-        <?php 
+            <?php 
             $categoryObj = new Category();
             $categories = $categoryObj->getAllCategories();        
             if (!empty($categories)) : ?>
             <ul class="category-list">
                 <?php foreach ($categories as $category) : ?>
-                    <?php
+                <?php
                     $productsOfCategory = $categoryObj->getProductsByCategoryId($category['category_id']);
                     ?>
-                    <li class="category-item">
-                        <a href="productsOfCategory.php?id=<?= htmlspecialchars($category['category_id']); ?>">
-                            <div class="category-image-container">
-                                <img src="<?= htmlspecialchars($category['category_picture']); ?>" alt="category_pic" class="category-image">
-                            </div>
-                            <span class="category-title"><?= htmlspecialchars($category['category_name']); ?></span>
-                        </a>
-                    </li>
+                <li class="category-item">
+                    <a href="productsOfCategory.php?id=<?= htmlspecialchars($category['category_id']); ?>">
+                        <div class="category-image-container">
+                            <img src="<?= htmlspecialchars($category['category_picture']); ?>" alt="category_pic"
+                                class="category-image">
+                        </div>
+                        <span class="category-title"><?= htmlspecialchars($category['category_name']); ?></span>
+                    </a>
+                </li>
                 <?php endforeach; ?>
             </ul>
-        <?php endif; ?>
-    </div>
-</section>
+            <?php endif; ?>
+        </div>
+    </section>
 
 
     <!-- Start Trending Product Area -->
-<section id="trend_product" class="trending-product section" style="margin-top: 12px;">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="section-title">
-                    <h2>Trending Products</h2>
-                    <p>Discover our best-rated products, carefully curated to enhance your gaming experience.</p>
+    <section id="trend_product" class="trending-product section" style="margin-top: 12px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-title">
+                        <h2>Trending Products</h2>
+                        <p>Discover our best-rated products, carefully curated to enhance your gaming experience.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <?php
+            <?php
         $trendingProductObj = new Product();
         $trendingProducts = $trendingProductObj->fetchTrendingProducts();
 
         if (!empty($trendingProducts)) : ?>
-        <div class="row">
-            <?php foreach ($trendingProducts as $product) : ?>
-            <div class="col-lg-3 col-md-6 col-12">
-                <div class="single-product">
-                    <div class="product-image">
-                        <img src="<?php echo htmlspecialchars($product['product_picture']); ?>" alt="product_img">
-                        <div class="button">
-                            <a href="productDetails.php?id=<?php echo htmlspecialchars($product['product_id']); ?>" class="btn">
-                                <i class="lni lni-cart"></i>Shop now
-                            </a>
+            <div class="row">
+                <?php foreach ($trendingProducts as $product) : ?>
+                <div class="col-lg-3 col-md-6 col-12">
+                    <div class="single-product">
+                        <div class="product-image">
+                            <img src="<?php echo htmlspecialchars($product['product_picture']); ?>" alt="product_img">
+                            <div class="button">
+                                <a href="productDetails.php?id=<?php echo htmlspecialchars($product['product_id']); ?>"
+                                    class="btn">
+                                    <i class="lni lni-cart"></i>Shop now
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="product-info">
-                        <span class="category"><?php echo htmlspecialchars($product['category_name']); ?></span>
-                        <h4 class="title">
-                            <?= htmlspecialchars($product['product_name']); ?>
-                        </h4>
-                        <ul class="review">
-                            <?php for ($i = 0; $i < 5; $i++) : ?>
-                            <li>
-                                <i class="lni <?= $i < $product['product_rate'] ? 'lni-star-filled' : 'lni-star'; ?>"></i>
-                            </li>
-                            <?php endfor; ?>
-                            <li><span><?= $product['product_rate']; ?> Review(s)</span></li>
-                        </ul>
-                        <div class="price">
-                            <span><?php echo htmlspecialchars($product['product_price']); ?> JOD</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <?php endforeach; ?>
-        </div>
-        <?php else : ?>
-        <p>No products available.</p>
-        <?php endif; ?>
-    </div>
-</section>
-
-    <!-- End Trending Product Area -->
-
-    <!-- Start Call Action Area -->
-    <section class="call-action section">
-        <div class="container">
-            <div class="row ">
-                <div class="col-lg-8 offset-lg-2 col-12">
-                    <div class="inner">
-                        <div class="content">
-                            <h2 class="wow fadeInUp" data-wow-delay=".4s">Currently You are using free<br>
-                                Lite version of ShopGrids</h2>
-                            <p class="wow fadeInUp" data-wow-delay=".6s">Please, purchase full version of the
-                                template
-                                to get all pages,<br> features and commercial license.</p>
-                            <div class="button wow fadeInUp" data-wow-delay=".8s">
-                                <a href="javascript:void(0)" class="btn">Purchase Now</a>
+                        <div class="product-info">
+                            <span class="category"><?php echo htmlspecialchars($product['category_name']); ?></span>
+                            <h4 class="title">
+                                <?= htmlspecialchars($product['product_name']); ?>
+                            </h4>
+                            <ul class="review">
+                                <?php for ($i = 0; $i < 5; $i++) : ?>
+                                <li>
+                                    <i
+                                        class="lni <?= $i < $product['product_rate'] ? 'lni-star-filled' : 'lni-star'; ?>"></i>
+                                </li>
+                                <?php endfor; ?>
+                                <li><span><?= $product['product_rate']; ?> Review(s)</span></li>
+                            </ul>
+                            <div class="price">
+                                <span><?php echo htmlspecialchars($product['product_price']); ?> JOD</span>
                             </div>
                         </div>
                     </div>
                 </div>
+                <?php endforeach; ?>
             </div>
+            <?php else : ?>
+            <p>No products available.</p>
+            <?php endif; ?>
         </div>
     </section>
-    <!-- End Call Action Area -->
+
+    <!-- End Trending Product Area -->
+
 
     <!-- Start Banner Area -->
     <section class="banner section">
         <div class="container">
             <div class="row">
+                <?php
+            $randomProductsObj = new product();
+            $randomProducts = $randomProductsObj->fetchRandomProducts(); 
+
+            if (!empty($randomProducts)):
+                foreach ($randomProducts as $randomProduct): ?>
                 <div class="col-lg-6 col-md-6 col-12">
-                    <div class="single-banner" style="background-image:url('assets/images/banner/banner-1-bg.jpg')">
+                    <div class="single-banner"
+                        style="background-image:url('<?= htmlspecialchars($randomProduct['product_picture']); ?>')">
                         <div class="content">
-                            <h2>Smart Watch 2.0</h2>
-                            <p>Space Gray Aluminum Case with <br>Black/Volt Real Sport Band </p>
+                            <h2><?= htmlspecialchars($randomProduct['product_name']); ?></h2>
+                            <p><?= htmlspecialchars($randomProduct['product_description']); ?></p>
                             <div class="button">
-                                <a href="product-grids.php" class="btn">View Details</a>
+                                <a href="productDetails.php?id=<?= htmlspecialchars($randomProduct['product_id']); ?>"
+                                    class="btn">View Details</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-6 col-12">
-                    <div class="single-banner custom-responsive-margin"
-                        style="background-image:url('assets/images/banner/banner-2-bg.jpg')">
-                        <div class="content">
-                            <h2>Smart Headphone</h2>
-                            <p>Lorem ipsum dolor sit amet, <br>eiusmod tempor
-                                incididunt ut labore.</p>
-                            <div class="button">
-                                <a href="product-grids.php" class="btn">Shop Now</a>
-                            </div>
-                        </div>
-                    </div>
+                <?php endforeach;
+            else: ?>
+                <div class="col-12">
+                    <p>No products available at the moment.</p>
                 </div>
+                <?php endif; ?>
             </div>
         </div>
     </section>
@@ -256,7 +287,7 @@
                     </div>
                     <div class="media-body">
                         <h5>Free Shipping</h5>
-                        <span>On order over $99</span>
+                        <span>On order over 20 JOD</span>
                     </div>
                 </li>
                 <!-- Money Return -->
@@ -344,6 +375,34 @@
         }
     });
     </script>
+
+    <script>
+    setInterval(function() {
+        // إعادة تحميل القسم
+        location.reload();
+    }, 1800000); // 1800000 ميلي ثانية = 30 دقيقة
+    </script>
+
+
+    <script>
+    var swiper = new Swiper('.swiper-container', {
+        loop: true, // تفعيل التكرار التلقائي للسلايدر
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        autoplay: {
+            delay: 3000, // تأخير لمدة 3 ثواني قبل الانتقال التلقائي
+            disableOnInteraction: false, // السماح للمستخدمين بالتفاعل دون إيقاف التشغيل التلقائي
+        },
+    });
+    </script>
+
+
 </body>
 
 </html>

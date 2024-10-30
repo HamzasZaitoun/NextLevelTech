@@ -12,9 +12,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['userpassword'];
     $user_id = $_POST['user_id'];
 
-    $db = new Database();
-    $connect = $db->connect();
-
+    $db = dbConnection::getInstence();
+    $connect = $db->getConnection();
     $sql = "UPDATE `users` SET user_first_name = :first_name, user_last_name = :last_name, user_email = :email, 
             user_address = :address, user_phone_number = :phone, user_password = :password WHERE user_id = :user_id";
 
@@ -31,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($stmt->execute()) {
         // echo "Name: $name, Last Name: $lName, Email: $email, Address: $address, Phone: $phoneNumber, Password: $password, User ID: $user_id";
-        header("Location: /project-php/NextLevelTech/profile.php");
+        header("Location: /NextLevelTech%20main%20main/profile.php");
 
         exit();
     } else {
