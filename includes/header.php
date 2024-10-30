@@ -13,9 +13,130 @@
     <link rel="stylesheet" href="assets/css/tiny-slider.css" />
     <link rel="stylesheet" href="assets/css/glightbox.min.css" />
     <link rel="stylesheet" href="assets/css/main.css" />
-
+    <link rel = "stylesheet" href = "assets/css/test.css"> 
     <header>
+    <style>
+/* Style for the Login Button */
+.gaming-button {
+    background-color: #629584;
+    color: #fff;
+    font-weight: bold;
+    padding: 8px 16px; /* Reduced padding for a smaller button */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Reduced border size */
+    border-radius: 8px; /* Adjusted border-radius for a smaller button */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: transform 0.2s, box-shadow 0.3s, border-color 0.3s;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3), 0 0 6px rgba(98, 149, 132, 0.6); /* Adjusted box-shadow for a smaller button */
+}
 
+.gaming-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
+    opacity: 0;
+    transition: opacity 0.3s;
+    border-radius: inherit;
+}
+
+.gaming-button:hover {
+    background-color: #4a7a6c;
+    transform: scale(1.05); /* Slightly reduced scaling */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 10px rgba(98, 149, 132, 0.8); /* Adjusted box-shadow for hover */
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.gaming-button:hover::before {
+    opacity: 1;
+    animation: shimmer 1.5s infinite;
+}
+
+.gaming-button:active {
+    transform: scale(0.95); /* Slightly reduced scaling for active state */
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4), 0 0 6px rgba(98, 149, 132, 0.7); /* Adjusted box-shadow for active state */
+}
+
+
+    /* Shimmer Animation */
+    @keyframes shimmer {
+        0% {
+            transform: translateX(-100%);
+        }
+        100% {
+            transform: translateX(100%);
+        }
+    }
+
+
+    /* Main Container Style */
+    .navbar-cart {
+        display: flex;
+        align-items: center;
+        gap: 15px; /* Space between items */
+    }
+
+    /* Wishlist Icon */
+    .wishlist a, .cart-items a, .profile-icon {
+        display: flex;
+        align-items: center;
+        position: relative;
+        color: #333;
+        text-decoration: none;
+        font-size: 20px;
+    }
+
+    /* Badge Style */
+    .total-items {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        background-color: #0a58ca;
+        color: #fff;
+        border-radius: 50%;
+        padding: 2px 6px;
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+    /* Shopping Cart Dropdown */
+    .cart-items .shopping-item {
+        display: none;
+        position: absolute;
+        top: 40px;
+        right: 0;
+        width: 250px;
+        background: #fff;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
+        z-index: 10;
+    }
+
+    .cart-items:hover .shopping-item {
+        display: block;
+    }
+
+    /* Profile Icon Styling */
+    .profile-icon {
+        padding: 8px;
+        transition: color 0.3s;
+    }
+
+    .profile-icon:hover {
+        color: #0a58ca;
+    }
+
+    /* Additional Styling for Cart and Wishlist */
+    .cart-items, .wishlist {
+        position: relative;
+    }
+
+</style>
 
 
      <!-- Start Header Area -->
@@ -67,65 +188,74 @@
                     <div class="col-lg-4 col-md-4 col-12">
                         </div>
                     </div>
-                            <div class="navbar-cart">
-                                <div class="wishlist">
-                                    <a href="javascript:void(0)">
-                                        <i class="lni lni-heart"></i>
-                                        <span class="total-items">0</span>
-                                    </a>
-                                </div>
-                                <div class="cart-items">
-                                    <a href="javascript:void(0)" class="main-btn">
-                                        <i class="lni lni-cart"></i>
-                                        <span class="total-items">2</span>
-                                    </a>
-                                    <!-- Shopping Item -->
-                                    <div class="shopping-item">
-                                        <div class="dropdown-cart-header">
-                                            <span>2 Items</span>
-                                            <a href="cart.php">View Cart</a>
-                                        </div>
-                                        <ul class="shopping-list">
-                                            <li>
-                                                <a href="javascript:void(0)" class="remove" title="Remove this item"><i
-                                                        class="lni lni-close"></i></a>
-                                                <div class="cart-img-head">
-                                                    <a class="cart-img" href="product-details.php"><img
-                                                            src="assets/images/header/cart-items/item1.jpg" alt="#"></a>
-                                                        </div>
-                                                        
-                                                        <div class="content">
-                                                    <h4><a href="product-details.php">
-                                                        Apple Watch Series 6</a></h4>
-                                                    <p class="quantity">1x - <span class="amount">$99.00</span></p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:void(0)" class="remove" title="Remove this item"><i
-                                                        class="lni lni-close"></i></a>
-                                                        <div class="cart-img-head">
-                                                    <a class="cart-img" href="product-details.php"><img
-                                                    src="assets/images/header/cart-items/item2.jpg" alt="#"></a>
-                                                </div>
-                                                <div class="content">
-                                                    <h4><a href="product-details.php">Wi-Fi Smart Camera</a></h4>
-                                                    <p class="quantity">1x - <span class="amount">$35.00</span></p>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                        <div class="bottom">
-                                            <div class="total">
-                                                <span>Total</span>
-                                                <span class="total-amount">$134.00</span>
-                                            </div>
-                                            <div class="button">
-                                                <a href="checkout.php" class="btn animate">Checkout</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--/ End Shopping Item -->
-                                </div>
-                            </div>
+                    <div class="navbar-cart">
+    <div class="wishlist">
+        <a href="javascript:void(0)">
+            <i class="lni lni-heart"></i>
+            <span class="total-items">0</span>
+        </a>
+    </div>
+    <div class="cart-items">
+        <a href="javascript:void(0)" class="main-btn">
+            <i class="lni lni-cart"></i>
+            <span class="total-items">2</span>
+        </a>
+        <!-- Shopping Item -->
+        <div class="shopping-item">
+            <div class="dropdown-cart-header">
+                <span>2 Items</span>
+                <a href="cart.php">View Cart</a>
+            </div>
+            <ul class="shopping-list">
+                <li>
+                    <a href="javascript:void(0)" class="remove" title="Remove this item">
+                        <i class="lni lni-close"></i>
+                    </a>
+                    <div class="cart-img-head">
+                        <a class="cart-img" href="product-details.php">
+                            <img src="assets/images/header/cart-items/item1.jpg" alt="#">
+                        </a>
+                    </div>
+                    <div class="content">
+                        <h4><a href="product-details.php">Apple Watch Series 6</a></h4>
+                        <p class="quantity">1x - <span class="amount">$99.00</span></p>
+                    </div>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" class="remove" title="Remove this item">
+                        <i class="lni lni-close"></i>
+                    </a>
+                    <div class="cart-img-head">
+                        <a class="cart-img" href="product-details.php">
+                            <img src="assets/images/header/cart-items/item2.jpg" alt="#">
+                        </a>
+                    </div>
+                    <div class="content">
+                        <h4><a href="product-details.php">Wi-Fi Smart Camera</a></h4>
+                        <p class="quantity">1x - <span class="amount">$35.00</span></p>
+                    </div>
+                </li>
+            </ul>
+            <div class="bottom">
+                <div class="total">
+                    <span>Total</span>
+                    <span class="total-amount">$134.00</span>
+                </div>
+                <div class="button">
+                    <a href="checkout.php" class="btn animate">Checkout</a>
+                </div>
+            </div>
+        </div>
+        <!--/ End Shopping Item -->
+    </div>
+    <div class="profile-item">
+        <a href="profile.php" class="profile-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 12c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm0 2c-3.33 0-10 1.67-10 5v2h20v-2c0-3.33-6.67-5-10-5z"/>
+            </svg>
+        </a>
+    </div>    
+</div>
                         </div>
                     </div>
                 </div>
@@ -134,12 +264,18 @@
             
                 <ul class="user-login">
                     <li>
-                        <a href="login/login.php"><button id="sign_in" style="background-color:blue; margin-right:0;">Sign In</button></a>
+                        <?php if (isset($_SESSION['user_id'])): ?>
+                        <!-- Display Logout Button if User is Logged In -->
+                        <a href="includes/logout.php">
+                            <button type="button" class="btn btn-lg shadow-lg gaming-button">Logout</button>
+                        </a>
+                        <?php else: ?>
+                        <!-- Display Login Button if User is Not Logged In -->
+                        <a href="login/login.php">
+                            <button type="button" class="btn btn-lg shadow-lg gaming-button">Login</button>
+                        </a>
+                        <?php endif; ?>
                     </li>
-                    <li>
-                        <a href="includes/logout.php">sign out</a>
-                    </li>
-                    
                 </ul>
             </div>
         </div>
@@ -221,7 +357,7 @@
                                         </ul>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="contact.php" aria-label="Toggle navigation">Weekly Sales</a>
+                                        <a href="flashSale.php" aria-label="Toggle navigation">Weekly Sales</a>
                                     </li>
                                     <li class="nav-item">
                                     <a href="#trend_product" aria-label="Toggle navigation">Trending Products</a>
