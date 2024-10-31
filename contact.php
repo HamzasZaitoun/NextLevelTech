@@ -1,26 +1,92 @@
+<!-- !bootstrap icon -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" />
+<link rel="stylesheet" href="css/main.css" />
+<link rel="stylesheet" href="css/contact.css" />
 
+<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
 
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<title>E-Commerce | Contact</title>
+<link rel="stylesheet" href="assets/css/contact.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- link for Message sent successfully! & erorr message -->
 
- 
-    <!-- !bootstrap icon -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" />
-    <link rel="stylesheet" href="css/main.css" />
-    <link rel="stylesheet" href="css/contact.css" />
-
-    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>E-Commerce | Contact</title>
-    <link rel="stylesheet" href="assets/css/contact.css">
 
 
 </head>
 
 <body>
+    <?php
+    session_start();
+
+    if (!isset($_SESSION['user_id'])) {
+        header("Location: login/login.php");
+        exit();
+    }
+
+    include('./includes/db_class.php');
+    include('./includes/usersClass.php');
+
+    $userId = $_SESSION['user_id'];
+    $user = new User();
+    $userData = $user->displayUserById($userId);
+
+    if ($userData) {
+        $fullName = htmlspecialchars($userData['user_first_name'] . ' ' . $userData['user_last_name']);
+        $firstName = htmlspecialchars($userData['user_first_name']);
+        $lastName = htmlspecialchars($userData['user_last_name']);
+        $email = htmlspecialchars($userData['user_email']);
+    }
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['subject']) && isset($_POST['message'])) {
+        $fname = $firstName;
+        $lname = $lastName;
+        $email = $userData['user_email'];
+        $subject = $_POST['subject'];
+        $message = $_POST['message'];
+
+        if (!empty($subject) && !empty($message)) {
+            $db = new Database();
+            $connect = $db->connect();
+
+            $stmt = $connect->prepare("INSERT INTO contact_us (user_id,user_first_name,user_last_name, user_email, subject, message) VALUES (:userId,:user_first_name,:user_last_name,:user_email,   :subject, :message)");
+
+            $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
+            $stmt->bindParam(':user_first_name', $fname, PDO::PARAM_STR);
+            $stmt->bindParam(':user_last_name', $lname, PDO::PARAM_STR);
+            $stmt->bindParam(':user_email', $email, PDO::PARAM_STR);
+            $stmt->bindParam(':subject', $subject, PDO::PARAM_STR);
+            $stmt->bindParam(':message', $message, PDO::PARAM_STR);
+
+            if ($stmt->execute()) {
+                echo "<script>
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Message sent successfully!',
+                    icon: 'success'
+                }).then(() => {
+                    window.location.href = '" . $_SERVER['PHP_SELF'] . "';
+                });
+            </script>";
+                exit();
+            } else {
+                echo "<script>
+                 Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Something went wrong!',
+                  }).then(() => {
+                    window.location.href = '" . $_SERVER['PHP_SELF'] . "';
+                });
+               
+            </script>";
+            }
+        }
+    }
+    ?>
     <!-- ! header start -->
     <?php
-  include("includes/header.php")
-  ?>
+    include("includes/header.php");
+    ?>
     <!-- ! header end -->
 
 
@@ -44,38 +110,38 @@
                                     </div>
                                     <form method="POST" id="contactForm" name="contactForm" class="contactForm">
                                         <div class="row">
+                                            <input type="hidden" name="user_first_name" value="<?php echo $firstName; ?>">
+                                            <input type="hidden" name="user_last_name" value="<?php echo $lastName; ?>">
+                                            <input type="hidden" name="user_email" value="<?php echo $email; ?>">
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="label" for="name">Full Name</label>
                                                     <input type="text" class="form-control" name="name" id="name"
-                                                        placeholder="Name">
+                                                        placeholder=" <?php echo $fullName; ?>" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="label" for="email">Email Address</label>
                                                     <input type="email" class="form-control" name="email" id="email"
-                                                        placeholder="Email">
+                                                        placeholder=" <?php echo $email; ?>" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label class="label" for="subject">Subject</label>
-                                                    <input type="text" class="form-control" name="subject" id="subject"
-                                                        placeholder="Subject">
+                                                    <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label class="label" for="#">Message</label>
-                                                    <textarea name="message" class="form-control" id="message" cols="30"
-                                                        rows="4" placeholder="Message"></textarea>
+                                                    <textarea name="message" class="form-control" id="message" cols="30" rows="4" placeholder="Message" required></textarea>
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <input type="submit" value="Send Message" class="btn btn-primary">
-                                                    <div class="submitting"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -168,9 +234,9 @@
     <!-- ! policy end -->
 
     <!-- ! footer start -->
-    <?php    
-     include("includes/footer.php");
-     ?>
+    <?php
+    include("includes/footer.php");
+    ?>
     <!-- ! footer end -->
 
     <!-- scripts start -->
@@ -181,6 +247,8 @@
     <script src="js/jquery.validate.min.js"></script>
     <script src="js/mainContact.js"></script>
     <!-- scripts end -->
+
 </body>
+
 
 </html>

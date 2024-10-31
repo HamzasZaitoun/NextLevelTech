@@ -1,10 +1,59 @@
+<?php 
+session_start();
+require_once "includes/db_class.php"; 
+require_once "includes/cartClass.php";
+
+$user_id = $_SESSION['user_id'] ?? null;
+
+// Create an instance of the Cart class
+$cart = new Cart();
+$cartItems = $cart->getCart($user_id);
+
+// Initialize total quantity and total price
+$totalQuantity = 0;
+$totalPrice = 0;
+
+// Check if the form to add to the cart was submitted
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_to_cart'])) {
+    $product_id = $_POST['product_id'];
+    $quantity = (int)$_POST['quantity'];
+
+    try {
+        $cart->addToCart($user_id, $product_id, $quantity); 
+        echo "<script>alert('Product added to cart successfully!');</script>";
+        // Refresh cart items after adding
+        $cartItems = $cart->getCart($user_id);
+    } catch (Exception $e) {
+        echo "<script>alert('Error adding product to cart: " . $e->getMessage() . "');</script>";
+    }
+}
+
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['remove_from_cart'])) {
+  $product_id = $_POST['product_id'];
+
+  try {
+      $cart->removeFromCart($user_id, $product_id);
+      echo "<script>alert('Item removed from cart successfully!');</script>";
+  } catch (Exception $e) {
+      echo "<script>alert('Error removing item from cart: " . $e->getMessage() . "');</script>";
+  }
+
+  // Refresh cart items after removal
+  $cartItems = $cart->getCart($user_id);
+}
+// Retrieve cart items to display
+
+?>
+
+
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
     <!-- Google Fonts Roboto -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
     <!-- MDB -->
-   
+
     <!-- Custom styles -->
-   
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <!-- Google Fonts Roboto -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
@@ -22,123 +71,69 @@
   <section class="bg-light my-5">
     <div class="container">
       <div class="row">
+
+
+      
+
         <!-- cart -->
-        <div class="col-lg-9">
-          <div class="card border shadow-0">
-            <div class="m-4">
-              <h4 class="card-title mb-4">Your shopping cart</h4>
-              <div class="row gy-3 mb-4">
-                <div class="col-lg-5">
-                  <div class="me-lg-5">
-                    <div class="d-flex">
-                      <img src="https://mdbootstrap.com/img/bootstrap-ecommerce/items/11.webp" class="border rounded me-3" style="width: 96px; height: 96px;" />
-                      <div class="">
-                        <a href="#" class="nav-link">Winter jacket for men and lady</a>
-                        <p class="text-muted">Yellow, Jeans</p>
-                      </div>
+
+
+      <div class="col-lg-9">
+    <div class="card border shadow-0">
+        <div class="m-4">
+            <h4 class="card-title mb-4">Your shopping cart</h4>
+            <?php if (!empty($cartItems)): ?>
+                <?php foreach ($cartItems as $item): ?>
+                    <div class="row gy-3 mb-4">
+                        <div class="col-lg-5">
+                            <div class="me-lg-5">
+                                <div class="d-flex">
+                                    <img src="<?= htmlspecialchars($item['product_picture']); ?>" alt="<?= htmlspecialchars($item['product_name']); ?>" >
+                                    <div>
+                                        <a href="#" class="nav-link"><?= htmlspecialchars($item['product_name']); ?></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Update quantity -->
+                        <div style="width:300px;8" class="col-lg-2 col-sm-6 col-6 d-flex flex-row flex-lg-column flex-xl-row text-nowrap">
+                            <form method="POST" action="cart.php?id=">
+                                <input type="number" name="quantity" value="<?= $item['quantity']; ?>" required>
+                                <button type="submit">Update Quantity</button>
+                            </form>
+                            <!-- Item price -->
+                            <div class="item_price">
+                                <text class="h6"><?= htmlspecialchars($item['product_price']); ?> JD</text><br />
+                                <small class="text-muted text-nowrap">JD / per item</small>
+                            </div>
+                        </div>
+                        <!-- Remove button -->
+                        <div class="col-lg col-sm-6 d-flex justify-content-sm-center justify-content-md-start justify-content-lg-center justify-content-xl-end mb-2">
+                            <div class="float-md-end">
+                                <form method="POST" action="cart.php" onsubmit="return confirmDeletion();">
+                                    <input type="hidden" name="product_id" value="<?= $item['product_id']; ?>">
+                                    <input type="hidden" name="remove_from_cart" value="1">
+                                    <button type="submit" class="btn btn-danger">Remove from Cart</button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                </div>
-                <div class="col-lg-2 col-sm-6 col-6 d-flex flex-row flex-lg-column flex-xl-row text-nowrap">
-                  <div class="">
-                    <select style="width: 100px;" class="form-select me-4">
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                    </select>
-                  </div>
-                  <div class="">
-                    <text class="h6">$1156.00</text> <br />
-                    <small class="text-muted text-nowrap"> $460.00 / per item </small>
-                  </div>
-                </div>
-                <div class="col-lg col-sm-6 d-flex justify-content-sm-center justify-content-md-start justify-content-lg-center justify-content-xl-end mb-2">
-                  <div class="float-md-end">
-                    <a href="#!" class="btn btn-light border px-2 icon-hover-primary"><i class="fas fa-heart fa-lg px-1 text-secondary"></i></a>
-                    <a href="#" class="btn btn-light border text-danger icon-hover-danger"> Remove</a>
-                  </div>
-                </div>
-              </div>
-  
-              <div class="row gy-3 mb-4">
-                <div class="col-lg-5">
-                  <div class="me-lg-5">
-                    <div class="d-flex">
-                      <img src="https://mdbootstrap.com/img/bootstrap-ecommerce/items/12.webp" class="border rounded me-3" style="width: 96px; height: 96px;" />
-                      <div class="">
-                        <a href="#" class="nav-link">Mens T-shirt Cotton Base</a>
-                        <p class="text-muted">Blue, Medium</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-2 col-sm-6 col-6 d-flex flex-row flex-lg-column flex-xl-row text-nowrap">
-                  <div class="">
-                    <select style="width: 100px;" class="form-select me-4">
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                    </select>
-                  </div>
-                  <div class="">
-                    <text class="h6">$44.80</text> <br />
-                    <small class="text-muted text-nowrap"> $12.20 / per item </small>
-                  </div>
-                </div>
-                <div class="col-lg col-sm-6 d-flex justify-content-sm-center justify-content-md-start justify-content-lg-center justify-content-xl-end mb-2">
-                  <div class="float-md-end">
-                    <a href="#!" class="btn btn-light border px-2 icon-hover-primary"><i class="fas fa-heart fa-lg px-1 text-secondary"></i></a>
-                    <a href="#" class="btn btn-light border text-danger icon-hover-danger"> Remove</a>
-                  </div>
-                </div>
-              </div>
-  
-              <div class="row gy-3">
-                <div class="col-lg-5">
-                  <div class="me-lg-5">
-                    <div class="d-flex">
-                      <img src="https://mdbootstrap.com/img/bootstrap-ecommerce/items/13.webp" class="border rounded me-3" style="width: 96px; height: 96px;" />
-                      <div class="">
-                        <a href="#" class="nav-link">Blazer Suit Dress Jacket for Men</a>
-                        <p class="text-muted">XL size, Jeans, Blue</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-2 col-sm-6 col-6 d-flex flex-row flex-lg-column flex-xl-row text-nowrap">
-                  <div class="">
-                    <select style="width: 100px;" class="form-select me-4">
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                    </select>
-                  </div>
-                  <div class="">
-                    <text class="h6">$1156.00</text> <br />
-                    <small class="text-muted text-nowrap"> $460.00 / per item </small>
-                  </div>
-                </div>
-                <div class="col-lg col-sm-6 d-flex justify-content-sm-center justify-content-md-start justify-content-lg-center justify-content-xl-end mb-2">
-                  <div class="float-md-end">
-                    <a href="#!" class="btn btn-light border px-2 icon-hover-primary"><i class="fas fa-heart fa-lg px-1 text-secondary"></i></a>
-                    <a href="#" class="btn btn-light border text-danger icon-hover-danger"> Remove</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-  
-            <div class="border-top pt-4 mx-4 mb-4">
-              <p><i class="fas fa-truck text-muted fa-lg"></i> Free Delivery within 1-2 weeks</p>
-              <p class="text-muted">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                aliquip
-              </p>
-            </div>
-          </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <div>No items in your Cart</div>
+            <?php endif; ?>
         </div>
+        <div class="border-top pt-4 mx-4 mb-4">
+            <p><i class="fas fa-truck text-muted fa-lg"></i> Free Delivery within 1-2 weeks</p>
+        </div>
+    </div>
+</div>
+
+<script>
+function confirmDeletion() {
+    return confirm("Are you sure you want to remove this item from your cart?");
+}
+
         <!-- cart -->
         <!-- summary -->
         <div class="col-lg-3">
@@ -159,7 +154,7 @@
             <div class="card-body">
               <div class="d-flex justify-content-between">
                 <p class="mb-2">Total price:</p>
-                <p class="mb-2">$329.00</p>
+                <p class="mb-2"><?php echo $totalPrice . " JD";?></p>
               </div>
               <div class="d-flex justify-content-between">
                 <p class="mb-2">Discount:</p>
