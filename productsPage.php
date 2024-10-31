@@ -1,24 +1,43 @@
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 <?php
+require_once "./includes/db_class.php";
+require_once "includes/productsClasss.php";
+require_once "includes/categoriesClass.php";
 
-require_once ("includes/productsClasss.php");
-require_once("includes/categoriesClass.php");
+$db = dbConnection::getInstence();
+$connect = $db->getConnection();
 
-$productObj = new Product();
-$products = $productObj->getAllProducts();
+if (isset($_GET['filter'])) {
+    $ssalry = $_GET['ssalry'];
+    $esalry = $_GET['esalry'];
+    
+    $sql = "SELECT * FROM `products` WHERE product_price BETWEEN :ssalry AND :esalry";
+    $stmt = $connect->prepare($sql);
+    $stmt->bindParam(':ssalry', $ssalry);
+    $stmt->bindParam(':esalry', $esalry);
+    $stmt->execute();
+    $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+} elseif (isset($_GET['btn-search'])) { 
+    $search_value = "%" . $_GET['search'] . "%";
+    $sql = "SELECT * FROM `products` WHERE  product_name LIKE :value ";
+    $stmt = $connect->prepare($sql);
+    $stmt->bindParam(':value', $search_value);
+    $stmt->execute();
+    $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-if (isset($_GET['category_id'])) {
+} elseif (isset($_GET['category_id'])) { 
     $categoryId = $_GET['category_id'];
-
     $categoryObj = new Category();
-    $products = $categoryObj->getProductsByCategory($categoryId);
-} else {
-    echo "No category selected.";
-    exit;
+    $products = $categoryObj->getProductsByCategoryId($categoryId);
+
+} else { 
+    $productObj = new Product();
+    $products = $productObj->getAllProducts();
 }
 ?>
+
 
 <head>
     <meta charset="utf-8" />
@@ -70,34 +89,53 @@ if (isset($_GET['category_id'])) {
                         </a>
                         <!-- End Header Logo -->
                     </div>
-                    <div class="col-lg-5 col-md-7 d-xs-none">
-                        <!-- Start Main Menu Search -->
-                        <div class="main-menu-search">
-                            <!-- navbar search start -->
-                            <div class="navbar-search search-style-5">
-                                <div class="search-select">
-                                    <div class="select-position">
-                                        <select id="select1">
-                                            <option selected>All</option>
-                                            <option value="1">option 01</option>
-                                            <option value="2">option 02</option>
-                                            <option value="3">option 03</option>
-                                            <option value="4">option 04</option>
-                                            <option value="5">option 05</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="search-input">
-                                    <input type="text" placeholder="Search">
-                                </div>
-                                <div class="search-btn">
-                                    <button><i class="lni lni-search-alt"></i></button>
-                                </div>
-                            </div>
-                            <!-- navbar search Ends -->
-                        </div>
-                        <!-- End Main Menu Search -->
-                    </div>
+
+
+<div class="col-lg-5 col-md-7 d-xs-none">
+    <div class="main-menu-search">
+        <div class="navbar-search search-style-5">
+            <div class="search-select">
+                <div class="select-position">
+                    <select id="select1">
+                        <option selected>All</option>
+                        <option value="1">option 01</option>
+                        <option value="2">option 02</option>
+                        <option value="3">option 03</option>
+                        <option value="4">option 04</option>
+                        <option value="5">option 05</option>
+                    </select>
+                </div>
+            </div>
+<div class="search-input">
+    <form method="GET" style="display: flex; align-items: center;">
+        <input type="text" name="search" placeholder="Search..." style="flex: 1; padding: 8px; font-size: 16px;">
+        <button class="search-button" type="submit" name="btn-search" style="  font-size: 18px;
+  border: 0;
+  border-radius: 0 4px 4px 0;
+  border: 0;
+  background-color: #0167F3;
+  color: #fff;
+  width: 45px;
+  height: 45px;
+  ">
+            <i class="lni lni-search-alt"></i>
+        </button>
+    </form>
+</div>
+
+        </div>
+    </div>
+
+    <form method="GET" class="filter-form">
+        <label for="number">Determine the price </label><br>
+        <input type="number" name="ssalry" placeholder="Lowest Price" required>
+        <input type="number" name="esalry" placeholder="Highest Price" required>
+        <button type="submit" name="filter">Filter</button>
+    </form>
+</div>
+
+
+
                     <div class="col-lg-4 col-md-2 col-5">
                         <div class="middle-right-area">
                             <div class="nav-hotline">
@@ -328,7 +366,7 @@ if (isset($_GET['category_id'])) {
                     <div class="single-product">
                         <div class="product-image">
 
-                            <img src="<?php echo htmlspecialchars($product['product_picture']); ?>" alt="product_img">
+                            <img src="<?php echo htmlspecialchars($product['product_picture']); ?>">
                             <div class="button">
                                 <a href="productDetails.php?id=<?php echo htmlspecialchars($product['product_id']); ?>"
                                     class="btn">
@@ -337,19 +375,10 @@ if (isset($_GET['category_id'])) {
                             </div> 
                         </div>
                         <div class="product-info">
-                            <span class="category"><?php echo $product['category_name']; ?></span>
                             <h4 class="title">
                                 <?= $product['product_name']; ?>
                             </h4>
-                            <ul class="review">
-                                <?php for ($i = 0; $i < 5; $i++) : ?>
-                                <li>
-                                    <i
-                                        class="lni <?= $i < $product['product_rate'] ? 'lni-star-filled' : 'lni-star'; ?>"></i>
-                                </li>
-                                <?php endfor; ?>
-                                <li><span><?= $product['product_rate']; ?> Review(s)</span></li>
-                            </ul>
+                            
                             <div class="price">
                                 <span><?php echo $product['product_price']; ?>JOD</span>
 

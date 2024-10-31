@@ -26,27 +26,39 @@
 
 .swiper-pagination-bullet {
     background: #fff;
+<<<<<<< HEAD
   
+=======
+    /* لون النقاط */
+>>>>>>> 82aeafe1f99e8a948b8a3953ee4ede409105bba3
 }
 
 .swiper-button-next,
 .swiper-button-prev {
     color: #fff;
+<<<<<<< HEAD
  
+=======
+    /* لون الأزرار */
+>>>>>>> 82aeafe1f99e8a948b8a3953ee4ede409105bba3
 }
 </style>
 </head>
 
 <body>
     <!-- Preloader -->
-    <div class="preloader">
+    <!-- <div class="preloader">
         <div class="preloader-inner">
             <div class="preloader-icon">
                 <span></span>
                 <span></span>
             </div>
         </div>
+<<<<<<< HEAD
     </div>
+=======
+    </div> -->
+>>>>>>> 82aeafe1f99e8a948b8a3953ee4ede409105bba3
 
     <!-- /End Preloader -->
 
@@ -151,7 +163,11 @@
     <!-- End Hero Area -->
 
     <!-- categories -->
+<<<<<<< HEAD
     <section class="categories">
+=======
+    <section class="categories" id="product_Categories">
+>>>>>>> 82aeafe1f99e8a948b8a3953ee4ede409105bba3
         <div class="container">
             <div class="section-title">
                 <h2>Product Categories</h2>

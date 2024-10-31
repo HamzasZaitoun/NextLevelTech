@@ -2,12 +2,13 @@
 
 class User {
     private $pdo;
+    public function __construct()
 
-    public function __construct() {
-        $database = new Database();
-        $this->pdo = $database->connect();
+    {
+        // using the existing PDO (PHP data oject) connection (singlton pattern)
+        $this->pdo =  dbConnection::getInstence()->getConnection();
+        // echo 'connection yes';
     }
-
 
     public function register($firstName, $lastName, $email, $password, $gender, $dob, $address, $phoneNumber) {
         $sql = "INSERT INTO users (user_first_name, user_last_name, user_gender, user_birth_date, user_address, user_phone_number, user_email, user_password) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";

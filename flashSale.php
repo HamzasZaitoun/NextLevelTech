@@ -61,4 +61,8 @@ include("includes/header.php");
             <p>No products available.</p>
             <?php endif; ?>
         </div>
+<<<<<<< HEAD
     </section>
+=======
+    </section>
+>>>>>>> 82aeafe1f99e8a948b8a3953ee4ede409105bba3

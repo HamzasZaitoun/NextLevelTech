@@ -4,12 +4,13 @@ require_once("db_class.php");
 class Wishlist 
 {
     private $pdo;
+    public function __construct()
 
-    public function __construct() {
-        $database = new Database();
-        $this->pdo = $database->connect();
+    {
+        // using the existing PDO (PHP data oject) connection (singlton pattern)
+        $this->pdo =  dbConnection::getInstence()->getConnection();
+        // echo 'connection yes';
     }
-
     public function getAllProductsFromWishlist($user_id) {
         $stmt = $this->pdo->prepare("SELECT wishlist.*, products.*, users.*
                                      FROM wishlist
@@ -27,5 +28,16 @@ class Wishlist
     }
 
 
+    public function addToWishlist($user_id, $product_id) {
+        $stmt = $this->pdo->prepare("SELECT * FROM wishlist WHERE user_id = ? AND product_id = ? AND is_deleted = 0");
+        $stmt->execute([$user_id, $product_id]);
+        
+        if ($stmt->rowCount() > 0) {
+            return false;
+        }
+    
+        $stmt = $this->pdo->prepare("INSERT INTO wishlist (user_id, product_id) VALUES (?, ?)");
+        return $stmt->execute([$user_id, $product_id]);
+    }
     
 }

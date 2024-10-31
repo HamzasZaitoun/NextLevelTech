@@ -23,7 +23,7 @@ include ("includes/header.php");
 
 <body>
     <!-- ! header start -->
-    <header>
+    <!-- <header>
         <div class="global-notification">
             <div class="container">
                 <p>
@@ -154,7 +154,7 @@ include ("includes/header.php");
                 </div>
             </div>
         </div>
-    </header>
+    </header> -->
     <!-- ! header end -->
 
     <!-- About Us Section -->
