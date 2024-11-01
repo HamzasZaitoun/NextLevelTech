@@ -5,13 +5,14 @@ require_once "includes/cartClass.php";
 
 $user_id = $_SESSION['user_id'] ?? null;
 
-// Create an instance of the Cart class
 $cart = new Cart();
 $cartItems = $cart->getCart($user_id);
 
 // Initialize total quantity and total price
-$totalQuantity = 0;
-$totalPrice = 0;
+$totalPrice = 0; 
+$discountAmount = 0;
+$taxAmount = 0;
+$finalTotal = 0; 
 
 // Check if the form to add to the cart was submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_to_cart'])) {
@@ -19,10 +20,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_to_cart'])) {
     $quantity = (int)$_POST['quantity'];
 
     try {
-        $cart->addToCart($user_id, $product_id, $quantity); 
-        echo "<script>alert('Product added to cart successfully!');</script>";
-        // Refresh cart items after adding
-        $cartItems = $cart->getCart($user_id);
+        if ($cart->addToCart($user_id, $product_id, $quantity)){
+          echo "<script>alert('Product added to cart successfully!');</script>";
+          $cartItems = $cart->getCart($user_id);
+          header ("Location: cart.php?message=item added ");
+
+        }
     } catch (Exception $e) {
         echo "<script>alert('Error adding product to cart: " . $e->getMessage() . "');</script>";
     }
@@ -39,10 +42,55 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['remove_from_cart'])) {
       echo "<script>alert('Error removing item from cart: " . $e->getMessage() . "');</script>";
   }
 
-  // Refresh cart items after removal
   $cartItems = $cart->getCart($user_id);
 }
-// Retrieve cart items to display
+
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_quantity'])) {
+  $product_id = $_POST['product_id'];
+  $new_quantity = (int)$_POST['quantity'];
+
+  try {
+      $cart->updateCartQuantity($user_id, $product_id, $new_quantity);
+      echo "<script>alert('Quantity updated successfully!');</script>";
+  } catch (Exception $e) {
+      echo "<script>alert('Error updating quantity: " . $e->getMessage() . "');</script>";
+  }
+
+  $cartItems = $cart->getCart($user_id);
+}
+
+
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['apply_coupon'])) {
+  $couponCode = $_POST['coupon_code'];
+  $userId = $_SESSION['user_id']; 
+
+  $discountAmount = 0;
+  $result = $cart->applyCoupon($couponCode, $userId);
+
+  // Check the result
+  if ($result['success']) {
+      echo "<div class='alert alert-success'>Coupon applied! New total: $" . number_format($result['new_total'], 2) . " (Discount: $" . number_format($result['discount'], 2) . ")</div>";
+      $discountAmount = $result['discount'];
+  } else {
+      echo "<div class='alert alert-danger'>" . $result['message'] . "</div>";
+  }
+}
+
+// Calculate total price from cart items
+$totalPrice = 0;
+foreach ($cartItems as $item) {
+  $totalPrice += $item['product_price'] * $item['quantity']; 
+}
+
+
+$finalTotal = $totalPrice - $discountAmount ;
+
+
+
+
+
 
 ?>
 
@@ -77,106 +125,119 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['remove_from_cart'])) {
 
         <!-- cart -->
 
+        <div class="col-lg-9">
+    <div class="card border shadow-sm">
+        <div style="min-height: 390px;" class="card-body">
+            <h4 class="card-title mb-4">Your Shopping Cart</h4>
 
-      <div class="col-lg-9">
-    <div class="card border shadow-0">
-        <div class="m-4">
-            <h4 class="card-title mb-4">Your shopping cart</h4>
             <?php if (!empty($cartItems)): ?>
                 <?php foreach ($cartItems as $item): ?>
-                    <div class="row gy-3 mb-4">
-                        <div class="col-lg-5">
-                            <div class="me-lg-5">
-                                <div class="d-flex">
-                                    <img src="<?= htmlspecialchars($item['product_picture']); ?>" alt="<?= htmlspecialchars($item['product_name']); ?>" >
-                                    <div>
-                                        <a href="#" class="nav-link"><?= htmlspecialchars($item['product_name']); ?></a>
-                                    </div>
+                    <div class="row align-items-center gy-3 mb-4 p-3 border-bottom">
+                        <!-- Product Image and Name -->
+                        <div class="col-lg-5 col-md-6 col-12">
+                            <div class="d-flex align-items-center">
+                              <?php
+                            $imagePath="inserted_img/".($item['product_picture']);?>
+
+                            <img src="<?php echo $imagePath; ?>" alt="category_pic" class="category-image">
+                            <div>
+                                    <h6 class="mb-1"><?= htmlspecialchars($item['product_name']); ?></h6>
                                 </div>
                             </div>
                         </div>
-                        <!-- Update quantity -->
-                        <div style="width:300px;8" class="col-lg-2 col-sm-6 col-6 d-flex flex-row flex-lg-column flex-xl-row text-nowrap">
-                            <form method="POST" action="cart.php?id=">
-                                <input type="number" name="quantity" value="<?= $item['quantity']; ?>" required>
-                                <button type="submit">Update Quantity</button>
+
+                        <!-- Quantity and Update Button -->
+                        <div class="col-lg-3 col-md-3 col-6 d-flex align-items-center">
+                            <form method="POST" action="cart.php" class="w-100 d-flex align-items-center">
+                                <input type="hidden" name="product_id" value="<?= $item['product_id']; ?>">
+                                <input type="hidden" name="update_quantity" value="1">
+                                <input type="number" name="quantity" value="<?= $item['quantity']; ?>" required min="1" class="form-control text-center me-2" style="max-width: 80px;">
+                                <button type="submit" class="btn btn-outline-primary btn-sm w-100 mt-2 mt-md-0">Update</button>
                             </form>
-                            <!-- Item price -->
-                            <div class="item_price">
-                                <text class="h6"><?= htmlspecialchars($item['product_price']); ?> JD</text><br />
-                                <small class="text-muted text-nowrap">JD / per item</small>
-                            </div>
                         </div>
-                        <!-- Remove button -->
-                        <div class="col-lg col-sm-6 d-flex justify-content-sm-center justify-content-md-start justify-content-lg-center justify-content-xl-end mb-2">
-                            <div class="float-md-end">
-                                <form method="POST" action="cart.php" onsubmit="return confirmDeletion();">
-                                    <input type="hidden" name="product_id" value="<?= $item['product_id']; ?>">
-                                    <input type="hidden" name="remove_from_cart" value="1">
-                                    <button type="submit" class="btn btn-danger">Remove from Cart</button>
-                                </form>
-                            </div>
+
+                        <!-- Item Price -->
+                        <div class="col-lg-2 col-md-3 col-6 text-end text-md-center">
+                            <span class="h6"><?= htmlspecialchars($item['product_price']); ?> JD</span>
+                            <small class="text-muted d-block">per item</small>
+                        </div>
+
+
+                        <!-- Remove Button -->
+                        <div class="col-lg-2 col-md-12 text-end text-md-center mt-2 mt-md-0">
+                            <form method="POST" action="cart.php" onsubmit="return confirmDeletion();">
+                                <input type="hidden" name="product_id" value="<?= $item['product_id']; ?>">
+                                <input type="hidden" name="remove_from_cart" value="1">
+                                <button type="submit" class="btn btn-danger btn-sm w-100">Remove</button>
+                            </form>
                         </div>
                     </div>
                 <?php endforeach; ?>
             <?php else: ?>
-                <div>No items in your Cart</div>
+                <div class="text-center p-4">No items in your Cart</div>
             <?php endif; ?>
         </div>
-        <div class="border-top pt-4 mx-4 mb-4">
-            <p><i class="fas fa-truck text-muted fa-lg"></i> Free Delivery within 1-2 weeks</p>
+
+        <!-- Delivery Information -->
+        <div class="card-footer text-center">
+            <p class="mb-0"><i class="fas fa-truck text-muted fa-lg"></i> Free Delivery within 1-2 weeks</p>
         </div>
     </div>
 </div>
+
+
 
 <script>
 function confirmDeletion() {
     return confirm("Are you sure you want to remove this item from your cart?");
 }
+</script>
 
         <!-- cart -->
         <!-- summary -->
-        <div class="col-lg-3">
-          <div class="card mb-3 border shadow-0">
-            <div class="card-body">
-              <form>
+       <div class="col-lg-3">
+          <div class="card mb-3 border shadow-0"> 
+        <div class="card-body">
+            <form method="POST" action="cart.php">
                 <div class="form-group">
-                  <label class="form-label">Have coupon?</label>
-                  <div class="input-group">
-                    <input type="text" class="form-control border" name="" placeholder="Coupon code" />
-                    <button class="btn btn-light border">Apply</button>
-                  </div>
+                    <label class="form-label">Have a coupon?</label>
+                    <div class="input-group mb-3">
+                        <input type="text" name="coupon_code" class="form-control" placeholder=" coupon " required>
+                        <button class="btn btn-primary" type="submit" name="apply_coupon">Apply Coupon</button>
+                    </div>
                 </div>
-              </form>
-            </div>
-          </div>
-          <div class="card shadow-0 border">
-            <div class="card-body">
-              <div class="d-flex justify-content-between">
-                <p class="mb-2">Total price:</p>
-                <p class="mb-2"><?php echo $totalPrice . " JD";?></p>
-              </div>
-              <div class="d-flex justify-content-between">
-                <p class="mb-2">Discount:</p>
-                <p class="mb-2 text-success">-$60.00</p>
-              </div>
-              <div class="d-flex justify-content-between">
-                <p class="mb-2">TAX:</p>
-                <p class="mb-2">$14.00</p>
-              </div>
-              <hr />
-              <div class="d-flex justify-content-between">
-                <p class="mb-2">Total price:</p>
-                <p class="mb-2 fw-bold">$283.00</p>
-              </div>
-  
-              <div class="mt-3">
-                <a href="#" class="btn btn-success w-100 shadow-0 mb-2"> Make Purchase </a>
-                <a href="#" class="btn btn-light w-100 border mt-2"> Back to shop </a>
-              </div>
-            </div>
-          </div>
+            </form>
         </div>
+    </div>
+
+    <div class="card shadow-0 border">
+        <div class="card-body">
+            <div class="d-flex justify-content-between">
+                <p class="mb-2">Total price:</p>
+                <p class="mb-2"><?php echo number_format($totalPrice, 2) . " JD"; ?></p>
+            </div>
+            <div class="d-flex justify-content-between">
+                <p class="mb-2">Discount:</p>
+                <p class="mb-2 text-success">- <?php echo number_format($discountAmount, 2) . " JD"; ?></p>
+            </div>
+            <div class="d-flex justify-content-between">
+                <p class="mb-2">TAX:</p>
+                <p class="mb-2"><?php echo number_format($taxAmount, 2) . " JD"; ?></p>
+            </div>
+            <hr />
+            <div class="d-flex justify-content-between">
+                <p class="mb-2">Total price:</p>
+                <p class="mb-2 fw-bold"><?php echo number_format($finalTotal, 2) . " JD"; ?></p>
+            </div>
+
+            <div class="mt-3">
+                <a href="checkout.php" class="btn btn-success w-100 shadow-0 mb-2">Make Purchase</a>
+                <a href="#" class="btn btn-light w-100 border mt-2">Back to shop</a>
+            </div>
+        </div>
+    </div>
+</div>
+
         <!-- summary -->
       </div>
     </div>

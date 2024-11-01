@@ -167,12 +167,12 @@ if (isset($_GET['filter'])) {
                                                 <a href="javascript:void(0)" class="remove" title="Remove this item"><i
                                                         class="lni lni-close"></i></a>
                                                 <div class="cart-img-head">
-                                                    <a class="cart-img" href="product-details.php"><img
+                                                    <a class="cart-img" href="productDetails"><img
                                                             src="assets/images/header/cart-items/item1.jpg" alt="#"></a>
                                                 </div>
 
                                                 <div class="content">
-                                                    <h4><a href="product-details.php">
+                                                    <h4><a href="productDetails">
                                                             Apple Watch Series 6</a></h4>
                                                     <p class="quantity">1x - <span class="amount">$99.00</span></p>
                                                 </div>
@@ -181,11 +181,11 @@ if (isset($_GET['filter'])) {
                                                 <a href="javascript:void(0)" class="remove" title="Remove this item"><i
                                                         class="lni lni-close"></i></a>
                                                 <div class="cart-img-head">
-                                                    <a class="cart-img" href="product-details.php"><img
+                                                    <a class="cart-img" href="productDetails"><img
                                                             src="assets/images/header/cart-items/item2.jpg" alt="#"></a>
                                                 </div>
                                                 <div class="content">
-                                                    <h4><a href="product-details.php">Wi-Fi Smart Camera</a></h4>
+                                                    <h4><a href="productDetails">Wi-Fi Smart Camera</a></h4>
                                                     <p class="quantity">1x - <span class="amount">$35.00</span></p>
                                                 </div>
                                             </li>
@@ -281,7 +281,7 @@ if (isset($_GET['filter'])) {
                                         <ul class="sub-menu collapse" id="submenu-1-3">
                                             <li class="nav-item"><a href="product-grids.php">Shop Grid</a></li>
                                             <li class="nav-item"><a href="product-list.php">Shop List</a></li>
-                                            <li class="nav-item active"><a href="product-details.php">shop Single</a>
+                                            <li class="nav-item active"><a href="productDetails">shop Single</a>
                                             </li>
                                             <li class="nav-item"><a href="cart.php">Cart</a></li>
                                             <li class="nav-item"><a href="checkout.php">Checkout</a></li>

@@ -10,6 +10,8 @@ if (!isset($_SESSION['user_id'])) {
 
 include('./includes/db_class.php');
 include('./includes/usersClass.php');
+include('./includes/cartClass.php');
+
 
 $userId = $_SESSION['user_id'];
 
@@ -26,6 +28,13 @@ if ($userData) {
     $address = htmlspecialchars($userData['user_address']);
     $password = htmlspecialchars($userData['user_password']);
 }
+
+
+$cart = new Cart(); 
+
+$orderHistory = $cart->getOrderHistory($userId);
+
+
 ?>
 
 
@@ -680,134 +689,54 @@ if ($userData) {
 
 
 
-
-              <section class="ezy__eporder9 light">
-                <div style="padding:0px;" class="container">
-                  <div class="row justify-content-center">
-                    <div class="col-12">
-                      <div class="card ezy__eporder9-card rounded-3">
-                        <div class="card-header text-center text-md-start bg-transparent border-0 p-3 p-md-4">
-                          <button class="btn ezy__eporder9-btn border">View Order</button>
-                          <button class="btn ezy__eporder9-btn border ms-2">View Invoice</button>
+            <section class="ezy__eporder9 light">
+    <div style="padding:0px;" class="container">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <h2 class="text-center">Order History</h2>
+                <?php if (empty($orderHistory)): ?>
+                    <p class="text-center">No orders found.</p>
+                <?php else: ?>
+                    <?php foreach ($orderHistory as $order): ?>
+                        <div class="card ezy__eporder9-card rounded-3 mb-3">
+                            <div class="card-header text-center text-md-start bg-transparent border-0 p-3 p-md-4">
+                                <h5>Order ID: <?= htmlspecialchars($order['order_id']) ?></h5>
+                                <p>Date: <?= htmlspecialchars($order['order_date']) ?></p>
+                                <p>Status: <?= htmlspecialchars($order['order_status']) ?></p>
+                            </div>
+                            <hr class="ezy__eporder9-line my-0" />
+                            <div class="card-body p-4 p-md-2">
+                                <div class="row align-items-center text-left text-lg-start">
+                                    <div class="col-12 col-lg-4">
+                                        <div>
+                                            <a href="#!">
+                                                <img src="<?= htmlspecialchars($order['product_picture']) ?>" alt="" class="img-fluid ezy__eporder9-img" />
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-lg-6 ps-lg-4 mt-3 mt-lg-0">
+                                        <div>
+                                            <a href="#!">
+                                                <h6 class="fw-bold"><?= htmlspecialchars($order['product_name']) ?></h6>
+                                            </a>
+                                            <p class="ezy__eporder9-details mb-2">
+                                                Quantity: <?= htmlspecialchars($order['quantity']) ?>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-lg-2">
+                                        <h5 class="fw-bold mb-0 mt-4 mt-lg-0">$<?= htmlspecialchars($order['order_total']) ?></h5>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <hr class="ezy__eporder9-line my-0" />
-                        <div class="card-body p-4 p-md-2">
-                          <!-- item -->
-                          <div class="row align-items-center text-left text-lg-start">
-                            <div class="col-12 col-lg-4">
-                              <div>
-                                <a href="#!">
-                                  <img
-                                    src="https://cdn.easyfrontend.com/pictures/blog/blog_2_1.png"
-                                    alt=""
-                                    class="img-fluid ezy__eporder9-img" /></a>
-                              </div>
-                            </div>
-                            <div class="col-12 col-lg-6 ps-lg-4 mt-3 mt-lg-0">
-                              <div>
-                                <a href="#!">
-                                  <h6 class="fw-bold">Havit H204d Wired Headphone.</h6>
-                                </a>
-                                <p class="ezy__eporder9-details mb-2">
-                                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec consequat lorem Maecenas.
-                                </p>
-                                <span class="ezy__eporder9-status completed">Completed</span>
-                              </div>
-                            </div>
-                            <div class="col-12 col-lg-2">
-                              <h5 class="fw-bold mb-0 mt-4 mt-lg-0">$259</h5>
-                            </div>
-                          </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+</section>
 
-                          <!-- item -->
-                          <div class="row align-items-center text-left text-lg-start mt-5">
-                            <div class="col-12 col-lg-4">
-                              <div>
-                                <a href="#!">
-                                  <img
-                                    src="https://cdn.easyfrontend.com/pictures/blog/blog_2_2.png"
-                                    alt=""
-                                    class="img-fluid ezy__eporder9-img" /></a>
-                              </div>
-                            </div>
-                            <div class="col-12 col-lg-6 ps-lg-4 mt-3 mt-lg-0">
-                              <div>
-                                <a href="#!">
-                                  <h6 class="fw-bold">Havit H204d Wired Headphone.</h6>
-                                </a>
-                                <p class="ezy__eporder9-details mb-2">
-                                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec consequat lorem. Maecenas
-                                  elementum at diam consequat bibendum.
-                                </p>
-                                <span class="ezy__eporder9-status failed">Failed</span>
-                              </div>
-                            </div>
-                            <div class="col-12 col-lg-2">
-                              <h5 class="fw-bold mb-0 mt-4 mt-lg-0">$259</h5>
-                            </div>
-                          </div>
-
-                          <!-- item -->
-                          <div class="row align-items-center text-left text-lg-start mt-5">
-                            <div class="col-12 col-lg-4">
-                              <div>
-                                <a href="#!">
-                                  <img
-                                    src="https://cdn.easyfrontend.com/pictures/blog/blog_2_3.png"
-                                    alt=""
-                                    class="img-fluid ezy__eporder9-img" /></a>
-                              </div>
-                            </div>
-                            <div class="col-12 col-lg-6 ps-lg-4 mt-3 mt-lg-0">
-                              <div>
-                                <a href="#!">
-                                  <h6 class="fw-bold">Havit H204d Wired Headphone.</h6>
-                                </a>
-                                <p class="ezy__eporder9-details mb-2">
-                                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec consequat lorem. Maecenas
-                                  elementum at diam consequat bibendum.
-                                </p>
-                                <span class="ezy__eporder9-status inprogress">In Progress</span>
-                              </div>
-                            </div>
-                            <div class="col-12 col-lg-2">
-                              <h5 class="fw-bold mb-0 mt-4 mt-lg-0">$259</h5>
-                            </div>
-                          </div>
-
-                          <!-- item -->
-                          <div class="row align-items-center text-left text-lg-start mt-5">
-                            <div class="col-12 col-lg-4">
-                              <div>
-                                <a href="#!">
-                                  <img
-                                    src="https://cdn.easyfrontend.com/pictures/blog/blog_2_4.png"
-                                    alt=""
-                                    class="img-fluid ezy__eporder9-img" /></a>
-                              </div>
-                            </div>
-                            <div class="col-12 col-lg-6 ps-lg-4 mt-3 mt-lg-0">
-                              <div>
-                                <a href="#!">
-                                  <h6 class="fw-bold">Havit H204d Wired Headphone.</h6>
-                                </a>
-                                <p class="ezy__eporder9-details mb-2">
-                                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec consequat lorem. Maecenas
-                                  elementum at diam consequat bibendum.
-                                </p>
-                                <span class="ezy__eporder9-status completed">Completed</span>
-                              </div>
-                            </div>
-                            <div class="col-12 col-lg-2">
-                              <h5 class="fw-bold mb-0 mt-4 mt-lg-0">$259</h5>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </section>
 
             </div>
 
