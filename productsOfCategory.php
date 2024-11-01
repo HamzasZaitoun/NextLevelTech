@@ -16,27 +16,26 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     exit;
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<?php
+include ('includes/header.php'); 
+?>
     <title>Category Products</title>
     <link rel="stylesheet" href="trendingProducts.css">
 </head>
 <body>
-<section id="productsOfCategory" class="trending-product section" style="margin-top: 12px;">
+<div class="section-title mt-30">
+    <h2><?= htmlspecialchars($categoryDetails['category_name'] ?? 'Unknown'); ?></h2>
+</div>
+<section id="productsOfCategory" class="trending-product section">
     <div class="container">
-        <div class="row">
-            <div class="section-title">
-                <h2><?= htmlspecialchars($categoryDetails['category_name'] ?? 'Unknown'); ?></h2>
-            </div>
-        </div>
+        <!-- <div class="row">
+           
+        </div> -->
         
         <?php if (!empty($products)) : ?>
             <div class="row">
                 <?php foreach ($products as $product) : ?>
-                <div class="col-lg-3 col-md-6 col-12">
+                <div class="col-lg-3 col-md-6 col-sm-12">
                     <div class="single-product">
                         <div class="product-image">
                             <?php 
