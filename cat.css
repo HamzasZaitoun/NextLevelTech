@@ -24,7 +24,7 @@ body {
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, auto);
   text-align: center;
-  gap: 10px; /* تقليل المسافة بين الكاردز */
+  gap: 10px;
 }
 
 .section-title h2 {
@@ -40,7 +40,6 @@ body {
   backdrop-filter: blur(8px);
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.2);
- /* استخدام عرض كامل الشبكة */
   padding: 20px;
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -69,9 +68,40 @@ body {
 }
 
 .category-image {
-  transition: transform 0.3s ease; /* حركة سلسة */
+  transition: transform 0.3s ease;
 }
 
 .category-image:hover {
-  transform: scale(1.1); /* تكبير الصورة بنسبة 10% */
+  transform: scale(1.1);
+}
+
+/* تصميم متجاوب للشاشات الصغيرة */
+@media (max-width: 1024px) {
+  .cat-container {
+    grid-template-columns: repeat(2, 1fr); /* عمودين فقط على الشاشات المتوسطة */
+  }
+}
+
+@media (max-width: 768px) {
+  .cat-container {
+    grid-template-columns: 1fr; /* عمود واحد فقط على الشاشات الصغيرة */
+  }
+
+  .section-title h2 {
+    font-size: 2rem; /* تكبير الخط قليلاً */
+  }
+}
+
+@media (max-width: 480px) {
+  .section-title h2 {
+    font-size: 1.6rem; /* تقليل حجم الخط أكثر */
+  }
+
+  .category-title {
+    font-size: 1rem; /* تقليل حجم النص داخل الكاردز */
+  }
+
+  .cat-container {
+    padding: 20px; /* تقليل المسافة الداخلية لتتناسب مع العرض الأصغر */
+  }
 }
