@@ -8,6 +8,7 @@
 ?>
 <link rel="stylesheet" href="assets/css/test.css">
 <link rel="stylesheet" href="cat.css">
+<link rel="stylesheet" href="trendingProducts.css">
 <title>Game Shop</title>
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
@@ -35,9 +36,6 @@
     color: #fff;
     /* لون الأزرار */
 }
-
-
-
 </style>
 </head>
 
@@ -55,16 +53,16 @@
     <!-- /End Preloader -->
 
     <!-- Start Hero Area -->
-     
-<!-- Start Hero Area -->
-<section class="hero-area">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-12 custom-padding-right">
-                <div class="slider-head">
-                    <!-- Start Hero Slider -->
-                    <div class="hero-slider">
-                        <?php  
+
+    <!-- Start Hero Area -->
+    <section class="hero-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-12 custom-padding-right">
+                    <div class="slider-head">
+                        <!-- Start Hero Slider -->
+                        <div class="hero-slider">
+                            <?php  
                             $highestDiscountProductsObj = new product();
                             $highestProducts = $highestDiscountProductsObj->fetchHighestDiscountProducts();        
                             if (!empty($highestProducts)) : 
@@ -74,88 +72,91 @@
                                     $calculateSaving = $highestProduct['product_price'] * ($highestProduct['product_discount'] / 100);
                                     $priceAfterDiscount = $highestProduct['product_price'] * (1 - $highestProduct['product_discount'] / 100);
                         ?>
-                        <!-- Start Single Slider -->
-                        <div class="single-slider"
-                        style="background-image:  url('<?php echo $imagePath; ?>');">
-                        <div class="content">
-                                <h2><span>No restocking fee (<?= htmlspecialchars($calculateSaving); ?> JOD savings)</span>
-                                    <?= htmlspecialchars($highestProduct['product_name']); ?>
-                                </h2>
-                                <p><?= htmlspecialchars($highestProduct['product_description']); ?></p>
-                                <h3><span>Now Only</span> <?= htmlspecialchars($priceAfterDiscount); ?> JOD</h3>
-                                <div class="button">
-                                    <a href="productDetails.php?id=<?= htmlspecialchars($highestProduct['product_id']); ?>" class="btn">Shop Now</a>
+                            <!-- Start Single Slider -->
+                            <div class="single-slider" style="background-image:  url('<?php echo $imagePath; ?>');">
+                                <div class="content">
+                                    <h2><span>No restocking fee (<?= htmlspecialchars($calculateSaving); ?> JOD
+                                            savings)</span>
+                                        <?= htmlspecialchars($highestProduct['product_name']); ?>
+                                    </h2>
+                                    <p><?= htmlspecialchars($highestProduct['product_description']); ?></p>
+                                    <h3><span>Now Only</span> <?= htmlspecialchars($priceAfterDiscount); ?> JOD</h3>
+                                    <div class="button">
+                                        <a href="productDetails.php?id=<?= htmlspecialchars($highestProduct['product_id']); ?>"
+                                            class="btn">Shop Now</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- End Single Slider -->
-                        <?php 
+                            <!-- End Single Slider -->
+                            <?php 
                                 endforeach; 
                             endif; 
                         ?>
+                        </div>
+                        <!-- End Hero Slider -->
                     </div>
-                    <!-- End Hero Slider -->
                 </div>
-            </div>
-            <div class="col-lg-4 col-12">
-                <div class="row">
-                    <div class="col-lg-12 col-md-6 col-12 md-custom-padding">
-                        <!-- Start Small Banner -->
-                        <?php
+                <div class="col-lg-4 col-12">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-6 col-12 md-custom-padding">
+                            <!-- Start Small Banner -->
+                            <?php
                             $lastProduct = new product();
                             $lastProductData = $lastProduct->lastProduct(); 
                             if (!empty($lastProductData)) : 
                                 $imagePath="inserted_img/".($lastProductData['product_picture']);
 
                         ?>
-                        <div class="hero-small-banner"
-                        style="background-image:  url('<?php echo $imagePath; ?>');">
-                            <div class="content">
-                                <h2>
-                                    <span>New line required</span>
-                                    <?= htmlspecialchars($lastProductData['product_name']); ?>
-                                </h2>
-                                <h3><?= htmlspecialchars($lastProductData['product_price']); ?> JOD</h3>
+                            <div class="hero-small-banner" style="background-image:  url('<?php echo $imagePath; ?>');">
+                                <div class="content">
+                                    <h2>
+                                        <span>New line required</span>
+                                        <?= htmlspecialchars($lastProductData['product_name']); ?>
+                                    </h2>
+                                    <h3><?= htmlspecialchars($lastProductData['product_price']); ?> JOD</h3>
+                                </div>
                             </div>
+                            <?php endif; ?>
+                            <!-- End Small Banner -->
                         </div>
-                        <?php endif; ?>
-                        <!-- End Small Banner -->
-                    </div>
-                    <div class="col-lg-12 col-md-6 col-12">
-                        <!-- Start Small Banner -->
-                        <div class="hero-small-banner style2">
-                            <?php
+                        <div class="col-lg-12 col-md-6 col-12">
+                            <!-- Start Small Banner -->
+                            <div class="hero-small-banner style2">
+                                <?php
                                 $highestDiscountProduct = new product();
                                 $discountProduct = $highestDiscountProduct->fetchHighestDiscountProduct(); 
 
                                 if (!empty($discountProduct)) : 
                             ?>
-                            <div class="content">
-                                <h2>Flash Sale!</h2>
-                                <p>Saving up to <?= htmlspecialchars($discountProduct['product_discount'] ); ?>% off
-                                    <?= htmlspecialchars($discountProduct['product_name']); ?></p>
-                                <h3>Now Only:
-                                    <?= htmlspecialchars($discountProduct['product_price'] * (1 - $discountProduct['product_discount'] / 100)); ?> JOD
-                                </h3>
-                                <div class="button">
-                                    <a class="btn" href="productDetails.php?id=<?= htmlspecialchars($discountProduct['product_id']); ?>">Shop Now</a>
+                                <div class="content">
+                                    <h2>Flash Sale!</h2>
+                                    <p>Saving up to <?= htmlspecialchars($discountProduct['product_discount'] ); ?>% off
+                                        <?= htmlspecialchars($discountProduct['product_name']); ?></p>
+                                    <h3>Now Only:
+                                        <?= htmlspecialchars($discountProduct['product_price'] * (1 - $discountProduct['product_discount'] / 100)); ?>
+                                        JOD
+                                    </h3>
+                                    <div class="button">
+                                        <a class="btn"
+                                            href="productDetails.php?id=<?= htmlspecialchars($discountProduct['product_id']); ?>">Shop
+                                            Now</a>
+                                    </div>
                                 </div>
+                                <?php else: ?>
+                                <div class="content">
+                                    <h2>No Discounts Available</h2>
+                                    <p>Check back later for great deals!</p>
+                                </div>
+                                <?php endif; ?>
                             </div>
-                            <?php else: ?>
-                            <div class="content">
-                                <h2>No Discounts Available</h2>
-                                <p>Check back later for great deals!</p>
-                            </div>
-                            <?php endif; ?>
+                            <!-- End Small Banner -->
                         </div>
-                        <!-- End Small Banner -->
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-<!-- End Hero Area -->
+    </section>
+    <!-- End Hero Area -->
     <!-- End Hero Area -->
 
     <!-- categories -->
@@ -169,7 +170,7 @@
         $categories = $categoryObj->getAllCategories();        
         if (!empty($categories)) :
             ?>
-              
+
 
         <ul class="category-list cat-container">
             <?php foreach ($categories as $category) : ?>
@@ -188,8 +189,8 @@
             <?php endforeach; ?>
         </ul>
         <?php endif; ?>
- 
-</section>
+
+    </section>
 
 
     <!-- Start Trending Product Area -->
@@ -214,15 +215,21 @@
                 <div class="col-lg-3 col-md-6 col-12">
                     <div class="single-product">
                         <div class="product-image">
-                       <?php $imagePath="inserted_img/".($product['product_picture']);?>
-                        <img src="<?php echo htmlspecialchars ($imagePath); ?>" alt="product_img" >
+                            <?php $imagePath="inserted_img/".($product['product_picture']);?>
+                            <img src="<?php echo htmlspecialchars ($imagePath); ?>" alt="product_img">
 
-                            
-                            <div class="button">
-                                <a href="productDetails.php?id=<?php echo htmlspecialchars($product['product_id']); ?>"
-                                    class="btn">
-                                    <i class="lni lni-cart"></i>Shop now
-                                </a>
+
+                            <div class="shopbtn">
+                                <button class="btn-btn">
+                                    <div class="default-btn">
+                                        <i class="lni lni-cart"></i>
+                                        <span>Quick View</span>
+                                    </div>
+                                    <div class="hover-btn">
+                                        <i class="lni lni-cart"></i>
+                                        <span>Shop now</span>
+                                    </div>
+                                </button>
                             </div>
                         </div>
                         <div class="product-info">
@@ -237,7 +244,6 @@
                                         class="lni <?= $i < $product['product_rate'] ? 'lni-star-filled' : 'lni-star'; ?>"></i>
                                 </li>
                                 <?php endfor; ?>
-                                <li><span><?= $product['product_rate']; ?> Review(s)</span></li>
                             </ul>
                             <div class="price">
                                 <span><?php echo htmlspecialchars($product['product_price']); ?> JOD</span>
@@ -269,9 +275,8 @@
                     $imagePath="inserted_img/".($randomProduct['product_picture']);
                     ?>
                 <div class="col-lg-6 col-md-6 col-12">
-                    <div class="single-banner"
-                    style="background-image:  url('<?php echo $imagePath; ?>');">
-                    <div class="content">
+                    <div class="single-banner" style="background-image:  url('<?php echo $imagePath; ?>');">
+                        <div class="content">
                             <h2><?= htmlspecialchars($randomProduct['product_name']); ?></h2>
                             <p><?= htmlspecialchars($randomProduct['product_description']); ?></p>
                             <div class="button">

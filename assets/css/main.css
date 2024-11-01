@@ -3249,7 +3249,7 @@ top: 2px;
     Product CSS
 ========================================*/
 /* Single Product*/
-.single-product {
+/* .single-product {
   border: 1px solid #eee;
   border-radius: 4px;
   -webkit-transition: all 0.4s ease;
@@ -3350,9 +3350,9 @@ top: 2px;
   font-size: 16px;
   font-weight: 700;
   color: #081828;
-}
+} */
 
-@media only screen and (min-width: 768px) and (max-width: 991px),
+/* @media only screen and (min-width: 768px) and (max-width: 991px),
 (max-width: 767px) {
   .single-product .product-info .title a {
     font-size: 15px;
@@ -3402,16 +3402,9 @@ top: 2px;
   margin-left: 10px;
   font-size: 14px;
   display: inline-block;
-}
+} */
 
 /* End Single Product */
-.trending-product {
-  background-color: #f9f9f9;
-}
-
-.trending-product .section-title {
-  margin-bottom: 20px;
-}
 
 /*======================================
     Banner CSS
