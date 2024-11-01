@@ -84,13 +84,7 @@ foreach ($cartItems as $item) {
   $totalPrice += $item['product_price'] * $item['quantity']; 
 }
 
-
 $finalTotal = $totalPrice - $discountAmount ;
-
-
-
-
-
 
 ?>
 
@@ -241,76 +235,95 @@ function confirmDeletion() {
         <!-- summary -->
       </div>
     </div>
-  </section>
-  <!-- cart + summary -->
-  <section>
+    </section>
+<!-- cart + summary -->
+ <!-- esraa -->
+ <link rel = "stylesheet" href = "trendingProducts.css">
+<section>
     <div class="container my-5">
       <header class="mb-4">
-        <h3>Recommended items</h3>
+        <h3>Recommended products</h3>
       </header>
-  
+      <?php require_once "includes/productsClasss.php"; ?>
+      <?php require_once "includes/cartClass.php"; ?>
+
+      <?php
+      $cartProductIds = array_column($cartItems, 'product_id'); 
+
+
+      if (!empty($cartProductIds)) {
+          $cartObj = new Cart(); 
+          $currentCategoryId = $cartObj->getCartCategoryId($cartProductIds); 
+
+       
+          if ($currentCategoryId) {
+              $recomendedProductsObj = new Product();
+              $recommendedProducts = $recomendedProductsObj->getRecommendedProducts($currentCategoryId, $cartProductIds); 
+
+              if (!empty($recommendedProducts)) : ?>
+                  <div class="row">
+                      <?php foreach ($recommendedProducts as $product) : ?>
+                          <div class="col-lg-3 col-md-6 col-12">
+                              <div class="single-product">
+                                  <div class="product-image">
+                                      <?php $imagePath = "inserted_img/" . htmlspecialchars($product['product_picture']); ?>
+                                      <img src="<?php echo $imagePath; ?>" alt="product_img">
+                                      <?php if ($product['product_discount'] > 0) : ?>
+                                          <div class="product-discount">
+                                              <span>-<?= htmlspecialchars($product['product_discount']); ?>%</span>
+                                          </div>
+                                      <?php endif; ?>
+                                      <div class="btn-div">
+                                          <div class="shopbtn">
+                                              <button class="btn-btn" onclick="window.location.href='productDetails.php?id=<?= htmlspecialchars($product['product_id']); ?>'">
+                                                  <div class="default-btn">
+                                                      <i class="lni lni-eye"></i>
+                                                  </div>
+                                                  <div class="hover-btn">
+                                                      <span>Quick View</span>
+                                                  </div>
+                                              </button>
+                                          </div>
+                                          <div class="shopbtn">
+                                              <button class="btn-btn" onclick="window.location.href='productDetails.php?id=<?= htmlspecialchars($product['product_id']); ?>'">
+                                                  <div class="default-btn">
+                                                      <i class="lni lni-cart"></i>
+                                                  </div>
+                                                  <div class="hover-btn">
+                                                      <span>Shop now</span>
+                                                  </div>
+                                              </button>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="product-info">
+                                      <h6 class="title">
+                                          <?= htmlspecialchars($product['product_name']); ?>
+                                      </h6>
+                                      <div class="price">
+                                          <span><?php echo htmlspecialchars($product['product_price']); ?> JOD</span>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      <?php endforeach; ?>
+                  </div>
+              <?php else : ?>
+                  <p>No products available.</p>
+              <?php endif;
+          } else {
+              echo "<p>No category found for the products in the cart.</p>";
+          }
+      } else {
+          echo "<p>No products in your cart.</p>";
+      }
+      ?>
+    </div>
+</section>
+
+    
+<!--     
       <div class="row">
-        <div class="col-lg-3 col-md-6 col-sm-6">
-          <div class="card px-4 border shadow-0 mb-4 mb-lg-0">
-            <div class="mask px-2" style="height: 50px;">
-              <div class="d-flex justify-content-between">
-                <h6><span class="badge bg-danger pt-1 mt-3 ms-2">New</span></h6>
-                <a href="#"><i class="fas fa-heart text-primary fa-lg float-end pt-3 m-2"></i></a>
-              </div>
-            </div>
-            <a href="#" class="">
-              <img src="https://mdbootstrap.com/img/bootstrap-ecommerce/items/7.webp" class="card-img-top rounded-2" />
-            </a>
-            <div class="card-body d-flex flex-column pt-3 border-top">
-              <a href="#" class="nav-link">Gaming Headset with Mic</a>
-              <div class="price-wrap mb-2">
-                <strong class="">$18.95</strong>
-                <del class="">$24.99</del>
-              </div>
-              <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
-                <a href="#" class="btn btn-outline-primary w-100">Add to cart</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-6">
-          <div class="card px-4 border shadow-0 mb-4 mb-lg-0">
-            <div class="mask px-2" style="height: 50px;">
-              <a href="#"><i class="fas fa-heart text-primary fa-lg float-end pt-3 m-2"></i></a>
-            </div>
-            <a href="#" class="">
-              <img src="https://mdbootstrap.com/img/bootstrap-ecommerce/items/5.webp" class="card-img-top rounded-2" />
-            </a>
-            <div class="card-body d-flex flex-column pt-3 border-top">
-              <a href="#" class="nav-link">Apple Watch Series 1 Sport </a>
-              <div class="price-wrap mb-2">
-                <strong class="">$120.00</strong>
-              </div>
-              <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
-                <a href="#" class="btn btn-outline-primary w-100">Add to cart</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-6">
-          <div class="card px-4 border shadow-0">
-            <div class="mask px-2" style="height: 50px;">
-              <a href="#"><i class="fas fa-heart text-primary fa-lg float-end pt-3 m-2"></i></a>
-            </div>
-            <a href="#" class="">
-              <img src="https://mdbootstrap.com/img/bootstrap-ecommerce/items/9.webp" class="card-img-top rounded-2" />
-            </a>
-            <div class="card-body d-flex flex-column pt-3 border-top">
-              <a href="#" class="nav-link">Men's Denim Jeans Shorts</a>
-              <div class="price-wrap mb-2">
-                <strong class="">$80.50</strong>
-              </div>
-              <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
-                <a href="#" class="btn btn-outline-primary w-100">Add to cart</a>
-              </div>
-            </div>
-          </div>
-        </div>
         <div class="col-lg-3 col-md-6 col-sm-6">
           <div class="card px-4 border shadow-0">
             <div class="mask px-2" style="height: 50px;">
@@ -330,9 +343,8 @@ function confirmDeletion() {
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
+      </div> -->
+
   <script type="text/javascript" src="js/mdb.min.js"></script>
     <!-- Custom scripts -->
     <script type="text/javascript" src="js/script.js"></script>

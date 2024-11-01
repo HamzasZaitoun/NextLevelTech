@@ -207,6 +207,31 @@ public function placeOrder($userId, $totalAmount, $address, $paymentMethod) {
     }
 }
 
+// Esraa code (display recommended products)
+function getCartCategoryId($cartProductIds) {
+    if (empty($cartProductIds)) {
+        return null; 
+    }
+
+    $placeholders = implode(',', array_fill(0, count($cartProductIds), '?'));
+    $query = "SELECT DISTINCT p.category_id 
+              FROM products p
+              JOIN order_items oi ON p.product_id = oi.product_id
+              WHERE oi.product_id IN ($placeholders) 
+              AND p.is_deleted = 0";
+
+    $stmt = $this->pdo->prepare($query);
+    $stmt->execute($cartProductIds);
+
+    $category = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+    if (!$category) {
+        echo "No category found for the provided product IDs: " . implode(', ', $cartProductIds);
+    }
+
+    return $category['category_id'] ?? null;
+}
+
 
 
 }

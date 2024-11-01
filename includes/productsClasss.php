@@ -68,11 +68,8 @@ class Product {
         ");
         $stmt->execute();
         $fetch=$stmt->fetchAll(PDO::FETCH_ASSOC);
-       
 
         return $fetch;
-
-    
     }
 
     public function lastProduct() {
@@ -105,18 +102,31 @@ class Product {
         return $stmt->fetchAll(PDO::FETCH_ASSOC); 
     }
     
-    public function fetchRandomProducts($limit = 2) {
-        $stmt = $this->pdo->prepare("
-            SELECT * 
-            FROM products 
-            WHERE products.is_deleted = 0 
-            ORDER BY RAND() 
-            LIMIT :limit
-        ");
-        $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
-        $stmt->execute();
+    //function to get recommended products
+    function getRecommendedProducts($categoryId, $cartProductIds) {
+        if (empty($cartProductIds)) {
+            return []; // إذا كانت السلة فارغة، لا يوجد منتجات موصى بها
+        }
+    
+        $placeholders = implode(',', array_fill(0, count($cartProductIds), '?'));
+        $query = "SELECT * FROM products 
+                  WHERE category_id = ? 
+                  AND product_id NOT IN ($placeholders) 
+                  AND is_deleted = 0
+                  LIMIT 4";
+
+        $stmt = $this->pdo->prepare($query);
+    
+        $params = array_merge([$categoryId], $cartProductIds);
+    
+        $stmt->execute($params);
+    
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    
+    
+    
+
     
     
     
