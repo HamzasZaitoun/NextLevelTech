@@ -10,12 +10,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Create a product
     if (isset($_POST['action']) && $_POST['action'] === 'create') {
         // Collect product details from the form
-        $productName = $_POST['newProductName'];
+        $productName        = $_POST['newProductName'];
         $productDescription = $_POST['newProductDescription'];
-        $productCategory = $_POST['newProductCategory'];
-        $productQuantity = $_POST['newProductQuantity'];
-        $productPrice = $_POST['newProductPrice'];
-        $productStatus = $_POST['newProductStatus'];
+        $productCategory    = $_POST['newProductCategory'];
+        $productQuantity    = $_POST['newProductQuantity'];
+        $productPrice       = $_POST['newProductPrice'];
+        $productStatus      = $_POST['newProductStatus'];
 
         // Set up the target directory and file path for image upload
         $targetDir = "../inserted_img/";
