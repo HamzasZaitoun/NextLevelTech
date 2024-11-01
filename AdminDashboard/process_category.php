@@ -6,7 +6,7 @@ require_once 'model/Category.php';
 $categoryModel = new Category();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    
         // Create a category
         if (isset($_POST['action']) && $_POST['action'] === 'create') {
             // Collect category details from the form
@@ -103,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 exit();
             }
         }
-    }
+   
     
 
     // Soft Delete a category

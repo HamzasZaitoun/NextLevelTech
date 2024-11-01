@@ -5,7 +5,6 @@ require_once 'model/Category.php';
 
 $categoryModel = new Category();
 $categories = $categoryModel->getAllCategories();
-
 ?>
 
 <!DOCTYPE html>
@@ -19,10 +18,56 @@ $categories = $categoryModel->getAllCategories();
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
-    .action-buttons {
-        display: flex;
-        gap: 10px;
-    }
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        .modal {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .modal-content {
+            width: 50%;
+            text-align: center;
+        }
+        .button1 {
+            background: #000;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+        .delete-btn {
+            background: #db4f4f;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+        }
+        .save-btn {
+            background-color: #000;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            width: 100px;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        .close-btn {
+            background: #db4f4f;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+        }
+        img {
+            max-width: 70px;
+            margin-bottom: 10px;
+            border-radius: 10%;
+        }
     </style>
 </head>
 
@@ -31,16 +76,16 @@ $categories = $categoryModel->getAllCategories();
         <!-- Page Heading -->
         <h1 class="h3 mb-4 text-gray-800">Category Dashboard</h1>
 
-        <div class="row">
+        <div class="">
             <div>
-                <button type="button" style="background:#000;" class="button1" onclick="openAddModal()">
+                <button type="button" class="button1" onclick="openAddModal()">
                     <span class="button__text">Add Category</span>
-                    <span class="button__icon" style="background:#000;"><svg xmlns="http://www.w3.org/2000/svg"
-                            width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round"
-                            stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg">
+                    <span class="button__icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none">
                             <line y2="19" y1="5" x2="12" x1="12"></line>
                             <line y2="12" y1="12" x2="19" x1="5"></line>
-                        </svg></span>
+                        </svg>
+                    </span>
                 </button>
             </div>
             <div class="pt-5 pb-3 table_pro_item">
@@ -62,67 +107,46 @@ $categories = $categoryModel->getAllCategories();
                             <td data-label="Category Name"><?= htmlspecialchars($category['category_name']) ?></td>
                             <td data-label="Description"><?= htmlspecialchars($category['category_description']) ?></td>
                             <td data-label="Picture">
-                                <img src="../category_img/<?php echo $category['category_picture']; ?>"
-                                    alt="Category Image" width="50">
-
+                                <img src="../category_img/<?php echo $category['category_picture']; ?>" alt="Category Image" width="50">
                             </td>
                             <td data-label="Actions">
                                 <div class="action-buttons">
-                                    <button class="edit-btn"
-                                        onclick="document.getElementById('editModal<?= $category['category_id'] ?>').style.display='flex'">Edit</button>
+                                    <button class="edit-btn" onclick="document.getElementById('editModal<?= $category['category_id'] ?>').style.display='flex'">Edit</button>
                                     <form action="process_category.php" method="POST" style="display:inline;">
-                                        <input type="hidden" name="category_id"
-                                            value="<?= htmlspecialchars($category['category_id']); ?>">
+                                        <input type="hidden" name="category_id" value="<?= htmlspecialchars($category['category_id']); ?>">
                                         <input type="hidden" name="action" value="delete">
-                                        <button type="button" class="delete-btn"
-                                            onclick="confirmDelete(this)">Delete</button>
+                                        <button type="button" class="delete-btn" onclick="confirmDelete(this)">Delete</button>
                                     </form>
                                 </div>
                             </td>
                         </tr>
 
                         <!-- Edit Modal for each category -->
-                        <div id="editModal<?= $category['category_id'] ?>" class="modal"
-                            style="display: none; justify-content: center; align-items: center; height: 100vh;">
-                            <div class="modal-content" style="width: 50%; text-align: center;">
-                                <button class="close-btn delete-btn" style="background:#db4f4f;"
-                                    onclick="document.getElementById('editModal<?= $category['category_id'] ?>').style.display='none'">X</button>
+                        <div id="editModal<?= $category['category_id'] ?>" class="modal">
+                            <div class="modal-content">
+                                <button class="close-btn" onclick="document.getElementById('editModal<?= $category['category_id'] ?>').style.display='none'">X</button>
                                 <h2>Edit Category</h2>
-                                <form id="editForm" enctype="multipart/form-data" method="POST"
-                                    action="process_category.php">
+                                <form id="editForm" enctype="multipart/form-data" method="POST" action="process_category.php">
                                     <input type="hidden" name="action" value="edit">
                                     <input type="hidden" name="category_id" value="<?= $category['category_id'] ?>">
-
-
                                     <div class="form-group">
                                         <label for="categoryName">Category Name:</label>
-                                        <input type="text" name="newCategoryName"
-                                            value="<?= htmlspecialchars($category['category_name']) ?>"
-                                            required><br><br>
+                                        <input type="text" name="newCategoryName" value="<?= htmlspecialchars($category['category_name']) ?>" required><br><br>
                                     </div>
-
                                     <div class="form-group">
                                         <label for="categoryDescription">Category Description:</label>
-                                        <input type="text" name="newCategoryDescription"
-                                            value="<?= htmlspecialchars($category['category_description']) ?>"
-                                            required><br><br>
+                                        <input type="text" name="newCategoryDescription" value="<?= htmlspecialchars($category['category_description']) ?>" required><br><br>
                                     </div>
-
                                     <div class="form-group">
                                         <label for="categoryPicture">Current Category Picture:</label><br>
-                                        <input type="hidden" name="oldImage"
-                                            value="<?= htmlspecialchars($category['category_picture']); ?>">
-                                        <img src="../category_img/<?= htmlspecialchars($category['category_picture']) ?>"
-                                            alt="Current Category Picture"
-                                            style="max-width: 70px; margin-bottom: 10px; border-radius:10%;">
+                                        <input type="hidden" name="oldImage" value="<?= htmlspecialchars($category['category_picture']); ?>">
+                                        <img src="../category_img/<?= htmlspecialchars($category['category_picture']) ?>" alt="Current Category Picture">
                                     </div>
                                     <div class="form-group">
                                         <label for="newCategoryImage">New Category Picture:</label><br>
                                         <input type="file" name="newCategoryImage" accept="image/*"><br><br>
                                     </div>
-
-                                    <button class="save-btn edit-btn" type="submit"
-                                        style="background-color: #000; color: white; padding: 10px; border: none; cursor: pointer; width: 100px; margin-top: 20px;">Save</button>
+                                    <button class="save-btn" type="submit">Save</button>
                                 </form>
                             </div>
                         </div>
@@ -131,11 +155,9 @@ $categories = $categoryModel->getAllCategories();
                 </table>
 
                 <!-- Add Modal -->
-                <div id="addModal" class="modal"
-                    style="display: none; justify-content: center; align-items: center; height: 100vh;">
-                    <div class="modal-content" style="width: 50%; text-align: center;">
-                        <button class="close-btn delete-btn" style="background:#db4f4f;"
-                            onclick="closeAddModal()">X</button>
+                <div id="addModal" class="modal">
+                    <div class="modal-content">
+                        <button class="close-btn" onclick="closeAddModal()">X</button>
                         <h2>Add Category</h2>
                         <form id="addForm" enctype="multipart/form-data" method="POST" action="process_category.php">
                             <input type="hidden" name="action" value="create">
@@ -145,17 +167,13 @@ $categories = $categoryModel->getAllCategories();
                             </div>
                             <div class="form-group">
                                 <label for="newCategoryDescription">Category Description:</label>
-                                <input type="text" id="newCategoryDescription" name="newCategoryDescription"
-                                    required><br><br>
+                                <input type="text" id="newCategoryDescription" name="newCategoryDescription" required><br><br>
                             </div>
                             <div class="form-group">
                                 <label for="newCategoryImage">Category Picture:</label>
-                                <input type="file" id="newCategoryImage" name="newCategoryImage" accept="image/*"
-                                    required><br><br>
+                                <input type="file" id="newCategoryImage" name="newCategoryImage" accept="image/*" required><br><br>
                             </div>
-                            <button class="save-btn edit-btn" type="submit"
-                                style="background-color: #000; color: white; padding: 10px; border: none; cursor: pointer; width: 100px; margin-top: 20px; font-size: 14px;">Add
-                                Category</button>
+                            <button class="save-btn" type="submit">Add Category</button>
                         </form>
                     </div>
                 </div>
@@ -179,47 +197,43 @@ $categories = $categoryModel->getAllCategories();
         endif;
         ?>
 
-        <!-- Bootstrap core JavaScript-->
-        <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="js/modal.js"></script>
-        <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
-      
-        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-        <!-- Core plugin JavaScript-->
-        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-        <!-- Custom scripts for all pages-->
-        <script src="js/sb-admin-2.min.js"></script>
-        <script src="js/modal.js"></script>
-        <script>
-            let table = new DataTable('#myTable', {
-    // options
+    
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+       
+       <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
+       <script>
+       let table = new DataTable('#myTable', {
+// options
 });
-        function confirmDelete(button) {
-            event.preventDefault(); // Prevent form submission
-            const form = button.closest("form");
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "This category will be deleted!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#db4f4f',
-                cancelButtonColor: '#000',
-                confirmButtonText: 'Delete!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    form.submit(); // Submit the form if confirmed
-                }
-            });
-        }
+</script>
+<script>
+            function openAddModal() {
+                document.getElementById('addModal').style.display = 'flex';
+            }
+
+            function closeAddModal() {
+                document.getElementById('addModal').style.display = 'none';
+            }
+
+            function confirmDelete(button) {
+                const form = button.closest('form');
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: 'You won\'t be able to revert this!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#000',
+                    cancelButtonColor: '#db4f4f',
+                    confirmButtonText: 'Yes, delete it!',
+                    cancelButtonText: 'No, cancel!',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            }
         </script>
     </div>
-    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-             <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-            <script src="js/modal.js"></script>
-            <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
-            <script></script>
 </body>
 
 </html>

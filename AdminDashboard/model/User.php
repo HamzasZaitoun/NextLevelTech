@@ -83,6 +83,7 @@ class User {
         $stmt->bindParam(':address', $data['address']);
         $stmt->bindParam(':state', $data['state']);
         $stmt->bindParam(':role', $data['role']);
+        echo $data['role'];
         $stmt->bindParam(':user_id', $data['user_id']); // Bind user_id for the WHERE clause
     
         return $stmt->execute(); // Execute and return true/false
@@ -99,15 +100,24 @@ class User {
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
     
             // Verify the password
-            if (password_verify($password, $user['user_password'])) {
-                return $user; // Return user data if login is successful
-            } else {
-                echo "Password does not match.";
+            if ($password == $user['user_password'])
+             {
+              return true;  
+             } 
+            else {
+                echo "email or password does not match.";
             }
         } else {
             echo "User not found.";
         }
         return false; // Return false if login fails
+    }
+    public function getUserByID($id)
+    {
+        $query= "SELECT * FROM users WHERE user_id=:id";
+        $stmt=$this->conn->prepare($query);
+        $stmt->bindParam(':id',$id);
+        return $stmt->execute();
     }
 }
 ?>

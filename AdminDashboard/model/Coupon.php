@@ -57,6 +57,12 @@ class Coupon {
     return $stmt->execute();
 }
 
+public function updateExpiredCoupons() {
+    $stmt = $this->conn->prepare("UPDATE coupons SET coupon_status = 'Invalid' WHERE coupon_expiry_date < CURDATE() AND 'Valid' = valid");
+    $stmt->execute();
+    return $stmt->rowCount();
+}
+
 // update this copy to github
 }
 ?>

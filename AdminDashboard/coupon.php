@@ -14,9 +14,48 @@ $coupons = $couponModel->getAllCoupons();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coupon</title>
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css" />
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        .modal {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .modal-content {
+            width: 50%;
+            text-align: center;
+        }
+        .close-btn {
+            background: #db4f4f;
+            cursor: pointer;
+            border: none;
+            padding: 10px;
+        }
+        .save-btn {
+            background-color: #000;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            width: 100px;
+            margin-top: 20px;
+        }
+        .action-buttons button {
+            margin-right: 10px;
+        }
+        .button1 {
+            background: #000;
+        }
+        .button__text {
+            color: white;
+        }
+        .table_pro_item {
+            padding-top: 5rem;
+            padding-bottom: 3rem;
+        }
+    </style>
 </head>
 
 <body>
@@ -25,19 +64,19 @@ $coupons = $couponModel->getAllCoupons();
         <!-- Page Heading -->
         <h1 class="h3 mb-4 text-gray-800">Coupon dashboard</h1>
 
-        <div class="row">
+        <div class="">
             <div>
-                <button type="button" style="background:#000;" class="button1" onclick="openAddModal()">
+                <button type="button" class="button1" onclick="openAddModal()">
                     <span class="button__text">Add Coupon</span>
-                    <span class="button__icon" style="background:#000;"><svg xmlns="http://www.w3.org/2000/svg"
-                            width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round"
-                            stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg">
+                    <span class="button__icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg">
                             <line y2="19" y1="5" x2="12" x1="12"></line>
                             <line y2="12" y1="12" x2="19" x1="5"></line>
-                        </svg></span>
+                        </svg>
+                    </span>
                 </button>
             </div>
-            <div class="pt-5 pb-3 table_pro_item" style="margin-right:300px">
+            <div class="table_pro_item">
                 <h2>Coupon Table</h2>
                 <table class="responsive-table" id="myTable">
                     <thead>
@@ -63,14 +102,11 @@ $coupons = $couponModel->getAllCoupons();
                                     <button class="edit-btn" onclick="openEditModal(this)">Edit</button>
                                     <form method="POST" action="process_coupon.php" style="display:inline;">
                                         <input type="hidden" name="action" value="delete_coupon">
-                                        <input type="hidden" name="coupon_id"
-                                            value="<?= htmlspecialchars($coupon['coupon_id']); ?>">
-                                        <button class="delete-btn" type="button"
-                                            onclick="confirmDelete(this)">Delete</button>
+                                        <input type="hidden" name="coupon_id" value="<?= htmlspecialchars($coupon['coupon_id']); ?>">
+                                        <button class="delete-btn" type="button" onclick="confirmDelete(this)">Delete</button>
                                     </form>
                                 </div>
                             </td>
-
                         </tr>
                         <?php endforeach; ?>
                     </tbody>
@@ -79,85 +115,69 @@ $coupons = $couponModel->getAllCoupons();
         </div>
         <!-- Add Modal, Edit Modal, Footer, and Scripts here -->
     </div> <!-- End of Content Wrapper -->
-    </div>
-    <!-- End of Page Wrapper -->
+    
     <!-- Edit Modal -->
-    <div id="editModal" class="modal"
-        style="display: none; justify-content: center; align-items: center; height: 100vh;">
-        <div class="modal-content" style="width: 50%; text-align: center;">
-            <button class="close-btn" style="background:#db4f4f;" onclick="closeEditModal()">X</button>
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeEditModal()">X</button>
             <h2>Edit Coupon</h2>
             <form id="editForm" action="process_coupon.php" method="POST">
                 <input type="hidden" name="action" value="edit_coupon">
                 <input type="hidden" id="editCouponId" name="coupon_id" required>
                 <div class="form-group">
-                    <label for="coupon_name">Coupon Name:</label>
-                    <input type="text" id="editCouponName" name="coupon_name" >  <!-- Changed here -->
+                    <label for="editCouponName">Coupon Name:</label>
+                    <input type="text" id="editCouponName" name="coupon_name">
                 </div>
                 <div class="form-group">
                     <label for="editDiscount">Coupon Discount:</label>
-                    <input type="text" id="editDiscount" name="coupon_discount" ><br><br>
+                    <input type="text" id="editDiscount" name="coupon_discount">
                 </div>
                 <div class="form-group">
                     <label for="editExpiryDate">Deadline:</label>
-                    <input type="date" id="editExpiryDate" name="coupon_expiry_date" > <br><br>
+                    <input type="date" id="editExpiryDate" name="coupon_expiry_date">
                 </div>
                 <div class="form-group">
                     <label for="editStatus">Validity:</label>
                     <select id="editStatus" name="coupon_status">
                         <option value="Valid">Valid</option>
                         <option value="Invalid">Invalid</option>
-                    </select><br><br>
+                    </select>
                 </div>
-                <button class="save-btn" type="submit"
-                    style="background-color: #000; color: white; padding: 10px; border: none; cursor: pointer; width: 100px; margin-top: 20px;">Save</button>
+                <button class="save-btn" type="submit">Save</button>
             </form>
         </div>
     </div>
 
-
-
     <!-- Add Modal -->
-    <div id="addModal" class="modal"
-        style="display: none; justify-content: center; align-items: center; height: 100vh;">
-        <div class="modal-content" style="width: 50%; text-align: center;">
-            <button class="close-btn" style="background:#db4f4f;" onclick="closeAddModal()">X</button>
+    <div id="addModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeAddModal()">X</button>
             <h2>Add Coupon</h2>
             <form id="addForm" action="process_coupon.php" method="POST">
                 <input type="hidden" name="action" value="add_coupon">
                 <div class="form-group">
                     <label for="coupon_name">Coupon Name:</label>
-                    <input type="text" id="coupon_name" name="coupon_name" > <!-- Changed here -->
+                    <input type="text" id="coupon_name" name="coupon_name">
                 </div>
                 <div class="form-group">
                     <label for="coupon_discount">Coupon Discount:</label>
-                    <input type="text" id="coupon_discount" name="coupon_discount" > <!-- Changed here -->
+                    <input type="text" id="coupon_discount" name="coupon_discount">
                 </div>
                 <div class="form-group">
                     <label for="coupon_expiry_date">Deadline:</label>
-                    <input type="date" id="coupon_expiry_date" name="coupon_expiry_date" > <!-- Changed here -->
+                    <input type="date" id="coupon_expiry_date" name="coupon_expiry_date">
                 </div>
                 <div class="form-group">
                     <label for="coupon_status">Validity:</label>
-                    <select id="coupon_status" name="coupon_status" >
-                        <!-- Changed here -->
+                    <select id="coupon_status" name="coupon_status">
                         <option value="Valid">Valid</option>
                         <option value="Invalid">Invalid</option>
                     </select>
                 </div>
-                <button class="save-btn" type="submit"
-                    style="background-color: #000; color: white; padding: 10px; border: none; cursor: pointer; width: 100px; margin-top: 20px;">Save
-                </button>
+                <button class="save-btn" type="submit">Save</button>
             </form>
-
         </div>
     </div>
-   
-
-
-
-
-
 
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
@@ -165,8 +185,7 @@ $coupons = $couponModel->getAllCoupons();
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -183,9 +202,10 @@ $coupons = $couponModel->getAllCoupons();
             </div>
         </div>
     </div>
+
     <?php
-// Display SweetAlert if there is a message in the session
-if (isset($_SESSION['sweetalert'])): ?>
+    // Display SweetAlert if there is a message in the session
+    if (isset($_SESSION['sweetalert'])): ?>
     <script>
     Swal.fire({
         icon: '<?= $_SESSION['sweetalert']['type']; ?>',
@@ -195,69 +215,57 @@ if (isset($_SESSION['sweetalert'])): ?>
         iconColor: '<?= $_SESSION['sweetalert']['type'] === 'success' ? '#000' : '#000'; ?>'
     });
     </script>
-    <?php
-    unset($_SESSION['sweetalert']);
-endif;
-?>
+    <?php unset($_SESSION['sweetalert']); endif; ?>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
-    <script src="js/modal.js"></script>
     <script>
-    function confirmDelete(button) {
-        const form = button.closest('form'); // Get the form associated with the delete button
-        const couponId = form.querySelector('input[name="coupon_id"]').value;
+        function confirmDelete(button) {
+            const form = button.closest('form');
+            Swal.fire({
+                title: 'Are you sure?',
+                text: 'You won’t be able to revert this!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#000',
+                cancelButtonColor: '#db4f4f',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        }
 
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "This coupon will be marked as deleted!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#db4f4f',
-            cancelButtonColor: '#000',
-            confirmButtonText: 'Delete!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                form.submit(); // Submit the form to delete the coupon
-            }
-        });
-    }
+        function openEditModal(button) {
+            const row = button.closest('tr');
+            const cells = row.getElementsByTagName('td');
+            document.getElementById('editCouponId').value = cells[0].innerText;
+            document.getElementById('editCouponName').value = cells[1].innerText;
+            document.getElementById('editDiscount').value = cells[2].innerText;
+            document.getElementById('editExpiryDate').value = cells[3].innerText;
+            document.getElementById('editStatus').value = cells[4].innerText;
+            document.getElementById('editModal').style.display = 'flex';
+        }
 
-    function openEditModal(button) {
-        const row = button.closest('tr');
-        const id = row.cells[0].innerText; // Assuming coupon_id is in the first column
-        const name = row.cells[1].innerText; // changed by me
-        const discount = row.cells[2].innerText;
-        const expiryDate = row.cells[3].innerText;
-        const status = row.cells[4].innerText;
+        function closeEditModal() {
+            document.getElementById('editModal').style.display = 'none';
+        }
 
-        document.getElementById('editCouponId').value = id;
-        document.getElementById('editCouponName').value = name; // changed by me
-        document.getElementById('editDiscount').value = discount;
-        document.getElementById('editExpiryDate').value = expiryDate;
-        document.getElementById('editStatus').value = status;
+        function openAddModal() {
+            document.getElementById('addModal').style.display = 'flex';
+        }
 
-        document.getElementById('editModal').style.display = 'flex';
-    }
+        function closeAddModal() {
+            document.getElementById('addModal').style.display = 'none';
+        }
     </script>
-
-       <!-- Custom scripts for all pages-->
-<script src="js/sb-admin-2.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
-    <script>
-    let table = new DataTable('#myTable', {
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+       
+       <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
+       <script>
+       let table = new DataTable('#myTable', {
 // options
 });
 </script>
-
 </body>
 
 </html>

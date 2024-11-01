@@ -53,13 +53,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         "type" => "success",
                         "message" => "Product added successfully!"
                     ];
-                } else {
+                    header("Location: products.php");
+                    exit();
+                } 
+               
+                else {
                     $_SESSION['sweetalert'] = [
                         "type" => "error",
                         "message" => "Failed to add Prodcut."
                     ];
                 }
-                header("Location: product.php");
+                header("Location: products.php");
                 exit();
             } else {
                 echo "Sorry, there was an error uploading your file.";
@@ -133,7 +137,7 @@ if (isset($_POST['action']) && $_POST['action'] === 'edit') {
         if ($result) {
             $_SESSION['sweetalert'] = [
                 "type" => "success",
-                "message" => "Product added successfully!"
+                "message" => "Product updated successfully!"
             ];
         } else {
             $_SESSION['sweetalert'] = [
@@ -141,7 +145,7 @@ if (isset($_POST['action']) && $_POST['action'] === 'edit') {
                 "message" => "Failed to add Prodcut."
             ];
         }
-        header("Location: product.php");
+        header("Location: products.php");
         exit();
     }
 }
@@ -158,7 +162,7 @@ if (isset($_POST['action']) && $_POST['action'] === 'edit') {
         if ($result) {
             $_SESSION['sweetalert'] = [
                 "type" => "success",
-                "message" => "Product added successfully!"
+                "message" => "Product deleted successfully!"
             ];
         } else {
             $_SESSION['sweetalert'] = [
@@ -166,7 +170,7 @@ if (isset($_POST['action']) && $_POST['action'] === 'edit') {
                 "message" => "Failed to add Prodcut."
             ];
         }
-        header("Location: product.php");
+        header("Location: products.php");
         exit();
     }
 }

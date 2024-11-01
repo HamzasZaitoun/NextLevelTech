@@ -47,22 +47,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit();
     }
 
-    // Check for delete user action
     if (isset($_POST['deleteUserId'])) {
-        $user_id = $_POST['deleteUserId'];
-
-        // Attempt to soft delete the user
-        if ($user->softDeleteUser($user_id)) {
-            $_SESSION['sweetalert'] = [
-                "type" => "success",
-                "message" => "User deleted successfully!"
-            ];
-        } else {
-            $_SESSION['sweetalert'] = [
-                "type" => "error",
-                "message" => "Failed to delete user."
-            ];
-        }
+        $userId = intval($_POST['deleteUserId']);
+        $user->softDeleteUser($userId);
+        $_SESSION['success'] = "User deleted successfully!";
         header("Location: users.php");
         exit();
     }
