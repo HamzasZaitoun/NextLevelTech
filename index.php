@@ -7,6 +7,7 @@
     
 ?>
 <link rel="stylesheet" href="assets/css/test.css">
+<link rel="stylesheet" href="cat.css">
 <title>Game Shop</title>
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
@@ -36,68 +37,6 @@
 }
 
 
-.categories {
-    padding: 50px 0;
-    background-color: #f9f9f9;
-}
-
-.section-title h2 {
-    font-size: 2em;
-    text-align: center;
-    margin-bottom: 30px;
-    color: #333;
-}
-
-.category-list {
-    display: grid;
-    grid-auto-rows: 1fr;
-    grid-template-columns: 1fr 1fr 1fr;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.category-item {
-    width: 200px;
-    text-align: center;
-    background-color: #fff;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.category-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-.category-image-container {
-    width: 100%;
-    height: 150px;
-    overflow: hidden;
-}
-
-.category-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-}
-
-.category-item:hover .category-image {
-    transform: scale(1.1);
-}
-
-.category-title {
-    display: block;
-    padding: 15px;
-    font-size: 1.1em;
-    color: #333;
-    font-weight: bold;
-    text-transform: capitalize;
-}
 
 </style>
 </head>
@@ -116,6 +55,7 @@
     <!-- /End Preloader -->
 
     <!-- Start Hero Area -->
+     
 <!-- Start Hero Area -->
 <section class="hero-area">
     <div class="container">
@@ -223,36 +163,6 @@
     <section class="categories">
 
     <section class="categories" id="product_Categories">
-
-
-        <div class="container">
-            <div class="section-title">
-                <h2>Product Categories</h2>
-            </div>
-
-            <?php 
-            $categoryObj = new Category();
-            $categories = $categoryObj->getAllCategories();        
-            if (!empty($categories)) : ?>
-            <ul class="category-list">
-                <?php foreach ($categories as $category) : ?>
-                <?php
-                    $productsOfCategory = $categoryObj->getProductsByCategoryId($category['category_id']);
-                    ?>
-                <li class="category-item">
-                    <a href="productsOfCategory.php?id=<?= htmlspecialchars($category['category_id']); ?>">
-                        <div class="category-image-container">
-                            <img src="<?= htmlspecialchars($category['category_picture']); ?>" alt="category_pic"
-                                class="category-image">
-                        </div>
-                        <span class="category-title"><?= htmlspecialchars($category['category_name']); ?></span>
-                    </a>
-                </li>
-                <?php endforeach; ?>
-            </ul>
-            <?php endif; ?>
-
-    <div class="container">
         <div class="section-title">
             <h2>Product Categories</h2>
 
@@ -263,7 +173,9 @@
         $categories = $categoryObj->getAllCategories();        
         if (!empty($categories)) :
             ?>
-        <ul class="category-list">
+              
+
+        <ul class="category-list cat-container">
             <?php foreach ($categories as $category) : ?>
             <?php
                 $productsOfCategory = $categoryObj->getProductsByCategoryId($category['category_id']);
@@ -280,7 +192,7 @@
             <?php endforeach; ?>
         </ul>
         <?php endif; ?>
-    </div> 
+ 
 </section>
 
 
