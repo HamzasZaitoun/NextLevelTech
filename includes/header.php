@@ -339,18 +339,18 @@
                                 </div>
                                 <div class="navbar-cart">
                                     <div class="wishlist">
-                                        <a href="javascript:void(0)">
+                                        <a href="wishList.php">
                                             <i class="lni lni-heart"></i>
-                                            <span class="total-items">0</span>
+                                            <!-- <span class="total-items">0</span> -->
                                         </a>
                                     </div>
                                     <div class="cart-items">
-                                        <a href="javascript:void(0)" class="main-btn">
+                                        <a href="cart.php" class="main-btn">
                                             <i class="lni lni-cart"></i>
-                                            <span class="total-items">2</span>
+                                            <!-- <span class="total-items">2</span> -->
                                         </a>
                                         <!-- Shopping Item -->
-                                        <div class="shopping-item">
+                                        <!-- <div class="shopping-item">
                                             <div class="dropdown-cart-header">
                                                 <span>2 Items</span>
                                                 <a href="cart.php">View Cart</a>
@@ -360,13 +360,13 @@
                                                     <a href="javascript:void(0)" class="remove"
                                                         title="Remove this item"><i class="lni lni-close"></i></a>
                                                     <div class="cart-img-head">
-                                                        <a class="cart-img" href="product-details.php"><img
+                                                        <a class="cart-img" href="productDetails"><img
                                                                 src="assets/images/header/cart-items/item1.jpg"
                                                                 alt="#"></a>
                                                     </div>
 
                                                     <div class="content">
-                                                        <h4><a href="product-details.php">
+                                                        <h4><a href="productDetails">
                                                                 Apple Watch Series 6</a></h4>
                                                         <p class="quantity">1x - <span class="amount">$99.00</span></p>
                                                     </div>
@@ -375,12 +375,12 @@
                                                     <a href="javascript:void(0)" class="remove"
                                                         title="Remove this item"><i class="lni lni-close"></i></a>
                                                     <div class="cart-img-head">
-                                                        <a class="cart-img" href="product-details.php"><img
+                                                        <a class="cart-img" href="productDetails"><img
                                                                 src="assets/images/header/cart-items/item2.jpg"
                                                                 alt="#"></a>
                                                     </div>
                                                     <div class="content">
-                                                        <h4><a href="product-details.php">Wi-Fi Smart Camera</a></h4>
+                                                        <h4><a href="productDetails">Wi-Fi Smart Camera</a></h4>
                                                         <p class="quantity">1x - <span class="amount">$35.00</span></p>
                                                     </div>
                                                 </li>
@@ -394,7 +394,7 @@
                                                     <a href="checkout.php" class="btn animate">Checkout</a>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <!--/ End Shopping Item -->
                                     </div>
                                     <div class="profile-item">
@@ -435,6 +435,26 @@
                             <li class="nav-item">
                                 <a href="index.php" class="active" aria-label="Toggle navigation">Home</a>
                             </li>
+                            <!-- <li class="nav-item">
+                                <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
+                                    data-bs-target="#submenu-1-4" aria-controls="navbarSupportedContent"
+                                    aria-expanded="false" aria-label="Toggle navigation">Blog</a>
+                                <ul class="sub-menu collapse" id="submenu-1-4">
+                                    <li class="nav-item"><a href="blog-grid-sidebar.php">Blog Grid Sidebar</a></li>
+                                    <li class="nav-item"><a href="blog-single.php">Blog Single</a></li>
+                                    <li class="nav-item"><a href="blog-single-sidebar.php">Blog Single Sidebar</a></li>
+                                </ul>
+                            </li> -->
+                            <li class="nav-item">
+                                <a href="flashSale.php" aria-label="Toggle navigation">Flash Sales</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#trend_product" aria-label="Toggle navigation">Trending Products</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#product_Categories" aria-label="Toggle navigation">Product Categories
+                                </a>
+                            </li>
                             <li class="nav-item">
                                 <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
                                     data-bs-target="#submenu-1-2" aria-controls="navbarSupportedContent"
@@ -446,26 +466,7 @@
 
                                 </ul>
                             </li>
-                            <li class="nav-item">
-                                <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
-                                    data-bs-target="#submenu-1-4" aria-controls="navbarSupportedContent"
-                                    aria-expanded="false" aria-label="Toggle navigation">Blog</a>
-                                <ul class="sub-menu collapse" id="submenu-1-4">
-                                    <li class="nav-item"><a href="blog-grid-sidebar.php">Blog Grid Sidebar</a></li>
-                                    <li class="nav-item"><a href="blog-single.php">Blog Single</a></li>
-                                    <li class="nav-item"><a href="blog-single-sidebar.php">Blog Single Sidebar</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a href="flashSale.php" aria-label="Toggle navigation">Flash Sales</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#trend_product" aria-label="Toggle navigation">Trending Products</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#product_Categories" aria-label="Toggle navigation">Product Categories
-                                </a>
-                            </li>
+
                         </ul>
                         <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
 
