@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="trendingProducts.css" >
 <?php
 
 include("includes/header.php");
@@ -8,47 +9,60 @@ include("includes/header.php");
  ?>
 
 
-<section id="trend_product" class="trending-product section" style="margin-top: 12px;">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="section-title">
-                        <h2>Flash Sale Products</h2>
-                    </div>
+<section id="flashSale" class="trending-product section" style="margin-top: 12px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-title">
+                    <h2>Flash Sale Products</h2>
+                    <p>Discover our best-rated products, carefully curated to enhance your gaming experience.</p>
                 </div>
             </div>
-            <?php
-                    $product = new Product();
-                    $flashSaleProducts=$product -> fetchFlashSaleProducts();
+        </div>
+        <?php
+        $trendingProductObj = new Product();
+        $trendingProducts = $trendingProductObj->fetchFlashSaleProducts();
 
-        if (!empty($flashSaleProducts)) : ?>
+        if (!empty($trendingProducts)) : ?>
             <div class="row">
-                <?php foreach ($flashSaleProducts as $product) : ?>
+                <?php foreach ($trendingProducts as $product) : ?>
                 <div class="col-lg-3 col-md-6 col-12">
                     <div class="single-product">
                         <div class="product-image">
-                            <img src="<?php echo htmlspecialchars($product['product_picture']); ?>" alt="product_img">
-                            <div class="button">
-                                <a href="productDetails.php?id=<?php echo htmlspecialchars($product['product_id']); ?>"
-                                    class="btn">
-                                    <i class="lni lni-cart"></i>Shop now
-                                </a>
+                            <?php $imagePath="inserted_img/".($product['product_picture']);?>
+                            <img src="<?php echo htmlspecialchars($imagePath); ?>" alt="product_img">
+                            <?php if ($product['product_discount'] > 0) : ?>
+                                <div class="product-discount">
+                                    <span>-<?= htmlspecialchars($product['product_discount']);?>%</span>
+                                </div>
+                            <?php endif; ?>
+                            <div class="btn-div">
+                                <div class="shopbtn">
+                                    <button class="btn-btn" onclick="window.location.href='productDetails.php?id=<?= htmlspecialchars($product['product_id']); ?>'">
+                                        <div class="default-btn">
+                                            <i class="lni lni-eye"></i>
+                                        </div>
+                                        <div class="hover-btn">
+                                            <span>Quick View</span>
+                                        </div>
+                                    </button>
+                                </div>
+                                <div class="shopbtn">
+                                    <button class="btn-btn" onclick="window.location.href='productDetails.php?id=<?= htmlspecialchars($product['product_id']); ?>'">
+                                        <div class="default-btn">
+                                            <i class="lni lni-cart"></i>
+                                        </div>
+                                        <div class="hover-btn">
+                                            <span>Shop now</span>
+                                        </div>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                         <div class="product-info">
-                            <span class="category"><?php echo htmlspecialchars($product['product_category']); ?></span>
-                            <h4 class="title">
+                            <h6 class="title">
                                 <?= htmlspecialchars($product['product_name']); ?>
-                            </h4>
-                            <ul class="review">
-                                <?php for ($i = 0; $i < 5; $i++) : ?>
-                                <li>
-                                    <i
-                                        class="lni <?= $i < $product['product_rate'] ? 'lni-star-filled' : 'lni-star'; ?>"></i>
-                                </li>
-                                <?php endfor; ?>
-                                <li><span><?= $product['product_rate']; ?> Review(s)</span></li>
-                            </ul>
+                            </h6>
                             <div class="price">
                                 <span><?php echo htmlspecialchars($product['product_price']); ?> JOD</span>
                             </div>
@@ -62,3 +76,9 @@ include("includes/header.php");
             <?php endif; ?>
         </div>
     </section>
+       
+
+
+    <?php
+        include("includes/footer.php");
+    ?>

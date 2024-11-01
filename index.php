@@ -127,10 +127,14 @@
                                 $discountProduct = $highestDiscountProduct->fetchHighestDiscountProduct(); 
 
                                 if (!empty($discountProduct)) : 
+                                    $calculateSaving = $highestProduct['product_price'] * ($highestProduct['product_discount'] / 100);
+
                             ?>
                                 <div class="content">
-                                    <h2>Flash Sale!</h2>
-                                    <p>Saving up to <?= htmlspecialchars($discountProduct['product_discount'] ); ?>% off
+                                    <h2>Flash Sale!</h2> 
+                                    <h3 style="color : red"><?=$highestProduct['product_discount']?> %</h3>
+                                    <p>Saving up to 
+                                        <?= $calculateSaving ; ?> off
                                         <?= htmlspecialchars($discountProduct['product_name']); ?></p>
                                     <h3>Now Only:
                                         <?= htmlspecialchars($discountProduct['product_price'] * (1 - $discountProduct['product_discount'] / 100)); ?>
@@ -195,56 +199,59 @@
 
     <!-- Start Trending Product Area -->
     <section id="trend_product" class="trending-product section" style="margin-top: 12px;">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="section-title">
-                        <h2>Trending Products</h2>
-                        <p>Discover our best-rated products, carefully curated to enhance your gaming experience.</p>
-                    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-title">
+                    <h2>Trending Products</h2>
+                    <p>Discover our best-rated products, carefully curated to enhance your gaming experience.</p>
                 </div>
             </div>
-            <?php
+        </div>
+        <?php
         $trendingProductObj = new Product();
         $trendingProducts = $trendingProductObj->fetchTrendingProducts();
 
         if (!empty($trendingProducts)) : ?>
             <div class="row">
-                <?php foreach ($trendingProducts as $product) : 
-                    ?>
+                <?php foreach ($trendingProducts as $product) : ?>
                 <div class="col-lg-3 col-md-6 col-12">
                     <div class="single-product">
                         <div class="product-image">
                             <?php $imagePath="inserted_img/".($product['product_picture']);?>
-                            <img src="<?php echo htmlspecialchars ($imagePath); ?>" alt="product_img">
-
-
-                            <div class="shopbtn">
-                                <button class="btn-btn">
-                                    <div class="default-btn">
-                                        <i class="lni lni-cart"></i>
-                                        <span>Quick View</span>
-                                    </div>
-                                    <div class="hover-btn">
-                                        <i class="lni lni-cart"></i>
-                                        <span>Shop now</span>
-                                    </div>
-                                </button>
+                            <img src="<?php echo htmlspecialchars($imagePath); ?>" alt="product_img">
+                            <?php if ($product['product_discount'] > 0) : ?>
+                                <div class="product-discount">
+                                    <span>-<?= htmlspecialchars($product['product_discount']);?>%</span>
+                                </div>
+                            <?php endif; ?>
+                            <div class="btn-div">
+                                <div class="shopbtn">
+                                    <button class="btn-btn" onclick="window.location.href='productDetails.php?id=<?= htmlspecialchars($product['product_id']); ?>'">
+                                        <div class="default-btn">
+                                            <i class="lni lni-eye"></i>
+                                        </div>
+                                        <div class="hover-btn">
+                                            <span>Quick View</span>
+                                        </div>
+                                    </button>
+                                </div>
+                                <div class="shopbtn">
+                                    <button class="btn-btn" onclick="window.location.href='productDetails.php?id=<?= htmlspecialchars($product['product_id']); ?>'">
+                                        <div class="default-btn">
+                                            <i class="lni lni-cart"></i>
+                                        </div>
+                                        <div class="hover-btn">
+                                            <span>Shop now</span>
+                                        </div>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                         <div class="product-info">
-                            <span class="category"><?php echo htmlspecialchars($product['category_name']); ?></span>
-                            <h4 class="title">
+                            <h6 class="title">
                                 <?= htmlspecialchars($product['product_name']); ?>
-                            </h4>
-                            <ul class="review">
-                                <?php for ($i = 0; $i < 5; $i++) : ?>
-                                <li>
-                                    <i
-                                        class="lni <?= $i < $product['product_rate'] ? 'lni-star-filled' : 'lni-star'; ?>"></i>
-                                </li>
-                                <?php endfor; ?>
-                            </ul>
+                            </h6>
                             <div class="price">
                                 <span><?php echo htmlspecialchars($product['product_price']); ?> JOD</span>
                             </div>
@@ -279,9 +286,19 @@
                         <div class="content">
                             <h2><?= htmlspecialchars($randomProduct['product_name']); ?></h2>
                             <p><?= htmlspecialchars($randomProduct['product_description']); ?></p>
+
                             <div class="button">
                                 <a href="productDetails.php?id=<?= htmlspecialchars($randomProduct['product_id']); ?>"
-                                    class="btn">View Details</a>
+                                    class="btn-btn">
+                                    <div class="default-btn">
+                                        <i class="lni lni-eye"></i>
+                                       
+                                    </div>
+                                    <div class="hover-btn">
+                                     
+                                    <span>View Details</span>
+                                                                    </div>
+                                </a>
                             </div>
                         </div>
                     </div>
