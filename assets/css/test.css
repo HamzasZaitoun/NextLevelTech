@@ -231,10 +231,10 @@
 }
 
 .categories .category-list {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    gap: 1rem;
+    grid-auto-rows: 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 /* Category Item Styles */

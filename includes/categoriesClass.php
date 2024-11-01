@@ -16,7 +16,7 @@ class Category {
 
     
     public function getAllCategories() {
-        $stmt = $this->pdo->prepare("SELECT * FROM categories WHERE is_deleted = 0");
+        $stmt = $this->pdo->prepare("SELECT * FROM categories where is_deleted=0");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }

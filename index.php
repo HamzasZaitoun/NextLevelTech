@@ -26,22 +26,79 @@
 
 .swiper-pagination-bullet {
     background: #fff;
-<<<<<<< HEAD
-  
-=======
     /* لون النقاط */
->>>>>>> 82aeafe1f99e8a948b8a3953ee4ede409105bba3
 }
 
 .swiper-button-next,
 .swiper-button-prev {
     color: #fff;
-<<<<<<< HEAD
- 
-=======
     /* لون الأزرار */
->>>>>>> 82aeafe1f99e8a948b8a3953ee4ede409105bba3
 }
+
+
+.categories {
+    padding: 50px 0;
+    background-color: #f9f9f9;
+}
+
+.section-title h2 {
+    font-size: 2em;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.category-list {
+    display: grid;
+    grid-auto-rows: 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.category-item {
+    width: 200px;
+    text-align: center;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.category-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.category-image-container {
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+}
+
+.category-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.category-item:hover .category-image {
+    transform: scale(1.1);
+}
+
+.category-title {
+    display: block;
+    padding: 15px;
+    font-size: 1.1em;
+    color: #333;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
 </style>
 </head>
 
@@ -54,11 +111,7 @@
                 <span></span>
             </div>
         </div>
-<<<<<<< HEAD
-    </div>
-=======
     </div> -->
->>>>>>> 82aeafe1f99e8a948b8a3953ee4ede409105bba3
 
     <!-- /End Preloader -->
 
@@ -76,13 +129,15 @@
                             $highestProducts = $highestDiscountProductsObj->fetchHighestDiscountProducts();        
                             if (!empty($highestProducts)) : 
                                 foreach ($highestProducts as $highestProduct) : 
+                                    $imagePath="inserted_img/".($highestProduct['product_picture']);
+
                                     $calculateSaving = $highestProduct['product_price'] * ($highestProduct['product_discount'] / 100);
                                     $priceAfterDiscount = $highestProduct['product_price'] * (1 - $highestProduct['product_discount'] / 100);
                         ?>
                         <!-- Start Single Slider -->
                         <div class="single-slider"
-                             style="background-image: url(<?= htmlspecialchars($highestProduct['product_picture']); ?>);">
-                            <div class="content">
+                        style="background-image:  url('<?php echo $imagePath; ?>');">
+                        <div class="content">
                                 <h2><span>No restocking fee (<?= htmlspecialchars($calculateSaving); ?> JOD savings)</span>
                                     <?= htmlspecialchars($highestProduct['product_name']); ?>
                                 </h2>
@@ -109,11 +164,12 @@
                         <?php
                             $lastProduct = new product();
                             $lastProductData = $lastProduct->lastProduct(); 
-
                             if (!empty($lastProductData)) : 
+                                $imagePath="inserted_img/".($lastProductData['product_picture']);
+
                         ?>
                         <div class="hero-small-banner"
-                             style="background-image: url(<?= htmlspecialchars($lastProductData['product_picture']); ?>);">
+                        style="background-image:  url('<?php echo $imagePath; ?>');">
                             <div class="content">
                                 <h2>
                                     <span>New line required</span>
@@ -163,11 +219,12 @@
     <!-- End Hero Area -->
 
     <!-- categories -->
-<<<<<<< HEAD
+
     <section class="categories">
-=======
+
     <section class="categories" id="product_Categories">
->>>>>>> 82aeafe1f99e8a948b8a3953ee4ede409105bba3
+
+
         <div class="container">
             <div class="section-title">
                 <h2>Product Categories</h2>
@@ -194,8 +251,37 @@
                 <?php endforeach; ?>
             </ul>
             <?php endif; ?>
+
+    <div class="container">
+        <div class="section-title">
+            <h2>Product Categories</h2>
+
         </div>
-    </section>
+
+        <?php 
+        $categoryObj = new Category();
+        $categories = $categoryObj->getAllCategories();        
+        if (!empty($categories)) :
+            ?>
+        <ul class="category-list">
+            <?php foreach ($categories as $category) : ?>
+            <?php
+                $productsOfCategory = $categoryObj->getProductsByCategoryId($category['category_id']);
+                $imagePath_cat = "category_img/" . urlencode($category['category_picture']);
+                ?>
+            <li class="category-item">
+                <a href="productsOfCategory.php?id=<?= htmlspecialchars($category['category_id']); ?>">
+                    <div class="category-image-container">
+                        <img src="<?php echo $imagePath_cat; ?>" alt="category_pic" class="category-image">
+                    </div>
+                    <span class="category-title"><?= htmlspecialchars($category['category_name']); ?></span>
+                </a>
+            </li>
+            <?php endforeach; ?>
+        </ul>
+        <?php endif; ?>
+    </div> 
+</section>
 
 
     <!-- Start Trending Product Area -->
@@ -215,11 +301,15 @@
 
         if (!empty($trendingProducts)) : ?>
             <div class="row">
-                <?php foreach ($trendingProducts as $product) : ?>
+                <?php foreach ($trendingProducts as $product) : 
+                    ?>
                 <div class="col-lg-3 col-md-6 col-12">
                     <div class="single-product">
                         <div class="product-image">
-                            <img src="<?php echo htmlspecialchars($product['product_picture']); ?>" alt="product_img">
+                       <?php $imagePath="inserted_img/".($product['product_picture']);?>
+                        <img src="<?php echo htmlspecialchars ($imagePath); ?>" alt="product_img" >
+
+                            
                             <div class="button">
                                 <a href="productDetails.php?id=<?php echo htmlspecialchars($product['product_id']); ?>"
                                     class="btn">
@@ -267,11 +357,13 @@
             $randomProducts = $randomProductsObj->fetchRandomProducts(); 
 
             if (!empty($randomProducts)):
-                foreach ($randomProducts as $randomProduct): ?>
+                foreach ($randomProducts as $randomProduct):
+                    $imagePath="inserted_img/".($randomProduct['product_picture']);
+                    ?>
                 <div class="col-lg-6 col-md-6 col-12">
                     <div class="single-banner"
-                        style="background-image:url('<?= htmlspecialchars($randomProduct['product_picture']); ?>')">
-                        <div class="content">
+                    style="background-image:  url('<?php echo $imagePath; ?>');">
+                    <div class="content">
                             <h2><?= htmlspecialchars($randomProduct['product_name']); ?></h2>
                             <p><?= htmlspecialchars($randomProduct['product_description']); ?></p>
                             <div class="button">

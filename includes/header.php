@@ -413,21 +413,6 @@
                 </div>
                 <div class="top-end">
 
-                    <ul class="user-login">
-                        <li>
-                            <?php if (isset($_SESSION['user_id'])): ?>
-                            <!-- Display Logout Button if User is Logged In -->
-                            <a href="includes/logout.php">
-                                <button type="button" class="btn btn-lg shadow-lg gaming-button">Logout</button>
-                            </a>
-                            <?php else: ?>
-                            <!-- Display Login Button if User is Not Logged In -->
-                            <a href="login/login.php">
-                                <button type="button" class="btn btn-lg shadow-lg gaming-button">Login</button>
-                            </a>
-                            <?php endif; ?>
-                        </li>
-                    </ul>
                 </div>
             </div>
             <!-- End Header Middle -->
