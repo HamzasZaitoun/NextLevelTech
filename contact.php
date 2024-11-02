@@ -35,25 +35,20 @@
         $firstName = htmlspecialchars($userData['user_first_name']);
         $lastName = htmlspecialchars($userData['user_last_name']);
         $email = htmlspecialchars($userData['user_email']);
+   
     }
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['subject']) && isset($_POST['message'])) {
-        $fname = $firstName;
-        $lname = $lastName;
-        $email = $userData['user_email'];
         $subject = $_POST['subject'];
         $message = $_POST['message'];
 
         if (!empty($subject) && !empty($message)) {
-            $db = new Database();
-            $connect = $db->connect();
+            $db = dbConnection::getInstence();
+            $connect = $db->getConnection();
 
-            $stmt = $connect->prepare("INSERT INTO contact_us (user_id,user_first_name,user_last_name, user_email, subject, message) VALUES (:userId,:user_first_name,:user_last_name,:user_email,   :subject, :message)");
+            $stmt = $connect->prepare("INSERT INTO contact_us (user_id, subject, message) VALUES (:userId, :subject, :message)");
 
             $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
-            $stmt->bindParam(':user_first_name', $fname, PDO::PARAM_STR);
-            $stmt->bindParam(':user_last_name', $lname, PDO::PARAM_STR);
-            $stmt->bindParam(':user_email', $email, PDO::PARAM_STR);
             $stmt->bindParam(':subject', $subject, PDO::PARAM_STR);
             $stmt->bindParam(':message', $message, PDO::PARAM_STR);
 

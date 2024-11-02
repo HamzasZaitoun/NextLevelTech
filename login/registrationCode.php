@@ -3,7 +3,7 @@ session_start();
 include ('../includes/db_class.php');
 include ('../includes/usersClass.php');
 
-$user = new User($pdo);
+$user = new User();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["submit"])) {
     $firstName = $_POST['first_name'];
@@ -17,10 +17,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["submit"])) {
     $phoneNumber = $_POST['phone_number'];
 
     if ($password !== $confirmPassword) {
-        echo "<script>
-        alert('Passwords do not match.');
-        window.location.href = 'registration.php';
-            </script>";
         exit();
     }
 

@@ -124,6 +124,13 @@ class Product {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     
+
+    public function fetchRandomProducts($limit = 2) {
+        $stmt = $this->pdo->prepare("SELECT * FROM products ORDER BY RAND() LIMIT :limit");
+        $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
     
     
 

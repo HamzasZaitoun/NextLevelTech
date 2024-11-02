@@ -13,23 +13,21 @@ $cart = new Cart();
 $cartItems = $cart->getCart($user_id);
 
 
-$totalAmount = 0;
-foreach ($cartItems as $item) {
-    $totalAmount += $item['quantity'] * $item['product_price'];
-}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['checkout'])) {
     $paymentMethod = $_POST['payment_method'] ?? '';
-
-    if ($cart->checkout($user_id, $paymentMethod)) {
-        echo "<script>alert('Order has been successfully checked out and marked as delivered.');</script>";
+        if ($cart->checkout($user_id, $paymentMethod)) {
+            unset($_SESSION['final_total']);
+            echo "<div class='alert alert-success'>Thank you for your purchase!</div>";
     } else {
-        echo "<script>alert('No pending orders found.');</script>";
+        echo "<div class='alert alert-danger'>There was an error processing your order. Please try again.</div>";
     }
     
     header("Refresh:0");
     exit();
 }
+
+$finalTotal = $_SESSION['final_total'] ?? 0;
 
 
 ?>
@@ -110,18 +108,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['checkout'])) {
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="radio" name="payment_method" value="card" id="paymentCard" checked>
                                                     <label class="form-check-label" for="paymentCard">
-                                                        Credit/Debit Card
+                                                    Cash on Delivery
                                                     </label>
                                                 </div>
-                                                <div class="form-check">
+                                                <!-- <div class="form-check">
                                                     <input class="form-check-input" type="radio" name="payment_method" value="cash" id="paymentCash">
                                                     <label class="form-check-label" for="paymentCash">
                                                         Cash on Delivery
                                                     </label>
-                                                </div>
+                                                </div> -->
                                             </div>
 
-                                            <div id="cardDetails" class="mb-4">
+                                            <!-- <div id="cardDetails" class="mb-4">
                                                 <div class="form-outline mb-4">
                                                     <input type="text" id="typeName" class="form-control" placeholder="Cardholder's Name" required />
                                                     <label class="form-label" for="typeName">Cardholder's Name</label>
@@ -146,23 +144,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['checkout'])) {
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> -->
 
                                             <hr class="my-4">
 
                                             <div class="d-flex justify-content-between">
                                                 <p class="total-price">Total:</p>
-                                                <p class="total-price"><?php echo number_format($totalAmount, 2); ?> JD</p>
+                                                <p class="total-price"><?php echo number_format($finalTotal, 2) . " JD"; ?></p>
                                             </div>
 
-                                            <button type="submit" name="checkout" class="btn btn-primary btn-block btn-lg">
+                                            <div class="d-flex justify-content-between">
+                                            <button type="submit" name="checkout" class="btn btn-primary btn-block btn-lg" onclick="ordersubmit(this)">
                                                 <div class="d-flex justify-content-between">
                                                     <span>Complete Order</span>
                                                     <span><i class="fas fa-long-arrow-alt-right ms-2"></i></span>
                                                 </div>
                                             </button>
-                                        </form>
-                                    </div>
+                                </div>
+                                       </form>
                                 </div>
 
                             </div>
@@ -176,17 +175,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['checkout'])) {
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script>
-    // Toggle card payment fields based on the selected payment method
-    document.querySelectorAll('input[name="payment_method"]').forEach(function (radio) {
-        radio.addEventListener('change', function () {
-            const cardDetails = document.getElementById('cardDetails');
-            if (this.value === 'card') {
-                cardDetails.style.display = 'block';
-            } else {
-                cardDetails.style.display = 'none';
-            }
-        });
-    });
+    // document.querySelectorAll('input[name="payment_method"]').forEach(function (radio) {
+    //     radio.addEventListener('change', function () {
+    //         const cardDetails = document.getElementById('cardDetails');
+    //         if (this.value === 'card') {
+    //             cardDetails.style.display = 'block';
+    //         } else {
+    //             cardDetails.style.display = 'none';
+    //         }
+    //     });
+    // });
 </script>
 </body>
 </html>

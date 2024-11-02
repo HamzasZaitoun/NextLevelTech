@@ -25,7 +25,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     <link rel="stylesheet" href="trendingProducts.css">
 </head>
 <body>
-<section id="productsOfCategory" class="trending-product section" style="margin-top: 12px;">
+<section id="productsOfCategory" class="trending-product section " style="margin-top: 12px;">
     <div class="container">
         <div class="row">
             <div class="section-title">

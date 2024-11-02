@@ -4,10 +4,6 @@
     box-sizing: border-box;
 }
 
-/* .header h1,img{
-    font-size: 12px;
-} */
-
 .form-row {
     display: flex;
     justify-content: space-between;
@@ -71,14 +67,6 @@
     border-color: #042805;
     outline: none;
     box-shadow: 0 0 5px rgba(0, 34, 15, 0.5);
-}
-
-#li-login {
-    color: #fff;
-}
-
-#li-login:hover {
-    color: #0000ff;
 }
 
 .styled-label {

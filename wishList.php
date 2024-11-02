@@ -1,14 +1,29 @@
-<link rel="stylesheet" href="assets/css/wishlist.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <?php
-
+session_start();
 include("includes/header.php");
 include("includes/wishlistClass.php");
 
 $wishlist = new Wishlist();
-$user_id = 1; //tessssssssssssssssssssssssssssssssssssssssssssssssstttttttttttttttttttttttttt
+$user_id = $_SESSION['user_id'];
+
+// Handle AJAX request to add product to wishlist
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_wishlist']) && isset($_POST['product_id'])) {
+    $product_id = $_POST['product_id'];
+
+    if ($wishlist->addToWishlist($user_id, $product_id)) {
+        echo json_encode(['success' => true, 'message' => 'Item added to wishlist!']);
+    } else {
+        echo json_encode(['success' => false, 'message' => 'Item already in wishlist.']);
+    }
+    exit;
+}
+
+// Retrieve wishlist items
 $wishlistItems = $wishlist->getAllProductsFromWishlist($user_id);
 ?>
+
+<link rel="stylesheet" href="assets/css/wishlist.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 <div class="cart-wrap">
     <div class="container">
@@ -29,27 +44,30 @@ $wishlistItems = $wishlist->getAllProductsFromWishlist($user_id);
                         </thead>
                         <tbody>
                             <?php if (!empty($wishlistItems)) : ?>
-                            <?php foreach ($wishlistItems as $product) : ?>
-                            <tr>
-                                <td width="15%"><?= htmlspecialchars($product['product_name']); ?></td>
-                                <td width="15%" class="price">$<?= htmlspecialchars($product['product_price']); ?></td>
-                                <td width="15%"><span
-                                        class="in-stock-box"><?= htmlspecialchars($product['product_state']); ?></span>
-                                </td>
-                                <td width="30%"><img src="<?= htmlspecialchars($product['product_picture']); ?>"
-                                        alt="product_picture" class="category-image"></td>
-                                <td width="15%"><button class="round-black-btn small-btn">Add to Cart</button></td>
-                                <td width="10%" class="text-center">
-                                    <a href="#" class="trash-icon"
-                                        onclick="deleteItem(<?= $product['wishlist_id']; ?>)"><i
-                                            class="fa fa-trash-alt"></i></a>
-                                </td>
-                            </tr>
-                            <?php endforeach; ?>
+                                <?php foreach ($wishlistItems as $product) : ?>
+                                    <tr>
+                                        <td><?= htmlspecialchars($product['product_name']); ?></td>
+                                        <td class="price"><?= htmlspecialchars($product['product_price']); ?> JOD</td>
+                                        <td>
+                                            <span class="in-stock-box <?= strtolower(trim($product['product_state'])) === 'in stock' ? 'bg-green' : 'bg-red'; ?>">
+                                                <?= htmlspecialchars($product['product_state']); ?>
+                                            </span>
+                                        </td>
+
+                                        <?php $imagePath = "inserted_img/" . htmlspecialchars($product['product_picture'] ?? 'default.png'); ?>
+                                        <td><img src="<?= $imagePath; ?>" alt="Product Image"  class="category-image"></td>
+                                        <td><button class="round-black-btn small-btn">Add to Cart</button></td>
+                                        <td class="text-center">
+                                            <a href="#" class="trash-icon" onclick="deleteItem(<?= $product['wishlist_id']; ?>)">
+                                                <i class="fa fa-trash-alt"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
                             <?php else : ?>
-                            <tr>
-                                <td colspan="6" class="text-center">No items in your wishlist</td>
-                            </tr>
+                                <tr>
+                                    <td colspan="6" class="text-center">No items in your wishlist</td>
+                                </tr>
                             <?php endif; ?>
                         </tbody>
                     </table>
@@ -62,6 +80,7 @@ $wishlistItems = $wishlist->getAllProductsFromWishlist($user_id);
 <?php
 include("includes/footer.php");
 ?>
+
 <script>
 function deleteItem(wishlist_id) {
     if (confirm("Are you sure you want to delete this item?")) {

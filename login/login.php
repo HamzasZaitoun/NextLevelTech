@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Gaming Login Form</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,7 +13,7 @@
         }
 
         #li-regs:hover {
-            color: blue;
+            color: dodgerblue;
         }
 
         .error {
@@ -20,30 +21,9 @@
             font-size: 0.9em;
         }
     </style>
-    <script>
-        function validateForm() {
-            let isValid = true;
-
-            const email = document.forms["loginForm"]["email"];
-            const password = document.forms["loginForm"]["password"];
-
-            document.querySelectorAll('.error').forEach(el => el.textContent = '');
-
-            if (!email.value) {
-                document.getElementById('emailError').textContent = "Please enter a valid email.";
-                isValid = false;
-            }
-
-            if (!password.value) {
-                document.getElementById('passwordError').textContent = "Password error.";
-                isValid = false;
-            }
-
-            return isValid;
-        }
-    </script>
 
 </head>
+
 <body>
     <div class="padding-all">
         <div class="header">
@@ -53,10 +33,10 @@
         <div class="design-w3l">
             <div class="mail-form-agile">
                 <?php
-                session_start(); 
+                session_start();
                 if (isset($_SESSION['error'])) {
-                    echo '<p class="error">' . htmlspecialchars($_SESSION['error']) . '</p>'; 
-                    unset($_SESSION['error']); 
+                    echo '<p class="error">' . htmlspecialchars($_SESSION['error']) . '</p>';
+                    unset($_SESSION['error']);
                 }
                 ?>
 
@@ -72,6 +52,8 @@
                     <input type="submit" name="login" value="Login"><br><br>
 
                     <a id="li-regs" href="./registration.php">Create a new account</a>
+                   <br>
+                    <a id="li-regs" href="./forgotPassword.php">Forgot Password</a>
                 </form>
             </div>
             <div class="clear"></div>
@@ -90,7 +72,9 @@
         function hideURLbar() {
             window.scrollTo(0, 1);
         }
+
     </script>
 
 </body>
+
 </html>
