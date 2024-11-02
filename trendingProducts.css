@@ -14,7 +14,7 @@
 
 
 #trend_product ,
-#flashSale {
+#flashSale ,#productsOfCategory{
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
   background-color: rgba(17, 25, 40, 0.1);
@@ -46,10 +46,11 @@
 }
 
 .product-image img {
-  width: 100%;
+  width: 100%; 
+  height: auto; 
   border-radius: 8px;
+  object-fit: cover; 
 }
-/* زر متوافق مع كود HTML */
 
 .shopbtn {
     position: relative;

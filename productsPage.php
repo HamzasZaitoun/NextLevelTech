@@ -11,28 +11,25 @@ $connect = $db->getConnection();
 if (isset($_GET['filter'])) {
     $ssalry = $_GET['ssalry'];
     $esalry = $_GET['esalry'];
-    
+
     $sql = "SELECT * FROM `products` WHERE product_price BETWEEN :ssalry AND :esalry";
     $stmt = $connect->prepare($sql);
     $stmt->bindParam(':ssalry', $ssalry);
     $stmt->bindParam(':esalry', $esalry);
     $stmt->execute();
     $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-} elseif (isset($_GET['btn-search'])) { 
+} elseif (isset($_GET['btn-search'])) {
     $search_value = "%" . $_GET['search'] . "%";
-    $sql = "SELECT * FROM `products` WHERE  product_name LIKE :value ";
+    $sql = "SELECT * FROM `products` WHERE product_id LIKE :value OR product_name LIKE :value ";
     $stmt = $connect->prepare($sql);
     $stmt->bindParam(':value', $search_value);
     $stmt->execute();
     $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-} elseif (isset($_GET['category_id'])) { 
+} elseif (isset($_GET['category_id'])) {
     $categoryId = $_GET['category_id'];
     $categoryObj = new Category();
     $products = $categoryObj->getProductsByCategoryId($categoryId);
-
-} else { 
+} else {
     $productObj = new Product();
     $products = $productObj->getAllProducts();
 }
@@ -53,6 +50,8 @@ if (isset($_GET['filter'])) {
     <link rel="stylesheet" href="assets/css/tiny-slider.css" />
     <link rel="stylesheet" href="assets/css/glightbox.min.css" />
     <link rel="stylesheet" href="assets/css/main.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> <!-- bootstrap link -->
+
 
 </head>
 
@@ -91,59 +90,26 @@ if (isset($_GET['filter'])) {
                     </div>
 
 
-<div class="col-lg-5 col-md-7 d-xs-none">
-    <div class="main-menu-search">
-        <div class="navbar-search search-style-5">
-            <div class="search-select">
-                <div class="select-position">
-                    <select id="select1">
-                        <option selected>All</option>
-                        <option value="1">option 01</option>
-                        <option value="2">option 02</option>
-                        <option value="3">option 03</option>
-                        <option value="4">option 04</option>
-                        <option value="5">option 05</option>
-                    </select>
-                </div>
-            </div>
-<div class="search-input">
-    <form method="GET" style="display: flex; align-items: center;">
-        <input type="text" name="search" placeholder="Search..." style="flex: 1; padding: 8px; font-size: 16px;">
-        <button class="search-button" type="submit" name="btn-search" style="  font-size: 18px;
-  border: 0;
-  border-radius: 0 4px 4px 0;
-  border: 0;
-  background-color: #0167F3;
-  color: #fff;
-  width: 45px;
-  height: 45px;
-  ">
-            <i class="lni lni-search-alt"></i>
-        </button>
-    </form>
-</div>
-
-        </div>
-    </div>
-
-    <form method="GET" class="filter-form">
-        <label for="number">Determine the price </label><br>
-        <input type="number" name="ssalry" placeholder="Lowest Price" required>
-        <input type="number" name="esalry" placeholder="Highest Price" required>
-        <button type="submit" name="filter">Filter</button>
-    </form>
-</div>
+                    <div class="col-lg-5 col-md-7 d-xs-none">
+                        <div class="main-menu-search">
+                            <div class="navbar-search search-style-5">
+                                <div class="search-input">
+                                    <form method="GET" style="display: flex; align-items: center;">
+                                        <input type="text" name="search" placeholder="Search..." style="flex: 1; padding: 8px; font-size: 16px;">
+                                        <button class="search-button" type="submit" name="btn-search" style="  font-size: 18px; border: 0; border-radius: 0 4px 4px 0; border: 0; background-color: #0167F3; color: #fff; width: 45px; height: 45px; ">
+                                            <i class="lni lni-search-alt"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
 
 
                     <div class="col-lg-4 col-md-2 col-5">
                         <div class="middle-right-area">
-                            <div class="nav-hotline">
-                                <i class="lni lni-phone"></i>
-                                <h3>Hotline:
-                                    <span>(+100) 123 456 7890</span>
-                                </h3>
-                            </div>
+
                             <div class="navbar-cart">
                                 <div class="wishlist">
                                     <a href="javascript:void(0)">
@@ -167,12 +133,12 @@ if (isset($_GET['filter'])) {
                                                 <a href="javascript:void(0)" class="remove" title="Remove this item"><i
                                                         class="lni lni-close"></i></a>
                                                 <div class="cart-img-head">
-                                                    <a class="cart-img" href="productDetails"><img
+                                                    <a class="cart-img" href="product-details.php"><img
                                                             src="assets/images/header/cart-items/item1.jpg" alt="#"></a>
                                                 </div>
 
                                                 <div class="content">
-                                                    <h4><a href="productDetails">
+                                                    <h4><a href="product-details.php">
                                                             Apple Watch Series 6</a></h4>
                                                     <p class="quantity">1x - <span class="amount">$99.00</span></p>
                                                 </div>
@@ -181,11 +147,11 @@ if (isset($_GET['filter'])) {
                                                 <a href="javascript:void(0)" class="remove" title="Remove this item"><i
                                                         class="lni lni-close"></i></a>
                                                 <div class="cart-img-head">
-                                                    <a class="cart-img" href="productDetails"><img
+                                                    <a class="cart-img" href="product-details.php"><img
                                                             src="assets/images/header/cart-items/item2.jpg" alt="#"></a>
                                                 </div>
                                                 <div class="content">
-                                                    <h4><a href="productDetails">Wi-Fi Smart Camera</a></h4>
+                                                    <h4><a href="product-details.php">Wi-Fi Smart Camera</a></h4>
                                                     <p class="quantity">1x - <span class="amount">$35.00</span></p>
                                                 </div>
                                             </li>
@@ -281,7 +247,7 @@ if (isset($_GET['filter'])) {
                                         <ul class="sub-menu collapse" id="submenu-1-3">
                                             <li class="nav-item"><a href="product-grids.php">Shop Grid</a></li>
                                             <li class="nav-item"><a href="product-list.php">Shop List</a></li>
-                                            <li class="nav-item active"><a href="productDetails">shop Single</a>
+                                            <li class="nav-item active"><a href="product-details.php">shop Single</a>
                                             </li>
                                             <li class="nav-item"><a href="cart.php">Cart</a></li>
                                             <li class="nav-item"><a href="checkout.php">Checkout</a></li>
@@ -339,9 +305,21 @@ if (isset($_GET['filter'])) {
     <div class="breadcrumbs">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-6 col-md-6 col-12">
+                <div style="display: flex;" class="col-lg-6 col-md-6 col-12">
                     <div class="breadcrumbs-content">
                         <h1 class="page-title">Products</h1>
+                    </div>
+                    <button class="btn btn-primary" type="button" onclick="toggleFilterForm()" style="background-color: #0167F3; color: #fff; margin-left: 30px;">
+                        Filter
+                    </button>
+
+                    <div id="filterForm" style="display: none; margin-left: 20px;">
+                        <form method="GET" class="filter-form" style="display: inline-block;">
+                            <!-- <label for="range">Determine the price</label><br><br> -->
+                            <input style="width: 110px;" type="number" name="ssalry" placeholder="Lowest price">
+                            <input style="width: 112px;" type="number" name="esalry" placeholder="Highest price">
+                            <button style="border: 0; border-radius: 5px; background-color: #0167F3; color: #fff; width: 45px; height: 30px;" type="submit" name="filter">Go</button>
+                        </form>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-12">
@@ -361,36 +339,36 @@ if (isset($_GET['filter'])) {
         <div class="container">
             <div class="row">
                 <?php if (!empty($products)) : ?>
-                <?php foreach ($products as $product) : ?>
-                <div class="col-lg-3 col-md-6 col-12">
-                    <div class="single-product">
-                        <div class="product-image">
+                    <?php foreach ($products as $product) : ?>
+                        <div class="col-lg-3 col-md-6 col-12">
+                            <div class="single-product">
+                                <div class="product-image">
 
-                            <img src="<?php echo htmlspecialchars($product['product_picture']); ?>">
-                            <div class="button">
-                                <a href="productDetails.php?id=<?php echo htmlspecialchars($product['product_id']); ?>"
-                                    class="btn">
-                                    <i class="lni lni-cart"></i>Shop now
-                                </a>
-                            </div> 
-                        </div>
-                        <div class="product-info">
-                            <h4 class="title">
-                                <?= $product['product_name']; ?>
-                            </h4>
-                            
-                            <div class="price">
-                                <span><?php echo $product['product_price']; ?>JOD</span>
+                                    <img src="<?php echo htmlspecialchars($product['product_picture']); ?>">
+                                    <div class="button">
+                                        <a href="productDetails.php?id=<?php echo htmlspecialchars($product['product_id']); ?>"
+                                            class="btn">
+                                            <i class="lni lni-cart"></i>Shop now
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="product-info">
+                                    <h4 class="title">
+                                        <?= $product['product_name']; ?>
+                                    </h4>
+
+                                    <div class="price">
+                                        <span><?php echo $product['product_price']; ?>JOD</span>
 
 
 
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <?php endforeach; ?>
+                    <?php endforeach; ?>
                 <?php else : ?>
-                <p>No products available.</p>
+                    <p>No products available.</p>
                 <?php endif; ?>
             </div>
         </div>
@@ -550,27 +528,33 @@ if (isset($_GET['filter'])) {
     </a>
 
     <!-- ========================= JS here ========================= -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> <!-- bootstrap link -->
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/tiny-slider.js"></script>
     <script src="assets/js/glightbox.min.js"></script>
     <script src="assets/js/main.js"></script>
     <script type="text/javascript">
-    const current = document.getElementById("current");
-    const opacity = 0.6;
-    const imgs = document.querySelectorAll(".img");
-    imgs.forEach(img => {
-        img.addEventListener("click", (e) => {
-            //reset opacity
-            imgs.forEach(img => {
-                img.style.opacity = 1;
+        const current = document.getElementById("current");
+        const opacity = 0.6;
+        const imgs = document.querySelectorAll(".img");
+        imgs.forEach(img => {
+            img.addEventListener("click", (e) => {
+                //reset opacity
+                imgs.forEach(img => {
+                    img.style.opacity = 1;
+                });
+                current.src = e.target.src;
+                //adding class 
+                //current.classList.add("fade-in");
+                //opacity
+                e.target.style.opacity = opacity;
             });
-            current.src = e.target.src;
-            //adding class 
-            //current.classList.add("fade-in");
-            //opacity
-            e.target.style.opacity = opacity;
         });
-    });
+
+        function toggleFilterForm() {
+            const filterForm = document.getElementById('filterForm');
+            filterForm.style.display = filterForm.style.display === 'none' ? 'inline-block' : 'none';
+        }
     </script>
 </body>
 

@@ -22,7 +22,7 @@ class Category {
     }
     // get details for certain category
     public function getCategoryById($categoryId) {
-        $stmt = $this->pdo->prepare("SELECT * FROM categories WHERE category_id = ?");
+        $stmt = $this->pdo->prepare("SELECT * FROM categories WHERE is_deleted = 0 AND category_id = ?");
         $stmt->execute([$categoryId]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
@@ -31,14 +31,12 @@ class Category {
         $stmt = $this->pdo->prepare("SELECT products.*, categories.category_id
             FROM products 
             JOIN categories ON products.category_id = categories.category_id 
-            WHERE categories.category_id = ?");
+            WHERE categories.category_id = ? AND (products.is_deleted = 0 AND categories.is_deleted = 0)");
         $stmt->execute([$categoryId]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
 
-
-$category = new Category();
 
 
 ?>

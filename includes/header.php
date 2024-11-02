@@ -163,7 +163,128 @@
     }
     </style>
     <header>
+    <style>
+/* Style for the Login Button */
+.gaming-button {
+    background-color: #629584;
+    color: #fff;
+    font-weight: bold;
+    padding: 8px 16px; /* Reduced padding for a smaller button */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Reduced border size */
+    border-radius: 8px; /* Adjusted border-radius for a smaller button */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: transform 0.2s, box-shadow 0.3s, border-color 0.3s;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3), 0 0 6px rgba(98, 149, 132, 0.6); /* Adjusted box-shadow for a smaller button */
+}
 
+.gaming-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
+    opacity: 0;
+    transition: opacity 0.3s;
+    border-radius: inherit;
+}
+
+.gaming-button:hover {
+    background-color: #4a7a6c;
+    transform: scale(1.05); /* Slightly reduced scaling */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 10px rgba(98, 149, 132, 0.8); /* Adjusted box-shadow for hover */
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.gaming-button:hover::before {
+    opacity: 1;
+    animation: shimmer 1.5s infinite;
+}
+
+.gaming-button:active {
+    transform: scale(0.95); /* Slightly reduced scaling for active state */
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4), 0 0 6px rgba(98, 149, 132, 0.7); /* Adjusted box-shadow for active state */
+}
+
+
+    /* Shimmer Animation */
+    @keyframes shimmer {
+        0% {
+            transform: translateX(-100%);
+        }
+        100% {
+            transform: translateX(100%);
+        }
+    }
+
+
+    /* Main Container Style */
+    .navbar-cart {
+        display: flex;
+        align-items: center;
+        gap: 15px; /* Space between items */
+    }
+
+    /* Wishlist Icon */
+    .wishlist a, .cart-items a, .profile-icon {
+        display: flex;
+        align-items: center;
+        position: relative;
+        color: #333;
+        text-decoration: none;
+        font-size: 20px;
+    }
+
+    /* Badge Style */
+    .total-items {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        background-color: #0a58ca;
+        color: #fff;
+        border-radius: 50%;
+        padding: 2px 6px;
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+    /* Shopping Cart Dropdown */
+    .cart-items .shopping-item {
+        display: none;
+        position: absolute;
+        top: 40px;
+        right: 0;
+        width: 250px;
+        background: #fff;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
+        z-index: 10;
+    }
+
+    .cart-items:hover .shopping-item {
+        display: block;
+    }
+
+    /* Profile Icon Styling */
+    .profile-icon {
+        padding: 8px;
+        transition: color 0.3s;
+    }
+
+    .profile-icon:hover {
+        color: #0a58ca;
+    }
+
+    /* Additional Styling for Cart and Wishlist */
+    .cart-items, .wishlist {
+        position: relative;
+    }
+
+</style>
 
 
         <!-- Start Header Area -->

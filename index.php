@@ -164,9 +164,13 @@
     <!-- End Hero Area -->
 
     <!-- categories -->
+
+    <section class="categories">
+
     <section class="categories" id="product_Categories">
         <div class="section-title">
             <h2>Product Categories</h2>
+
         </div>
 
         <?php 

@@ -2,6 +2,7 @@
 session_start();
 require_once "includes/db_class.php"; 
 require_once "includes/cartClass.php";
+require_once "includes/productsClasss.php";
 
 $user_id = $_SESSION['user_id'] ?? null;
 
@@ -37,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['remove_from_cart'])) {
 
   try {
       $cart->removeFromCart($user_id, $product_id);
-      echo "<script>alert('Item removed from cart successfully!');</script>";
+      // echo "<script>alert('Item removed from cart successfully!');</script>";
   } catch (Exception $e) {
       echo "<script>alert('Error removing item from cart: " . $e->getMessage() . "');</script>";
   }
@@ -52,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_quantity'])) {
 
   try {
       $cart->updateCartQuantity($user_id, $product_id, $new_quantity);
-      echo "<script>alert('Quantity updated successfully!');</script>";
+      // echo "<script>alert('Quantity updated successfully!');</script>";
   } catch (Exception $e) {
       echo "<script>alert('Error updating quantity: " . $e->getMessage() . "');</script>";
   }
@@ -86,6 +87,7 @@ foreach ($cartItems as $item) {
 
 
 $finalTotal = $totalPrice - $discountAmount ;
+$_SESSION['final_total'] = $finalTotal;
 
 
 
@@ -105,6 +107,11 @@ $finalTotal = $totalPrice - $discountAmount ;
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <!-- Google Fonts Roboto -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
+
+    <link rel = "stylesheet" href = "trendingProducts.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <?php
   include("includes/header.php");
@@ -129,7 +136,6 @@ $finalTotal = $totalPrice - $discountAmount ;
     <div class="card border shadow-sm">
         <div style="min-height: 390px;" class="card-body">
             <h4 class="card-title mb-4">Your Shopping Cart</h4>
-
             <?php if (!empty($cartItems)): ?>
                 <?php foreach ($cartItems as $item): ?>
                     <div class="row align-items-center gy-3 mb-4 p-3 border-bottom">
@@ -148,13 +154,26 @@ $finalTotal = $totalPrice - $discountAmount ;
 
                         <!-- Quantity and Update Button -->
                         <div class="col-lg-3 col-md-3 col-6 d-flex align-items-center">
-                            <form method="POST" action="cart.php" class="w-100 d-flex align-items-center">
+                            <form method="POST" action="cart.php" class="w-100 d-flex align-items-center" onsubmit="return confirmUpdate(this)">
                                 <input type="hidden" name="product_id" value="<?= $item['product_id']; ?>">
                                 <input type="hidden" name="update_quantity" value="1">
                                 <input type="number" name="quantity" value="<?= $item['quantity']; ?>" required min="1" class="form-control text-center me-2" style="max-width: 80px;">
                                 <button type="submit" class="btn btn-outline-primary btn-sm w-100 mt-2 mt-md-0">Update</button>
                             </form>
                         </div>
+
+                        <script>
+                          function confirmUpdate(form){
+                            event.preventDefault(form);
+                          Swal.fire({
+                          position: "center",
+                          icon: "success",
+                          title: "Quantity Updated Successfully",
+                          showConfirmButton: false,
+                          timer: 1500
+                        });
+                      }
+                        </script>
 
                         <!-- Item Price -->
                         <div class="col-lg-2 col-md-3 col-6 text-end text-md-center">
@@ -165,12 +184,30 @@ $finalTotal = $totalPrice - $discountAmount ;
 
                         <!-- Remove Button -->
                         <div class="col-lg-2 col-md-12 text-end text-md-center mt-2 mt-md-0">
-                            <form method="POST" action="cart.php" onsubmit="return confirmDeletion();">
+                            <form method="POST" action="cart.php" onsubmit="return false;">
                                 <input type="hidden" name="product_id" value="<?= $item['product_id']; ?>">
                                 <input type="hidden" name="remove_from_cart" value="1">
-                                <button type="submit" class="btn btn-danger btn-sm w-100">Remove</button>
+                                <button type="submit" class="btn btn-danger btn-sm w-100" onclick="confirmDeletion(this.form)">Remove</button>
                             </form>
                         </div>
+
+                        <script>
+                         function confirmDeletion(form) {
+                            Swal.fire({
+                                title: 'Are you sure?',
+                                text: "This will remove the item from your cart.",
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#d33',
+                                cancelButtonColor: '#3085d6',
+                                confirmButtonText: 'Yes, delete it!'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    form.submit();  // Only submit the form if the user confirms
+                                }
+                            });
+                           }
+                        </script>
                     </div>
                 <?php endforeach; ?>
             <?php else: ?>
@@ -187,11 +224,7 @@ $finalTotal = $totalPrice - $discountAmount ;
 
 
 
-<script>
-function confirmDeletion() {
-    return confirm("Are you sure you want to remove this item from your cart?");
-}
-</script>
+
 
         <!-- cart -->
         <!-- summary -->
@@ -246,93 +279,83 @@ function confirmDeletion() {
   <section>
     <div class="container my-5">
       <header class="mb-4">
-        <h3>Recommended items</h3>
+        <h3>Recommended products</h3>
       </header>
-  
-      <div class="row">
-        <div class="col-lg-3 col-md-6 col-sm-6">
-          <div class="card px-4 border shadow-0 mb-4 mb-lg-0">
-            <div class="mask px-2" style="height: 50px;">
-              <div class="d-flex justify-content-between">
-                <h6><span class="badge bg-danger pt-1 mt-3 ms-2">New</span></h6>
-                <a href="#"><i class="fas fa-heart text-primary fa-lg float-end pt-3 m-2"></i></a>
-              </div>
-            </div>
-            <a href="#" class="">
-              <img src="https://mdbootstrap.com/img/bootstrap-ecommerce/items/7.webp" class="card-img-top rounded-2" />
-            </a>
-            <div class="card-body d-flex flex-column pt-3 border-top">
-              <a href="#" class="nav-link">Gaming Headset with Mic</a>
-              <div class="price-wrap mb-2">
-                <strong class="">$18.95</strong>
-                <del class="">$24.99</del>
-              </div>
-              <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
-                <a href="#" class="btn btn-outline-primary w-100">Add to cart</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-6">
-          <div class="card px-4 border shadow-0 mb-4 mb-lg-0">
-            <div class="mask px-2" style="height: 50px;">
-              <a href="#"><i class="fas fa-heart text-primary fa-lg float-end pt-3 m-2"></i></a>
-            </div>
-            <a href="#" class="">
-              <img src="https://mdbootstrap.com/img/bootstrap-ecommerce/items/5.webp" class="card-img-top rounded-2" />
-            </a>
-            <div class="card-body d-flex flex-column pt-3 border-top">
-              <a href="#" class="nav-link">Apple Watch Series 1 Sport </a>
-              <div class="price-wrap mb-2">
-                <strong class="">$120.00</strong>
-              </div>
-              <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
-                <a href="#" class="btn btn-outline-primary w-100">Add to cart</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-6">
-          <div class="card px-4 border shadow-0">
-            <div class="mask px-2" style="height: 50px;">
-              <a href="#"><i class="fas fa-heart text-primary fa-lg float-end pt-3 m-2"></i></a>
-            </div>
-            <a href="#" class="">
-              <img src="https://mdbootstrap.com/img/bootstrap-ecommerce/items/9.webp" class="card-img-top rounded-2" />
-            </a>
-            <div class="card-body d-flex flex-column pt-3 border-top">
-              <a href="#" class="nav-link">Men's Denim Jeans Shorts</a>
-              <div class="price-wrap mb-2">
-                <strong class="">$80.50</strong>
-              </div>
-              <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
-                <a href="#" class="btn btn-outline-primary w-100">Add to cart</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-6">
-          <div class="card px-4 border shadow-0">
-            <div class="mask px-2" style="height: 50px;">
-              <a href="#"><i class="fas fa-heart text-primary fa-lg float-end pt-3 m-2"></i></a>
-            </div>
-            <a href="#" class="">
-              <img src="https://mdbootstrap.com/img/bootstrap-ecommerce/items/10.webp" class="card-img-top rounded-2" />
-            </a>
-            <div class="card-body d-flex flex-column pt-3 border-top">
-              <a href="#" class="nav-link">Mens T-shirt Cotton Base Layer Slim fit </a>
-              <div class="price-wrap mb-2">
-                <strong class="">$13.90</strong>
-              </div>
-              <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
-                <a href="#" class="btn btn-outline-primary w-100">Add to cart</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+     
+
+      <?php
+      $cartProductIds = array_column($cartItems, 'product_id'); 
+
+
+      if (!empty($cartProductIds)) {
+          $cartObj = new Cart(); 
+          $currentCategoryId = $cartObj->getCartCategoryId($cartProductIds); 
+
+       
+          if ($currentCategoryId) {
+              $recomendedProductsObj = new Product();
+              $recommendedProducts = $recomendedProductsObj->getRecommendedProducts($currentCategoryId, $cartProductIds); 
+
+              if (!empty($recommendedProducts)) : ?>
+                  <div class="row">
+                      <?php foreach ($recommendedProducts as $product) : ?>
+                          <div class="col-lg-3 col-md-6 col-12">
+                              <div class="single-product">
+                                  <div class="product-image">
+                                      <?php $imagePath = "inserted_img/" . htmlspecialchars($product['product_picture']); ?>
+                                      <img src="<?php echo $imagePath; ?>" alt="product_img">
+                                      <?php if ($product['product_discount'] > 0) : ?>
+                                          <div class="product-discount">
+                                              <span>-<?= htmlspecialchars($product['product_discount']); ?>%</span>
+                                          </div>
+                                      <?php endif; ?>
+                                      <div class="btn-div">
+                                          <div class="shopbtn">
+                                              <button class="btn-btn" onclick="window.location.href='productDetails.php?id=<?= htmlspecialchars($product['product_id']); ?>'">
+                                                  <div class="default-btn">
+                                                      <i class="lni lni-eye"></i>
+                                                  </div>
+                                                  <div class="hover-btn">
+                                                      <span>Quick View</span>
+                                                  </div>
+                                              </button>
+                                          </div>
+                                          <div class="shopbtn">
+                                              <button class="btn-btn" onclick="window.location.href='productDetails.php?id=<?= htmlspecialchars($product['product_id']); ?>'">
+                                                  <div class="default-btn">
+                                                      <i class="lni lni-cart"></i>
+                                                  </div>
+                                                  <div class="hover-btn">
+                                                      <span>Shop now</span>
+                                                  </div>
+                                              </button>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="product-info">
+                                      <h6 class="title">
+                                          <?= htmlspecialchars($product['product_name']); ?>
+                                      </h6>
+                                      <div class="price">
+                                          <span><?php echo htmlspecialchars($product['product_price']); ?> JOD</span>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      <?php endforeach; ?>
+                  </div>
+              <?php else : ?>
+                  <p>No products available.</p>
+              <?php endif;
+          } else {
+              echo "<p>No category found for the products in the cart.</p>";
+          }
+      } else {
+          echo "<p>No products in your cart.</p>";
+      }
+      ?>
     </div>
-  </section>
+</section>
   <script type="text/javascript" src="js/mdb.min.js"></script>
     <!-- Custom scripts -->
     <script type="text/javascript" src="js/script.js"></script>

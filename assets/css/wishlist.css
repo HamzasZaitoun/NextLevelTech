@@ -1,58 +1,60 @@
 .cart-wrap {
-    padding: 40px 0;
+    padding: 40px 20px;
     font-family: 'Open Sans', sans-serif;
-    background-color: #f9f9f9;
+    background-color: #f0f0f0;
 }
 
 .main-heading {
-    font-size: 22px;
+    font-size: 24px;
     margin-bottom: 30px;
     color: #333;
     text-align: center;
     font-weight: bold;
     text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.table-wishlist {
+    overflow-x: auto; /* Enable horizontal scrolling on small screens */
 }
 
 .table-wishlist table {
     width: 100%;
     background-color: #fff;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    overflow: hidden;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    border-collapse: collapse; /* Better table spacing */
 }
 
 .table-wishlist thead {
-    background-color: #8660e9;
-    color: white;
+    background-color: #1a1a1a; /* Dark theme for headers */
+    color: #ffffff;
 }
 
 .table-wishlist thead tr th {
-    padding: 12px 0;
+    padding: 12px 15px;
     font-size: 16px;
     font-weight: 600;
     text-transform: uppercase;
 }
 
 .table-wishlist tr td {
-    padding: 20px 10px;
+    padding: 15px;
     vertical-align: middle;
     font-size: 14px;
     color: #333;
+    border-bottom: 1px solid #e0e0e0; /* Add bottom border for better separation */
 }
 
-.table-wishlist tr {
-    transition: all 0.3s ease;
+.table-wishlist tr:hover {
+    background-color: #f1f1f1; /* Highlight row on hover */
 }
 
-/* .table-wishlist tr:hover {
-        background-color: #f1f1f1;
-    } */
 .img-product {
     width: 80px;
     margin-right: 20px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
-    overflow: hidden;
 }
 
 .img-product img {
@@ -62,7 +64,7 @@
 }
 
 .img-product img:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 .name-product {
@@ -74,26 +76,33 @@
 
 .price {
     font-weight: 700;
-    color: #8660e9;
+    color: #1a1a1a;
     font-size: 18px;
 }
 
 .in-stock-box {
-    background-color: #28a745;
     font-size: 12px;
     text-align: center;
     border-radius: 25px;
-    padding: 6px 15px;
+    padding: 8px 12px; /* More padding for better touch targets */
     color: white;
     font-weight: bold;
     text-transform: uppercase;
+}
+
+.bg-green {
+    background-color: #28a745; /* Green color for in stock */
+}
+
+.bg-red {
+    background-color: #dc3545; /* Red color for out of stock */
 }
 
 .round-black-btn {
     border-radius: 25px;
     background-color: #212529;
     color: #fff;
-    padding: 8px 20px;
+    padding: 10px 20px; /* Increase padding for better touch */
     font-size: 14px;
     font-weight: 600;
     text-transform: uppercase;
@@ -101,7 +110,7 @@
 }
 
 .round-black-btn:hover {
-    background-color: #8660e9;
+    background-color: #8660e9; /* Hover effect for button */
     color: #fff;
 }
 
@@ -119,10 +128,23 @@
     text-align: center;
 }
 
-.align-center {
-    align-items: center;
-}
+@media (max-width: 768px) {
+    .main-heading {
+        font-size: 20px; /* Smaller heading on mobile */
+    }
 
 .display-flex {
     display: flex;
+}
+
+.bg-green {
+    background-color: green;
+    color: white; /* Optional: to make the text readable */
+    padding: 5px; /* Optional: add some padding */
+}
+
+.bg-red {
+    background-color: red;
+    color: white; /* Optional: to make the text readable */
+    padding: 5px; /* Optional: add some padding */
 }

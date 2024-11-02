@@ -3,7 +3,7 @@ session_start();
 include('../includes/db_class.php');
 include ('../includes/usersClass.php');
 
-$user = new User($pdo);
+$user = new User();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['email']) && isset($_POST['password'])) {
     $email = $_POST['email'];

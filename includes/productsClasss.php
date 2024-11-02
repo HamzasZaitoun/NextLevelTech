@@ -15,7 +15,8 @@ class Product {
         $stmt = $this->pdo->prepare("
     SELECT products.*, categories.category_name
     FROM products
-    JOIN categories ON products.category_id = categories.category_id
+    JOIN categories ON products.category_id 
+    = categories.category_id
     WHERE products.is_deleted = 0
 ");
 
@@ -67,11 +68,8 @@ class Product {
         ");
         $stmt->execute();
         $fetch=$stmt->fetchAll(PDO::FETCH_ASSOC);
-       
 
         return $fetch;
-
-    
     }
 
     public function lastProduct() {
@@ -104,27 +102,34 @@ class Product {
         return $stmt->fetchAll(PDO::FETCH_ASSOC); 
     }
     
-
     public function fetchRandomProducts($limit = 2) {
-        $stmt = $this->pdo->prepare("
-            SELECT * 
-            FROM products 
-            WHERE products.is_deleted = 0 
-            ORDER BY RAND() 
-            LIMIT :limit
-        ");
+        $stmt = $this->pdo->prepare("SELECT * FROM products ORDER BY RAND() LIMIT :limit");
         $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     
+    //function to get recommended products
+    function getRecommendedProducts($categoryId, $cartProductIds) {
+        if (empty($cartProductIds)) {
+            return []; // إذا كانت السلة فارغة، لا يوجد منتجات موصى بها
+        }
     
-    
-    
-    
+        $placeholders = implode(',', array_fill(0, count($cartProductIds), '?'));
+        $query = "SELECT * FROM products 
+                  WHERE category_id = ? 
+                  AND product_id NOT IN ($placeholders) 
+                  AND is_deleted = 0
+                  LIMIT 4";
 
-
-
+        $stmt = $this->pdo->prepare($query);
+    
+        $params = array_merge([$categoryId], $cartProductIds);
+    
+        $stmt->execute($params);
+    
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
     
 
 }
