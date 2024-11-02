@@ -197,6 +197,13 @@ $allOrders = $orders->getAllOrders();
     .close-btn {
         background: #db4f4f;
     }
+    .nav-link-text {
+            color: #FFFECB;
+            font-weight: bold;
+            }
+            .topbar-search-btn {
+  background: #7AB2D3;
+}
 </style>
 
 <div class="container-fluid">

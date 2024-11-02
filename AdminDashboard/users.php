@@ -28,8 +28,8 @@ $users = $user->getAllUsers();
         }
 
         .pagination .page-link {
-            color: #000;
-            background-color: #fff;
+            color: #FFFECB;
+            background-color: #FFFECB;
             padding: 10px 15px;
             text-decoration: none;
             border: 1px solid #000;
@@ -37,20 +37,31 @@ $users = $user->getAllUsers();
         }
 
         .pagination .page-item.active .page-link {
-            color: #fff;
-            background-color: #000;
+            color: #FFFECB;
+            background-color: #FFFECB;
         }
 
         .pagination .page-item.disabled .page-link {
-            color: #000;
+            color: #FFFECB;
             background-color: #fff;
         }
 
         .pagination .page-link:hover {
-            background-color: #000;
+            background-color: #FFFECB;
             color: #fff;
         }
-
+        .nav-link-text {
+            color: #FFFECB;
+            font-weight: bold;
+            }
+            .topbar-search-btn {
+                 background: #7AB2D3;
+                }   
+                .nav-link-text:hover, i:hover
+                {
+                    color: #fff870;
+                    transform: scale(1.1);
+                }
         .modal {
             display: none;
             justify-content: center;
@@ -61,14 +72,16 @@ $users = $user->getAllUsers();
             left: 0;
             width: 100%;
             background: rgba(0, 0, 0, 0.5);
+            overflow: hidden;
         }
 
         .modal-content {
-            background: #fff;
+            background-color: #7AB2D3;
             padding: 20px;
-            border-radius: 5px;
+            border-radius: 15px;
             width: 50%;
             text-align: center;
+            color: #FFFECB;
         }
 
         .close-btn {
@@ -77,11 +90,9 @@ $users = $user->getAllUsers();
             border: none;
             cursor: pointer;
             float: right;
+            border-radius: 10px;
         }
 
-        .action-buttons button {
-            margin: 0 5px;
-        }
     </style>
 </head>
 <body>
@@ -90,13 +101,11 @@ $users = $user->getAllUsers();
 
         <div class="row mb-3 ">
             <div>
-                <button type="button" class="button1" style="background-color:#000;" onclick="openAddModal()">
+                <button type="button" class="addbutton"  onclick="openAddModal()">
                     <span class="button__text">Add New User</span>
-                    <span class="button__icon" style="background-color:#000;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2"
-                             stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none">
-                            <line y2="19" y1="5" x2="12" x1="12"></line>
-                            <line y2="12" y1="12" x2="19" x1="5"></line>
+                    <span class="button__icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg">
+                        <line y2="19" y1="5" x2="12" x1="12"></line><line y2="12" y1="12" x2="19" x1="5"></line>
                         </svg>
                     </span>
                 </button>
@@ -135,10 +144,10 @@ $users = $user->getAllUsers();
                     <td data-label="Role"><?php echo htmlspecialchars($u['user_role']); ?></td>
                     <td data-label="Actions">
                         <div class="action-buttons">
-                            <button class="edit-btn" onclick="openEditModal(this, <?php echo $u['user_id']; ?>)">Edit</button>
+                            <button class="edit-btn" onclick="openEditModal(this, <?php echo $u['user_id']; ?>)"><i class="bi bi-pencil-square"></i></button>
                             <form method="POST" action="process_user.php" style="display: inline;">
                                 <input type="hidden" name="deleteUserId" value="<?php echo $u['user_id']; ?>">
-                                <button class="delete-btn" type="button" onclick="confirmDelete(this)">Delete</button>
+                                <button class="delete-btn" type="button" onclick="confirmDelete(this)"><i class="bi bi-trash"></i></button>
                             </form>
                         </div>
                     </td>
@@ -163,7 +172,7 @@ $users = $user->getAllUsers();
                     <div class="form-group"><label for="address">Address:</label><input type="text" id="address" name="editAddress" required></div>
                     <div class="form-group"><label for="editState">State:</label><select id="editState" name="editState" required><option value="active">Active</option><option value="deactivated">Deactivated</option></select></div>
                     <div class="form-group"><label for="role">Role:</label><select id="role" name="editRole" required><option value="superAdmin">Super Admin</option><option value="admin">Admin</option><option value="customer">User</option></select></div>
-                    <button class="save-btn" type="submit" style="background-color: #000; color: white; padding: 10px; border: none; cursor: pointer; width: 100px; margin-top: 20px;">Save User</button>
+                    <button class="save-btn" type="submit">Save User</button>
                 </form>
             </div>
         </div>
@@ -183,7 +192,7 @@ $users = $user->getAllUsers();
                     <div class="form-group"><label for="newAddress">Address:</label><input type="text" id="newAddress" name="newAddress" required></div>
                     <div class="form-group"><label for="newState">State:</label><select id="newState" name="newState" required><option value="active">Active</option><option value="deactivated">Deactivated</option></select></div>
                     <div class="form-group"><label for="newRole">Role:</label><select id="newRole" name="newRole" required><option value="superAdmin">Super Admin</option><option value="admin">Admin</option><option value="customer">User</option></select></div>
-                    <button class="save-btn" type="submit" style="background-color: #000; color: white; padding: 10px; border: none; cursor: pointer; width: 100px; margin-top: 20px;">Add User</button>
+                    <button class="save-btn" type="submit">Add User</button>
                 </form>
             </div>
         </div>

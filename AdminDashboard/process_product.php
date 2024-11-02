@@ -15,6 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $productCategory    = $_POST['newProductCategory'];
         $productQuantity    = $_POST['newProductQuantity'];
         $productPrice       = $_POST['newProductPrice'];
+        $productDiscount       = $_POST['newProductDiscount'];
         $productStatus      = $_POST['newProductStatus'];
 
         // Set up the target directory and file path for image upload
@@ -46,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($uploadOk == 1) {
             if (move_uploaded_file($_FILES["newProductImage"]["tmp_name"], $targetFile)) {
                 // Save the product details in the database
-                $result = $productModel->createProduct($productName, $productDescription, basename($targetFile), $productCategory, $productQuantity, $productPrice, $productStatus);
+                $result = $productModel->createProduct($productName, $productDescription, basename($targetFile), $productCategory, $productQuantity, $productPrice,$productDiscount, $productStatus);
 
                 if ($result) {
                     $_SESSION['sweetalert'] = [
@@ -83,6 +84,7 @@ if (isset($_POST['action']) && $_POST['action'] === 'edit') {
     $productCategory = intval($_POST['newProductCategory']);
     $productQuantity = intval($_POST['newProductQuantity']);
     $productPrice = floatval($_POST['newProductPrice']);
+    $productDiscount = floatval($_POST['newProductDiscount']);
     $productStatus = htmlspecialchars($_POST['newProductStatus']);
 
     // Get the old image name from the form
@@ -132,7 +134,7 @@ if (isset($_POST['action']) && $_POST['action'] === 'edit') {
 
     // Save the product details in the database
     if ($uploadOk) {
-        $result = $productModel->updateProduct($productId, $productName, $productDescription, basename($targetFile), $productCategory, $productQuantity, $productPrice, $productStatus);
+        $result = $productModel->updateProduct($productId, $productName, $productDescription, basename($targetFile), $productCategory, $productQuantity, $productPrice,$productDiscount, $productStatus);
 
         if ($result) {
             $_SESSION['sweetalert'] = [

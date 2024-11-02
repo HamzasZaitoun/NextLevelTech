@@ -52,6 +52,13 @@ $products = $productModel->getAllProducts();
         background-color: #000;
         color: #fff;
     }
+    .nav-link-text {
+            color: #FFFECB;
+            font-weight: bold;
+            }
+    .topbar-search-btn {
+        background: #7AB2D3;
+        }
     </style>
 </head>
 
@@ -62,9 +69,9 @@ $products = $productModel->getAllProducts();
 
         <div class="row">
             <div>
-                <button type="button" style="background:#000;" class="button1" onclick="openAddModal()">
+                <button type="button" class="addbutton" onclick="openAddModal()">
                     <span class="button__text">Add Product</span>
-                    <span class="button__icon" style="background:#000;"><svg xmlns="http://www.w3.org/2000/svg"
+                    <span class="button__icon" ><svg xmlns="http://www.w3.org/2000/svg"
                             width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round"
                             stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg">
                             <line y2="19" y1="5" x2="12" x1="12"></line>
@@ -84,6 +91,7 @@ $products = $productModel->getAllProducts();
                             <th>Product Category</th>
                             <th>Product Quantity</th>
                             <th>Product Price</th>
+                            <th>Product discount</th>
                             <th>Product State</th>
                             <th>Actions</th>
                         </tr>
@@ -99,17 +107,18 @@ $products = $productModel->getAllProducts();
                             <td data-label="Category"><?= htmlspecialchars($product['product_category']) ?></td>
                             <td data-label="Quantity"><?= htmlspecialchars($product['product_quantity']) ?></td>
                             <td data-label="Price"><?= htmlspecialchars($product['product_price']) ?></td>
+                            <td data-label="Discount"><?= htmlspecialchars($product['product_discount']) ?></td>
                             <td data-label="Status"><?= $product['product_state']?></td>
                             <td data-label="Actions">
                                 <div class="action-buttons">
                                     <button class="edit-btn"
-                                        onclick="document.getElementById('editModal<?= $product['product_id'] ?>').style.display='flex'">Edit</button>
+                                        onclick="document.getElementById('editModal<?= $product['product_id'] ?>').style.display='flex'"><i class="bi bi-pencil-square"></i></button>
                                     <form action="process_product.php" method="POST" style="display:inline;">
                                         <input type="hidden" name="product_id"
                                             value="<?= htmlspecialchars($product['product_id']); ?>">
                                         <input type="hidden" name="action" value="delete">
                                         <button type="button" class="delete-btn"
-                                            onclick="confirmDelete(this)">Delete</button>
+                                            onclick="confirmDelete(this)"><i class="bi bi-trash"></i></button>
                                     </form>
                                 </div>
                             </td>
@@ -179,6 +188,12 @@ $products = $productModel->getAllProducts();
                                             value="<?= htmlspecialchars($product['product_price']) ?>" step="0.01"
                                             required><br><br>
                                     </div>
+                                    <div class="form-group">
+                                        <label for="productDiscount">Product discount:</label>
+                                        <input type="number" name="newProductDiscount"
+                                            value="<?= htmlspecialchars($product['product_discount']) ?>" step="0.01"
+                                            required><br><br>
+                                    </div>
 
                                     <div class="form-group">
                                         <label for="productStatus">Product Status:</label>
@@ -191,8 +206,7 @@ $products = $productModel->getAllProducts();
                                         </select><br><br>
                                     </div>
 
-                                    <button class="save-btn edit-btn" type="submit"
-                                        style="background-color: #000; color: white; padding: 10px; border: none; cursor: pointer; width: 100px; margin-top: 20px;">Save</button>
+                                    <button class="save-btn edit-btn" type="submit">Save</button>
                                 </form>
                             </div>
                         </div>
@@ -254,15 +268,18 @@ $products = $productModel->getAllProducts();
                                         required><br><br>
                                 </div>
                                 <div class="form-group">
+                                    <label for="newProductPrice">Product discount:</label>
+                                    <input type="number" id="newProductDiscount" name="newProductDiscount" step="0.01"
+                                        required><br><br>
+                                </div>
+                                <div class="form-group">
                                     <label for="newProductStatus">Product Status:</label>
                                     <select id="newProductStatus" name="newProductStatus" required>
                                         <option value="1">In Stock</option>
                                         <option value="0">Out of Stock</option>
                                     </select><br><br>
                                 </div>
-                                <button class="save-btn edit-btn" type="submit"
-                                    style="background-color: #000; color: white; padding: 10px; border: none; cursor: pointer; width: 100px; margin-top: 20px; font-size: 14px;">Add
-                                    Product</button>
+                                <button class="save-btn edit-btn" type="submit"> Add Product</button>
                             </form>
                         </div>
                     </div>
