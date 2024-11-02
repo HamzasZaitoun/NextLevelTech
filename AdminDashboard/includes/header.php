@@ -34,35 +34,23 @@
         }
 
         .sidebar-bg {
-            background: #ffffff;
+            background: #4A628A;
         }
-
-        .sidebar-text {
-            color: #000;
-        }
-
-        .sidebar-heading {
-            color: #000;
-        }
-
         .nav-link-text {
-            color: #000;
+            color: #FFFECB;
             font-weight: bold;
+            }
+        .nav-link-text:hover, i:hover
+        {
+            color: #fff870;
+            transform: scale(1.1);
         }
 
         .topbar-bg {
-            background: #ffffff;
+            background: #4A628A;
         }
 
-        .topbar-search-btn {
-            background: #000;
-        }
-        .sidebar-dark .nav-item .nav-link i{
-    color: black !important;
-                        }
-                        .sidebar-text {
-  color: #FFFECB;
-}
+     
     </style>
 </head>
 
@@ -271,26 +259,6 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_2.svg" alt="...">
-                                        <div class="status-indicator"></div>
-                                    </div>
-                                    <div class="font-weight-bold">
-                                        <div class="text-truncate">I have the photos that you ordered last month!</div>
-                                        <div class="small text-gray-500">Jae Chun · 1d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_2.svg" alt="...">
-                                        <div class="status-indicator"></div>
-                                    </div>
-                                    <div class="font-weight-bold">
-                                        <div class="text-truncate">I have the photos that you ordered last month!</div>
-                                        <div class="small text-gray-500">Jae Chun · 1d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
                                         <img class="rounded-circle" src="img/undraw_profile_3.svg" alt="...">
                                         <div class="status-indicator bg-warning"></div>
                                     </div>
@@ -299,10 +267,9 @@
                                         <div class="small text-gray-500">Morgan Alvarez · 2d</div>
                                     </div>
                                 </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="contactMessages.php">Read More Messages</a>
+                                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
                             </div>
                         </li>
-                        <div class="topbar-divider d-none d-sm-block"></div>
                         <div class="topbar-divider d-none d-sm-block"></div>
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
@@ -326,7 +293,25 @@
                         </li>
                     </ul>
                 </nav>
-                
+                 <!-- Logout Modal-->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content-logout">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <a class="btn btn-primary" href="login.php">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

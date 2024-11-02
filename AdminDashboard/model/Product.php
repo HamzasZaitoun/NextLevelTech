@@ -35,9 +35,9 @@ class Product {
         return $stmt->fetch(PDO::FETCH_ASSOC)['total'];
     }
 
-    public function createProduct($name, $description, $image, $categoryId, $quantity, $price,$discount, $status) {
-        $sql = "INSERT INTO products (product_name, product_description, product_picture, category_id, product_quantity, product_price,product_discount, product_state) 
-                VALUES (:name, :description, :image, :categoryId, :quantity, :price,:discount,:status)";
+    public function createProduct($name, $description, $image, $categoryId, $quantity, $price, $status) {
+        $sql = "INSERT INTO products (product_name, product_description, product_picture, category_id, product_quantity, product_price, product_state) 
+                VALUES (:name, :description, :image, :categoryId, :quantity, :price, :status)";
 
         $stmt = $this->conn->prepare($sql);
         
@@ -47,13 +47,12 @@ class Product {
         $stmt->bindParam(':categoryId', $categoryId);
         $stmt->bindParam(':quantity', $quantity);
         $stmt->bindParam(':price', $price);
-        $stmt->bindParam(':discount', $discount);
         $stmt->bindParam(':status', $status);
 
         return $stmt->execute();
     }
 
-    public function updateProduct($id, $name, $description, $image, $categoryId, $quantity, $price,$discount, $status) {
+    public function updateProduct($id, $name, $description, $image, $categoryId, $quantity, $price, $status) {
         $sql = "UPDATE products SET 
                 product_name = :name, 
                 product_description = :description, 
@@ -61,7 +60,6 @@ class Product {
                 category_id = :categoryId, 
                 product_quantity = :quantity, 
                 product_price = :price, 
-                product_discount = :discount, 
                 product_state = :status 
                 WHERE product_id = :id";
 
@@ -74,7 +72,6 @@ class Product {
         $stmt->bindParam(':categoryId', $categoryId);
         $stmt->bindParam(':quantity', $quantity);
         $stmt->bindParam(':price', $price);
-        $stmt->bindParam(':discount', $discount);
         $stmt->bindParam(':status', $status);
 
         return $stmt->execute();

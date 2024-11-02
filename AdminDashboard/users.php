@@ -54,14 +54,11 @@ $users = $user->getAllUsers();
             color: #FFFECB;
             font-weight: bold;
             }
-            .topbar-search-btn {
-                 background: #7AB2D3;
-                }   
-                .nav-link-text:hover, i:hover
-                {
-                    color: #fff870;
-                    transform: scale(1.1);
-                }
+        .nav-link-text:hover, i:hover
+        {
+            color: #fff870;
+            transform: scale(1.1);
+        }
         .modal {
             display: none;
             justify-content: center;

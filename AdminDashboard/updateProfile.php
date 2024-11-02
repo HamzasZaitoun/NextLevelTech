@@ -9,6 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         'last_name' => $_POST['last_name'],
         'email' => $_POST['email'],
         'phone' => $_POST['phone'],
+        'mobile' => $_POST['mobile'],
         'address' => $_POST['address'],
         'user_id' => $_SESSION['user_id'] // Use the session user_id directly
     ];
@@ -17,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $user = new User();
 
     // Update user profile with the provided data
-    $updateSuccess = $user->updateAdmin($userData);
+    $updateSuccess = $user->updateUser($userData);
 
     // Check if the update was successful
     if ($updateSuccess) {

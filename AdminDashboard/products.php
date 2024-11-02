@@ -91,7 +91,6 @@ $products = $productModel->getAllProducts();
                             <th>Product Category</th>
                             <th>Product Quantity</th>
                             <th>Product Price</th>
-                            <th>Product discount</th>
                             <th>Product State</th>
                             <th>Actions</th>
                         </tr>
@@ -107,7 +106,6 @@ $products = $productModel->getAllProducts();
                             <td data-label="Category"><?= htmlspecialchars($product['product_category']) ?></td>
                             <td data-label="Quantity"><?= htmlspecialchars($product['product_quantity']) ?></td>
                             <td data-label="Price"><?= htmlspecialchars($product['product_price']) ?></td>
-                            <td data-label="Discount"><?= htmlspecialchars($product['product_discount']) ?></td>
                             <td data-label="Status"><?= $product['product_state']?></td>
                             <td data-label="Actions">
                                 <div class="action-buttons">
@@ -188,12 +186,6 @@ $products = $productModel->getAllProducts();
                                             value="<?= htmlspecialchars($product['product_price']) ?>" step="0.01"
                                             required><br><br>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="productDiscount">Product discount:</label>
-                                        <input type="number" name="newProductDiscount"
-                                            value="<?= htmlspecialchars($product['product_discount']) ?>" step="0.01"
-                                            required><br><br>
-                                    </div>
 
                                     <div class="form-group">
                                         <label for="productStatus">Product Status:</label>
@@ -265,11 +257,6 @@ $products = $productModel->getAllProducts();
                                 <div class="form-group">
                                     <label for="newProductPrice">Product Price:</label>
                                     <input type="number" id="newProductPrice" name="newProductPrice" step="0.01"
-                                        required><br><br>
-                                </div>
-                                <div class="form-group">
-                                    <label for="newProductPrice">Product discount:</label>
-                                    <input type="number" id="newProductDiscount" name="newProductDiscount" step="0.01"
                                         required><br><br>
                                 </div>
                                 <div class="form-group">

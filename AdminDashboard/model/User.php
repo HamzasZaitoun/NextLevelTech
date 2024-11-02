@@ -125,24 +125,5 @@ class User {
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
-    public function updateAdmin($data) {
-        $query = "UPDATE users SET 
-                  user_first_name = :first_name, 
-                  user_last_name = :last_name, 
-                  user_email = :email, 
-                  user_phone_number = :phone, 
-                  user_address = :address     
-                  WHERE user_id = :user_id";
-    
-        $stmt = $this->conn->prepare($query);
-        // Bind parameters
-        $stmt->bindParam(':first_name', $data['first_name']);
-        $stmt->bindParam(':last_name', $data['last_name']);
-        $stmt->bindParam(':email', $data['email']);
-        $stmt->bindParam(':phone', $data['phone']);
-        $stmt->bindParam(':address', $data['address']);
-        $stmt->bindParam(':user_id', $data['user_id']); // Bind user_id for the WHERE clause
-        return $stmt->execute(); // Execute and return true/false
-    }
 }
 ?>
