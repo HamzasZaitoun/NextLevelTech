@@ -48,12 +48,10 @@ $wishlistItems = $wishlist->getAllProductsFromWishlist($user_id);
                                     <tr>
                                         <td><?= htmlspecialchars($product['product_name']); ?></td>
                                         <td class="price"><?= htmlspecialchars($product['product_price']); ?> JOD</td>
-                                        <td>
-                                            <span class="in-stock-box <?= strtolower(trim($product['product_state'])) === 'in stock' ? 'bg-green' : 'bg-red'; ?>">
-                                                <?= htmlspecialchars($product['product_state']); ?>
+                                        <td><span class="in-stock-box <?= htmlspecialchars($product['product_state']) === 'in stock' ? 'bg-green' : 'bg-red'; ?>">
+                                            <?= htmlspecialchars($product['product_state']); ?>
                                             </span>
                                         </td>
-
                                         <?php $imagePath = "inserted_img/" . htmlspecialchars($product['product_picture'] ?? 'default.png'); ?>
                                         <td><img src="<?= $imagePath; ?>" alt="Product Image"  class="category-image"></td>
                                         <td><button class="round-black-btn small-btn">Add to Cart</button></td>

@@ -9,6 +9,7 @@ if (!isset($_SESSION['user_id'])) {
 
 include('./includes/db_class.php');
 include('./includes/usersClass.php');
+include('./includes/cartClass.php');
 
 $userId = $_SESSION['user_id'];
 
@@ -25,6 +26,11 @@ if ($userData) {
   $address = htmlspecialchars($userData['user_address']);
   $gender = htmlspecialchars($userData['user_gender']);
 }
+
+$cart = new Cart(); 
+
+$orderHistory = $cart->getOrderHistory($userId);
+
 ?>
 
 

@@ -195,16 +195,15 @@ if ($productId) {
                                     </div>
 
                                     <!-- Add to Wishlist Button -->
-                                    <div class="col-lg-4 col-md-4 col-12">
+                             <div class="col-lg-4 col-md-4 col-12"> 
                                         <form id="add-to-wishlist-form">
-                                            <input type="hidden" name="product_id"
-                                                value="<?= $product['product_id']; ?>">
-                                            <button type="button" class="btn btn-secondary" id="add-to-wishlist-btn"><i
-                                                    class="lni lni-heart"></i> To Wishlist</button>
+                                            <input type="hidden" name="product_id" value="<?= $product['product_id']; ?>">
+                                            <button type="button" class="btn btn-secondary" id="add-to-wishlist-btn">
+                                                <i class="lni lni-heart"></i> To Wishlist
+                                            </button>
                                         </form>
                                         <div id="wishlist-response" class="mt-2"></div>
-                                        <!-- Display success message for wishlist -->
-                                    </div>
+                                    </div> 
 
                                     <!-- Compare Button -->
                                     <!-- <div class="col-lg-4 col-md-4 col-12">
@@ -217,65 +216,57 @@ if ($productId) {
 
                             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                             <script>
-                            $(document).ready(function() {
-                                // Add to Cart AJAX
-                                $('#add-to-cart-btn').on('click', function() {
-                                    const product_id = $('input[name="product_id"]').val();
-                                    const quantity = $('#quantity-select').val() || 1;
+$(document).ready(function() {
+    // Add to Cart AJAX
+    $('#add-to-cart-btn').on('click', function() {
+        const product_id = $('input[name="product_id"]').val();
+        const quantity = $('#quantity-select').val() || 1; // Default to 1 if no quantity is selected
 
-                                    $.ajax({
-                                        url: 'cart.php',
-                                        type: 'POST',
-                                        data: {
-                                            product_id: product_id,
-                                            quantity: quantity,
-                                            add_to_cart: true
-                                        },
-                                        success: function(response) {
-                                            $('#cart-response').html(
-                                                '<span class="text-success">Item added to cart!</span>'
-                                                );
-                                            setTimeout(function() {
-                                                $('#cart-response').fadeOut('slow');
-                                            }, 2000);
-                                        },
-                                        error: function() {
-                                            $('#cart-response').html(
-                                                '<span class="text-danger">Failed to add item to cart. Try again.</span>'
-                                                );
-                                        }
-                                    });
-                                });
+        $.ajax({
+            url: 'cart.php',
+            type: 'POST',
+            data: {
+                product_id: product_id,
+                quantity: quantity,
+                add_to_cart: true
+            },
+            success: function(response) {
+                $('#cart-response').html('<span class="text-success">Item added to cart!</span>');
+                setTimeout(function() {
+                    $('#cart-response').fadeOut('slow');
+                }, 2000);
+            },
+            error: function() {
+                $('#cart-response').html('<span class="text-danger">Failed to add item to cart. Try again.</span>');
+            }
+        });
+    });
 
-                                // Add to Wishlist AJAX
-                                $('#add-to-wishlist-btn').on('click', function() {
-                                    const product_id = $('input[name="product_id"]').val();
+    // Add to Wishlist AJAX
+    $('#add-to-wishlist-btn').on('click', function() {
+        const product_id = $('input[name="product_id"]').val();
 
-                                    $.ajax({
-                                        url: 'wishlist.php',
-                                        type: 'POST',
-                                        data: {
-                                            product_id: product_id,
-                                            add_to_wishlist: true
-                                        },
-                                        success: function(response) {
-                                            $('#wishlist-response').html(
-                                                '<span class="text-success">Item added to wishlist!</span>'
-                                                );
-                                            setTimeout(function() {
-                                                $('#wishlist-response').fadeOut(
-                                                    'slow');
-                                            }, 2000);
-                                        },
-                                        error: function() {
-                                            $('#wishlist-response').html(
-                                                '<span class="text-danger">Failed to add item to wishlist. Try again.</span>'
-                                                );
-                                        }
-                                    });
-                                });
-                            });
-                            </script>
+        $.ajax({
+            url: 'wishList.php',
+            type: 'POST',
+            data: {
+                product_id: product_id,
+                add_to_wishlist: true
+            },
+            success: function(response) {
+                $('#wishlist-response').html('<span class="text-success">Item added to wishlist!</span>');
+                setTimeout(function() {
+                    $('#wishlist-response').fadeOut('slow');
+                }, 2000);
+            },
+            error: function() {
+                $('#wishlist-response').html('<span class="text-danger">Failed to add item to wishlist. Try again.</span>');
+            }
+        });
+    });
+});
+</script>
+
 
     </section>
     <!-- <div class="product-details-info">

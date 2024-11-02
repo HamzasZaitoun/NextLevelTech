@@ -133,16 +133,18 @@
         font-size: 20px; /* Smaller heading on mobile */
     }
 
-    .table-wishlist tr td {
-        font-size: 12px; /* Smaller font size for mobile */
-        padding: 10px; /* Reduce padding for mobile */
-    }
+.display-flex {
+    display: flex;
+}
 
-    .img-product {
-        width: 60px; /* Smaller product image on mobile */
-    }
+.bg-green {
+    background-color: green;
+    color: white; /* Optional: to make the text readable */
+    padding: 5px; /* Optional: add some padding */
+}
 
-    .round-black-btn {
-        padding: 8px 16px; /* Adjust button padding for mobile */
-    }
+.bg-red {
+    background-color: red;
+    color: white; /* Optional: to make the text readable */
+    padding: 5px; /* Optional: add some padding */
 }
