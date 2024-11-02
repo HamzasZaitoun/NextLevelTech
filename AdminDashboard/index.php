@@ -1,5 +1,5 @@
 <?php
-include("includes/header.php")
+include("includes/header.php");
 ?>
                 <!-- Begin Page Content -->
                 <div class="container-fluid">

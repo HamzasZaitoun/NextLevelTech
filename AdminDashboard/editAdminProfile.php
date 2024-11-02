@@ -1,9 +1,42 @@
 <?php
-include 'includes/header.php';
-?>
-<style>
+ob_start(); // Start output buffering
+session_start(); // Ensure the session is started
 
+include 'includes/header.php'; // Include your header file
+require_once 'model/User.php';
+// Check if the user is logged in
+if (!isset($_SESSION['user_id'])) {
+    $_SESSION['error'] = 'How did you get here without logging in!';
+    header("location: login.php");
+    exit();
+} else {
+    $user_id = $_SESSION['user_id'];
+    $user = new User();
+    $userDetails = $user->getUserById($user_id);
+    
+    if (!$userDetails) {
+        echo "Error fetching user details.";
+        exit();
+    }
+}
+?>
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+    .container {
+        margin-top: 20px;
+    }
+    .card {
+        border: 1px solid #e9ecef;
+        border-radius: 0.5rem;
+    }
+    .breadcrumb {
+        background-color: transparent;
+    }
 </style>
+
 <div class="container">
     <div class="main-body">
 
@@ -23,10 +56,9 @@ include 'includes/header.php';
                         <div class="d-flex flex-column align-items-center text-center">
                             <img src="img/adminpic.jpg" alt="Admin" class="rounded-circle" width="150">
                             <div class="mt-3">
-                                <h4>John Doe</h4>
+                                <h4><?php echo htmlspecialchars($userDetails['user_first_name'] . ' ' . $userDetails['user_last_name']); ?></h4>
                                 <p class="text-secondary mb-1">Full Stack Developer</p>
                                 <p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
-                               
                             </div>
                         </div>
                     </div>
@@ -36,57 +68,63 @@ include 'includes/header.php';
             <div class="col-md-8">
                 <div class="card mb-3">
                     <div class="card-body">
-                        <div class="row mb-3">
-                            <div class="col-sm-3">
-                                <h6 class="mb-0">Full Name</h6>
+                        <form method="POST" action="updateAdminProfile.php"> <!-- Assuming you have an update profile script -->
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">First Name</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="text" class="form-control" name="first_name" value="<?php echo htmlspecialchars($userDetails['user_first_name']); ?>">
+                                </div>
                             </div>
-                            <div class="col-sm-9 text-secondary"> <input type="text" class="form-control" value="John Doe"></div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-sm-3">
-                                <h6 class="mb-0">Email</h6>
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Last Name</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="text" class="form-control" name="last_name" value="<?php echo htmlspecialchars($userDetails['user_last_name']); ?>">
+                                </div>
                             </div>
-                            <div class="col-sm-9 text-secondary"> <input type="text" class="form-control" value="john@example.com"></div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-sm-3">
-                                <h6 class="mb-0">Phone</h6>
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Email</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="email" class="form-control" name="email" value="<?php echo htmlspecialchars($userDetails['user_email']); ?>">
+                                </div>
                             </div>
-                            <div class="col-sm-9 text-secondary"> <input type="text" class="form-control" value="(239) 816-9029"></div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-sm-3">
-                                <h6 class="mb-0">Mobile</h6>
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Phone</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="text" class="form-control" name="phone" value="<?php echo htmlspecialchars($userDetails['user_phone_number']); ?>">
+                                </div>
                             </div>
-                            <div class="col-sm-9 text-secondary"> <input type="text" class="form-control" value="(320) 380-4539"></div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-sm-3">
-                                <h6 class="mb-0">Address</h6>
-                            </div>
-                            <div class="col-sm-9 text-secondary"> <input type="text" class="form-control" value="Bay Area, San Francisco, CA"></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3"></div>
-                            <div class="col-sm-9 text-secondary"> <input type="button" class="btn btn-primary px-4" value="Save Changes"></div>
-                        </div>
-                    </div>
-
-
-                    <div class="row gutters-sm">
-                        <div class="col-sm-6 mb-3">
                             
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Address</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="text" class="form-control" name="address" value="<?php echo htmlspecialchars($userDetails['user_address']); ?>">
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-sm-6 mb-3">
-                            
-                        </div>
+                            <div class="row">
+                                <div class="col-sm-3"></div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="submit" class="btn btn-primary px-4" value="Save Changes">
+                                </div>
+                            </div>
+                        </form>
                     </div>
-
-
-
                 </div>
             </div>
 
         </div>
     </div>
+</div>
+
+<?php
+ob_end_flush(); // End output buffering and flush the output
+?>
