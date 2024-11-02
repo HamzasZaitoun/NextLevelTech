@@ -18,6 +18,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_wishlist']) &&
     exit;
 }
 
+
+
+
 // Retrieve wishlist items
 $wishlistItems = $wishlist->getAllProductsFromWishlist($user_id);
 ?>
