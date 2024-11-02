@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 ?>
 
 <!DOCTYPE html>
@@ -402,6 +404,7 @@ session_start();
                                     <?php else: ?>
                                         <a href="/NextLevelTech main main/login/login.php">Login</a>
                                         <a href="/NextLevelTech main main/login/registration.php">Register</a>
+
                                     <?php endif; ?>
 
                                 </div>

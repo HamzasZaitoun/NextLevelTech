@@ -259,7 +259,7 @@
                                             
                                                 <div class="shopbtn">
                                                 <form id="add-to-wishlist-form">
-                                                <input type="hidden" name="product_id" value="<?= $product['product_id']; ?>">
+                                                        <input type="hidden" name="product_id" value="<?= $product['product_id']; ?>">
                                                     <button id="add-to-wishlist-btn" type="button" class="btn-btn"
                                                         onclick="window.location.href='wishList.php?id=<?= htmlspecialchars($product['product_id']); ?>'">
                                                         <div class="default-btn">
