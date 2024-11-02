@@ -45,12 +45,13 @@ if (isset($_GET['filter'])) {
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.svg" />
 
     <!-- ========================= CSS here ========================= -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <!-- <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
     <link rel="stylesheet" href="assets/css/LineIcons.3.0.css" />
     <link rel="stylesheet" href="assets/css/tiny-slider.css" />
-    <link rel="stylesheet" href="assets/css/glightbox.min.css" />
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> <!-- bootstrap link -->
+    <link rel="stylesheet" href="assets/css/glightbox.min.css" /> -->
+    <!-- <link rel="stylesheet" href="assets/css/main.css" /> -->
+    <link rel="stylesheet" href="trendingProducts.css">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">  -->
 
 
 </head>
@@ -76,231 +77,8 @@ if (isset($_GET['filter'])) {
     <!-- /End Preloader -->
 
     <!-- Start Header Area -->
-    <header class="header navbar-area">
-        <!-- Start Header Middle -->
-        <div class="header-middle">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-3 col-md-3 col-7">
-                        <!-- Start Header Logo -->
-                        <a class="navbar-brand" href="index.php">
-                            <img src="assets/images/logo/logo.svg" alt="Logo">
-                        </a>
-                        <!-- End Header Logo -->
-                    </div>
-
-
-                    <div class="col-lg-5 col-md-7 d-xs-none">
-                        <div class="main-menu-search">
-                            <div class="navbar-search search-style-5">
-                                <div class="search-input">
-                                    <form method="GET" style="display: flex; align-items: center;">
-                                        <input type="text" name="search" placeholder="Search..." style="flex: 1; padding: 8px; font-size: 16px;">
-                                        <button class="search-button" type="submit" name="btn-search" style="  font-size: 18px; border: 0; border-radius: 0 4px 4px 0; border: 0; background-color: #0167F3; color: #fff; width: 45px; height: 45px; ">
-                                            <i class="lni lni-search-alt"></i>
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                    <div class="col-lg-4 col-md-2 col-5">
-                        <div class="middle-right-area">
-
-                            <div class="navbar-cart">
-                                <div class="wishlist">
-                                    <a href="javascript:void(0)">
-                                        <i class="lni lni-heart"></i>
-                                        <span class="total-items">0</span>
-                                    </a>
-                                </div>
-                                <div class="cart-items">
-                                    <a href="javascript:void(0)" class="main-btn">
-                                        <i class="lni lni-cart"></i>
-                                        <span class="total-items">2</span>
-                                    </a>
-                                    <!-- Shopping Item -->
-                                    <div class="shopping-item">
-                                        <div class="dropdown-cart-header">
-                                            <span>2 Items</span>
-                                            <a href="cart.php">View Cart</a>
-                                        </div>
-                                        <ul class="shopping-list">
-                                            <li>
-                                                <a href="javascript:void(0)" class="remove" title="Remove this item"><i
-                                                        class="lni lni-close"></i></a>
-                                                <div class="cart-img-head">
-                                                    <a class="cart-img" href="product-details.php"><img
-                                                            src="assets/images/header/cart-items/item1.jpg" alt="#"></a>
-                                                </div>
-
-                                                <div class="content">
-                                                    <h4><a href="product-details.php">
-                                                            Apple Watch Series 6</a></h4>
-                                                    <p class="quantity">1x - <span class="amount">$99.00</span></p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:void(0)" class="remove" title="Remove this item"><i
-                                                        class="lni lni-close"></i></a>
-                                                <div class="cart-img-head">
-                                                    <a class="cart-img" href="product-details.php"><img
-                                                            src="assets/images/header/cart-items/item2.jpg" alt="#"></a>
-                                                </div>
-                                                <div class="content">
-                                                    <h4><a href="product-details.php">Wi-Fi Smart Camera</a></h4>
-                                                    <p class="quantity">1x - <span class="amount">$35.00</span></p>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                        <div class="bottom">
-                                            <div class="total">
-                                                <span>Total</span>
-                                                <span class="total-amount">$134.00</span>
-                                            </div>
-                                            <div class="button">
-                                                <a href="checkout.php" class="btn animate">Checkout</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--/ End Shopping Item -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Header Middle -->
-        <!-- Start Header Bottom -->
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-8 col-md-6 col-12">
-                    <div class="nav-inner">
-                        <!-- Start Mega Category Menu -->
-                        <div class="mega-category-menu">
-                            <span class="cat-button"><i class="lni lni-menu"></i>All Categories</span>
-                            <ul class="sub-category">
-                                <li><a href="product-grids.php">Electronics <i class="lni lni-chevron-right"></i></a>
-                                    <ul class="inner-sub-category">
-                                        <li><a href="product-grids.php">Digital Cameras</a></li>
-                                        <li><a href="product-grids.php">Camcorders</a></li>
-                                        <li><a href="product-grids.php">Camera Drones</a></li>
-                                        <li><a href="product-grids.php">Smart Watches</a></li>
-                                        <li><a href="product-grids.php">Headphones</a></li>
-                                        <li><a href="product-grids.php">MP3 Players</a></li>
-                                        <li><a href="product-grids.php">Microphones</a></li>
-                                        <li><a href="product-grids.php">Chargers</a></li>
-                                        <li><a href="product-grids.php">Batteries</a></li>
-                                        <li><a href="product-grids.php">Cables & Adapters</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="product-grids.php">accessories</a></li>
-                                <li><a href="product-grids.php">Televisions</a></li>
-                                <li><a href="product-grids.php">best selling</a></li>
-                                <li><a href="product-grids.php">top 100 offer</a></li>
-                                <li><a href="product-grids.php">sunglass</a></li>
-                                <li><a href="product-grids.php">watch</a></li>
-                                <li><a href="product-grids.php">man’s product</a></li>
-                                <li><a href="product-grids.php">Home Audio & Theater</a></li>
-                                <li><a href="product-grids.php">Computers & Tablets </a></li>
-                                <li><a href="product-grids.php">Video Games </a></li>
-                                <li><a href="product-grids.php">Home Appliances </a></li>
-                            </ul>
-                        </div>
-                        <!-- End Mega Category Menu -->
-                        <!-- Start Navbar -->
-                        <nav class="navbar navbar-expand-lg">
-                            <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                                aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="toggler-icon"></span>
-                                <span class="toggler-icon"></span>
-                                <span class="toggler-icon"></span>
-                            </button>
-                            <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
-                                <ul id="nav" class="navbar-nav ms-auto">
-                                    <li class="nav-item">
-                                        <a href="index.php" aria-label="Toggle navigation">Home</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
-                                            data-bs-target="#submenu-1-2" aria-controls="navbarSupportedContent"
-                                            aria-expanded="false" aria-label="Toggle navigation">Pages</a>
-                                        <ul class="sub-menu collapse" id="submenu-1-2">
-                                            <li class="nav-item"><a href="about-us.php">About Us</a></li>
-                                            <li class="nav-item"><a href="faq.php">Faq</a></li>
-                                            <li class="nav-item"><a href="login.php">Login</a></li>
-                                            <li class="nav-item"><a href="register.php">Register</a></li>
-                                            <li class="nav-item"><a href="mail-success.php">Mail Success</a></li>
-                                            <li class="nav-item"><a href="404.php">404 Error</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="dd-menu active collapsed" href="javascript:void(0)"
-                                            data-bs-toggle="collapse" data-bs-target="#submenu-1-3"
-                                            aria-controls="navbarSupportedContent" aria-expanded="false"
-                                            aria-label="Toggle navigation">Shop</a>
-                                        <ul class="sub-menu collapse" id="submenu-1-3">
-                                            <li class="nav-item"><a href="product-grids.php">Shop Grid</a></li>
-                                            <li class="nav-item"><a href="product-list.php">Shop List</a></li>
-                                            <li class="nav-item active"><a href="product-details.php">shop Single</a>
-                                            </li>
-                                            <li class="nav-item"><a href="cart.php">Cart</a></li>
-                                            <li class="nav-item"><a href="checkout.php">Checkout</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
-                                            data-bs-target="#submenu-1-4" aria-controls="navbarSupportedContent"
-                                            aria-expanded="false" aria-label="Toggle navigation">Blog</a>
-                                        <ul class="sub-menu collapse" id="submenu-1-4">
-                                            <li class="nav-item"><a href="blog-grid-sidebar.php">Blog Grid Sidebar</a>
-                                            </li>
-                                            <li class="nav-item"><a href="blog-single.php">Blog Single</a></li>
-                                            <li class="nav-item"><a href="blog-single-sidebar.php">Blog Single
-                                                    Sibebar</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="contact.php" aria-label="Toggle navigation">Contact Us</a>
-                                    </li>
-                                </ul>
-                            </div> <!-- navbar collapse -->
-                        </nav>
-                        <!-- End Navbar -->
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-12">
-                    <!-- Start Nav Social -->
-                    <div class="nav-social">
-                        <h5 class="title">Follow Us:</h5>
-                        <ul>
-                            <li>
-                                <a href="javascript:void(0)"><i class="lni lni-facebook-filled"></i></a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)"><i class="lni lni-twitter-original"></i></a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)"><i class="lni lni-instagram"></i></a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)"><i class="lni lni-skype"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- End Nav Social -->
-                </div>
-            </div>
-        </div>
-        <!-- Start Header Bottom -->
-    </header>
     <!-- End Header Area -->
-
+<?php include 'includes/header.php'; ?>
     <!-- Start Breadcrumbs -->
     <div class="breadcrumbs">
         <div class="container">
@@ -335,7 +113,98 @@ if (isset($_GET['filter'])) {
     <!-- End Breadcrumbs -->
 
     <!-- Start Products Area -->
-    <section class="trending-product section" style="margin-top: 12px;">
+<!-- ....................................................................... -->
+
+
+<section id="products" class="trending-product section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-title">
+                            <h2>Products</h2>
+                            <p>Discover our products, carefully curated to enhance your gaming experience.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <?php
+                $trendingProductObj = new Product();
+                $trendingProducts = $trendingProductObj->getAllProducts();
+
+                if (!empty($trendingProducts)) : ?>
+                        <div class="row">
+                            <?php foreach ($trendingProducts as $product) : ?>
+                            <div class="col-lg-3 col-md-6 col-12">
+                                <div class="single-product">
+                                    <div class="product-image">
+                                        <?php $imagePath="inserted_img/".($product['product_picture']);?>
+                                        <img src="<?php echo htmlspecialchars($imagePath); ?>" alt="product_img">
+                                        <?php if ($product['product_discount'] > 0) : ?>
+                                        <div class="product-discount">
+                                            <span>-<?= htmlspecialchars($product['product_discount']);?>%</span>
+                                        </div>
+                                        <?php endif; ?>
+                                        <div class="btn-div">
+                                            <div class="shopbtn">
+                                                <button class="btn-btn"
+                                                    onclick="window.location.href='productDetails.php?id=<?= htmlspecialchars($product['product_id']); ?>'">
+                                                    <div class="default-btn">
+                                                        <i class="lni lni-eye"></i>
+                                                    </div>
+                                                    <div class="hover-btn">
+                                                        <span>Quick View</span>
+                                                    </div>
+                                                </button>
+                                            </div>
+                                            <div class="shopbtn">
+                                                <button class="btn-btn"
+                                                    onclick="window.location.href='productDetails.php?id=<?= htmlspecialchars($product['product_id']); ?>'">
+                                                    <div class="default-btn">
+                                                        <i class="lni lni-cart"></i>
+                                                    </div>
+                                                    <div class="hover-btn">
+                                                        <span>Shop now</span>
+                                                    </div>
+                                                </button>
+                                            </div>
+                                            <!-- add to wish list button -->
+                                            <div class="shopbtn">
+                                                <button class="btn-btn"
+                                                    onclick="window.location.href='productDetails.php?id=<?= htmlspecialchars($product['product_id']); ?>'">
+                                                    <div class="default-btn">
+                                                        <i class="lni lni-heart"></i>
+                                                    </div>
+                                                    <div class="hover-btn">
+                                                        <span>add to wish list</span>
+                                                    </div>
+                                                </button>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                    <div class="product-info">
+                                        <h6 class="title">
+                                            <?= htmlspecialchars($product['product_name']); ?>
+                                        </h6>
+                                        <div class="price">
+                                            <span><?php echo htmlspecialchars($product['product_price']); ?> JOD</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php endforeach; ?>
+                        </div>
+                        <?php else : ?>
+                        <p>No products available.</p>
+                        <?php endif; ?>
+                    </div>
+        </section>
+
+
+
+<!-- ......................................................................... -->
+    <!-- <section class="trending-product section" style="margin-top: 12px;">
         <div class="container">
             <div class="row">
                 <?php if (!empty($products)) : ?>
@@ -372,7 +241,7 @@ if (isset($_GET['filter'])) {
                 <?php endif; ?>
             </div>
         </div>
-    </section>
+    </section> -->
 
 
     <!-- Start Footer Area -->

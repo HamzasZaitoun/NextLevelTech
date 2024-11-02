@@ -1,3 +1,9 @@
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,276 +21,288 @@
     <link rel="stylesheet" href="assets/css/glightbox.min.css" />
     <link rel="stylesheet" href="assets/css/main.css" />
     <style>
-    .navbar-nav {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-    }
-
-    .nav-item a {
-        text-align: center;
-        margin: 0 15px;
-    }
-
-
-    <>
-
-    /* Style for the Login Button */
-    .gaming-button {
-        background-color: #629584;
-        color: #fff;
-        font-weight: bold;
-        padding: 8px 16px;
-        /* Reduced padding for a smaller button */
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        /* Reduced border size */
-        border-radius: 8px;
-        /* Adjusted border-radius for a smaller button */
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        transition: transform 0.2s, box-shadow 0.3s, border-color 0.3s;
-        position: relative;
-        overflow: hidden;
-        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3), 0 0 6px rgba(98, 149, 132, 0.6);
-        /* Adjusted box-shadow for a smaller button */
-    }
-
-    .gaming-button::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(45deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
-        opacity: 0;
-        transition: opacity 0.3s;
-        border-radius: inherit;
-    }
-
-    .gaming-button:hover {
-        background-color: #4a7a6c;
-        transform: scale(1.05);
-        /* Slightly reduced scaling */
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 10px rgba(98, 149, 132, 0.8);
-        /* Adjusted box-shadow for hover */
-        border-color: rgba(255, 255, 255, 0.5);
-    }
-
-    .gaming-button:hover::before {
-        opacity: 1;
-        animation: shimmer 1.5s infinite;
-    }
-
-    .gaming-button:active {
-        transform: scale(0.95);
-        /* Slightly reduced scaling for active state */
-        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4), 0 0 6px rgba(98, 149, 132, 0.7);
-        /* Adjusted box-shadow for active state */
-    }
-
-
-    /* Shimmer Animation */
-    @keyframes shimmer {
-        0% {
-            transform: translateX(-100%);
+        .navbar-nav {
+            display: flex;
+            justify-content: center;
+            width: 100%;
         }
 
-        100% {
-            transform: translateX(100%);
+        .nav-item a {
+            text-align: center;
+            margin: 0 15px;
         }
-    }
 
 
-    /* Main Container Style */
-    .navbar-cart {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        /* Space between items */
-    }
 
-    /* Wishlist Icon */
-    .wishlist a,
-    .cart-items a,
-    .profile-icon {
-        display: flex;
-        align-items: center;
-        position: relative;
-        color: #333;
-        text-decoration: none;
-        font-size: 20px;
-    }
 
-    /* Badge Style */
-    .total-items {
-        position: absolute;
-        top: -8px;
-        right: -8px;
-        background-color: #0a58ca;
-        color: #fff;
-        border-radius: 50%;
-        padding: 2px 6px;
-        font-size: 12px;
-        font-weight: bold;
-    }
+        /* Style for the Login Button */
+        .gaming-button {
+            background-color: #629584;
+            color: #fff;
+            font-weight: bold;
+            padding: 8px 16px;
+            /* Reduced padding for a smaller button */
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            /* Reduced border size */
+            border-radius: 8px;
+            /* Adjusted border-radius for a smaller button */
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: transform 0.2s, box-shadow 0.3s, border-color 0.3s;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3), 0 0 6px rgba(98, 149, 132, 0.6);
+            /* Adjusted box-shadow for a smaller button */
+        }
 
-    /* Shopping Cart Dropdown */
-    .cart-items .shopping-item {
-        display: none;
-        position: absolute;
-        top: 40px;
-        right: 0;
-        width: 250px;
-        background: #fff;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        border-radius: 8px;
-        z-index: 10;
-    }
+        .gaming-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
+            opacity: 0;
+            transition: opacity 0.3s;
+            border-radius: inherit;
+        }
 
-    .cart-items:hover .shopping-item {
-        display: block;
-    }
+        .gaming-button:hover {
+            background-color: #4a7a6c;
+            transform: scale(1.05);
+            /* Slightly reduced scaling */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 10px rgba(98, 149, 132, 0.8);
+            /* Adjusted box-shadow for hover */
+            border-color: rgba(255, 255, 255, 0.5);
+        }
 
-    /* Profile Icon Styling */
-    .profile-icon {
-        padding: 8px;
-        transition: color 0.3s;
-    }
+        .gaming-button:hover::before {
+            opacity: 1;
+            animation: shimmer 1.5s infinite;
+        }
 
-    .profile-icon:hover {
-        color: #0a58ca;
-    }
+        .gaming-button:active {
+            transform: scale(0.95);
+            /* Slightly reduced scaling for active state */
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4), 0 0 6px rgba(98, 149, 132, 0.7);
+            /* Adjusted box-shadow for active state */
+        }
 
-    /* Additional Styling for Cart and Wishlist */
-    .cart-items,
-    .wishlist {
-        position: relative;
-    }
+
+        /* Shimmer Animation */
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+
+        /* Main Container Style */
+        .navbar-cart {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            /* Space between items */
+        }
+
+        /* Wishlist Icon */
+        .wishlist a,
+        .cart-items a,
+        .profile-icon {
+            display: flex;
+            align-items: center;
+            position: relative;
+            color: #333;
+            text-decoration: none;
+            font-size: 20px;
+        }
+
+        /* Badge Style */
+        .total-items {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: #0a58ca;
+            color: #fff;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* Shopping Cart Dropdown */
+        .cart-items .shopping-item {
+            display: none;
+            position: absolute;
+            top: 40px;
+            right: 0;
+            width: 250px;
+            background: #fff;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            z-index: 10;
+        }
+
+        .cart-items:hover .shopping-item {
+            display: block;
+        }
+
+        /* Profile Icon Styling */
+        .profile-icon {
+            padding: 8px;
+            transition: color 0.3s;
+        }
+
+        .profile-icon:hover {
+            color: #0a58ca;
+        }
+
+        /* Additional Styling for Cart and Wishlist */
+        .cart-items,
+        .wishlist {
+            position: relative;
+        }
     </style>
     <header>
-    <style>
-/* Style for the Login Button */
-.gaming-button {
-    background-color: #629584;
-    color: #fff;
-    font-weight: bold;
-    padding: 8px 16px; /* Reduced padding for a smaller button */
-    border: 1px solid rgba(255, 255, 255, 0.2); /* Reduced border size */
-    border-radius: 8px; /* Adjusted border-radius for a smaller button */
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: transform 0.2s, box-shadow 0.3s, border-color 0.3s;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3), 0 0 6px rgba(98, 149, 132, 0.6); /* Adjusted box-shadow for a smaller button */
-}
+        <style>
+            /* Style for the Login Button */
+            .gaming-button {
+                background-color: #629584;
+                color: #fff;
+                font-weight: bold;
+                padding: 8px 16px;
+                /* Reduced padding for a smaller button */
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                /* Reduced border size */
+                border-radius: 8px;
+                /* Adjusted border-radius for a smaller button */
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                transition: transform 0.2s, box-shadow 0.3s, border-color 0.3s;
+                position: relative;
+                overflow: hidden;
+                box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3), 0 0 6px rgba(98, 149, 132, 0.6);
+                /* Adjusted box-shadow for a smaller button */
+            }
 
-.gaming-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(45deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
-    opacity: 0;
-    transition: opacity 0.3s;
-    border-radius: inherit;
-}
+            .gaming-button::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(45deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
+                opacity: 0;
+                transition: opacity 0.3s;
+                border-radius: inherit;
+            }
 
-.gaming-button:hover {
-    background-color: #4a7a6c;
-    transform: scale(1.05); /* Slightly reduced scaling */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 10px rgba(98, 149, 132, 0.8); /* Adjusted box-shadow for hover */
-    border-color: rgba(255, 255, 255, 0.5);
-}
+            .gaming-button:hover {
+                background-color: #4a7a6c;
+                transform: scale(1.05);
+                /* Slightly reduced scaling */
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 10px rgba(98, 149, 132, 0.8);
+                /* Adjusted box-shadow for hover */
+                border-color: rgba(255, 255, 255, 0.5);
+            }
 
-.gaming-button:hover::before {
-    opacity: 1;
-    animation: shimmer 1.5s infinite;
-}
+            .gaming-button:hover::before {
+                opacity: 1;
+                animation: shimmer 1.5s infinite;
+            }
 
-.gaming-button:active {
-    transform: scale(0.95); /* Slightly reduced scaling for active state */
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4), 0 0 6px rgba(98, 149, 132, 0.7); /* Adjusted box-shadow for active state */
-}
-
-
-    /* Shimmer Animation */
-    @keyframes shimmer {
-        0% {
-            transform: translateX(-100%);
-        }
-        100% {
-            transform: translateX(100%);
-        }
-    }
+            .gaming-button:active {
+                transform: scale(0.95);
+                /* Slightly reduced scaling for active state */
+                box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4), 0 0 6px rgba(98, 149, 132, 0.7);
+                /* Adjusted box-shadow for active state */
+            }
 
 
-    /* Main Container Style */
-    .navbar-cart {
-        display: flex;
-        align-items: center;
-        gap: 15px; /* Space between items */
-    }
+            /* Shimmer Animation */
+            @keyframes shimmer {
+                0% {
+                    transform: translateX(-100%);
+                }
 
-    /* Wishlist Icon */
-    .wishlist a, .cart-items a, .profile-icon {
-        display: flex;
-        align-items: center;
-        position: relative;
-        color: #333;
-        text-decoration: none;
-        font-size: 20px;
-    }
+                100% {
+                    transform: translateX(100%);
+                }
+            }
 
-    /* Badge Style */
-    .total-items {
-        position: absolute;
-        top: -8px;
-        right: -8px;
-        background-color: #0a58ca;
-        color: #fff;
-        border-radius: 50%;
-        padding: 2px 6px;
-        font-size: 12px;
-        font-weight: bold;
-    }
 
-    /* Shopping Cart Dropdown */
-    .cart-items .shopping-item {
-        display: none;
-        position: absolute;
-        top: 40px;
-        right: 0;
-        width: 250px;
-        background: #fff;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        border-radius: 8px;
-        z-index: 10;
-    }
+            /* Main Container Style */
+            .navbar-cart {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                /* Space between items */
+            }
 
-    .cart-items:hover .shopping-item {
-        display: block;
-    }
+            /* Wishlist Icon */
+            .wishlist a,
+            .cart-items a,
+            .profile-icon {
+                display: flex;
+                align-items: center;
+                position: relative;
+                color: #333;
+                text-decoration: none;
+                font-size: 20px;
+            }
 
-    /* Profile Icon Styling */
-    .profile-icon {
-        padding: 8px;
-        transition: color 0.3s;
-    }
+            /* Badge Style */
+            .total-items {
+                position: absolute;
+                top: -8px;
+                right: -8px;
+                background-color: #0a58ca;
+                color: #fff;
+                border-radius: 50%;
+                padding: 2px 6px;
+                font-size: 12px;
+                font-weight: bold;
+            }
 
-    .profile-icon:hover {
-        color: #0a58ca;
-    }
+            /* Shopping Cart Dropdown */
+            .cart-items .shopping-item {
+                display: none;
+                position: absolute;
+                top: 40px;
+                right: 0;
+                width: 250px;
+                background: #fff;
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+                border-radius: 8px;
+                z-index: 10;
+            }
 
-    /* Additional Styling for Cart and Wishlist */
-    .cart-items, .wishlist {
-        position: relative;
-    }
+            .cart-items:hover .shopping-item {
+                display: block;
+            }
 
-</style>
+            /* Profile Icon Styling */
+            .profile-icon {
+                padding: 8px;
+                transition: color 0.3s;
+            }
+
+            .profile-icon:hover {
+                color: #0a58ca;
+            }
+
+            /* Additional Styling for Cart and Wishlist */
+            .cart-items,
+            .wishlist {
+                position: relative;
+            }
+        </style>
 
 
         <!-- Start Header Area -->
@@ -301,38 +319,13 @@
                             </a>
                             <!-- End Header Logo -->
                         </div>
-                        <div class="col-lg-5 col-md-7 d-xs-none">
-                            <!-- Start Main Menu Search -->
-                            <div class="main-menu-search">
-                                <!-- navbar search start -->
-                                <div class="navbar-search search-style-5">
-                                    <div class="search-select">
-                                        <div class="select-position">
-                                            <select id="select1">
-                                                <option selected>All</option>
-                                                <option value="1">option 01</option>
-                                                <option value="2">option 02</option>
-                                                <option value="3">option 03</option>
-                                                <option value="4">option 04</option>
-                                                <option value="5">option 05</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="search-input">
-                                        <input type="text" placeholder="Search">
-                                    </div>
-                                    <div class="search-btn">
-                                        <button><i class="lni lni-search-alt"></i></button>
-                                    </div>
-                                </div>
-                                <!-- navbar search Ends -->
-                            </div>
-                            <!-- End Main Menu Search -->
-                        </div>
+
+
                         <div class="col-lg-4 col-md-2 col-5">
                             <div class="middle-right-area">
                                 <div class="row align-items-center justify-content-end">
                                     <!--justify end اضفت-->
+
 
                                     <div class="col-lg-4 col-md-4 col-12">
                                     </div>
@@ -406,6 +399,14 @@
                                             </svg>
                                         </a>
                                     </div>
+                                    <?php if (isset($_SESSION['user_id'])): ?>
+                                        <a href="/NextLevelTech main main/login/login.php">Logout</a>
+                                    <?php else: ?>
+                                        <a href="/NextLevelTech main main/login/login.php">Login</a>
+                                        <a href="/NextLevelTech main main/login/registration.php">Register</a>
+
+                                    <?php endif; ?>
+
                                 </div>
                             </div>
                         </div>

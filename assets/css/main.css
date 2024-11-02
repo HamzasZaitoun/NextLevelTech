@@ -1613,17 +1613,19 @@ top: -1px;
 }
 
 .header .middle-right-area {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: end;
+
+ 
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+   margin-left: 600px;
   
-}
+  }
 
 @media (max-width: 767px) {
   .header .middle-right-area {
@@ -4884,3 +4886,114 @@ top: 2px;
     display: none;
   }
 }
+
+
+
+
+/* filter */
+
+.breadcrumbs {
+  background-color: #ffffff; /* خلفية بيضاء لتمييز المحتوى */
+  padding: 20px 0; /* تباعد داخلي */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* ظل خفيف */
+}
+
+.breadcrumbs-content h1 {
+  font-family: 'Righteous', sans-serif;
+  font-size: 2.5rem; /* حجم خط أكبر */
+  color: #333; /* لون النص */
+  margin: 0; /* إزالة الهوامش */
+}
+
+.btn-primary {
+  background-color: #28a745; /* لون أخضر مميز */
+  color: #fff; /* لون النص */
+  border: none; /* إزالة الحدود */
+  border-radius: 25px; /* زوايا دائرية أكبر */
+  padding: 10px 20px; /* تباعد داخلي */
+  font-size: 1rem; /* حجم الخط */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* تأثير الانتقال */
+}
+
+.btn-primary:hover {
+  background-color: #218838; /* لون أخضر أغمق عند التمرير */
+  transform: scale(1.05); /* تأثير تكبير عند التمرير */
+}
+
+.filter-form {
+  display: flex; /* جعل العناصر في صف واحد */
+  align-items: center; /* محاذاة في المنتصف عموديًا */
+  margin-left: 20px; /* تباعد */
+}
+
+.filter-form input[type="number"] {
+  width: 120px; /* عرض ثابت */
+  padding: 10px; /* تباعد داخلي */
+  border: 2px solid #ced4da; /* لون الحدود */
+  border-radius: 5px; /* زوايا دائرية */
+  margin-right: 10px; /* تباعد بين الحقول */
+  transition: border-color 0.3s ease; /* تأثير الانتقال */
+}
+
+.filter-form input[type="number"]:focus {
+  border-color: #28a745; /* تغيير لون الحدود عند التركيز */
+  outline: none; /* إزالة الإطار الافتراضي */
+  box-shadow: 0 0 5px rgba(40, 167, 69, 0.5); /* ظل عند التركيز */
+}
+
+.filter-form button[type="submit"] {
+  border: none; /* إزالة الحدود */
+  border-radius: 5px; /* زوايا دائرية */
+  background-color: #28a745; /* لون الخلفية */
+  color: #fff; /* لون النص */
+  width: 50px; /* عرض الزر */
+  height: 40px; /* ارتفاع الزر */
+  cursor: pointer; /* تغيير المؤشر عند المرور */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* تأثير الانتقال */
+}
+
+.filter-form button[type="submit"]:hover {
+  background-color: #218838; /* لون عند التمرير */
+  transform: scale(1.05); /* تأثير تكبير عند التمرير */
+}
+
+.breadcrumb-nav {
+  list-style: none; /* إزالة النقاط */
+  padding: 0; /* إزالة التباعد */
+  margin: 0; /* إزالة التباعد */
+}
+
+.breadcrumb-nav li {
+  display: inline; /* عرض العناصر في صف واحد */
+  margin-right: 15px; /* تباعد بين العناصر */
+}
+
+.breadcrumb-nav li a {
+  color: #007bff; /* لون الروابط */
+  text-decoration: none; /* إزالة الخط تحت الروابط */
+  font-weight: bold; /* جعل النص أكثر بروزًا */
+}
+
+.breadcrumb-nav li a:hover {
+  text-decoration: underline; /* إضافة خط تحت الروابط عند التمرير */
+}
+
+/* إضافة تأثيرات جديدة عند التحميل */
+.breadcrumbs-content, .breadcrumb-nav {
+  opacity: 0;
+  transform: translateY(-10px); /* تأثير التحريك عند التحميل */
+  animation: fadeIn 0.5s forwards; /* تطبيق تأثير التحميل */
+}
+
+@keyframes fadeIn {
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+
+
+
+
+
