@@ -44,9 +44,6 @@
     transition: all 0.3s ease;
 }
 
-/* .table-wishlist tr:hover {
-        background-color: #f1f1f1;
-    } */
 .img-product {
     width: 80px;
     margin-right: 20px;
@@ -125,4 +122,16 @@
 
 .display-flex {
     display: flex;
+}
+
+.bg-green {
+    background-color: green;
+    color: white; /* Optional: to make the text readable */
+    padding: 5px; /* Optional: add some padding */
+}
+
+.bg-red {
+    background-color: red;
+    color: white; /* Optional: to make the text readable */
+    padding: 5px; /* Optional: add some padding */
 }
