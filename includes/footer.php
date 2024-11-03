@@ -3,18 +3,18 @@
      <!-- Start Footer Area -->
      <footer class="footer">
         <!-- Start Footer Top -->
-        <div class="footer-top">
+        <!-- <div class="footer-top">
             <div class="container">
                 <div class="inner-content">
                     <div class="row">
                         <div class="col-lg-3 col-md-4 col-12">
                             <div class="footer-logo">
                                 <a href="index.php">
-                                    <!-- <img src="assets/images/logo/logo.jpeg" alt="#"> -->
+                                    <img src="assets/images/logo/logo.svg" alt="#">
                                 </a>
                             </div>
                         </div>
-                        <!-- <div class="col-lg-9 col-md-8 col-12">
+                        <div class="col-lg-9 col-md-8 col-12">
                             <div class="footer-newsletter">
                                 <h4 class="title">
                                     Subscribe to our Newsletter
@@ -29,11 +29,11 @@
                                     </form>
                                 </div>
                             </div>
-                        </div> -->
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- End Footer Top -->
         <!-- Start Footer Middle -->
         <div class="footer-middle">

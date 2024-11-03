@@ -96,7 +96,7 @@ class User {
         if ($userData) {
 
             if ($password == $userData['user_password']) {
-                if (!($userData['user_role'] === 'Admin' || $userData['user_role'] === 'superAdmin')) {
+                if (!($userData['user_role'] === 'admin' || $userData['user_role'] === 'superAdmin')) {
                     return "Unauthorized access: You do not have permission to log in.";
                 }
                {
@@ -125,24 +125,11 @@ class User {
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
-    public function updateAdmin($data) {
-        $query = "UPDATE users SET 
-                  user_first_name = :first_name, 
-                  user_last_name = :last_name, 
-                  user_email = :email, 
-                  user_phone_number = :phone, 
-                  user_address = :address     
-                  WHERE user_id = :user_id";
-    
-        $stmt = $this->conn->prepare($query);
-        // Bind parameters
-        $stmt->bindParam(':first_name', $data['first_name']);
-        $stmt->bindParam(':last_name', $data['last_name']);
-        $stmt->bindParam(':email', $data['email']);
-        $stmt->bindParam(':phone', $data['phone']);
-        $stmt->bindParam(':address', $data['address']);
-        $stmt->bindParam(':user_id', $data['user_id']); // Bind user_id for the WHERE clause
-        return $stmt->execute(); // Execute and return true/false
+    public function getUserRole($user_id) {
+        $stmt = $this->db->prepare("SELECT user_role FROM users WHERE user_id = :user_id");
+        $stmt->bindParam(':user_id', $user_id);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC)['user_role'];
     }
 }
 ?>

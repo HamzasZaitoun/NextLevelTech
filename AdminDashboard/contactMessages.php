@@ -3,10 +3,7 @@ include 'includes/header.php';
 
 ?>
 <style>
-    body{
-    margin-top:20px;
-    background:#FDFDFF
-}
+  
 .badge {
     border-radius: 8px;
     padding: 4px 8px;

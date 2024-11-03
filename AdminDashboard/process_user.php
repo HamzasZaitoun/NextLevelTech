@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 "message" => "This email is already in use."
             ];
             // Redirect back to the form with an error message
-            header("Location: users.php");
+            header("Location: index.php");
             exit; // Stop further processing
         }
 
@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 "message" => "Failed to create user."
             ];
         }
-        header("Location: users.php");
+        header("Location: index.php");
         exit();
     }
 
@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $userId = intval($_POST['deleteUserId']);
         $user->softDeleteUser($userId);
         $_SESSION['success'] = "User deleted successfully!";
-        header("Location: users.php");
+        header("Location: index.php");
         exit();
     }
 
@@ -82,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 "message" => "Failed to update user."
             ];
         }
-        header("Location: users.php");
+        header("Location: index.php");
         exit();
     }
 }

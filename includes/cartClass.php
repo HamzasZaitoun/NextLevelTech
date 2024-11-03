@@ -108,39 +108,80 @@ class Cart {
 
 
 public function getOrderHistory($user_id) {
-    $stmt = $this->pdo->prepare("SELECT o.order_id, o.order_date, o.order_total, o.order_status, 
-                                        oi.product_id, oi.quantity, p.product_name, p.product_picture
-                                FROM orders o
-                                JOIN order_items oi ON o.order_id = oi.order_id
-                                JOIN products p ON oi.product_id = p.product_id
-                                WHERE o.user_id = ? AND o.order_status != 'pending'");
+    $stmt = $this->pdo->prepare("SELECT o.order_id, o.order_date, o.order_total, o.order_status,
+                                    oi.product_id, oi.quantity, p.product_name, p.product_picture
+                            FROM orders o
+                            JOIN order_items oi ON o.order_id = oi.order_id
+                            JOIN products p ON oi.product_id = p.product_id
+                            WHERE o.user_id = ? AND o.order_status != 'pending'");
     $stmt->execute([$user_id]);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+public function getOrderHistoryDetailed($userId) {
+    $sql = "
+        SELECT 
+            o.order_id, o.order_date, o.coupon_id, o.order_total, o.order_status,
+            oi.product_id, oi.quantity, p.product_name, p.product_price
+        FROM orders AS o
+        JOIN order_items AS oi ON o.order_id = oi.order_id
+        JOIN products AS p ON oi.product_id = p.product_id
+        WHERE o.user_id = :user_id
+        ORDER BY o.order_date DESC, o.order_id
+    ";
+
+    $stmt = $this->pdo->prepare($sql);
+    $stmt->bindParam(':user_id', $userId);
+    $stmt->execute();
+
+    $orders = [];
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        if (!isset($orders[$row['order_id']])) {    
+            $orders[$row['order_id']] = [
+                'order_date' => $row['order_date'],
+                'coupon_id' => $row['coupon_id'],
+                'order_total' => $row['order_total'],
+                'order_status' => $row['order_status'],
+                'items' => []
+            ];
+        }
+        $orders[$row['order_id']]['items'][] = [
+            'product_name' => $row['product_name'],
+            'quantity' => $row['quantity'],
+            'price' => $row['product_price']
+        ];
+    }
+
+    return $orders;
 }
 
 
 
 
 public function applyCoupon($couponCode, $userId) {
+    // Fetch coupon details from the database
     $stmt = $this->pdo->prepare("
-        SELECT * FROM coupons 
+        SELECT coupon_discount, coupon_expiry_date 
+        FROM coupons 
         WHERE coupon_name = ? AND coupon_status = 1 AND is_deleted = 0 AND coupon_expiry_date >= NOW()
     ");
     $stmt->execute([$couponCode]);
     $coupon = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($coupon) {
-        $orderId = $this->getPendingOrderId($userId);
+        $orderId = $this->getPendingOrderId($userId); 
+
         if ($orderId) {
             $stmt = $this->pdo->prepare("SELECT order_total FROM orders WHERE order_id = ?");
             $stmt->execute([$orderId]);
             $orderTotal = $stmt->fetchColumn();
 
-            $discountPercentage = 0.50; 
-            $discountAmount = $orderTotal * $discountPercentage;
+            $discountAmount = ($orderTotal * $coupon['coupon_discount']) / 100; // Assuming coupon_discount is a percentage
+
             if ($discountAmount > $orderTotal) {
                 $discountAmount = $orderTotal;
             }
+
             $newTotal = $orderTotal - $discountAmount;
 
             $updateStmt = $this->pdo->prepare("UPDATE orders SET order_total = ? WHERE order_id = ?");
@@ -159,6 +200,8 @@ public function applyCoupon($couponCode, $userId) {
         'message' => 'Invalid coupon code or order not found.',
     ];
 }
+
+
 
 private function getPendingOrderId($userId) {
     $stmt = $this->pdo->prepare("SELECT order_id FROM orders WHERE user_id = ? AND order_status = 'pending'");

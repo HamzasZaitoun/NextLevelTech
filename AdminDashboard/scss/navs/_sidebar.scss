@@ -62,14 +62,14 @@
                     text-transform: uppercase;
                     font-weight: 800;
                     font-size: 0.65rem;
-                    color: $gray-500;
+                    color: #FFFECB;
                 }
 
                 .collapse-item {
                     padding: 0.5rem 1rem;
                     margin: 0 0.5rem;
                     display: block;
-                    color: $gray-900;
+                    color: #FFFECB;
                     text-decoration: none;
                     border-radius: $border-radius;
                     white-space: nowrap;
@@ -83,7 +83,7 @@
                     }
 
                     &.active {
-                        color: $primary;
+                        color: #FFFECB;
                         font-weight: 700;
                     }
                 }
@@ -167,7 +167,7 @@
         align-items: center;
         font-size: $font-size-sm;
         border-radius: $border-radius;
-        color: fade-out($white, 0.2);
+        color: fade-out(#FFFECB, 0.2);
         margin-left: 1rem;
         margin-right: 1rem;
         margin-bottom: 1rem;
@@ -182,7 +182,7 @@
         }
         p {
             font-size: 0.75rem;
-            color: fade-out($white, 0.5);
+            color: fade-out(#FFFECB, 0.5);
         }
     }
 }
@@ -347,23 +347,23 @@
 // Sidebar Light
 .sidebar-light {
     .sidebar-brand {
-        color: $gray-700;
+        color: #FFFECB;
     }
 
     hr.sidebar-divider {
-        border-top: 1px solid $gray-200;
+        border-top: 1px solid #FFFECB;
     }
 
     .sidebar-heading {
-        color: $gray-500;
+        color: #FFFECB;
     }
 
     .nav-item {
         .nav-link {
-            color: $gray-600;
+            color: #FFFECB;
 
             i {
-                color: $gray-400;
+                color: #FFFECB;
             }
 
             &:active,
@@ -378,16 +378,16 @@
 
             // Accordion
             &[data-toggle="collapse"]::after {
-                color: $gray-500;
+                color: #FFFECB;
             }
         }
 
         &.active {
             .nav-link {
-                color: $gray-700;
+                color: #FFFECB;
 
                 i {
-                    color: $gray-700;
+                    color: #FFFECB;
                 }
             }
         }
@@ -395,7 +395,7 @@
 
     // Color the sidebar toggler
     #sidebarToggle {
-        background-color: $gray-200;
+        background-color: #FFFECB;
 
         &::after {
             color: $gray-500;
@@ -410,7 +410,7 @@
 // Sidebar Dark
 .sidebar-dark {
     .sidebar-brand {
-        color: $white;
+        color:#FFFECB;
     }
 
     hr.sidebar-divider {
@@ -418,39 +418,39 @@
     }
 
     .sidebar-heading {
-        color: fade-out($white, 0.6);
+        color: fade-out(#FFFECB, 0.6);
     }
 
     .nav-item {
         .nav-link {
-            color: fade-out($white, 0.2);
+            color: fade-out(#FFFECB, 0.2);
 
             i {
-                color: fade-out($white, 0.7);
+                color: fade-out(#FFFECB, 0.7);
             }
 
             &:active,
             &:focus,
             &:hover {
-                color: $white;
+                color: #FFFECB;
 
                 i {
-                    color: $white;
+                    color: #FFFECB;
                 }
             }
 
             // Accordion
             &[data-toggle="collapse"]::after {
-                color: fade-out($white, 0.5);
+                color: fade-out(#FFFECB, 0.5);
             }
         }
 
         &.active {
             .nav-link {
-                color: $white;
+                color: #FFFECB;
 
                 i {
-                    color: $white;
+                    color: #FFFECB;
                 }
             }
         }
@@ -458,20 +458,20 @@
 
     // Color the sidebar toggler
     #sidebarToggle {
-        background-color: fade-out($white, 0.8);
+        background-color: fade-out(#FFFECB, 0.8);
 
         &::after {
-            color: fade-out($white, 0.5);
+            color: fade-out(#FFFECB, 0.5);
         }
 
         &:hover {
-            background-color: fade-out($white, 0.75);
+            background-color: fade-out(#FFFECB, 0.75);
         }
     }
 
     &.toggled {
         #sidebarToggle::after {
-            color: fade-out($white, 0.5);
+            color: fade-out(#FFFECB, 0.5);
         }
     }
 }

@@ -1,4 +1,7 @@
   /* Style for the About Us section */
+  body {
+    font-family: "Righteous", sans-serif;
+  }
   .about-us-section {
     background: #f8f9fa;
     padding: 60px 0;

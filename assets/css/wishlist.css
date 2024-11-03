@@ -1,6 +1,6 @@
-.cart-wrap {
+.wishlist-wrap {
     padding: 40px 20px;
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Righteous", sans-serif;
     background-color: #f0f0f0;
 }
 
@@ -11,112 +11,106 @@
     text-align: center;
     font-weight: bold;
     text-transform: uppercase;
-    letter-spacing: 1px;
 }
 
-.table-wishlist {
-    overflow-x: auto; /* Enable horizontal scrolling on small screens */
+.wishlist-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
 }
 
-.table-wishlist table {
-    width: 100%;
+.wishlist-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* توسيط العناصر أفقيًا */
+    justify-content: space-between;
     background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-    border-collapse: collapse; /* Better table spacing */
-}
-
-.table-wishlist thead {
-    background-color: #1a1a1a; /* Dark theme for headers */
-    color: #ffffff;
-}
-
-.table-wishlist thead tr th {
-    padding: 12px 15px;
-    font-size: 16px;
-    font-weight: 600;
-    text-transform: uppercase;
-}
-
-.table-wishlist tr td {
-    padding: 15px;
-    vertical-align: middle;
-    font-size: 14px;
-    color: #333;
-    border-bottom: 1px solid #e0e0e0; /* Add bottom border for better separation */
-}
-
-.table-wishlist tr:hover {
-    background-color: #f1f1f1; /* Highlight row on hover */
-}
-
-.img-product {
-    width: 80px;
-    margin-right: 20px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-}
-
-.img-product img {
-    width: 100%;
-    border-radius: 8px;
     transition: transform 0.3s ease;
+    text-align: center; /* توسيط النصوص داخل الكارد */
 }
 
-.img-product img:hover {
-    transform: scale(1.05);
+.wishlist-item:hover {
+    transform: scale(1.02);
 }
 
-.name-product {
-    font-size: 16px;
+.product-image {
+    text-align: center; /* توسيط الصورة */
+}
+
+.image {
+    width: 100%; /* الصورة تأخذ العرض الكامل للحاوية */
+    max-width: 150px; /* تحديد العرض الأقصى */
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.wishlist-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* توسيط المحتوى عموديًا */
+    margin-top: 15px;
+}
+
+.product-name {
+    font-size: 18px;
     font-weight: 600;
     color: #444;
-    width: 60%;
 }
 
-.price {
+.product-price {
+    font-size: 16px;
     font-weight: 700;
     color: #1a1a1a;
-    font-size: 18px;
+    margin-top: 5px;
 }
 
-.in-stock-box {
+.stock-status {
     font-size: 12px;
-    text-align: center;
+    margin-top: 8px;
+    padding: 6px 12px;
     border-radius: 25px;
-    padding: 8px 12px; /* More padding for better touch targets */
-    color: white;
     font-weight: bold;
     text-transform: uppercase;
+    color: white;
 }
 
 .bg-green {
-    background-color: #28a745; /* Green color for in stock */
+    background-color: #28a745; /* لون أخضر عند التوفر في المخزون */
 }
 
 .bg-red {
-    background-color: #dc3545; /* Red color for out of stock */
+    background-color: #dc3545; /* لون أحمر عند عدم التوفر في المخزون */
+}
+
+.wishlist-actions {
+    display: flex;
+    justify-content: center; /* توسيط العناصر أفقيًا */
+    gap: 10px; /* مسافة بين الأزرار */
+    margin-top: 15px; 
 }
 
 .round-black-btn {
-    border-radius: 25px;
-    background-color: #212529;
-    color: #fff;
-    padding: 10px 20px; /* Increase padding for better touch */
+    padding: 10px 20px;
     font-size: 14px;
     font-weight: 600;
+    color: #fff;
+    background-color: #212529;
+    border-radius: 25px;
     text-transform: uppercase;
     transition: background 0.3s ease;
 }
 
 .round-black-btn:hover {
-    background-color: #8660e9; /* Hover effect for button */
-    color: #fff;
+    background-color: #0167F3; 
 }
 
 .trash-icon {
     font-size: 20px;
     color: #dc3545;
+    cursor: pointer;
     transition: color 0.3s ease;
 }
 
@@ -124,27 +118,14 @@
     color: #bd2130;
 }
 
-.text-center {
+.wishlist-empty {
     text-align: center;
+    font-size: 18px;
+    color: #777;
 }
 
 @media (max-width: 768px) {
-    .main-heading {
-        font-size: 20px; /* Smaller heading on mobile */
+    .wishlist-item {
+        /* تعديلات خاصة بالعرض على الجوال */
     }
-
-.display-flex {
-    display: flex;
-}
-
-.bg-green {
-    background-color: green;
-    color: white; /* Optional: to make the text readable */
-    padding: 5px; /* Optional: add some padding */
-}
-
-.bg-red {
-    background-color: red;
-    color: white; /* Optional: to make the text readable */
-    padding: 5px; /* Optional: add some padding */
 }

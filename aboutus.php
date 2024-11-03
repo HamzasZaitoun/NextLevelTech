@@ -16,7 +16,7 @@ include ("includes/header.php");
 <!-- AOS CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.css" />
 <link rel="stylesheet" href="css/main.css" />
-<title>About Us - Gaming E-commerce</title>
+<title>About Us | GamifyTech</title>
 <link rel="stylesheet" href="assets\css\aboutus.css">
 
 </head>
@@ -242,8 +242,9 @@ include ("includes/header.php");
                         <h4 class="title">Mays Al-Khalil</h4>
                         <p class="description">Full Stack Developer</p>
                         <div class="social-icons">
-                            <a href="www.linkedin.com/in/mays-al-khalil-94723b220" target="_blank"><i
-                                    class="bi bi-linkedin"></i></a>
+                            <a href="www.linkedin.com/in/maysalkhalil
+
+                                " target="_blank"><i class="bi bi-linkedin"></i></a>
                             <a href="https://github.com/mays-alkhalil" target="_blank"><i class="bi bi-github"></i></a>
                             <a href="mailto:maysalkhalil02@gmail.com" target="_blank"><i class="bi bi-envelope"></i></a>
                         </div>

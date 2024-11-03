@@ -10,8 +10,8 @@
   filter: drop-shadow(0 30px 10px rgba(0, 0, 0, 0.125));
 }
 
-.section-title h2 {
-  font-family: "Righteous", sans-serif;
+.section-title h2 { 
+   font-family: "Righteous", sans-serif;
   color: rgba(0, 0, 0, 0.98);
   text-transform: uppercase;
   font-size: 2.4rem;
@@ -133,7 +133,7 @@
 
 .product-info .category {
   color: rgb(0, 0, 0);
-  font-family: "Lato", sans-serif;
+  font-family: "Righteous", sans-serif;
   font-weight: bold;
   font-size: 0.8rem;
 }
