@@ -215,7 +215,7 @@
                 </div>
                 <?php
                 $trendingProductObj = new Product();
-                $trendingProducts = $trendingProductObj->fetchTrendingProducts();
+                $trendingProducts = $trendingProductObj->fetchTopSellingProducts();
 
                 if (!empty($trendingProducts)) : ?>
                         <div class="row">
