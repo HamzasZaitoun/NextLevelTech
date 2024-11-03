@@ -50,7 +50,7 @@
   
 .btn-btn {
     color: rgb(253, 119, 119);
-    background-color:  rgba(202, 13, 13,0.8);
+    background-color: #0167F3;
     border: solid 4px hsl(0, 0%, 100%);
     border-radius: 50px;
     padding: 1rem 1rem;
@@ -87,7 +87,7 @@
 }
   
 .btn-btn .default-btn {
-    background-color:  rgba(202, 13, 13,0.8);
+    background-color: #0167F3;
     color: hsl(0, 0%, 100%);
     z-index: 1;
 }
@@ -183,7 +183,7 @@
     position: absolute; /* وضع الخصم في مكان محدد */
     top: 10px; /* المسافة من أعلى الصورة */
     left: 10px; /* المسافة من اليسار */
-    background-color: rgba(202, 13, 13,0.8); /* اللون الأحمر للخلفية */
+    background-color:#0167F3; /* اللون الأحمر للخلفية */
     color: white; /* لون النص */
     padding: 5px 10px; /* حشوة داخلية */
     border-radius: 5px; /* زوايا دائرية */

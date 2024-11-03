@@ -89,5 +89,9 @@ include ('includes/header.php');
         <?php endif; ?>
     </div>
 </section>
+
+<?php
+  include("includes/footer.php");
+  ?>
 </body>
 </html>

@@ -207,7 +207,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="section-title">
-                            <h2>Trending Products</h2>
+                            <h2>Top Selling Products</h2>
                             <p>Discover our best-rated products, carefully curated to enhance your gaming experience.
                             </p>
                         </div>
@@ -215,7 +215,7 @@
                 </div>
                 <?php
                 $trendingProductObj = new Product();
-                $trendingProducts = $trendingProductObj->fetchTrendingProducts();
+                $trendingProducts = $trendingProductObj->fetchTopSellingProducts();
 
                 if (!empty($trendingProducts)) : ?>
                         <div class="row">
@@ -314,7 +314,6 @@
                         <div class="single-banner" style="background-image:  url('<?php echo $imagePath; ?>');">
                             <div class="content">
                                 <h2><?= htmlspecialchars($randomProduct['product_name']); ?></h2>
-                                <p><?= htmlspecialchars($randomProduct['product_description']); ?></p>
 
                                 <div class="button">
                                     <a href="productDetails.php?id=<?= htmlspecialchars($randomProduct['product_id']); ?>"
