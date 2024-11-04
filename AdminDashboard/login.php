@@ -29,9 +29,155 @@ if (isset($_SESSION['error'])) {
 
     <!-- SweetAlert2 CDN -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+.container {
+  max-width: 500px;
+  background: #F8F9FD;
+  background: linear-gradient(0deg, rgb(255, 255, 255) 0%, rgb(244, 247, 251) 100%);
+  border-radius: 40px;
+  padding: 25px 35px;
+  border: 5px solid rgb(255, 255, 255);
+  box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 30px 30px -20px;
+  margin: 20px;
+  margin-top: 5%;
+  justify-self: center;
+}
+
+.heading {
+  text-align: center;
+  font-weight: 900;
+  font-size: 30px;
+  color: rgb(16, 137, 211);
+}
+
+.form {
+  margin-top: 20px;
+}
+
+.form .input {
+  width: 100%;
+  background: white;
+  border: none;
+  padding: 15px 20px;
+  border-radius: 20px;
+  margin-top: 15px;
+  box-shadow: #cff0ff 0px 10px 10px -5px;
+  border-inline: 2px solid transparent;
+}
+
+.form .input::-moz-placeholder {
+  color: rgb(170, 170, 170);
+}
+
+.form .input::placeholder {
+  color: rgb(170, 170, 170);
+}
+
+.form .input:focus {
+  outline: none;
+  border-inline: 2px solid #12B1D1;
+}
+
+.form .forgot-password {
+  display: block;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.form .forgot-password a {
+  font-size: 11px;
+  color: #0099ff;
+  text-decoration: none;
+}
+
+.form .login-button {
+  display: block;
+  width: 100%;
+  font-weight: bold;
+  background: linear-gradient(45deg, rgb(16, 137, 211) 0%, rgb(18, 177, 209) 100%);
+  color: white;
+  padding-block: 15px;
+  margin: 20px auto;
+  border-radius: 20px;
+  box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 20px 10px -15px;
+  border: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.form .login-button:hover {
+  transform: scale(1.03);
+  box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 23px 10px -20px;
+}
+
+.form .login-button:active {
+  transform: scale(0.95);
+  box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 15px 10px -10px;
+}
+
+.social-account-container {
+  margin-top: 25px;
+}
+
+.social-account-container .title {
+  display: block;
+  text-align: center;
+  font-size: 10px;
+  color: rgb(170, 170, 170);
+}
+
+.social-account-container .social-accounts {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 5px;
+}
+
+.social-account-container .social-accounts .social-button {
+  background: linear-gradient(45deg, rgb(0, 0, 0) 0%, rgb(112, 112, 112) 100%);
+  border: 5px solid white;
+  padding: 5px;
+  border-radius: 50%;
+  width: 40px;
+  aspect-ratio: 1;
+  display: grid;
+  place-content: center;
+  box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 12px 10px -8px;
+  transition: all 0.2s ease-in-out;
+}
+
+.social-account-container .social-accounts .social-button .svg {
+  fill: white;
+  margin: auto;
+}
+
+.social-account-container .social-accounts .social-button:hover {
+  transform: scale(1.2);
+}
+
+.social-account-container .social-accounts .social-button:active {
+  transform: scale(0.9);
+}
+
+.agreement {
+  display: block;
+  text-align: center;
+  margin-top: 15px;
+}
+
+.agreement a {
+  text-decoration: none;
+  color: #0099ff;
+  font-size: 9px;
+}
+body
+{
+    background-image:url("img/bg.jpg");
+}
+    </style>
 </head>
 
-<body class="bg-gradient-primary">
+<body>
 
 <?php if (!empty($errorMsg)): ?>
     <script>
@@ -45,40 +191,30 @@ if (isset($_SESSION['error'])) {
 <?php endif; ?>
 
 
-    <div class="container">
-        <div class="justify-content-center text-center">
-            <div class="card o-hidden border-0 shadow-lg my-5 col-8">
-                <div class="card-body p-0">
-                    <div class="">
-                        <div class="col-lg-12">
-                            <div class="p-5">
-                                <div class="text-center">
-                                    <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
-                                </div>
-                                <form class="user" method="POST" action="login_process.php">
-                                    <div class="form-group">
-                                        <input type="hidden" name="action" value="user_login">
-                                        <input type="email" class="form-control form-control-user" name="userLoginEmail"
-                                            id="userLoginEmail" aria-describedby="emailHelp" placeholder="Enter your Email..">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="password" class="form-control form-control-user"
-                                            id="userLoginPassword" name="userLoginPassword" placeholder="Password">
-                                    </div>
-                                    <button type="submit" class="btn btn-primary btn-user btn-block">Login</button>
-                                    <hr>
-                                </form>
-                                <hr>
-                                <div class="text-center">
-                                    <a class="small" href="forgot-password.php">Forgot Password?</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<div class="container">
+    <div class="heading">Sign In</div>
+    <form  method="POST" action="login_process.php" class="form">
+      <input type="hidden" name="action" value="user_login">
+      <input  class="input" type="email"   name="userLoginEmail"   placeholder="E-mail"  id="email" aria-describedby="emailHelp">
+      <input  class="input" type="password"name="userLoginPassword"placeholder="Password"id="userLoginPassword" >
+      
+      <input class="login-button" type="submit" value="Sign In">
+      
+    </form>
+   
+          
         </div>
-    </div>
+      </div>
+      <span class="agreement">Admin Dashboard</span>
+  </div>
+
+
+
+
+    
+
+
+
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>

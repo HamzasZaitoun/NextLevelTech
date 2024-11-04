@@ -1,4 +1,4 @@
-<!-- <link rel="stylesheet" href="trendingProducts.css" > -->
+<link rel="stylesheet" href="trendingProducts.css" >
 <?php
 
 include("includes/header.php");

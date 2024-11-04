@@ -400,10 +400,10 @@ if (session_status() == PHP_SESSION_NONE) {
                                         </a>
                                     </div>
                                     <?php if (isset($_SESSION['user_id'])): ?>
-                                        <a href="/NextLevelTech main main/login/login.php">Logout</a>
+                                        <a href="/NextLevelTech/login/login.php">Logout</a>
                                     <?php else: ?>
-                                        <a href="/NextLevelTech main main/login/login.php">Login</a>
-                                        <a href="/NextLevelTech main main/login/registration.php">Register</a>
+                                        <a href="/NextLevelTech/login/login.php">Login</a>
+                                        <a href="/NextLevelTech/login/registration.php">Register</a>
 
                                     <?php endif; ?>
 

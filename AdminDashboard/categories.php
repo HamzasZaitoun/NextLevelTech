@@ -18,10 +18,7 @@ $categories = $categoryModel->getAllCategories();
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
-        .action-buttons {
-            display: flex;
-            gap: 10px;
-        }
+
         .modal {
             display: none;
             justify-content: center;
@@ -32,30 +29,7 @@ $categories = $categoryModel->getAllCategories();
             width: 50%;
             text-align: center;
         }
-        .button1 {
-            background: #000;
-            color: white;
-            padding: 10px;
-            border: none;
-            cursor: pointer;
-        }
-        .delete-btn {
-            background: #db4f4f;
-            color: white;
-            padding: 5px 10px;
-            border: none;
-            cursor: pointer;
-        }
-        .save-btn {
-            background-color: #000;
-            color: white;
-            padding: 10px;
-            border: none;
-            cursor: pointer;
-            width: 100px;
-            margin-top: 20px;
-            font-size: 14px;
-        }
+  
         .close-btn {
             background: #db4f4f;
             color: white;
@@ -68,6 +42,13 @@ $categories = $categoryModel->getAllCategories();
             margin-bottom: 10px;
             border-radius: 10%;
         }
+        .nav-link-text {
+            color: #FFFECB;
+            font-weight: bold;
+            }
+            .topbar-search-btn {
+  background: #7AB2D3;
+}
     </style>
 </head>
 
@@ -78,7 +59,7 @@ $categories = $categoryModel->getAllCategories();
 
         <div class="">
             <div>
-                <button type="button" class="button1" onclick="openAddModal()">
+                <button type="button" class="addbutton" onclick="openAddModal()">
                     <span class="button__text">Add Category</span>
                     <span class="button__icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none">
@@ -111,11 +92,11 @@ $categories = $categoryModel->getAllCategories();
                             </td>
                             <td data-label="Actions">
                                 <div class="action-buttons">
-                                    <button class="edit-btn" onclick="document.getElementById('editModal<?= $category['category_id'] ?>').style.display='flex'">Edit</button>
+                                    <button class="edit-btn" onclick="document.getElementById('editModal<?= $category['category_id'] ?>').style.display='flex'"><i class="bi bi-pencil-square"></i></button>
                                     <form action="process_category.php" method="POST" style="display:inline;">
                                         <input type="hidden" name="category_id" value="<?= htmlspecialchars($category['category_id']); ?>">
                                         <input type="hidden" name="action" value="delete">
-                                        <button type="button" class="delete-btn" onclick="confirmDelete(this)">Delete</button>
+                                        <button type="button" class="delete-btn" onclick="confirmDelete(this)"><i class="bi bi-trash"></i></button>
                                     </form>
                                 </div>
                             </td>
