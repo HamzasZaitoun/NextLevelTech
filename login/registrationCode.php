@@ -25,5 +25,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["submit"])) {
         exit();
     } else {
         echo "An error occurred while entering data.";
+        header("Location:login/registration.php ")
     }
 }

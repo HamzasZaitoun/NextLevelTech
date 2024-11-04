@@ -3,6 +3,34 @@
     include("includes/header.php");
     include("includes/productsClasss.php");
     include("includes/categoriesClass.php");
+
+
+
+    if (isset($_SESSION['checkout_success'])) {
+        echo "<script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Thank you!',
+                text: 'Your order has been placed successfully!',
+                showConfirmButton: false,
+                timer: 2000
+            });
+        </script>";
+        unset($_SESSION['checkout_success']); // Clear the session variable
+    }
+    
+    if (isset($_SESSION['checkout_error'])) {
+        echo "<script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'There was an error processing your order. Please try again.',
+                showConfirmButton: false,
+                timer: 2000
+            });
+        </script>";
+        unset($_SESSION['checkout_error']); // Clear the session variable
+    }
  
     
 ?>
@@ -493,6 +521,7 @@
     });
 </script>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>
 

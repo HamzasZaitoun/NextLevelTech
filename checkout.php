@@ -14,6 +14,8 @@ $cartItems = $cart->getCart($user_id);
 
 
 
+
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['checkout'])) {
     $paymentMethod = $_POST['payment_method'] ?? '';
         if ($cart->checkout($user_id, $paymentMethod)) {
@@ -28,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['checkout'])) {
 }
 
 $finalTotal = $_SESSION['final_total'] ?? 0;
-
+// $quantity = $item['quantity'];
 
 ?>
 
