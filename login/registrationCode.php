@@ -19,8 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["submit"])) {
     if ($password !== $confirmPassword) {
         exit();
     }
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-    if ($user->register($firstName, $lastName, $email, $hashed_password, $gender, $dob, $address, $phoneNumber)) {
+    if ($user->register($firstName, $lastName, $email, $password, $gender, $dob, $address, $phoneNumber)) {
         header("Location: login.php");
         exit();
     } else {

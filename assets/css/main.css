@@ -11,10 +11,10 @@ html {
 }
 
 body {
-  font-family: "Manrope", sans-serif;
+  font-family: "Righteous", sans-serif;
   font-weight: 500;
   font-style: normal;
-  color: #888888;
+  color: #000;
   overflow-x: hidden;
   font-size: 14px;
 }
@@ -2997,7 +2997,7 @@ top: 2px;
   font-size: 17px;
   font-weight: 600;
   display: block;
-  color: #8a8a8a;
+  color: #000;
   margin-bottom: 10px;
 }
 
@@ -3125,7 +3125,7 @@ top: 2px;
 .hero-area .hero-small-banner .content h2 span {
   font-size: 15px;
   font-weight: 500;
-  color: #888;
+  color: #000;
   display: block;
   margin-bottom: 4px;
 }
