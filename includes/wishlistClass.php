@@ -34,11 +34,35 @@ class Wishlist
         $stmt->execute([$user_id, $product_id]);
         
         if ($stmt->rowCount() > 0) {
-            return false; // المنتج موجود بالفعل
+            // المنتج موجود بالفعل في قائمة الأمنيات
+            return [
+                'success' => false,
+                'message' => 'Item already in wishlist.' // رسالة تخبر المستخدم بأنه موجود
+            ];
         }
     
-        // إدراج المنتج في قائمة الرغبات
+        // إدراج المنتج في قائمة الأمنيات
         $stmt = $this->pdo->prepare("INSERT INTO wishlist (user_id, product_id) VALUES (?, ?)");
-        return $stmt->execute([$user_id, $product_id]);
+        
+        if ($stmt->execute([$user_id, $product_id])) {
+            // تم إضافة المنتج بنجاح
+            return [
+                'success' => true,
+                'message' => 'Item added to wishlist!' // رسالة تؤكد الإضافة
+            ];
+        } else {
+            // حدث خطأ أثناء إضافة المنتج
+            return [
+                'success' => false,
+                'message' => 'Failed to add item to wishlist.' // رسالة تخبر عن الخطأ
+            ];
+        }
     }
-}
+    }
+
+
+
+
+ 
+
+

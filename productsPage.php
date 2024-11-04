@@ -84,8 +84,10 @@ if (isset($_GET['filter'])) {
             <div class="navbar-search search-style-5">
                 <div class="search-input">
                     <form method="GET" style="display: flex; align-items: center;">
-                        <input type="text" name="search" placeholder="Search..." style="flex: 1; padding: 8px; font-size: 16px;">
-                        <button class="search-button" type="submit" name="btn-search" style="font-size: 18px; border: 0; border-radius: 0 4px 4px 0; border: 0; background-color: #0167F3; color: #fff; width: 45px; height: 45px; ">
+                        <input type="text" name="search" placeholder="Search..."
+                            style="flex: 1; padding: 8px; font-size: 16px;">
+                        <button class="search-button" type="submit" name="btn-search"
+                            style="font-size: 18px; border: 0; border-radius: 0 4px 4px 0; border: 0; background-color: #0167F3; color: #fff; width: 45px; height: 45px; ">
                             <i class="lni lni-search-alt"></i>
                         </button>
                     </form>
@@ -103,7 +105,8 @@ if (isset($_GET['filter'])) {
                         <h1 class="page-title">Products</h1>
                     </div>
 
-                    <button class="btn btn-primary" type="button" onclick="toggleFilterForm()" style="background-color: #0167F3; color: #fff; margin-left: 30px;">
+                    <button class="btn btn-primary" type="button" onclick="toggleFilterForm()"
+                        style="background-color: #0167F3; color: #fff; margin-left: 30px;">
                         Filter
                     </button>
 
@@ -112,7 +115,9 @@ if (isset($_GET['filter'])) {
                             <!-- <label for="range">Determine the price</label><br><br> -->
                             <input style="width: 120px;" type="number" name="ssalry" placeholder="Lowest price">
                             <input style="width: 124px;" type="number" name="esalry" placeholder="Highest price">
-                            <button style="border: 0; border-radius: 5px; background-color: #0167F3; color: #fff; width: 45px; height: 30px;" type="submit" name="filter">Go</button>
+                            <button
+                                style="border: 0; border-radius: 5px; background-color: #0167F3; color: #fff; width: 45px; height: 30px;"
+                                type="submit" name="filter">Go</button>
                         </form>
                     </div>
                 </div>
@@ -144,65 +149,69 @@ if (isset($_GET['filter'])) {
                 </div>
             </div>
             <?php if (!empty($products)) : ?>
-                <div class="row">
-                    <?php foreach ($products as $product) : ?>
-                        <div class="col-lg-3 col-md-6 col-12">
-                            <div class="single-product">
-                                <div class="product-image">
-                                    <?php $imagePath = "inserted_img/" . htmlspecialchars($product['product_picture']); ?>
-                                    <img src="<?php echo $imagePath; ?>" alt="product_img">
-                                    <?php if ($product['product_discount'] > 0) : ?>
-                                        <div class="product-discount">
-                                            <span>-<?= htmlspecialchars($product['product_discount']); ?>%</span>
+            <div class="row">
+                <?php foreach ($products as $product) : ?>
+                <div class="col-lg-3 col-md-6 col-12">
+                    <div class="single-product">
+                        <div class="product-image">
+                            <?php $imagePath = "inserted_img/" . htmlspecialchars($product['product_picture']); ?>
+                            <img src="<?php echo $imagePath; ?>" alt="product_img">
+                            <?php if ($product['product_discount'] > 0) : ?>
+                            <div class="product-discount">
+                                <span>-<?= htmlspecialchars($product['product_discount']); ?>%</span>
+                            </div>
+                            <?php endif; ?>
+                            <div class="btn-div">
+                                <div class="shopbtn">
+                                    <button class="btn-btn"
+                                        onclick="window.location.href='productDetails.php?id=<?= htmlspecialchars($product['product_id']); ?>'">
+                                        <div class="default-btn">
+                                            <i class="lni lni-eye"></i>
                                         </div>
-                                    <?php endif; ?>
-                                    <div class="btn-div">
-                                        <div class="shopbtn">
-                                            <button class="btn-btn" onclick="window.location.href='productDetails.php?id=<?= htmlspecialchars($product['product_id']); ?>'">
-                                                <div class="default-btn">
-                                                    <i class="lni lni-eye"></i>
-                                                </div>
-                                                <div class="hover-btn">
-                                                    <span>Quick View</span>
-                                                </div>
-                                            </button>
+                                        <div class="hover-btn">
+                                            <span>Quick View</span>
                                         </div>
-                                        <div class="shopbtn">
-                                            <button class="btn-btn" onclick="window.location.href='productDetails.php?id=<?= htmlspecialchars($product['product_id']); ?>'">
-                                                <div class="default-btn">
-                                                    <i class="lni lni-cart"></i>
-                                                </div>
-                                                <div class="hover-btn">
-                                                    <span>Shop now</span>
-                                                </div>
-                                            </button>
-                                        </div>
-                                        <div class="shopbtn">
-                                            <button class="btn-btn" onclick="window.location.href='productDetails.php?id=<?= htmlspecialchars($product['product_id']); ?>'">
-                                                <div class="default-btn">
-                                                    <i class="lni lni-heart"></i>
-                                                </div>
-                                                <div class="hover-btn">
-                                                    <span>Add to wish list</span>
-                                                </div>
-                                            </button>
-                                        </div>
-                                    </div>
+                                    </button>
                                 </div>
-                                <div class="product-info">
-                                    <h6 class="title">
-                                        <?= htmlspecialchars($product['product_name']); ?>
-                                    </h6>
-                                    <div class="price">
-                                        <span><?php echo htmlspecialchars($product['product_price']); ?> JOD</span>
-                                    </div>
+                                <div class="shopbtn">
+                                    <button class="btn-btn"
+                                        onclick="addToCart(<?= htmlspecialchars($product['product_id']); ?>)">
+                                        <div class="default-btn">
+                                            <i class="lni lni-cart"></i>
+                                        </div>
+                                        <div class="hover-btn">
+                                            <span>Shop now</span>
+                                        </div>
+                                    </button>
+                                </div>
+                                <div class="shopbtn">
+                                    <button class="btn-btn"
+                                        onclick="addToWishlist(<?= htmlspecialchars($product['product_id']); ?>)">
+                                        <div class="default-btn"
+                                            id="heart-icon-<?= htmlspecialchars($product['product_id']); ?>">
+                                            <i class="lni lni-heart"></i>
+                                        </div>
+                                        <div class="hover-btn">
+                                            <span>Add to wish list</span>
+                                        </div>
+                                    </button>
                                 </div>
                             </div>
                         </div>
-                    <?php endforeach; ?>
+                        <div class="product-info">
+                            <h6 class="title">
+                                <?= htmlspecialchars($product['product_name']); ?>
+                            </h6>
+                            <div class="price">
+                                <span><?php echo htmlspecialchars($product['product_price']); ?> JOD</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                <?php endforeach; ?>
+            </div>
             <?php else : ?>
-                <p>No products available.</p>
+            <p>No products available.</p>
             <?php endif; ?>
         </div>
     </section>
@@ -404,33 +413,96 @@ if (isset($_GET['filter'])) {
     </a>
 
     <!-- ========================= JS here ========================= -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> <!-- bootstrap link -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script> <!-- bootstrap link -->
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/tiny-slider.js"></script>
     <script src="assets/js/glightbox.min.js"></script>
     <script src="assets/js/main.js"></script>
     <script type="text/javascript">
-        const current = document.getElementById("current");
-        const opacity = 0.6;
-        const imgs = document.querySelectorAll(".img");
-        imgs.forEach(img => {
-            img.addEventListener("click", (e) => {
-                //reset opacity
-                imgs.forEach(img => {
-                    img.style.opacity = 1;
-                });
-                current.src = e.target.src;
-                //adding class 
-                //current.classList.add("fade-in");
-                //opacity
-                e.target.style.opacity = opacity;
+    const current = document.getElementById("current");
+    const opacity = 0.6;
+    const imgs = document.querySelectorAll(".img");
+    imgs.forEach(img => {
+        img.addEventListener("click", (e) => {
+            //reset opacity
+            imgs.forEach(img => {
+                img.style.opacity = 1;
             });
+            current.src = e.target.src;
+            //adding class 
+            //current.classList.add("fade-in");
+            //opacity
+            e.target.style.opacity = opacity;
         });
+    });
 
-        function toggleFilterForm() {
-            const filterForm = document.getElementById('filterForm');
-            filterForm.style.display = filterForm.style.display === 'none' ? 'inline-block' : 'none';
-        }
+    function toggleFilterForm() {
+        const filterForm = document.getElementById('filterForm');
+        filterForm.style.display = filterForm.style.display === 'none' ? 'inline-block' : 'none';
+    }
+    </script>
+    <!-- add to wish list -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+    function addToWishlist(productId) {
+        const button = document.getElementById('heart-icon-' + productId); // احصل على الزر
+        button.disabled = true; // تعطيل الزر
+
+        fetch('wishlist.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: 'add_to_wishlist=true&product_id=' + productId
+        })
+        .then(response => response.json())
+        // .then(data => {
+        //     if (data.success) {
+        //         Swal.fire({
+        //             icon: 'success',
+        //             title: 'Success',
+        //             text: data.message,
+        //             confirmButtonText: 'OK'
+        //         });
+
+        //         // تغيير اللون إلى الأحمر
+        //         button.classList.add('added-to-wishlist');
+        //     } else {
+        //         Swal.fire({
+        //             icon: 'info',
+        //             title: 'Already Added',
+        //             text: data.message,
+        //             confirmButtonText: 'OK'
+        //         });
+        //     }
+        // })
+        // .catch(error => {
+        //     console.error('Error:', error);
+        //     Swal.fire({
+        //         icon: 'error',
+        //         title: 'Error',
+        //         text: 'An error occurred while adding to wishlist.',
+        //         confirmButtonText: 'OK'
+        //     });
+        // });
+    }
+
+
+    // add to cart
+    function addToCart(productId) {
+    fetch('cart.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: 'add_to_cart=true&product_id=' + productId
+    })
+    
+}
+
     </script>
 </body>
 
