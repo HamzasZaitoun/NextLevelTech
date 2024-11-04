@@ -11,10 +11,10 @@ html {
 }
 
 body {
-  font-family: "Manrope", sans-serif;
+  font-family: "Righteous", sans-serif;
   font-weight: 500;
   font-style: normal;
-  color: #888888;
+  color: #000;
   overflow-x: hidden;
   font-size: 14px;
 }
@@ -2997,7 +2997,7 @@ top: 2px;
   font-size: 17px;
   font-weight: 600;
   display: block;
-  color: #8a8a8a;
+  color: #000;
   margin-bottom: 10px;
 }
 
@@ -3088,8 +3088,9 @@ top: 2px;
   margin-top: 30px;
 }
 
+/* flash sale banner" */
 .hero-area .hero-small-banner {
-  height: 244px;
+  height: 500px;
   position: relative;
   background-repeat: no-repeat;
   background-size: contain;
@@ -3118,30 +3119,45 @@ top: 2px;
 }
 
 .hero-area .hero-small-banner .content h2 {
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 700;
+  color: #fff;
+  margin-bottom: 8px;
 }
 
 .hero-area .hero-small-banner .content h2 span {
   font-size: 15px;
   font-weight: 500;
-  color: #888;
+  color: #000;
   display: block;
   margin-bottom: 4px;
 }
 
+.hero-area .hero-small-banner .content p {
+  font-size: 16px;
+  color: #f9f9f9;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
 .hero-area .hero-small-banner .content h3 {
-  color: #0167F3;
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 800;
-  display: block;
-  margin-top: 7px;
+  color: #ff4d4f;
+  background: rgba(255, 77, 79, 0.1); 
+  padding: 8px 12px;
+  border-radius: 8px;
+  display: inline-block;
+  margin-top: 8px;
 }
 
 .hero-area .hero-small-banner.style2 {
   margin-top: 12px;
   background-image: url("../images/hero/small-banner-bg.png");
   background-color: #081828;
+  padding: 20px;
+  border-radius: 12px; 
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -3169,16 +3185,24 @@ top: 2px;
   margin-top: 20px;
 }
 
-.hero-area .hero-small-banner.style2 .content .button .btn {
+.hero-area .hero-small-banner .content .button .btn {
   background-color: #fff;
   color: #0167F3;
   padding: 10px 25px;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: all 0.3s ease;
 }
 
-.hero-area .hero-small-banner.style2 .content .button .btn:hover {
+.hero-area .hero-small-banner .content .button .btn:hover {
   background-color: #0167F3;
   color: #fff;
 }
+
+/*======================================
+  ending flash section in hero section only
+========================================*/
+
 
 /*======================================
     Shipping Info CSS
@@ -4893,30 +4917,30 @@ top: 2px;
 /* filter */
 
 .breadcrumbs {
-  background-color: #ffffff; /* خلفية بيضاء لتمييز المحتوى */
-  padding: 20px 0; /* تباعد داخلي */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* ظل خفيف */
+  background-color: #ffffff; 
+  padding: 20px 0; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
 }
 
 .breadcrumbs-content h1 {
   font-family: 'Righteous', sans-serif;
-  font-size: 2.5rem; /* حجم خط أكبر */
-  color: #333; /* لون النص */
-  margin: 0; /* إزالة الهوامش */
+  font-size: 2.5rem; 
+  color: #333; 
+  margin: 0; 
 }
 
 .btn-primary {
-  background-color: #28a745; /* لون أخضر مميز */
-  color: #fff; /* لون النص */
-  border: none; /* إزالة الحدود */
-  border-radius: 25px; /* زوايا دائرية أكبر */
-  padding: 10px 20px; /* تباعد داخلي */
-  font-size: 1rem; /* حجم الخط */
-  transition: background-color 0.3s ease, transform 0.3s ease; /* تأثير الانتقال */
+  background-color: #28a745; 
+  color: #fff;
+  border: none; 
+  border-radius: 25px;
+  padding: 10px 20px;
+  font-size: 1rem; 
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .btn-primary:hover {
-  background-color: #218838; /* لون أخضر أغمق عند التمرير */
+  background-color: #218838; 
   transform: scale(1.05); /* تأثير تكبير عند التمرير */
 }
 

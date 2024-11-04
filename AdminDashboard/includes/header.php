@@ -34,32 +34,23 @@
         }
 
         .sidebar-bg {
-            background: #ffffff;
+            background: #4A628A;
         }
-
-        .sidebar-text {
-            color: #000;
-        }
-
-        .sidebar-heading {
-            color: #000;
-        }
-
         .nav-link-text {
-            color: #000;
+            color: #FFFECB;
             font-weight: bold;
+            }
+        .nav-link-text:hover, i:hover
+        {
+            color: #fff870;
+            transform: scale(1.1);
         }
 
         .topbar-bg {
-            background: #ffffff;
+            background: #4A628A;
         }
 
-        .topbar-search-btn {
-            background: #000;
-        }
-        .sidebar-dark .nav-item .nav-link i{
-    color: black !important;
-                        }
+     
     </style>
 </head>
 
@@ -69,12 +60,12 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion sidebar-bg" id="accordionSidebar">
+        <ul class="navbar-nav bg-primary sidebar sidebar-light accordion sidebar-bg" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink sidebar-text"></i>
+                <div class="sidebar-brand-icon ">
+                <i class="bi bi-person-fill-gear"></i>
                 </div>
                 <div class="sidebar-brand-text mx-3 sidebar-text">Admin</div>
             </a>
@@ -84,9 +75,9 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="index.php">
-                    <i class="fas fa-fw fa-tachometer-alt sidebar-text"></i>
-                    <span class="nav-link-text">Dashboard</span>
+                <a class="nav-link" href="messages.php">
+                <i class="bi bi-envelope-fill"></i>
+                    <span class="nav-link-text">Messages</span>
                 </a>
             </li>
 
@@ -98,7 +89,7 @@
 
             <!-- Nav Item - Users Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="users.php">
+                <a class="nav-link" href="index.php">
                     <i class="bi bi-person-fill sidebar-text"></i>
                     <span class="nav-link-text">Users Dashboard</span>
                 </a>
@@ -107,7 +98,7 @@
             <!-- Nav Item - Categories -->
             <li class="nav-item">
                 <a class="nav-link" href="categories.php">
-                    <i class="bi bi-tags" style="color:#493628;"></i>
+                    <i class="bi bi-tags" style="color:#FFFECB;"></i>
                     <span class="nav-link-text">Categories</span>
                 </a>
             </li>
@@ -135,6 +126,7 @@
                     <span class="nav-link-text">Coupon</span>
                 </a>
             </li>
+            
 
             <!-- Heading -->
             <div class="sidebar-heading">Addons</div>
@@ -157,7 +149,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light topbar mb-4 static-top shadow topbar-bg">
+                <nav class="navbar navbar-expand bg-primary topbar mb-4 static-top shadow topbar-bg">
 
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -165,16 +157,7 @@
                     </button>
 
                     <!-- Topbar Search -->
-                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn topbar-search-btn" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                    
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -197,76 +180,11 @@
                                 </form>
                             </div>
                         </li>
-                       
-                        <!-- Nav Item - Messages -->
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-envelope fa-fw"></i>
-                                <span class="badge badge-danger badge-counter">7</span>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
-                                <h6 class="dropdown-header">
-                                    Message Center
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_1.svg" alt="...">
-                                        <div class="status-indicator bg-success"></div>
-                                    </div>
-                                    <div class="font-weight-bold">
-                                        <div class="text-truncate">Hi there! I am wondering if you can help me with a problem I've been having.</div>
-                                        <div class="small text-gray-500">Emily Fowler · 58m</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_2.svg" alt="...">
-                                        <div class="status-indicator"></div>
-                                    </div>
-                                    <div class="font-weight-bold">
-                                        <div class="text-truncate">I have the photos that you ordered last month!</div>
-                                        <div class="small text-gray-500">Jae Chun · 1d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_2.svg" alt="...">
-                                        <div class="status-indicator"></div>
-                                    </div>
-                                    <div class="font-weight-bold">
-                                        <div class="text-truncate">I have the photos that you ordered last month!</div>
-                                        <div class="small text-gray-500">Jae Chun · 1d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_2.svg" alt="...">
-                                        <div class="status-indicator"></div>
-                                    </div>
-                                    <div class="font-weight-bold">
-                                        <div class="text-truncate">I have the photos that you ordered last month!</div>
-                                        <div class="small text-gray-500">Jae Chun · 1d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_3.svg" alt="...">
-                                        <div class="status-indicator bg-warning"></div>
-                                    </div>
-                                    <div class="font-weight-bold">
-                                        <div class="text-truncate">The report you requested has been completed.</div>
-                                        <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="contactMessages.php">Read More Messages</a>
-                            </div>
-                        </li>
+                      
                         <div class="topbar-divider d-none d-sm-block"></div>
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
                                 <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
@@ -285,7 +203,22 @@
                         </li>
                     </ul>
                 </nav>
-                
+        <!-- Logout Modal-->
+        <div class="modal" id="logoutModal">
+                <div class="modal-content-logout">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <a class="btn btn-primary" href="login.php">Logout</a>
+                    </div>
+                </div>
+        </div>
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

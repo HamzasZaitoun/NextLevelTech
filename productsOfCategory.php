@@ -19,7 +19,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 <?php
 include ('includes/header.php'); 
 ?>
-    <title>Category Products</title>
+    <title>Products | GamifyTech</title>
     <link rel="stylesheet" href="trendingProducts.css">
 </head>
 <body>
@@ -89,5 +89,9 @@ include ('includes/header.php');
         <?php endif; ?>
     </div>
 </section>
+
+<?php
+  include("includes/footer.php");
+  ?>
 </body>
 </html>

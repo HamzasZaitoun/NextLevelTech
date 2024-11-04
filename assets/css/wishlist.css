@@ -1,6 +1,6 @@
 .wishlist-wrap {
     padding: 40px 20px;
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Righteous", sans-serif;
     background-color: #f0f0f0;
 }
 
@@ -22,12 +22,14 @@
 .wishlist-item {
     display: flex;
     flex-direction: column;
+    align-items: center; /* توسيط العناصر أفقيًا */
     justify-content: space-between;
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease;
+    text-align: center; /* توسيط النصوص داخل الكارد */
 }
 
 .wishlist-item:hover {
@@ -35,18 +37,21 @@
 }
 
 .product-image {
-    text-align: center; /* Center align image */
+    text-align: center; /* توسيط الصورة */
 }
 
 .image {
-    width: 100%; /* Ensure image takes full width of the container */
-    max-width: 150px; /* Limit max width */
+    width: 100%; /* الصورة تأخذ العرض الكامل للحاوية */
+    max-width: 150px; /* تحديد العرض الأقصى */
     border-radius: 8px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
 
 .wishlist-info {
-    margin-top: 15px; /* Space between image and info */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* توسيط المحتوى عموديًا */
+    margin-top: 15px;
 }
 
 .product-name {
@@ -73,17 +78,17 @@
 }
 
 .bg-green {
-    background-color: #28a745; /* Green color for in stock */
+    background-color: #28a745; /* لون أخضر عند التوفر في المخزون */
 }
 
 .bg-red {
-    background-color: #dc3545; /* Red color for out of stock */
+    background-color: #dc3545; /* لون أحمر عند عدم التوفر في المخزون */
 }
 
 .wishlist-actions {
     display: flex;
-    justify-content: space-between;
-    /* align-items: center; */
+    justify-content: center; /* توسيط العناصر أفقيًا */
+    gap: 10px; /* مسافة بين الأزرار */
     margin-top: 15px; 
 }
 
@@ -99,7 +104,7 @@
 }
 
 .round-black-btn:hover {
-    background-color: #dc3545; 
+    background-color: #0167F3; 
 }
 
 .trash-icon {
@@ -121,6 +126,6 @@
 
 @media (max-width: 768px) {
     .wishlist-item {
-        /* Adjustments for mobile if needed */
+        /* تعديلات خاصة بالعرض على الجوال */
     }
 }

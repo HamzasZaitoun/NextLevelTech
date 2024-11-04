@@ -39,6 +39,7 @@ if (!isset($_SESSION['user_id'])) {
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
 </head>
 
 <body class="bg-gradient-primary">
@@ -47,7 +48,7 @@ if (!isset($_SESSION['user_id'])) {
             <!-- Breadcrumb -->
             <nav aria-label="breadcrumb" class="main-breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                    <li class="breadcrumb-item"style=" color: #858796;"><a style=" color: #858796;" href="index.php">Home</a></li>
                     <li class="breadcrumb-item active" aria-current="page">User Profile</li>
                 </ol>
             </nav>
@@ -61,8 +62,8 @@ if (!isset($_SESSION['user_id'])) {
                                 <img src="img/adminpic.jpg" alt="Admin" class="rounded-circle" width="150">
                                 <div class="mt-3">
                                     <h4><?= htmlspecialchars($userDetails['user_first_name'] . ' ' . $userDetails['user_last_name']); ?></h4>
-                                    <p class="text-secondary mb-1"><?=$userDetails['user_role']?></p>
-                                    <p class="text-muted font-size-sm">
+                                    <p class="mb-1"><?=$userDetails['user_role']?></p>
+                                    <p class=" font-size-sm">
                                       <?=htmlspecialchars($userDetails['user_address']) ?>
                                     </p>
                                 </div>
@@ -79,7 +80,7 @@ if (!isset($_SESSION['user_id'])) {
                                 <div class="col-sm-3">
                                     <h6 class="mb-0">Full Name</h6>
                                 </div>
-                                <div class="col-sm-9 text-secondary">
+                                <div class="col-sm-9 ">
                                     <?= htmlspecialchars($userDetails['user_first_name'] . ' ' . $userDetails['user_last_name']); ?>
                                 </div>
                             </div>
@@ -88,7 +89,7 @@ if (!isset($_SESSION['user_id'])) {
                                 <div class="col-sm-3">
                                     <h6 class="mb-0">Email</h6>
                                 </div>
-                                <div class="col-sm-9 text-secondary">
+                                <div class="col-sm-9 ">
                                     <?= htmlspecialchars($userDetails['user_email']); ?>
                                 </div>
                             </div>
@@ -97,7 +98,7 @@ if (!isset($_SESSION['user_id'])) {
                                 <div class="col-sm-3">
                                     <h6 class="mb-0">Phone</h6>
                                 </div>
-                                <div class="col-sm-9 text-secondary">
+                                <div class="col-sm-9 ">
                                     <?= htmlspecialchars($userDetails['user_phone_number']); ?>
                                 </div>
                             </div>
@@ -106,7 +107,7 @@ if (!isset($_SESSION['user_id'])) {
                                 <div class="col-sm-3">
                                     <h6 class="mb-0">Address</h6>
                                 </div>
-                                <div class="col-sm-9 text-secondary">
+                                <div class="col-sm-9">
                                     <?= htmlspecialchars($userDetails['user_address']); ?>
                                 </div>
                             </div>
@@ -124,9 +125,5 @@ if (!isset($_SESSION['user_id'])) {
     </div>
     
     <!-- Include JavaScript files -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-    <script src="js/sb-admin-2.min.js"></script>
 </body>
 </html>
