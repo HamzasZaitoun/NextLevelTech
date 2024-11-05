@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['apply_coupon'])) {
 
     // Check the result
     if ($result['success']) {
-        echo "<div class='alert alert-success'>Coupon Apply Successfully</div>";
+        echo "<div class='alert alert-success'> Apply Successfully</div>";
         $discountAmount = $result['discount'];
         
         // Update the final total

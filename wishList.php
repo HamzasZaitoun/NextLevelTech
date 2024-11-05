@@ -1,10 +1,13 @@
+
 <?php
+
 session_start();
 include("includes/header.php");
 include("includes/wishlistClass.php");
 
 $wishlist = new Wishlist();
 $user_id = $_SESSION['user_id'];
+// header('Content-Type: application/json');
 
 // Handle AJAX request to add product to wishlist
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_wishlist']) && isset($_POST['product_id'])) {
@@ -17,6 +20,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_wishlist']) &&
     }
     exit;
 }
+
+
+
 
 // Retrieve wishlist items
 $wishlistItems = $wishlist->getAllProductsFromWishlist($user_id);
@@ -61,25 +67,40 @@ $wishlistItems = $wishlist->getAllProductsFromWishlist($user_id);
 <?php
 include("includes/footer.php");
 ?>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
 function deleteItem(wishlist_id) {
-    if (confirm("Are you sure you want to delete this item?")) {
-        fetch('delete_item.php', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: 'wishlist_id=' + wishlist_id
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert("Item deleted successfully.");
-                location.reload();
-            } else {
-                alert("Failed to delete the item.");
-            }
-        })
-        .catch(error => console.error('Error:', error));
-    }
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "Do you really want to delete this item?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            fetch('delete_item.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: 'wishlist_id=' + wishlist_id
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    Swal.fire(
+                        'Deleted!',
+                        'The item has been deleted.',
+                        'success'
+                    ).then(() => location.reload());
+                } else {
+                    Swal.fire('Error', 'Failed to delete the item.', 'error');
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    });
 }
+
 </script>

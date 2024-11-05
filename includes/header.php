@@ -460,10 +460,10 @@ if (session_status() == PHP_SESSION_NONE) {
                                 <a href="flashSale.php" aria-label="Toggle navigation">Flash Sales</a>
                             </li>
                             <li class="nav-item">
-                                <a href="#trend_product" aria-label="Toggle navigation">Top Selling Products</a>
+                                <a href="index.php#trend_product" aria-label="Toggle navigation">Top Selling Products</a>
                             </li>
                             <li class="nav-item">
-                                <a href="#product_Categories" aria-label="Toggle navigation">Product Categories
+                                <a href="index.php#product_Categories" aria-label="Toggle navigation">Product Categories
                                 </a>
                             </li>
                             <li class="nav-item">

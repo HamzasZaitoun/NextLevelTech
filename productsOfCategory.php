@@ -61,12 +61,24 @@ include ('includes/header.php');
                                     </button>
                                 </div>
                                 <div class="shopbtn">
-                                    <button class="btn-btn" onclick="window.location.href='productDetails.php?id=<?= htmlspecialchars($product['product_id']); ?>'">
+                                    <button class="btn-btn"
+                                        onclick="addToCart(<?= htmlspecialchars($product['product_id']); ?>)">
                                         <div class="default-btn">
                                             <i class="lni lni-cart"></i>
                                         </div>
                                         <div class="hover-btn">
                                             <span>Shop now</span>
+                                        </div>
+                                    </button>
+                                </div>
+                                <div class="shopbtn">
+                                    <button class="btn-btn"
+                                        onclick="addToWishlist(<?= htmlspecialchars($product['product_id']); ?>)">
+                                        <div class="default-btn" id="heart-icon-<?= htmlspecialchars($product['product_id']); ?>">
+                                            <i class="lni lni-heart"></i>
+                                        </div>
+                                        <div class="hover-btn">
+                                            <span>Add to wish list</span>
                                         </div>
                                     </button>
                                 </div>
@@ -94,4 +106,39 @@ include ('includes/header.php');
   include("includes/footer.php");
   ?>
 </body>
+
+
+<script>
+    function addToCart(productId) {
+        fetch('cart.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: 'add_to_cart=true&product_id=' + productId
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert("Product added to cart!");
+        })
+        .catch(error => console.error('Error:', error));
+    }
+
+    function addToWishlist(productId) {
+        const button = document.getElementById('heart-icon-' + productId);
+        if (button) {
+            button.disabled = true;
+
+            fetch('wishlist.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: 'add_to_wishlist=true&product_id=' + productId
+            })
+            .then(response => response.json())
+        }
+    }
+</script>
+
 </html>
