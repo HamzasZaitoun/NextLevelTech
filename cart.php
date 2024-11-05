@@ -66,6 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['apply_coupon'])) {
     $userId = $_SESSION['user_id']; 
 
     
+    
 
     // Apply coupon
     $result = $cart->applyCoupon($couponCode, $userId);
