@@ -223,7 +223,7 @@
                         <div class="category-image-container">
                             <img src="<?php echo $imagePath_cat; ?>" alt="category_pic" class="category-image">
                         </div>
-                        <span class="category-title"><?= htmlspecialchars($category['category_name']); ?></span>
+                        <span class="category-title" style="font-size: 30px;"><?= htmlspecialchars($category['category_name']); ?></span>
                     </a>
                 </li>
                 <?php endforeach; ?>
@@ -234,7 +234,7 @@
 
 
         <!-- Start top selling Area -->
-        <section id="trend_product" class="trending-product section" style="margin-top: 12px;">
+        <section id="trend_product" class="trending-product section" ">
             <div class="container">
                 <div class="row">
                     <div class="col-12">
@@ -357,11 +357,6 @@
                                             </div>
                                         </button>
                                     </div>
-                                <!-- <a href="productDetails.php?id=<?= htmlspecialchars($randomProduct['product_id']); ?>"
-                                    class="product-btn">
-                                    <i class="lni lni-eye"></i>
-                                    <span>View Details</span>
-                                </a> -->
                             </div>
                         </div>
                     </div>
