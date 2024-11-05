@@ -39,7 +39,7 @@ if (isset($_GET['filter'])) {
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Game Shop | Products</title>
+    <title>Products | GamifyTech</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.svg" />
@@ -78,7 +78,22 @@ if (isset($_GET['filter'])) {
 
     <!-- Start Header Area -->
     <!-- End Header Area -->
-<?php include 'includes/header.php'; ?>
+    <?php include 'includes/header.php'; ?>
+    <div style="margin-left: 450px; width:400px;" class="col-lg-5 col-md-7 d-xs-none">
+        <div class="main-menu-search">
+            <div class="navbar-search search-style-5">
+                <div class="search-input">
+                    <form method="GET" style="display: flex; align-items: center;">
+                        <input type="text" name="search" placeholder="Search..." style="flex: 1; padding: 8px; font-size: 16px;">
+                        <button class="search-button" type="submit" name="btn-search" style="font-size: 18px; border: 0; border-radius: 0 4px 4px 0; border: 0; background-color: #0167F3; color: #fff; width: 45px; height: 45px; ">
+                            <i class="lni lni-search-alt"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Start Breadcrumbs -->
     <div class="breadcrumbs">
         <div class="container">
@@ -87,6 +102,7 @@ if (isset($_GET['filter'])) {
                     <div class="breadcrumbs-content">
                         <h1 class="page-title">Products</h1>
                     </div>
+
                     <button class="btn btn-primary" type="button" onclick="toggleFilterForm()" style="background-color: #0167F3; color: #fff; margin-left: 30px;">
                         Filter
                     </button>
@@ -94,8 +110,8 @@ if (isset($_GET['filter'])) {
                     <div id="filterForm" style="display: none; margin-left: 20px;">
                         <form method="GET" class="filter-form" style="display: inline-block;">
                             <!-- <label for="range">Determine the price</label><br><br> -->
-                            <input style="width: 110px;" type="number" name="ssalry" placeholder="Lowest price">
-                            <input style="width: 112px;" type="number" name="esalry" placeholder="Highest price">
+                            <input style="width: 120px;" type="number" name="ssalry" placeholder="Lowest price">
+                            <input style="width: 124px;" type="number" name="esalry" placeholder="Highest price">
                             <button style="border: 0; border-radius: 5px; background-color: #0167F3; color: #fff; width: 45px; height: 30px;" type="submit" name="filter">Go</button>
                         </form>
                     </div>
@@ -110,100 +126,91 @@ if (isset($_GET['filter'])) {
             </div>
         </div>
     </div>
+
     <!-- End Breadcrumbs -->
 
     <!-- Start Products Area -->
-<!-- ....................................................................... -->
+    <!-- ....................................................................... -->
 
 
-<section id="products" class="trending-product section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="section-title">
-                            <h2>Products</h2>
-                            <p>Discover our products, carefully curated to enhance your gaming experience.
-                            </p>
-                        </div>
+    <section id="products" class="trending-product section" style="margin-top: 12px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-title">
+                        <h2>Products</h2>
+                        <p>Discover our products, carefully curated to enhance your gaming experience.</p>
                     </div>
                 </div>
-                <?php
-                $trendingProductObj = new Product();
-                $trendingProducts = $trendingProductObj->getAllProducts();
-
-                if (!empty($trendingProducts)) : ?>
-                        <div class="row">
-                            <?php foreach ($trendingProducts as $product) : ?>
-                            <div class="col-lg-3 col-md-6 col-12">
-                                <div class="single-product">
-                                    <div class="product-image">
-                                        <?php $imagePath="inserted_img/".($product['product_picture']);?>
-                                        <img src="<?php echo htmlspecialchars($imagePath); ?>" alt="product_img">
-                                        <?php if ($product['product_discount'] > 0) : ?>
+            </div>
+            <?php if (!empty($products)) : ?>
+                <div class="row">
+                    <?php foreach ($products as $product) : ?>
+                        <div class="col-lg-3 col-md-6 col-12">
+                            <div class="single-product">
+                                <div class="product-image">
+                                    <?php $imagePath = "inserted_img/" . htmlspecialchars($product['product_picture']); ?>
+                                    <img src="<?php echo $imagePath; ?>" alt="product_img">
+                                    <?php if ($product['product_discount'] > 0) : ?>
                                         <div class="product-discount">
-                                            <span>-<?= htmlspecialchars($product['product_discount']);?>%</span>
+                                            <span>-<?= htmlspecialchars($product['product_discount']); ?>%</span>
                                         </div>
-                                        <?php endif; ?>
-                                        <div class="btn-div">
-                                            <div class="shopbtn">
-                                                <button class="btn-btn"
-                                                    onclick="window.location.href='productDetails.php?id=<?= htmlspecialchars($product['product_id']); ?>'">
-                                                    <div class="default-btn">
-                                                        <i class="lni lni-eye"></i>
-                                                    </div>
-                                                    <div class="hover-btn">
-                                                        <span>Quick View</span>
-                                                    </div>
-                                                </button>
-                                            </div>
-                                            <div class="shopbtn">
-                                                <button class="btn-btn"
-                                                    onclick="window.location.href='productDetails.php?id=<?= htmlspecialchars($product['product_id']); ?>'">
-                                                    <div class="default-btn">
-                                                        <i class="lni lni-cart"></i>
-                                                    </div>
-                                                    <div class="hover-btn">
-                                                        <span>Shop now</span>
-                                                    </div>
-                                                </button>
-                                            </div>
-                                            <!-- add to wish list button -->
-                                            <div class="shopbtn">
-                                                <button class="btn-btn"
-                                                    onclick="window.location.href='productDetails.php?id=<?= htmlspecialchars($product['product_id']); ?>'">
-                                                    <div class="default-btn">
-                                                        <i class="lni lni-heart"></i>
-                                                    </div>
-                                                    <div class="hover-btn">
-                                                        <span>add to wish list</span>
-                                                    </div>
-                                                </button>
-                                            </div>
-
-
+                                    <?php endif; ?>
+                                    <div class="btn-div">
+                                        <div class="shopbtn">
+                                            <button class="btn-btn" onclick="window.location.href='productDetails.php?id=<?= htmlspecialchars($product['product_id']); ?>'">
+                                                <div class="default-btn">
+                                                    <i class="lni lni-eye"></i>
+                                                </div>
+                                                <div class="hover-btn">
+                                                    <span>Quick View</span>
+                                                </div>
+                                            </button>
                                         </div>
-                                    </div>
-                                    <div class="product-info">
-                                        <h6 class="title">
-                                            <?= htmlspecialchars($product['product_name']); ?>
-                                        </h6>
-                                        <div class="price">
-                                            <span><?php echo htmlspecialchars($product['product_price']); ?> JOD</span>
+                                        <div class="shopbtn">
+                                            <button class="btn-btn" onclick="window.location.href='productDetails.php?id=<?= htmlspecialchars($product['product_id']); ?>'">
+                                                <div class="default-btn">
+                                                    <i class="lni lni-cart"></i>
+                                                </div>
+                                                <div class="hover-btn">
+                                                    <span>Shop now</span>
+                                                </div>
+                                            </button>
+                                        </div>
+                                        <div class="shopbtn">
+                                            <button class="btn-btn" onclick="window.location.href='productDetails.php?id=<?= htmlspecialchars($product['product_id']); ?>'">
+                                                <div class="default-btn">
+                                                    <i class="lni lni-heart"></i>
+                                                </div>
+                                                <div class="hover-btn">
+                                                    <span>Add to wish list</span>
+                                                </div>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="product-info">
+                                    <h6 class="title">
+                                        <?= htmlspecialchars($product['product_name']); ?>
+                                    </h6>
+                                    <div class="price">
+                                        <span><?php echo htmlspecialchars($product['product_price']); ?> JOD</span>
+                                    </div>
+                                </div>
                             </div>
-                            <?php endforeach; ?>
                         </div>
-                        <?php else : ?>
-                        <p>No products available.</p>
-                        <?php endif; ?>
-                    </div>
-        </section>
+                    <?php endforeach; ?>
+                </div>
+            <?php else : ?>
+                <p>No products available.</p>
+            <?php endif; ?>
+        </div>
+    </section>
 
 
 
-<!-- ......................................................................... -->
+
+    <!-- ......................................................................... -->
     <!-- <section class="trending-product section" style="margin-top: 12px;">
         <div class="container">
             <div class="row">

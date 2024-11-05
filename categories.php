@@ -14,7 +14,7 @@
     <meta name="description"
         content="GameTech is your ultimate destination for gaming enthusiasts, providing high-quality gaming devices to enhance your gaming experience. Learn more about our mission and meet our team." />
 
-    <title>Products Categories</title>
+    <title>Products Categories | GamifyTech</title>
     <?php
           include("includes/categoriesClass.php");
 

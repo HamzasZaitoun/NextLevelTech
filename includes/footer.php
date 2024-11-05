@@ -3,14 +3,14 @@
      <!-- Start Footer Area -->
      <footer class="footer">
         <!-- Start Footer Top -->
-        <div class="footer-top">
+        <!-- <div class="footer-top">
             <div class="container">
                 <div class="inner-content">
                     <div class="row">
                         <div class="col-lg-3 col-md-4 col-12">
                             <div class="footer-logo">
                                 <a href="index.php">
-                                    <img src="assets/images/logo/white-logo.svg" alt="#">
+                                    <img src="assets/images/logo/logo.svg" alt="#">
                                 </a>
                             </div>
                         </div>
@@ -33,7 +33,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- End Footer Top -->
         <!-- Start Footer Middle -->
         <div class="footer-middle">
@@ -64,7 +64,7 @@
                                     <li><a href="contact.php">Contact Us</a></li>
                                    
                                    
-                                    <li><a href="javascript:void(0)">FAQs Page</a></li>
+                                    <!-- <li><a href="javascript:void(0)">FAQs Page</a></li> -->
                                 </ul>
                             </div>
                             <!-- End Single Widget -->
@@ -74,11 +74,12 @@
                             <div class="single-footer f-link">
                                 <h3>Shop Departments</h3>
                                 <ul>
-                                    <li><a href="javascript:void(0)">Computers & Accessories</a></li>
-                                    <li><a href="javascript:void(0)">Smartphones & Tablets</a></li>
-                                    <li><a href="javascript:void(0)">TV, Video & Audio</a></li>
-                                    <li><a href="javascript:void(0)">Cameras, Photo & Video</a></li>
-                                    <li><a href="javascript:void(0)">Headphones</a></li>
+                                    <li><a href="http://localhost/NextLevelTech%20main%20main/productsOfCategory.php?id=102">Gaming Headset</a></li>
+                                    <li><a href="http://localhost/NextLevelTech%20main%20main/productsOfCategory.php?id=103">Gaming Keyboard</a></li>
+                                    <li><a href="http://localhost/NextLevelTech%20main%20main/productsOfCategory.php?id=104">Gaming Mouse</a></li>
+                                    <li><a href="http://localhost/NextLevelTech%20main%20main/productsOfCategory.php?id=105">Gaming Chair</a></li>
+                                    <li><a href="http://localhost/NextLevelTech%20main%20main/productsOfCategory.php?id=106">Gaming Desk</a></li>
+                                    <li><a href="http://localhost/NextLevelTech%20main%20main/productsOfCategory.php?id=107">Gaming Microphone</a></li>
                                 </ul>
                             </div>
                             <!-- End Single Widget -->
@@ -93,18 +94,18 @@
             <div class="container">
                 <div class="inner-content">
                     <div class="row align-items-center">
-                        <div class="col-lg-4 col-12">
+                        <!-- <div class="col-lg-4 col-12">
                             <div class="payment-gateway">
                                 <span>We Accept:</span>
                                 <img src="assets/images/footer/credit-cards-footer.png" alt="#">
                             </div>
-                        </div>
-                        <div class="col-lg-4 col-12">
+                        </div> -->
+                        <div class="">
                             <div class="copyright">
                                 <p>© 2024 by gameShop team</p>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-12">
+                        <!-- <div class="col-lg-4 col-12">
                             <ul class="socila">
                                 <li>
                                     <span>Follow Us On:</span>
@@ -114,7 +115,7 @@
                                 <li><a href="javascript:void(0)"><i class="lni lni-instagram"></i></a></li>
                                 <li><a href="javascript:void(0)"><i class="lni lni-google"></i></a></li>
                             </ul>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

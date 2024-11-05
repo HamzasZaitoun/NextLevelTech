@@ -12,7 +12,7 @@ if (session_status() == PHP_SESSION_NONE) {
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.svg" />
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/logo/1302365453812760631remix-1730585196342.png" />
 
     <!-- ========================= CSS here ========================= -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
@@ -21,6 +21,18 @@ if (session_status() == PHP_SESSION_NONE) {
     <link rel="stylesheet" href="assets/css/glightbox.min.css" />
     <link rel="stylesheet" href="assets/css/main.css" />
     <style>
+        
+    .logo {
+  font-family: "Righteous", sans-serif;
+  color: #0167F3;
+  text-transform: uppercase;
+  font-size: 10.4rem;
+  font-weight :600px;
+}
+        .logo:hover {
+            transform: scale(1.5); /* تكبير الشعار عند المرور عليه */
+        }
+
         .navbar-nav {
             display: flex;
             justify-content: center;
@@ -31,9 +43,6 @@ if (session_status() == PHP_SESSION_NONE) {
             text-align: center;
             margin: 0 15px;
         }
-
-
-
 
         /* Style for the Login Button */
         .gaming-button {
@@ -314,8 +323,9 @@ if (session_status() == PHP_SESSION_NONE) {
                     <div class="row align-items-center">
                         <div class="col-lg-3 col-md-3 col-7">
                             <!-- Start Header Logo -->
-                            <a class="navbar-brand" href="index.php">
-                                <img src="assets/images/logo/logo.svg" alt="Logo">
+                            <a class="logo" href="index.php">
+                                <!-- <img src="assets/images/logo/logo.svg" alt="Logo"> -->
+                                 <p>GamifyTech</p>
                             </a>
                             <!-- End Header Logo -->
                         </div>
@@ -450,7 +460,7 @@ if (session_status() == PHP_SESSION_NONE) {
                                 <a href="flashSale.php" aria-label="Toggle navigation">Flash Sales</a>
                             </li>
                             <li class="nav-item">
-                                <a href="#trend_product" aria-label="Toggle navigation">Trending Products</a>
+                                <a href="#trend_product" aria-label="Toggle navigation">Top Selling Products</a>
                             </li>
                             <li class="nav-item">
                                 <a href="#product_Categories" aria-label="Toggle navigation">Product Categories

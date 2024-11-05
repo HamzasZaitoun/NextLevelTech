@@ -131,6 +131,21 @@ class Product {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     
+    public function fetchTopSellingProducts() {
+        $stmt = $this->pdo->prepare("
+            SELECT products.*, categories.category_name, SUM(order_items.quantity) AS total_sold
+            FROM products
+            JOIN order_items ON products.product_id = order_items.product_id
+            JOIN categories ON products.category_id = categories.category_id
+            WHERE products.is_deleted = 0
+            GROUP BY products.product_id
+            ORDER BY total_sold DESC
+            LIMIT 8
+        ");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
 
 }
 

@@ -33,18 +33,6 @@ $coupons = $couponModel->getAllCoupons();
             border: none;
             padding: 10px;
         }
-        .save-btn {
-            background-color: #000;
-            color: white;
-            padding: 10px;
-            border: none;
-            cursor: pointer;
-            width: 100px;
-            margin-top: 20px;
-        }
-        .action-buttons button {
-            margin-right: 10px;
-        }
         .button1 {
             background: #000;
         }
@@ -55,6 +43,13 @@ $coupons = $couponModel->getAllCoupons();
             padding-top: 5rem;
             padding-bottom: 3rem;
         }
+        .nav-link-text {
+            color: #FFFECB;
+            font-weight: bold;
+            }
+            .topbar-search-btn {
+  background: #7AB2D3;
+}
     </style>
 </head>
 
@@ -66,7 +61,7 @@ $coupons = $couponModel->getAllCoupons();
 
         <div class="">
             <div>
-                <button type="button" class="button1" onclick="openAddModal()">
+                <button type="button" class="addbutton" onclick="openAddModal()">
                     <span class="button__text">Add Coupon</span>
                     <span class="button__icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg">
@@ -99,11 +94,11 @@ $coupons = $couponModel->getAllCoupons();
                             <td><?= htmlspecialchars($coupon['coupon_status']); ?></td>
                             <td data-label="Actions">
                                 <div class="action-buttons">
-                                    <button class="edit-btn" onclick="openEditModal(this)">Edit</button>
+                                    <button class="edit-btn" onclick="openEditModal(this)"><i class="bi bi-pencil-square"></i></button>
                                     <form method="POST" action="process_coupon.php" style="display:inline;">
                                         <input type="hidden" name="action" value="delete_coupon">
                                         <input type="hidden" name="coupon_id" value="<?= htmlspecialchars($coupon['coupon_id']); ?>">
-                                        <button class="delete-btn" type="button" onclick="confirmDelete(this)">Delete</button>
+                                        <button class="delete-btn" type="button" onclick="confirmDelete(this)"><i class="bi bi-trash"></i></button>
                                     </form>
                                 </div>
                             </td>

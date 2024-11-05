@@ -48,7 +48,7 @@ class Cart {
     public function getCart($user_id) {
         $stmt = $this->pdo->prepare("
             SELECT orders.order_id, order_items.product_id, order_items.quantity, 
-                   products.product_name, products.product_picture, products.product_price
+                products.product_name, products.product_picture, products.product_price
             FROM orders
             JOIN order_items ON orders.order_id = order_items.order_id
             JOIN products ON order_items.product_id = products.product_id
@@ -90,7 +90,7 @@ class Cart {
         }
     }
 
-   
+
     public function checkout($user_id) {
         $checkOrderStmt = $this->pdo->prepare("SELECT order_id FROM orders WHERE user_id = ? AND order_status = 'pending'");
         $checkOrderStmt->execute([$user_id]);

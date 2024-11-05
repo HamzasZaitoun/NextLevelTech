@@ -4,32 +4,9 @@
     include("includes/productsClasss.php");
     include("includes/categoriesClass.php");
 
-
-
-    if (isset($_SESSION['checkout_success'])) {
-        echo "<script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Thank you!',
-                text: 'Your order has been placed successfully!',
-                showConfirmButton: false,
-                timer: 2000
-            });
-        </script>";
-        unset($_SESSION['checkout_success']); // Clear the session variable
-    }
-    
-    if (isset($_SESSION['checkout_error'])) {
-        echo "<script>
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'There was an error processing your order. Please try again.',
-                showConfirmButton: false,
-                timer: 2000
-            });
-        </script>";
-        unset($_SESSION['checkout_error']); // Clear the session variable
+    if (isset($_SESSION['success_message'])) {
+        echo "<div class='alert alert-success'>" . $_SESSION['success_message'] . "</div>";
+        unset($_SESSION['success_message']);
     }
  
     
@@ -37,7 +14,7 @@
 <!-- <link rel="stylesheet" href="assets/css/test.css"> -->
 <link rel="stylesheet" href="cat.css">
 <link rel="stylesheet" href="trendingProducts.css">
-<title>Game Shop</title>
+<title>GamifyTech</title>
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <style>
@@ -56,31 +33,27 @@
 
 .swiper-pagination-bullet {
     background: #fff;
-    /* لون النقاط */
 }
 
 .swiper-button-next,
 .swiper-button-prev {
     color: #fff;
-    /* لون الأزرار */
 }
 </style>
 </head>
 
 <body>
     <!-- Preloader -->
-    <!-- <div class="preloader">
+    <div class="preloader">
         <div class="preloader-inner">
             <div class="preloader-icon">
                 <span></span>
                 <span></span>
             </div>
         </div>
-    </div> -->
+    </div>
 
     <!-- /End Preloader -->
-
-    <!-- Start Hero Area -->
 
     <!-- Start Hero Area -->
     <section class="hero-area">
@@ -103,11 +76,8 @@
                             <!-- Start Single Slider -->
                             <div class="single-slider" style="background-image:  url('<?php echo $imagePath; ?>');">
                                 <div class="content">
-                                    <h2><span>No restocking fee (<?= htmlspecialchars($calculateSaving); ?> JOD
-                                            savings)</span>
                                         <?= htmlspecialchars($highestProduct['product_name']); ?>
                                     </h2>
-                                    <p><?= htmlspecialchars($highestProduct['product_description']); ?></p>
                                     <h3><span>Now Only</span> <?= htmlspecialchars($priceAfterDiscount); ?> JOD</h3>
                                     <div class="button">
                                         <a href="productDetails.php?id=<?= htmlspecialchars($highestProduct['product_id']); ?>"
@@ -155,12 +125,12 @@
                                 $discountProduct = $highestDiscountProduct->fetchHighestDiscountProduct(); 
 
                                 if (!empty($discountProduct)) : 
-                                    $calculateSaving = $highestProduct['product_price'] * ($highestProduct['product_discount'] / 100);
+                                    $calculateSaving = $discountProduct['product_price'] * ($discountProduct['product_discount'] / 100);
 
                             ?>
                                 <div class="content">
                                     <h2>Flash Sale!</h2>
-                                    <h3 style="color : red"><?=$highestProduct['product_discount']?> %</h3>
+                                    <h3 style="color : red"><?=$discountProduct['product_discount']?> %</h3>
                                     <p>Saving up to
                                         <?= $calculateSaving ; ?> off
                                         <?= htmlspecialchars($discountProduct['product_name']); ?></p>
@@ -235,7 +205,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="section-title">
-                            <h2>Trending Products</h2>
+                            <h2>Top Selling Products</h2>
                             <p>Discover our best-rated products, carefully curated to enhance your gaming experience.
                             </p>
                         </div>
@@ -243,7 +213,7 @@
                 </div>
                 <?php
                 $trendingProductObj = new Product();
-                $trendingProducts = $trendingProductObj->fetchTrendingProducts();
+                $trendingProducts = $trendingProductObj->fetchTopSellingProducts();
 
                 if (!empty($trendingProducts)) : ?>
                         <div class="row">
@@ -339,10 +309,9 @@
                     $imagePath="inserted_img/".($randomProduct['product_picture']);
                     ?>
                     <div class="col-lg-6 col-md-6 col-12">
-                        <div class="single-banner" style="background-image:  url('<?php echo $imagePath; ?>');">
+                        <div class="single-banner mr-0" style="background-image:  url('<?php echo $imagePath; ?>'); width : 50%; margin-left:50px">
                             <div class="content">
                                 <h2><?= htmlspecialchars($randomProduct['product_name']); ?></h2>
-                                <p><?= htmlspecialchars($randomProduct['product_description']); ?></p>
 
                                 <div class="button">
                                     <a href="productDetails.php?id=<?= htmlspecialchars($randomProduct['product_id']); ?>"

@@ -9,12 +9,13 @@ class category
 
     {
         // using the existing PDO (PHP data oject) connection (singlton pattern)
-        $this->pdo =  dbConnection::getInstence()->getConnection();  
+        $this->pdo =  dbConnection::getInstence()->getConnection();
+        // echo 'connection yes';
     }
 
     public function getAllCategories()
     {
-        $stmt = $this->pdo->query("SELECT * from categories");
+        $stmt = $this->pdo->query("SELECT * from categories WHERE is_deleted = 0 ORDER BY category_id");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -30,7 +31,6 @@ class category
         $stmt->execute([$id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
-    
     public function updateCategory($id, $name,$description,$picture)
     {
         $stmt= $this->pdo->prepare("UPDATE categories SET category_name=?, category_description=?,category_picture=? WHERE category_id=?");
@@ -39,12 +39,14 @@ class category
 
     public function SoftDeleteCategory($id)
     {
-        return true;
+        $stmt = $this->pdo->prepare("UPDATE categories SET is_deleted = 1 WHERE category_id = ?");
+        return $stmt->execute([$id]);
     }
 
-    
-    
+
 }
+
+// $category = new category();
 
 
 ?>
