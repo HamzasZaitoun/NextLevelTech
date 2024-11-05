@@ -10,7 +10,6 @@ require_once "includes/productsClasss.php";
 $user_id = $_SESSION['user_id'] ?? null;
 
 if (!isset($_SESSION['user_id'])) {
-    // If the user is not signed in, redirect to the login page
     header("Location: login/registration.php");
     exit(); 
 }
@@ -31,9 +30,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_to_cart'])) {
 
     try {
         if ($cart->addToCart($user_id, $product_id, $quantity)){
-          echo "<script>alert('Product added to cart successfully!');</script>";
-          $cartItems = $cart->getCart($user_id);
-          header ("Location: cart.php?message=item added ");
+            echo "<script>alert('Product added to cart successfully!');</script>";
+            $cartItems = $cart->getCart($user_id);
+            header ("Location: cart.php?message=item added ");
         }
     } catch (Exception $e) {
         echo "<script>alert('Error adding product to cart: " . $e->getMessage() . "');</script>";
@@ -69,14 +68,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['apply_coupon'])) {
     $couponCode = $_POST['coupon_code'];
     $userId = $_SESSION['user_id']; 
 
-    $discountAmount = 0;
+    
 
     // Apply coupon
     $result = $cart->applyCoupon($couponCode, $userId);
 
     // Check the result
     if ($result['success']) {
-        echo "<div class='alert alert-success'>Coupon applied! New total: $" . number_format($result['new_total'], 2) . " (Discount: $" . number_format($result['discount'], 2) . ")</div>";
+        echo "<div class='alert alert-success'> Apply Successfully</div>";
         $discountAmount = $result['discount'];
         
         // Update the final total
@@ -88,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['apply_coupon'])) {
 }
 
 // Calculate total price from cart items
-$totalPrice = 0;
+
 foreach ($cartItems as $item) {
     $totalPrice += $item['product_price'] * $item['quantity']; 
 }
@@ -111,6 +110,13 @@ $_SESSION['final_total'] = $finalTotal;
 <style>
     html { color:black !important; }
     a { color: black; }
+
+
+    input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 </style>
 
 <section class="bg-light my-5">
@@ -135,14 +141,22 @@ $_SESSION['final_total'] = $finalTotal;
                                         </div>
                                     </div>
 
+                                    
+
                                     <div class="col-lg-3 col-md-3 col-6 d-flex align-items-center">
-                                        <form method="POST" action="cart.php" class="w-100 d-flex align-items-center">
-                                            <input type="hidden" name="product_id" value="<?= $item['product_id']; ?>">
-                                            <input type="hidden" name="update_quantity" value="1">
-                                            <button type="button" class="btn btn-secondary me-2" onclick="updateQuantity(<?= $item['product_id']; ?>, -1)">-</button>
-                                            <input type="number" name="quantity[<?= $item['product_id']; ?>]" value="<?= $item['quantity']; ?>" required min="1" class="form-control text-center me-2 quantity-input" onchange="updateTotalPrice()">
-                                            <button type="button" class="btn btn-secondary" onclick="updateQuantity(<?= $item['product_id']; ?>, 1)">+</button>
-                                        </form>
+                                    <form method="POST" action="cart.php" class="d-flex align-items-center">
+                                        <input type="hidden" name="product_id" value="<?= $item['product_id']; ?>">
+                                        <input type="hidden" name="update_quantity" value="1">
+
+                                        <!-- Minus button -->
+                                        <button type="button" class="btn btn-secondary" onclick="updateQuantity(this, -1)">-</button>
+
+                                        <!-- Quantity input -->
+                                        <input type="number" name="quantity" value="<?= $item['quantity']; ?>" required min="1" class="form-control text-center mx-2" readonly>
+
+                                        <!-- Plus button -->
+                                        <button type="button" class="btn btn-secondary" onclick="updateQuantity(this, 1)">+</button>
+                                    </form>
                                     </div>
 
                                     <div class="col-lg-2 col-md-3 col-6 text-end text-md-center">
@@ -194,7 +208,7 @@ $_SESSION['final_total'] = $finalTotal;
                         </div>
                         <div class="mt-4">
                             <form method="POST" action="cart.php">
-                                <input type="text" name="coupon_code" placeholder="Enter coupon code" class="form-control" />
+                                <input type="text" name="coupon_code" placeholder="Enter coupon code" class="form-control" required />
                                 <button type="submit" name="apply_coupon" class="btn btn-primary w-100">Apply Coupon</button>
                             </form>
                         </div>
@@ -291,14 +305,19 @@ $_SESSION['final_total'] = $finalTotal;
 </section>
 
 <script>
-    function updateQuantity(productId, change) {
-        let inputField = document.querySelector(`input[name='quantity[${productId}]']`);
-        let currentQuantity = parseInt(inputField.value);
+   function updateQuantity(button, change) {
+        const form = button.closest('form');
+        const quantityInput = form.querySelector('input[name="quantity"]');
+        
+        let currentQuantity = parseInt(quantityInput.value);
         let newQuantity = currentQuantity + change;
 
+        // Ensure quantity is at least 1
         if (newQuantity > 0) {
-            inputField.value = newQuantity;
-            updateTotalPrice();
+            quantityInput.value = newQuantity;
+
+            // Submit the form after updating the quantity
+            form.submit();
         }
     }
 

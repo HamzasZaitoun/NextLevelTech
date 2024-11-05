@@ -40,6 +40,67 @@
 .swiper-button-prev {
     color: #333;
 }
+
+/* Container for the entire section */
+.random-products.section {
+    padding: 60px 0;
+}
+
+/* Each product card */
+.random-product-card {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    height: 350px;
+    display: flex;
+    align-items: flex-end;
+    margin: 15px 0;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.random-product-card:hover {
+    transform: scale(1.02);
+}
+
+/* Overlay for text content */
+.product-content {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Product title styling */
+.product-title {
+    color: #fff;
+    font-size: 24px;
+    margin: 0 0 10px;
+    font-weight: 600;
+}
+
+/* Button styling */
+.product-btn {
+    display: inline-flex;
+    align-items: center;
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: #007bff;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.product-btn i {
+    margin-right: 8px;
+}
+
+.product-btn:hover {
+    background-color: #0056b3;
+}
 </style>
 </head>
 
@@ -172,7 +233,7 @@
         </section>
 
 
-        <!-- Start Trending Product Area -->
+        <!-- Start top selling Area -->
         <section id="trend_product" class="trending-product section" style="margin-top: 12px;">
             <div class="container">
                 <div class="row">
@@ -267,45 +328,45 @@
             </div>
         </section>
 
-        <!-- End Trending Product Area -->
-
+        <!-- End top selling Area -->
 
         <!-- Start Banner Area -->
-        <section class="banner section">
+        <section class="random-products section">
             <div class="container">
                 <div class="row">
                     <?php
-            $randomProductsObj = new product();
-            $randomProducts = $randomProductsObj->fetchRandomProducts(); 
+                    $randomProductsObj = new Product();
+                    $randomProducts = $randomProductsObj->fetchRandomProducts(); 
 
-            if (!empty($randomProducts)):
-                foreach ($randomProducts as $randomProduct):
-                    $imagePath="inserted_img/".($randomProduct['product_picture']);
-                    ?>
+                    if (!empty($randomProducts)):
+                        foreach ($randomProducts as $randomProduct):
+                            $imagePath = "inserted_img/" . ($randomProduct['product_picture']);
+                            ?>
                     <div class="col-lg-6 col-md-6 col-12">
-                        <div class="single-banner mr-0"
-                            style="background-image:  url('<?php echo $imagePath; ?>'); width : 50%; margin-left:50px">
-                            <div class="content">
-                                <h2><?= htmlspecialchars($randomProduct['product_name']); ?></h2>
-
-                                <div class="button">
-                                    <a href="productDetails.php?id=<?= htmlspecialchars($randomProduct['product_id']); ?>"
-                                        class="btn-btn">
-                                        <div class="default-btn">
-                                            <i class="lni lni-eye"></i>
-
-                                        </div>
-                                        <div class="hover-btn">
-
-                                            <span>View Details</span>
-                                        </div>
-                                    </a>
-                                </div>
+                        <div class="random-product-card" style="background-image: url('<?php echo $imagePath; ?>');">
+                            <div class="product-content">
+                                <h2 class="product-title"><?= htmlspecialchars($randomProduct['product_name']); ?></h2>
+                                <div class="shopbtn">
+                                        <button class="btn-btn"
+                                            onclick="window.location.href='productDetails.php?id=<?= htmlspecialchars($randomProduct['product_id']); ?>'">
+                                            <div class="default-btn">
+                                                <i class="lni lni-eye"></i>
+                                            </div>
+                                            <div class="hover-btn">
+                                                <span>Quick View</span>
+                                            </div>
+                                        </button>
+                                    </div>
+                                <!-- <a href="productDetails.php?id=<?= htmlspecialchars($randomProduct['product_id']); ?>"
+                                    class="product-btn">
+                                    <i class="lni lni-eye"></i>
+                                    <span>View Details</span>
+                                </a> -->
                             </div>
                         </div>
                     </div>
-                    <?php endforeach;
-            else: ?>
+                    <?php endforeach; 
+                        else: ?>
                     <div class="col-12">
                         <p>No products available at the moment.</p>
                     </div>
@@ -313,6 +374,7 @@
                 </div>
             </div>
         </section>
+
         <!-- End Banner Area -->
 
         <!-- Start Shipping Info -->
@@ -463,7 +525,7 @@
                 error: function() {
                     $('#wishlist-response').html(
                         '<span class="text-danger">Failed to add item to wishlist. Try again.</span>'
-                        );
+                    );
                 }
             });
         });
