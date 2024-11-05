@@ -267,7 +267,7 @@
     position: absolute; /* وضع الخصم في مكان محدد */
     top: 10px; /* المسافة من أعلى الصورة */
     left: 10px; /* المسافة من اليسار */
-    background-color:#0167F3; /* اللون الأحمر للخلفية */
+    background-color:#ce2929; /* اللون الأحمر للخلفية */
     color: white; /* لون النص */
     padding: 5px 10px; /* حشوة داخلية */
     border-radius: 5px; /* زوايا دائرية */

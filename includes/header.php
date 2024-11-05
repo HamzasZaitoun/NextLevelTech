@@ -13,6 +13,11 @@ if (session_status() == PHP_SESSION_NONE) {
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/logo/1302365453812760631remix-1730585196342.png" />
+    <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
 
     <!-- ========================= CSS here ========================= -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
@@ -441,11 +446,12 @@ if (session_status() == PHP_SESSION_NONE) {
                             <span class="toggler-icon"></span>
                             <span class="toggler-icon"></span>
                         </button>
+                      
                         <ul id="nav" class="navbar-nav mx-auto">
+                        <li class="nav-item">
+                            <a href="index.php" class="active" aria-label="Toggle navigation">Home</a>
+                        </li>
                             <!-- تغيير ms-auto إلى mx-auto لتوسيط المحتوى -->
-                            <li class="nav-item">
-                                <a href="index.php" class="active" aria-label="Toggle navigation">Home</a>
-                            </li>
                             <!-- <li class="nav-item">
                                 <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
                                     data-bs-target="#submenu-1-4" aria-controls="navbarSupportedContent"
@@ -457,14 +463,18 @@ if (session_status() == PHP_SESSION_NONE) {
                                 </ul>
                             </li> -->
                             <li class="nav-item">
+                                <a href="index.php#product_Categories" aria-label="Toggle navigation">Product Categories
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="index.php#new-arrival" aria-label="Toggle navigation">New Arrivals
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="flashSale.php" aria-label="Toggle navigation">Flash Sales</a>
                             </li>
                             <li class="nav-item">
                                 <a href="index.php#trend_product" aria-label="Toggle navigation">Top Selling Products</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="index.php#product_Categories" aria-label="Toggle navigation">Product Categories
-                                </a>
                             </li>
                             <li class="nav-item">
                                 <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
