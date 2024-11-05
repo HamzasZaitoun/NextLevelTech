@@ -357,11 +357,6 @@
                                             </div>
                                         </button>
                                     </div>
-                                <!-- <a href="productDetails.php?id=<?= htmlspecialchars($randomProduct['product_id']); ?>"
-                                    class="product-btn">
-                                    <i class="lni lni-eye"></i>
-                                    <span>View Details</span>
-                                </a> -->
                             </div>
                         </div>
                     </div>
