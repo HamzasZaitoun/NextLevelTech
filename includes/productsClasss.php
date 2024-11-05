@@ -112,7 +112,7 @@ class Product {
     //function to get recommended products
     function getRecommendedProducts($categoryId, $cartProductIds) {
         if (empty($cartProductIds)) {
-            return []; // إذا كانت السلة فارغة، لا يوجد منتجات موصى بها
+            return [];
         }
     
         $placeholders = implode(',', array_fill(0, count($cartProductIds), '?'));
@@ -148,8 +148,5 @@ class Product {
     
 
 }
-
-// $product = new Product();
-// $product ->fetchHighestDiscountProducts();
 
 ?>
