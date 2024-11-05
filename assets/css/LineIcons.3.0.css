@@ -427,6 +427,7 @@ Author: lineicons.com
 
 .lni-cart::before {
   content: "\ea57";
+  font-size: 20px;
 }
 
 .lni-certificate::before {
@@ -795,6 +796,7 @@ Author: lineicons.com
 
 .lni-eye::before {
   content: "\eab2";
+  font-size: 20px;
 }
 
 .lni-facebook-filled::before {
@@ -999,6 +1001,7 @@ Author: lineicons.com
 
 .lni-heart::before {
   content: "\eae6";
+  font-size: 20px ;
 }
 
 .lni-helicopter::before {
