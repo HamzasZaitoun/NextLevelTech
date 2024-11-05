@@ -463,7 +463,7 @@
                 error: function() {
                     $('#wishlist-response').html(
                         '<span class="text-danger">Failed to add item to wishlist. Try again.</span>'
-                        );
+                    );
                 }
             });
         });

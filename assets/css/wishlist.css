@@ -1,16 +1,17 @@
 .wishlist-wrap {
     padding: 40px 20px;
     font-family: "Righteous", sans-serif;
-    background-color: #f0f0f0;
+    background: linear-gradient(135deg, #e0e0e0, #f0f0f0); /* تدرج خلفية مميز */
 }
 
 .main-heading {
-    font-size: 24px;
+    font-size: 28px;
     margin-bottom: 30px;
     color: #333;
     text-align: center;
     font-weight: bold;
     text-transform: uppercase;
+    letter-spacing: 1px; /* إضافة تباعد بين الحروف */
 }
 
 .wishlist-grid {
@@ -22,110 +23,124 @@
 .wishlist-item {
     display: flex;
     flex-direction: column;
-    align-items: center; /* توسيط العناصر أفقيًا */
+    align-items: center;
     justify-content: space-between;
     background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease;
-    text-align: center; /* توسيط النصوص داخل الكارد */
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
 }
 
 .wishlist-item:hover {
-    transform: scale(1.02);
+    transform: scale(1.05);
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2); /* زيادة الظل عند التمرير */
 }
 
 .product-image {
-    text-align: center; /* توسيط الصورة */
+    text-align: center;
 }
 
 .image {
-    width: 100%; /* الصورة تأخذ العرض الكامل للحاوية */
-    max-width: 150px; /* تحديد العرض الأقصى */
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 160px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease; /* إضافة تأثير ناعم للظل */
+}
+
+.image:hover {
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.3); /* تأثير إضافي عند تمرير الماوس */
 }
 
 .wishlist-info {
     display: flex;
     flex-direction: column;
-    align-items: center; /* توسيط المحتوى عموديًا */
-    margin-top: 15px;
+    align-items: center;
+    margin-top: 20px;
 }
 
 .product-name {
-    font-size: 18px;
-    font-weight: 600;
-    color: #444;
+    font-size: 20px;
+    font-weight: 700;
+    color: #333;
+    text-transform: capitalize;
 }
 
 .product-price {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 700;
-    color: #1a1a1a;
-    margin-top: 5px;
+    color: #0167F3; /* لون بارز للسعر */
+    margin-top: 8px;
 }
 
 .stock-status {
     font-size: 12px;
-    margin-top: 8px;
-    padding: 6px 12px;
+    margin-top: 10px;
+    padding: 8px 15px;
     border-radius: 25px;
     font-weight: bold;
     text-transform: uppercase;
-    color: white;
+    color: #fff;
 }
 
 .bg-green {
-    background-color: #28a745; /* لون أخضر عند التوفر في المخزون */
+    background-color: #28a745;
 }
 
 .bg-red {
-    background-color: #dc3545; /* لون أحمر عند عدم التوفر في المخزون */
+    background-color: #dc3545;
 }
 
 .wishlist-actions {
     display: flex;
-    justify-content: center; /* توسيط العناصر أفقيًا */
-    gap: 10px; /* مسافة بين الأزرار */
-    margin-top: 15px; 
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
 }
 
 .round-black-btn {
-    padding: 10px 20px;
+    padding: 12px 25px;
     font-size: 14px;
     font-weight: 600;
     color: #fff;
     background-color: #212529;
     border-radius: 25px;
     text-transform: uppercase;
-    transition: background 0.3s ease;
+    transition: background 0.3s ease, transform 0.3s ease;
 }
 
 .round-black-btn:hover {
-    background-color: #0167F3; 
+    background-color: #0167F3;
+    transform: scale(1.05); /* تكبير الزر قليلاً عند التمرير */
 }
 
 .trash-icon {
-    font-size: 20px;
+    font-size: 22px;
     color: #dc3545;
     cursor: pointer;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .trash-icon:hover {
     color: #bd2130;
+    transform: scale(1.2); /* تكبير الأيقونة عند التمرير */
 }
 
 .wishlist-empty {
     text-align: center;
-    font-size: 18px;
+    font-size: 20px;
     color: #777;
+    font-weight: 600;
 }
 
 @media (max-width: 768px) {
+    .wishlist-grid {
+        grid-template-columns: 1fr; /* عرض عنصر واحد في كل صف */
+    }
+    
     .wishlist-item {
-        /* تعديلات خاصة بالعرض على الجوال */
+        padding: 20px; /* تقليل المسافة الداخلية في الجوال */
     }
 }
