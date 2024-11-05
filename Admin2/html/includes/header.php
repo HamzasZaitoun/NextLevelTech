@@ -138,7 +138,7 @@
                 </li>
    
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                href="pages-profile.php" aria-expanded="false">
+                                href="profile.php" aria-expanded="false">
                                 <i class="bi bi-person-arms-up"></i><span class="hide-menu">Profile</span></a>
                         </li>
                         <li class="sidebar-item">
