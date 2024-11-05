@@ -415,10 +415,10 @@ if (session_status() == PHP_SESSION_NONE) {
                                         </a>
                                     </div>
                                     <?php if (isset($_SESSION['user_id'])): ?>
-                                        <a href="/NextLevelTech main main/login/login.php">Logout</a>
+                                        <a href="/NextLevelTech/login/login.php">Logout</a>
                                     <?php else: ?>
-                                        <a href="/NextLevelTech main main/login/login.php">Login</a>
-                                        <a href="/NextLevelTech main main/login/registration.php">Register</a>
+                                        <a href="/NextLevelTech/login/login.php">Login</a>
+                                        <a href="/NextLevelTech/login/registration.php">Register</a>
 
                                     <?php endif; ?>
 
@@ -446,11 +446,12 @@ if (session_status() == PHP_SESSION_NONE) {
                             <span class="toggler-icon"></span>
                             <span class="toggler-icon"></span>
                         </button>
+                      
                         <ul id="nav" class="navbar-nav mx-auto">
+                        <li class="nav-item">
+                            <a href="index.php" class="active" aria-label="Toggle navigation">Home</a>
+                        </li>
                             <!-- تغيير ms-auto إلى mx-auto لتوسيط المحتوى -->
-                            <li class="nav-item">
-                                <a href="index.php" class="active" aria-label="Toggle navigation">Home</a>
-                            </li>
                             <!-- <li class="nav-item">
                                 <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
                                     data-bs-target="#submenu-1-4" aria-controls="navbarSupportedContent"
@@ -462,14 +463,18 @@ if (session_status() == PHP_SESSION_NONE) {
                                 </ul>
                             </li> -->
                             <li class="nav-item">
+                                <a href="index.php#product_Categories" aria-label="Toggle navigation">Product Categories
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="index.php#new-arrival" aria-label="Toggle navigation">New Arrivals
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="flashSale.php" aria-label="Toggle navigation">Flash Sales</a>
                             </li>
                             <li class="nav-item">
                                 <a href="index.php#trend_product" aria-label="Toggle navigation">Top Selling Products</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="index.php#product_Categories" aria-label="Toggle navigation">Product Categories
-                                </a>
                             </li>
                             <li class="nav-item">
                                 <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"

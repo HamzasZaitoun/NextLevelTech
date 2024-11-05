@@ -1,4 +1,7 @@
 <?php 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ob_start();
 session_start();
 require_once "includes/db_class.php"; 
 require_once "includes/cartClass.php";
@@ -361,4 +364,5 @@ input::-webkit-inner-spin-button {
     }
 </script>
 
-<?php include("includes/footer.php"); ?>
+<?php include("includes/footer.php");
+ob_end_flush(); ?>

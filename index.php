@@ -223,7 +223,8 @@
                         <div class="category-image-container">
                             <img src="<?php echo $imagePath_cat; ?>" alt="category_pic" class="category-image">
                         </div>
-                        <span class="category-title" style="font-size: 30px;"><?= htmlspecialchars($category['category_name']); ?></span>
+                        <span class="category-title"
+                            style="font-size: 30px;"><?= htmlspecialchars($category['category_name']); ?></span>
                     </a>
                 </li>
                 <?php endforeach; ?>
@@ -233,35 +234,39 @@
         </section>
 
 
-        <!-- Start top selling Area -->
-        <section id="trend_product" class="trending-product section" ">
+        <!-- end category -->
+
+
+        <!-- Start Banner Area -->
+        <section id="new-arrival" class="random-products section">
             <div class="container">
                 <div class="row">
                     <div class="col-12">
                         <div class="section-title">
-                            <h2>Top Selling Products</h2>
-                            <p>Discover our best-rated products, carefully curated to enhance your gaming experience.
+                            <h2>New Arrivals</h2>
+                            <p>Discover our new products, carefully curated to enhance your gaming experience.
                             </p>
                         </div>
                     </div>
                 </div>
                 <?php
-                $trendingProductObj = new Product();
-                $trendingProducts = $trendingProductObj->fetchTopSellingProducts();
+                $newArrival = new Product();
+                $new = $newArrival->lastProduct();
 
-                if (!empty($trendingProducts)) : ?>
+                if (!empty($new)) : ?>
                 <div class="row">
-                    <?php foreach ($trendingProducts as $product) : ?>
-                    <div class="col-lg-3 col-md-6 col-12">
-                        <div class="single-product">
-                            <div class="product-image">
-                                <?php $imagePath="inserted_img/".($product['product_picture']);?>
-                                <img src="<?php echo htmlspecialchars($imagePath); ?>" alt="product_img">
-                                <?php if ($product['product_discount'] > 0) : ?>
-                                <div class="product-discount">
-                                    <span>-<?= htmlspecialchars($product['product_discount']);?>%</span>
+                    <?php foreach ($new as $product) : 
+                    $imagePath = "inserted_img/" . htmlspecialchars($product['product_picture']); ?>
+                    <div class="col-lg-6 col-md-6 col-12">
+                        <div class="random-product-card" style="background-image: url('<?php echo $imagePath; ?>');">
+                            <div class="product-content">
+                                <h2 class="product-title"><?= htmlspecialchars($product['product_name']); ?></h2>
+
+                                <div class="price ">
+                                    <span style="color:white"><?= htmlspecialchars($product['product_price']); ?>
+                                        JOD</span>
                                 </div>
-                                <?php endif; ?>
+
                                 <div class="btn-div">
                                     <div class="shopbtn">
                                         <button class="btn-btn"
@@ -285,10 +290,6 @@
                                             </div>
                                         </button>
                                     </div>
-                                    <!-- add to wish list button -->
-
-
-
                                     <div class="shopbtn">
                                         <form id="add-to-wishlist-form">
                                             <input type="hidden" name="product_id"
@@ -300,77 +301,132 @@
                                                 </div>
                                                 <div class="hover-btn">
                                                     <span>add to wish list</span>
-
                                                 </div>
-
                                             </button>
                                         </form>
                                     </div>
-
-
                                 </div>
                             </div>
-                            <div class="product-info">
-                                <h6 class="title">
-                                    <?= htmlspecialchars($product['product_name']); ?>
-                                </h6>
-                                <div class="price">
-                                    <span><?php echo htmlspecialchars($product['product_price']); ?> JOD</span>
-                                </div>
+                            <?php if ($product['product_discount'] > 0) : ?>
+                            <div class="product-discount">
+                                <span>-<?= htmlspecialchars($product['product_discount']); ?>%</span>
                             </div>
+                            <?php endif; ?>
                         </div>
                     </div>
                     <?php endforeach; ?>
                 </div>
                 <?php else : ?>
-                <p>No products available.</p>
+                <div class="col-12">
+                    <p>No products available at the moment.</p>
+                </div>
                 <?php endif; ?>
+            </div>
+        </section>
+
+        <!-- End Banner Area -->
+
+
+
+        <!-- Start top selling Area -->
+        <section id="trend_product" class="trending-product section" ">
+            <div class=" container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-title">
+                        <h2>Top Selling Products</h2>
+                        <p>Discover our best-rated products, carefully curated to enhance your gaming experience.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <?php
+                $trendingProductObj = new Product();
+                $trendingProducts = $trendingProductObj->fetchTopSellingProducts();
+
+                if (!empty($trendingProducts)) : ?>
+            <div class="row">
+                <?php foreach ($trendingProducts as $product) : ?>
+                <div class="col-lg-3 col-md-6 col-12">
+                    <div class="single-product">
+                        <div class="product-image">
+                            <?php $imagePath="inserted_img/".($product['product_picture']);?>
+                            <img src="<?php echo htmlspecialchars($imagePath); ?>" alt="product_img">
+                            <?php if ($product['product_discount'] > 0) : ?>
+                            <div class="product-discount">
+                                <span>-<?= htmlspecialchars($product['product_discount']);?>%</span>
+                            </div>
+                            <?php endif; ?>
+                            <div class="btn-div">
+                                <div class="shopbtn">
+                                    <button class="btn-btn"
+                                        onclick="window.location.href='productDetails.php?id=<?= htmlspecialchars($product['product_id']); ?>'">
+                                        <div class="default-btn">
+                                            <i class="lni lni-eye"></i>
+                                        </div>
+                                        <div class="hover-btn">
+                                            <span>Quick View</span>
+                                        </div>
+                                    </button>
+                                </div>
+                                <div class="shopbtn">
+                                    <button class="btn-btn"
+                                        onclick="window.location.href='productDetails.php?id=<?= htmlspecialchars($product['product_id']); ?>'">
+                                        <div class="default-btn">
+                                            <i class="lni lni-cart"></i>
+                                        </div>
+                                        <div class="hover-btn">
+                                            <span>Shop now</span>
+                                        </div>
+                                    </button>
+                                </div>
+                                <!-- add to wish list button -->
+
+
+
+                                <div class="shopbtn">
+                                    <form id="add-to-wishlist-form">
+                                        <input type="hidden" name="product_id" value="<?= $product['product_id']; ?>">
+                                        <button id="add-to-wishlist-btn" type="button" class="btn-btn"
+                                            onclick="window.location.href='wishList.php?id=<?= htmlspecialchars($product['product_id']); ?>'">
+                                            <div class="default-btn">
+                                                <i class="lni lni-heart"></i>
+                                            </div>
+                                            <div class="hover-btn">
+                                                <span>add to wish list</span>
+
+                                            </div>
+
+                                        </button>
+                                    </form>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h6 class="title">
+                                <?= htmlspecialchars($product['product_name']); ?>
+                            </h6>
+                            <div class="price">
+                                <span><?php echo htmlspecialchars($product['product_price']); ?> JOD</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+            </div>
+            <?php else : ?>
+            <p>No products available.</p>
+            <?php endif; ?>
             </div>
         </section>
 
         <!-- End top selling Area -->
 
-        <!-- Start Banner Area -->
-        <section class="random-products section">
-            <div class="container">
-                <div class="row">
-                    <?php
-                    $randomProductsObj = new Product();
-                    $randomProducts = $randomProductsObj->fetchRandomProducts(); 
 
-                    if (!empty($randomProducts)):
-                        foreach ($randomProducts as $randomProduct):
-                            $imagePath = "inserted_img/" . ($randomProduct['product_picture']);
-                            ?>
-                    <div class="col-lg-6 col-md-6 col-12">
-                        <div class="random-product-card" style="background-image: url('<?php echo $imagePath; ?>');">
-                            <div class="product-content">
-                                <h2 class="product-title"><?= htmlspecialchars($randomProduct['product_name']); ?></h2>
-                                <div class="shopbtn">
-                                        <button class="btn-btn"
-                                            onclick="window.location.href='productDetails.php?id=<?= htmlspecialchars($randomProduct['product_id']); ?>'">
-                                            <div class="default-btn">
-                                                <i class="lni lni-eye"></i>
-                                            </div>
-                                            <div class="hover-btn">
-                                                <span>Quick View</span>
-                                            </div>
-                                        </button>
-                                    </div>
-                            </div>
-                        </div>
-                    </div>
-                    <?php endforeach; 
-                        else: ?>
-                    <div class="col-12">
-                        <p>No products available at the moment.</p>
-                    </div>
-                    <?php endif; ?>
-                </div>
-            </div>
-        </section>
 
-        <!-- End Banner Area -->
+
 
         <!-- Start Shipping Info -->
         <section class="shipping-info">

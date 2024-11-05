@@ -1,7 +1,7 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-ob_start();
+// ob_start();
 include 'categories.php';
 
 if (isset($_POST['edit_category'])) {
@@ -68,4 +68,4 @@ if (isset($_POST['edit_category'])) {
     exit();
 }
 
-ob_end_flush();
+// ob_end_flush();
