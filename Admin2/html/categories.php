@@ -50,7 +50,7 @@ $categories = $categoryModel->getAllCategories();
                             <td data-label="Category Name"><?= htmlspecialchars($category['category_name']) ?></td>
                             <td data-label="Description"><?= htmlspecialchars($category['category_description']) ?></td>
                             <td data-label="Picture">
-                                <img src="../category_img/<?php echo $category['category_picture']; ?>" alt="Category Image" width="50">
+                                <img src="../../category_img/<?php echo $category['category_picture']; ?>" alt="Category Image" width="50">
                             </td>
                             <td data-label="Actions">
                                 <div class="action-buttons">
@@ -87,7 +87,7 @@ $categories = $categoryModel->getAllCategories();
                                     <div class="form-group">
                                         <label for="oldCategoryImage">Current Category Image:</label><br>
                                         <input type="hidden" name="oldImage" value="<?= htmlspecialchars($category['category_picture']); ?>">
-                                        <img src="../category_img/<?= htmlspecialchars($category['category_picture']) ?>" alt="Current Category Picture" class="old-category-image">
+                                        <img src="../../category_img/<?= htmlspecialchars($category['category_picture']) ?>" alt="Current Category Picture" class="old-category-image">
                                     </div>
 
                                     <div class="form-group">

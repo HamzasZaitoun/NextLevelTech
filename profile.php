@@ -8,9 +8,9 @@ if (!isset($_SESSION['user_id'])) {
   exit();
 }
 
-include('./includes/db_class.php');
-include('./includes/usersClass.php');
-include('./includes/cartClass.php');
+include('includes/db_class.php');
+include('includes/usersClass.php');
+include('includes/cartClass.php');
 
 $userId = $_SESSION['user_id'];
 
@@ -31,6 +31,13 @@ if ($userData) {
 $cart = new Cart(); 
 
 $orderHistory = $cart->getOrderHistory($userId);
+
+// Group order items by order_id
+$groupedOrders = [];
+
+foreach ($orderHistory as $order) {
+    $groupedOrders[$order['order_id']][] = $order;
+}
 
 ?>
 
@@ -678,59 +685,36 @@ $orderHistory = $cart->getOrderHistory($userId);
 
 
 
+            <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <h2>Order History</h2>
 
-
-
-
-
-
-            <section class="ezy__eporder9 light">
-    <div style="padding:0px;" class="container">
-        <div class="row justify-content-center">
-            <div class="col-12">
-                <h2 class="text-center">Order History</h2>
-                <?php if (empty($orderHistory)): ?>
-                    <p class="text-center">No orders found.</p>
-                <?php else: ?>
-                    <?php foreach ($orderHistory as $order): ?>
-                        <div class="card ezy__eporder9-card rounded-3 mb-3">
-                            <div class="card-header text-center text-md-start bg-transparent border-0 p-3 p-md-4">
-                                <h5>Order ID: <?= htmlspecialchars($order['order_id']) ?></h5>
-                                <p>Date: <?= htmlspecialchars($order['order_date']) ?></p>
-                                <p>Status: <?= htmlspecialchars($order['order_status']) ?></p>
-                            </div>
-                            <hr class="ezy__eporder9-line my-0" />
-                            <div class="card-body p-4 p-md-2">
-                                <div class="row align-items-center text-left text-lg-start">
-                                    <div class="col-12 col-lg-4">
-                                        <div>
-                                            <a href="#!">
-                                                <img src="<?= htmlspecialchars($order['product_picture']) ?>" alt="" class="img-fluid ezy__eporder9-img" />
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-lg-6 ps-lg-4 mt-3 mt-lg-0">
-                                        <div>
-                                            <a href="#!">
-                                                <h6 class="fw-bold"><?= htmlspecialchars($order['product_name']) ?></h6>
-                                            </a>
-                                            <p class="ezy__eporder9-details mb-2">
-                                                Quantity: <?= htmlspecialchars($order['quantity']) ?>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-lg-2">
-                                        <h5 class="fw-bold mb-0 mt-4 mt-lg-0">$<?= htmlspecialchars($order['order_total']) ?></h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
-                <?php endif; ?>
+        <?php foreach ($groupedOrders as $orderId => $orderItems): ?>
+          <div class="card my-3">
+            <div class="card-header">
+              <h5>Order #<?php echo $orderId; ?></h5>
+              <p>Status: <?php echo htmlspecialchars($orderItems[0]['order_status']); ?></p>
             </div>
-        </div>
+            <div class="card-body">
+              <ul class="list-group">
+                <?php foreach ($orderItems as $item): ?>
+                  <li class="list-group-item">
+                    
+                    <p><strong>Product:</strong> <?php echo htmlspecialchars($item['product_name']); ?></p>
+                    <p><strong>Quantity:</strong> <?php echo htmlspecialchars($item['quantity']); ?></p>
+                    <p><strong>Price:</strong> $<?php echo number_format($item['order_total'], 2); ?></p>
+                  </li>
+                <?php endforeach; ?>
+              </ul>
+            </div>
+          </div>
+        <?php endforeach; ?>
+      </div>
     </div>
-</section>
+  </div>
+
+
 
             </div>
 

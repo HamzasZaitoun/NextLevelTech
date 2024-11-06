@@ -10,19 +10,37 @@ class Product {
         $this->pdo =  dbConnection::getInstence()->getConnection();
         // echo 'connection yes';
     }
-        // Fetch all products
-    public function getAllProducts() {
-        $stmt = $this->pdo->prepare("
-    SELECT products.*, categories.category_name
-    FROM products
-    JOIN categories ON products.category_id 
-    = categories.category_id
-    WHERE products.is_deleted = 0
-");
 
+    public function getTotalProducts() {
+        $stmt = $this->pdo->prepare("SELECT COUNT(*) FROM products WHERE is_deleted = 0");
         $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $stmt->fetchColumn();
     }
+    
+        // Fetch all products
+        public function getAllProducts($page = 1, $productsPerPage = 8) {
+            // Calculate the offset based on the current page
+            $offset = ($page - 1) * $productsPerPage;
+        
+            $stmt = $this->pdo->prepare("
+                SELECT products.*, categories.category_name
+                FROM products
+                JOIN categories ON products.category_id = categories.category_id
+                WHERE products.is_deleted = 0
+                LIMIT :limit OFFSET :offset
+            ");
+            
+            // Bind the limit and offset to the query
+            $stmt->bindParam(':limit', $productsPerPage, PDO::PARAM_INT);
+            $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+            
+            // Execute the query
+            $stmt->execute();
+        
+            // Return the fetched products
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+        
 
     public function getProductById($productId) {
         $stmt = $this->pdo->prepare("
