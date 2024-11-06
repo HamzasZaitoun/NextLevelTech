@@ -20,11 +20,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["submit"])) {
         exit();
     }
 
-    // تشفير كلمة المرور باستخدام الدالة password_hash
-    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+    // $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    // تسجيل المستخدم مع كلمة المرور المشفرة
-    if ($user->register($firstName, $lastName, $email, $hashedPassword, $gender, $dob, $address, $phoneNumber)) {
+    if ($user->register($firstName, $lastName, $email, $password, $gender, $dob, $address, $phoneNumber)) {
         header("Location: login.php");
         exit();
     } else {
