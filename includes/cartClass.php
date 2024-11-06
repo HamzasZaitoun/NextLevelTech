@@ -48,7 +48,7 @@ class Cart {
     public function getCart($user_id) {
         $stmt = $this->pdo->prepare("
             SELECT orders.order_id, order_items.product_id, order_items.quantity, 
-                   products.product_name, products.product_picture, products.product_price
+                products.product_name, products.product_picture, products.product_price
             FROM orders
             JOIN order_items ON orders.order_id = order_items.order_id
             JOIN products ON order_items.product_id = products.product_id
@@ -90,7 +90,7 @@ class Cart {
         }
     }
 
-   
+
     public function checkout($user_id) {
         $checkOrderStmt = $this->pdo->prepare("SELECT order_id FROM orders WHERE user_id = ? AND order_status = 'pending'");
         $checkOrderStmt->execute([$user_id]);
@@ -122,7 +122,7 @@ public function getOrderHistoryDetailed($userId) {
     $sql = "
         SELECT 
             o.order_id, o.order_date, o.coupon_id, o.order_total, o.order_status,
-            oi.product_id, oi.quantity, p.product_name, p.product_price
+            oi.order_item_id, oi.product_id, oi.quantity, p.product_name, p.product_price
         FROM orders AS o
         JOIN order_items AS oi ON o.order_id = oi.order_id
         JOIN products AS p ON oi.product_id = p.product_id
@@ -136,24 +136,41 @@ public function getOrderHistoryDetailed($userId) {
 
     $orders = [];
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        // Check if this order_id already exists in the orders array
         if (!isset($orders[$row['order_id']])) {    
             $orders[$row['order_id']] = [
                 'order_date' => $row['order_date'],
                 'coupon_id' => $row['coupon_id'],
                 'order_total' => $row['order_total'],
                 'order_status' => $row['order_status'],
-                'items' => []
+                'items' => [],
             ];
         }
+        
+        // Add item to the specific order
         $orders[$row['order_id']]['items'][] = [
+            'order_item_id' => $row['order_item_id'],
             'product_name' => $row['product_name'],
             'quantity' => $row['quantity'],
             'price' => $row['product_price']
         ];
     }
 
+    // Check if there are multiple items with the same order_id
+    foreach ($orders as $orderId => $order) {
+        $orderItems = $order['items'];
+        $orderIds = array_column($orderItems, 'order_item_id');
+        
+        // Verify if there are duplicate order_item_ids (indicating the same order ID in different items)
+        if (count($orderItems) != count(array_unique($orderIds))) {
+            // Handle duplicate items if needed (e.g., log an error, notify user)
+            echo "Duplicate order_item_id found for order ID $orderId\n";
+        }
+    }
+
     return $orders;
 }
+
 
 
 
@@ -163,43 +180,40 @@ public function applyCoupon($couponCode, $userId) {
     $stmt = $this->pdo->prepare("
         SELECT coupon_discount, coupon_expiry_date 
         FROM coupons 
-        WHERE coupon_name = ? AND coupon_status = 1 AND is_deleted = 0 AND coupon_expiry_date >= NOW()
+        WHERE coupon_name = ? 
+          AND coupon_status = 1 
+          AND is_deleted = 0 
+          AND coupon_expiry_date >= NOW()
     ");
     $stmt->execute([$couponCode]);
     $coupon = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($coupon) {
-        $orderId = $this->getPendingOrderId($userId); 
+        // Calculate the discount amount on the cart's total price
+        $cartItems = $this->getCart($userId);
+        $totalPrice = 0;
 
-        if ($orderId) {
-            $stmt = $this->pdo->prepare("SELECT order_total FROM orders WHERE order_id = ?");
-            $stmt->execute([$orderId]);
-            $orderTotal = $stmt->fetchColumn();
-
-            $discountAmount = ($orderTotal * $coupon['coupon_discount']) / 100; // Assuming coupon_discount is a percentage
-
-            if ($discountAmount > $orderTotal) {
-                $discountAmount = $orderTotal;
-            }
-
-            $newTotal = $orderTotal - $discountAmount;
-
-            $updateStmt = $this->pdo->prepare("UPDATE orders SET order_total = ? WHERE order_id = ?");
-            $updateStmt->execute([$newTotal, $orderId]);
-
-            return [
-                'success' => true,
-                'new_total' => $newTotal,
-                'discount' => $discountAmount,
-            ];
+        foreach ($cartItems as $item) {
+            $totalPrice += $item['product_price'] * $item['quantity'];
         }
+
+        // Calculate discount amount
+        $discountAmount = ($totalPrice * $coupon['coupon_discount']) / 100;
+        $newTotal = $totalPrice - $discountAmount;
+
+        return [
+            'success' => true,
+            'new_total' => $newTotal,
+            'discount' => $discountAmount,
+        ];
     }
 
     return [
         'success' => false,
-        'message' => 'Invalid coupon code or order not found.',
+        'message' => 'Invalid coupon code or coupon expired.',
     ];
 }
+
 
 
 

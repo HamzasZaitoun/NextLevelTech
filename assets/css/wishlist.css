@@ -1,6 +1,7 @@
 .wishlist-wrap {
-    padding: 40px 20px;
-    font-family: "Righteous", sans-serif;
+    background-color: #f7f7f7;
+    padding: 20px;
+    border-radius: 8px;
     background: linear-gradient(135deg, #e0e0e0, #f0f0f0); /* تدرج خلفية مميز */
 }
 
@@ -54,12 +55,12 @@
     box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.3); /* تأثير إضافي عند تمرير الماوس */
 }
 
-.wishlist-info {
+/* .wishlist-info {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 20px;
-}
+} */
 
 .product-name {
     font-size: 20px;
@@ -95,25 +96,28 @@
 
 .wishlist-actions {
     display: flex;
-    justify-content: center;
-    gap: 15px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
     margin-top: 20px;
+    padding: 10px 0;
 }
 
-.round-black-btn {
-    padding: 12px 25px;
+.shop-now-btn button {
+    background-color: #212529;
+    padding: 10px 20px;
     font-size: 14px;
     font-weight: 600;
     color: #fff;
-    background-color: #212529;
-    border-radius: 25px;
-    text-transform: uppercase;
-    transition: background 0.3s ease, transform 0.3s ease;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.round-black-btn:hover {
-    background-color: #0167F3;
-    transform: scale(1.05); /* تكبير الزر قليلاً عند التمرير */
+.shop-now-btn button:hover {
+    background-color: #ce2929;
+
 }
 
 .trash-icon {
@@ -125,7 +129,16 @@
 
 .trash-icon:hover {
     color: #bd2130;
-    transform: scale(1.2); /* تكبير الأيقونة عند التمرير */
+}
+
+.default-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    text-transform: uppercase;
 }
 
 .wishlist-empty {
