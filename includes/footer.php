@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-    
-=======
->>>>>>> 0850ec654c8f83e8f07423cc56d8e8ead547a922
+
 <style>
     .black{
         background-color:black;
