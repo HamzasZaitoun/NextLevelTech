@@ -44,9 +44,7 @@ $wishlistItems = $wishlist->getAllProductsFromWishlist($user_id);
                         <div class="wishlist-info">
                             <div class="product-name"><?= htmlspecialchars($product['product_name']); ?></div>
                             <div class="product-price"><?= htmlspecialchars($product['product_price']); ?> JOD</div>
-                            <div class="stock-status <?= htmlspecialchars($product['product_state']) === 'in stock' ? 'bg-green' : 'bg-red'; ?>">
-                                <?= htmlspecialchars($product['product_state']); ?>
-                            </div>
+
                         </div>
                         <div class="wishlist-actions">
                             <button class="round-black-btn">Add to Cart</button>

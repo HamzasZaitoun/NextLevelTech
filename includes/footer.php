@@ -1,4 +1,7 @@
+<<<<<<< HEAD
     
+=======
+>>>>>>> 0850ec654c8f83e8f07423cc56d8e8ead547a922
 <style>
     .black{
         background-color:black;
@@ -70,7 +73,11 @@
             <div class="container">
                 <div class="inner-content">
                             <div class="copyright row align-items-center">
+<<<<<<< HEAD
                                 <p>© 2024 by gameTech team</p>
+=======
+                                <p>© 2024 by gamifyTech team</p>
+>>>>>>> 0850ec654c8f83e8f07423cc56d8e8ead547a922
                             </div>
                 </div>
             </div>

@@ -1,44 +1,24 @@
 <?php
 session_start();
 include('../includes/db_class.php');
+include('../includes/usersClass.php'); 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = trim($_POST['email']);
     $newPassword = trim($_POST['userpassword_new']);
     $confirmPassword = trim($_POST['userpassword_confirm']);
 
-    $db = dbConnection::getInstence();
-    $connect = $db->getConnection();
+    $user = new User();
 
-    $sql = "SELECT * FROM users WHERE user_email = :email";
-    $stmt = $connect->prepare($sql);
-    $stmt->bindParam(':email', $email);
-    $stmt->execute();
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    $result = $user->resetPassword($email, $newPassword, $confirmPassword);
 
-    if ($user) {
-        if ($newPassword !== $confirmPassword) {
-            $_SESSION['error'] = "The password does not match.";
-            header("Location: forgotPassword.php");
-            exit();
-        }
-
-        $sql = "UPDATE users SET user_password = :password WHERE user_email = :email";
-        $stmt = $connect->prepare($sql);
-        $stmt->bindParam(':password', $newPassword);
-        $stmt->bindParam(':email', $email);
-        if ($stmt->execute()) {
-            $_SESSION['success'] = "The password has been updated successfully.";
-    header("Location: login.php");
-    exit();
-
-        } else {
-            $_SESSION['error'] = "An error occurred while updating the password.";
-        }
+    if (isset($result['success'])) {
+        $_SESSION['success'] = $result['success'];
+        header("Location: login.php");
     } else {
-        $_SESSION['error'] = "Invalid email.";
+        $_SESSION['error'] = $result['error'];
+        header("Location: forgotPassword.php");
     }
-    header("Location: forgotPassword.php");
     exit();
 }
 ?>
