@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $categoryDescription = $_POST['newCategoryDescription'];
     
             // Handle image upload
-            $targetDir = "../category_img/";
+            $targetDir = "../../category_img/";
             $targetFile = $targetDir . basename($_FILES["newCategoryImage"]["name"]);
             $uploadOk = 1;
     
@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $oldImage = htmlspecialchars($_POST['oldImage']); // Pass this from the edit form
     
             // Handle image upload
-            $targetDir = "../category_img/";
+            $targetDir = "../../category_img/";
             $uploadOk = 1;
             $targetFile = $oldImage; // Default to old image
     

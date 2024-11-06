@@ -89,7 +89,7 @@ if (isset($_POST['action']) && $_POST['action'] === 'edit') {
     $oldImage = htmlspecialchars($_POST['oldImage']); // Ensure you pass this from the edit form
 
     // Handle image upload
-    $targetDir = "../inserted_img/";
+    $targetDir = "../../inserted_img/";
     $uploadOk = 1;
     $targetFile = $oldImage; // Default to old image
 
