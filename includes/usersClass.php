@@ -52,5 +52,24 @@ class User {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+
+    public function resetPassword($email, $newPassword, $confirmPassword) {
+        if ($newPassword !== $confirmPassword) {
+            return ["error" => "The password does not match."];
+        }
+    
+        $sql = "UPDATE users SET user_password = :password WHERE user_email = :email";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(':password', $newPassword);
+        $stmt->bindParam(':email', $email);
+    
+        if ($stmt->execute()) {
+            return ["success" => "The password has been updated successfully."];
+        } else {
+            return ["error" => "An error occurred while updating the password."];
+        }
+    }
+    
+
 };
 
