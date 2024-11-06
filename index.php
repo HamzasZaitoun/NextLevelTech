@@ -7,7 +7,10 @@
     if (isset($_SESSION['success_message'])) {
         echo "<div class='alert alert-success'>" . $_SESSION['success_message'] . "</div>";
         unset($_SESSION['success_message']);
+        header("Location: yourpage.php");
+        exit(); // تأكد من إضافة exit لإنهاء التنفيذ هنا
     }
+    
  
 ?>
 <!-- <link rel="stylesheet" href="assets/css/test.css"> -->
@@ -101,99 +104,91 @@
 .product-btn:hover {
     background-color: #0056b3;
 }
+
 </style>
 </head>
 
 <body>
     <!-- Preloader -->
-    <div class="preloader">
+    <!-- <div class="preloader">
         <div class="preloader-inner">
             <div class="preloader-icon">
                 <span></span>
                 <span></span>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <!-- /End Preloader -->
 
     <!-- Start Hero Area -->
     <section class="hero-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-12 custom-padding-right">
-                    <div class="slider-head">
-                        <!-- Start Hero Slider -->
-                        <div class="hero-slider">
-                            <?php  
-                            $highestDiscountProductsObj = new product();
-                            $highestProducts = $highestDiscountProductsObj->fetchHighestDiscountProducts();        
-                            if (!empty($highestProducts)) : 
-                                foreach ($highestProducts as $highestProduct) : 
-                                    $imagePath="inserted_img/".($highestProduct['product_picture']);
+    <div class="container">
+        <div class="row d-flex">
+            <div class="col-md-8 col-12 custom-padding-right">
+                <div class="slider-head">
+                    <!-- Start Hero Slider -->
+                    <div class="hero-slider">
+                        <?php  
+                        $highestDiscountProductsObj = new product();
+                        $highestProducts = $highestDiscountProductsObj->fetchHighestDiscountProducts();        
+                        if (!empty($highestProducts)) : 
+                            foreach ($highestProducts as $highestProduct) : 
+                                $imagePath="inserted_img/".($highestProduct['product_picture']);
 
-                                    $calculateSaving = $highestProduct['product_price'] * ($highestProduct['product_discount'] / 100);
-                                    $priceAfterDiscount = $highestProduct['product_price'] * (1 - $highestProduct['product_discount'] / 100);
-                            ?>
-                            <!-- Start Single Slider -->
-                            <div class="single-slider" style="background-image:  url('<?php echo $imagePath; ?>');">
-                                <div class="content">
-                                    <?= htmlspecialchars($highestProduct['product_name']); ?>
-                                    </h2>
-                                    <h3><span>Now Only</span> <?= htmlspecialchars($priceAfterDiscount); ?> JOD</h3>
-                                    <div class="button">
-                                        <a href="productDetails.php?id=<?= htmlspecialchars($highestProduct['product_id']); ?>"
-                                            class="btn">Shop Now</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Single Slider -->
-                            <?php 
-                                endforeach; 
-                            endif; 
-                            ?>
-                        </div>
-                        <!-- End Hero Slider -->
-                    </div>
-                </div>
-                <div class="col-lg-4 col-12">
-                    <div class="col-lg-12 col-md-6 col-12">
-                        <!-- Start Small Banner -->
-                        <div class="hero-small-banner style2">
-                            <?php
-                                $highestDiscountProduct = new product();
-                                $discountProduct = $highestDiscountProduct->fetchHighestDiscountProduct();
-
-                                if (!empty($discountProduct)) : 
-                                    $calculateSaving = sprintf("%.2f", $discountProduct['product_price'] * ($discountProduct['product_discount'] / 100));
-                                    $priceAfterDiscount = sprintf("%.2f", $discountProduct['product_price'] * (1 - $discountProduct['product_discount'] / 100));
-                            ?>
+                                $calculateSaving = $highestProduct['product_price'] * ($highestProduct['product_discount'] / 100);
+                                $priceAfterDiscount = $highestProduct['product_price'] * (1 - $highestProduct['product_discount'] / 100);
+                        ?>
+                        <!-- Start Single Slider -->
+                        <div class="single-slider" style="background-image: url('<?php echo $imagePath; ?>');">
                             <div class="content">
-                                <h2>Flash Sale!</h2>
-                                <h3><?=$discountProduct['product_discount']?>%</h3>
-                                <p>Saving up to <?= $calculateSaving; ?> JOD on
-                                    <?= htmlspecialchars($discountProduct['product_name']); ?></p>
-                                <h3>Now Only: <?= $priceAfterDiscount; ?> JOD</h3>
+                                <h2><?= htmlspecialchars($highestProduct['product_name']); ?></h2>
+                                <h3><span>Now Only</span> <?= htmlspecialchars($priceAfterDiscount); ?> JOD</h3>
                                 <div class="button">
-                                    <a class="btn"
-                                        href="productDetails.php?id=<?= htmlspecialchars($discountProduct['product_id']); ?>">Shop
-                                        Now</a>
+                                    <a href="productDetails.php?id=<?= htmlspecialchars($highestProduct['product_id']); ?>" class="btn">Shop Now</a>
                                 </div>
                             </div>
-                            <?php else: ?>
-                            <div class="content">
-                                <h2>No Discounts Available</h2>
-                                <p>Check back later for great deals!</p>
-                            </div>
-                            <?php endif; ?>
                         </div>
-                        <!-- End Small Banner -->
+                        <!-- End Single Slider -->
+                        <?php 
+                            endforeach; 
+                        endif; 
+                        ?>
                     </div>
+                    <!-- End Hero Slider -->
                 </div>
+            </div>
+            <div class="col-md-4 col-12">
+                <div class="hero-small-banner style2">
+                    <?php
+                        $highestDiscountProduct = new product();
+                        $discountProduct = $highestDiscountProduct->fetchHighestDiscountProduct();
 
+                        if (!empty($discountProduct)) : 
+                            $calculateSaving = sprintf("%.2f", $discountProduct['product_price'] * ($discountProduct['product_discount'] / 100));
+                            $priceAfterDiscount = sprintf("%.2f", $discountProduct['product_price'] * (1 - $discountProduct['product_discount'] / 100));
+                    ?>
+                    <div class="content">
+                        <h2>Flash Sale!</h2>
+                        <h3><?=$discountProduct['product_discount']?>%</h3>
+                        <p>Saving up to <?= $calculateSaving; ?> JOD on <?= htmlspecialchars($discountProduct['product_name']); ?></p>
+                        <h3>Now Only: <?= $priceAfterDiscount; ?> JOD</h3>
+                        <div class="button">
+                            <a class="btn" href="productDetails.php?id=<?= htmlspecialchars($discountProduct['product_id']); ?>">Shop Now</a>
+                        </div>
+                    </div>
+                    <?php else: ?>
+                    <div class="content">
+                        <h2>No Discounts Available</h2>
+                        <p>Check back later for great deals!</p>
+                    </div>
+                    <?php endif; ?>
+                </div>
+                <!-- End Small Banner -->
             </div>
         </div>
-    </section>
+    </div>
+</section>
     <!-- End Hero Area -->
 
     <!-- categories -->
@@ -281,7 +276,7 @@
                                     </div>
                                     <div class="shopbtn">
                                         <button class="btn-btn"
-                                            onclick="window.location.href='productDetails.php?id=<?= htmlspecialchars($product['product_id']); ?>'">
+                                            onclick="addToCart(<?= htmlspecialchars($product['product_id']); ?>)">
                                             <div class="default-btn">
                                                 <i class="lni lni-cart"></i>
                                             </div>
@@ -291,19 +286,16 @@
                                         </button>
                                     </div>
                                     <div class="shopbtn">
-                                        <form id="add-to-wishlist-form">
-                                            <input type="hidden" name="product_id"
-                                                value="<?= $product['product_id']; ?>">
-                                            <button id="add-to-wishlist-btn" type="button" class="btn-btn"
-                                                onclick="window.location.href='wishList.php?id=<?= htmlspecialchars($product['product_id']); ?>'">
-                                                <div class="default-btn">
-                                                    <i class="lni lni-heart"></i>
-                                                </div>
-                                                <div class="hover-btn">
-                                                    <span>add to wish list</span>
-                                                </div>
-                                            </button>
-                                        </form>
+                                        <button class="btn-btn"
+                                            onclick="addToWishlist(<?= htmlspecialchars($product['product_id']); ?>)">
+                                            <div class="default-btn"
+                                                id="heart-icon-<?= htmlspecialchars($product['product_id']); ?>">
+                                                <i class="lni lni-heart"></i>
+                                            </div>
+                                            <div class="hover-btn">
+                                                <span>Add to wish list</span>
+                                            </div>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -371,7 +363,7 @@
                                 </div>
                                 <div class="shopbtn">
                                     <button class="btn-btn"
-                                        onclick="window.location.href='productDetails.php?id=<?= htmlspecialchars($product['product_id']); ?>'">
+                                        onclick="addToCart(<?= htmlspecialchars($product['product_id']); ?>)">
                                         <div class="default-btn">
                                             <i class="lni lni-cart"></i>
                                         </div>
@@ -380,25 +372,17 @@
                                         </div>
                                     </button>
                                 </div>
-                                <!-- add to wish list button -->
-
-
-
                                 <div class="shopbtn">
-                                    <form id="add-to-wishlist-form">
-                                        <input type="hidden" name="product_id" value="<?= $product['product_id']; ?>">
-                                        <button id="add-to-wishlist-btn" type="button" class="btn-btn"
-                                            onclick="window.location.href='wishList.php?id=<?= htmlspecialchars($product['product_id']); ?>'">
-                                            <div class="default-btn">
-                                                <i class="lni lni-heart"></i>
-                                            </div>
-                                            <div class="hover-btn">
-                                                <span>add to wish list</span>
-
-                                            </div>
-
-                                        </button>
-                                    </form>
+                                    <button class="btn-btn"
+                                        onclick="addToWishlist(<?= htmlspecialchars($product['product_id']); ?>)">
+                                        <div class="default-btn"
+                                            id="heart-icon-<?= htmlspecialchars($product['product_id']); ?>">
+                                            <i class="lni lni-heart"></i>
+                                        </div>
+                                        <div class="hover-btn">
+                                            <span>Add to wish list</span>
+                                        </div>
+                                    </button>
                                 </div>
 
 
@@ -580,6 +564,67 @@
                 }
             });
         });
+        </script>
+        </script>
+        <!-- add to wish list -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <script>
+        function addToWishlist(productId) {
+            const button = document.getElementById('heart-icon-' + productId); // احصل على الزر
+            button.disabled = true; // تعطيل الزر
+
+            fetch('wishlist.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: 'add_to_wishlist=true&product_id=' + productId
+                })
+                .then(response => response.json())
+            // .then(data => {
+            //     if (data.success) {
+            //         Swal.fire({
+            //             icon: 'success',
+            //             title: 'Success',
+            //             text: data.message,
+            //             confirmButtonText: 'OK'
+            //         });
+
+            //         // تغيير اللون إلى الأحمر
+            //         button.classList.add('added-to-wishlist');
+            //     } else {
+            //         Swal.fire({
+            //             icon: 'info',
+            //             title: 'Already Added',
+            //             text: data.message,
+            //             confirmButtonText: 'OK'
+            //         });
+            //     }
+            // })
+            // .catch(error => {
+            //     console.error('Error:', error);
+            //     Swal.fire({
+            //         icon: 'error',
+            //         title: 'Error',
+            //         text: 'An error occurred while adding to wishlist.',
+            //         confirmButtonText: 'OK'
+            //     });
+            // });
+        }
+
+
+        // add to cart
+        function addToCart(productId) {
+            fetch('cart.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: 'add_to_cart=true&product_id=' + productId
+            })
+
+        }
         </script>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

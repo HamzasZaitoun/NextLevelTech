@@ -123,3 +123,11 @@ document.getElementById('addForm')?.addEventListener('submit', function(event) {
         alert("Please fill in all required fields.");
     }
 });
+
+function openEditModal(categoryId) {
+    document.getElementById('editModal' + categoryId).style.display = 'flex';
+}
+
+function closeModal(modalId) {
+    document.getElementById(modalId).style.display = 'none';
+}

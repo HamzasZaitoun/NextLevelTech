@@ -64,8 +64,7 @@
                         <!-- Logo text -->
                         <span class="logo-text text-white">
                             <!-- dark Logo text -->
-                            Admin Dashboard
-                        </span>
+GamifyTech                        </span>
                     </a>
                     <!-- ============================================================== -->
                     <!-- End Logo -->
@@ -138,7 +137,7 @@
                 </li>
    
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                href="pages-profile.php" aria-expanded="false">
+                                href="profile.php" aria-expanded="false">
                                 <i class="bi bi-person-arms-up"></i><span class="hide-menu">Profile</span></a>
                         </li>
                         <li class="sidebar-item">
@@ -176,7 +175,7 @@
                     </div>
                     <div class="col-4 link-wrap">
                         <!-- item-->
-                        <a href="" class="link" data-toggle="tooltip" title="" data-original-title="Email"><i
+                        <a href="messages.php" class="link" data-toggle="tooltip" title="" data-original-title="Email"><i
                                 class="mdi mdi-gmail"></i></a>
                     </div>
                     <div class="col-4 link-wrap">
@@ -190,3 +189,4 @@
         <!-- ============================================================== -->
         <!-- End Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->
+      

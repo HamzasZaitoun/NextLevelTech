@@ -1,28 +1,27 @@
-
 <?php
 
 session_start();
 include("includes/header.php");
 include("includes/wishlistClass.php");
 
-$wishlist = new Wishlist();
-$user_id = $_SESSION['user_id'];
-// header('Content-Type: application/json');
-
-// Handle AJAX request to add product to wishlist
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_wishlist']) && isset($_POST['product_id'])) {
-    $product_id = $_POST['product_id'];
-
-    if ($wishlist->addToWishlist($user_id, $product_id)) {
-        echo json_encode(['success' => true, 'message' => 'Item added to wishlist!']);
-    } else {
-        echo json_encode(['success' => false, 'message' => 'Item already in wishlist.']);
-    }
+if (!isset($_SESSION['user_id'])) {
+    echo json_encode(['success' => false, 'message' => 'User is not logged in']);
     exit;
 }
 
+$user_id = $_SESSION['user_id'];
+$wishlist = new Wishlist();
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_wishlist']) && isset($_POST['product_id'])) {
+    $product_id = (int) $_POST['product_id']; // Sanitizing input
 
+    // Call the addToWishlist method
+    $response = $wishlist->addToWishlist($user_id, $product_id);
+
+    // Return the response as JSON
+    echo json_encode($response);
+    exit;
+}
 
 // Retrieve wishlist items
 $wishlistItems = $wishlist->getAllProductsFromWishlist($user_id);

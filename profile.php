@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+ob_start();
 
 if (!isset($_SESSION['user_id'])) {
   header("Location: login/login.php");
@@ -812,6 +813,8 @@ $orderHistory = $cart->getOrderHistory($userId);
   </div>
 
   <?php
+
+  ob_end_flush();
   include("includes/footer.php");
   ?>
 

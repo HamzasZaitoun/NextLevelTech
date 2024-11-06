@@ -1,5 +1,6 @@
 <?php
 session_start();
+ob_start();
 
 if (!isset($_SESSION['user_id'])) {
     header("Location: login/login.php");
@@ -21,6 +22,8 @@ if (isset($_SESSION['user_id'])) {
         $gender = htmlspecialchars($userData['user_gender']);
     }
 }
+
+
 ?>
 
 
@@ -696,6 +699,7 @@ if (isset($_SESSION['user_id'])) {
     </div>
 
     <?php
+    ob_end_flush();
     include("includes/footer.php");
     ?>
 
