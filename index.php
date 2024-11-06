@@ -356,7 +356,7 @@
                                                 <span>Quick View</span>
                                             </div>
                                         </button>
-                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

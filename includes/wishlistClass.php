@@ -29,35 +29,44 @@ class Wishlist
 
     // إضافة منتج إلى قائمة الرغبات
     public function addToWishlist($user_id, $product_id) {
-        // التحقق مما إذا كان المنتج موجودًا بالفعل في قائمة الرغبات
-        $stmt = $this->pdo->prepare("SELECT * FROM wishlist WHERE user_id = ? AND product_id = ? AND is_deleted = 0");
-        $stmt->execute([$user_id, $product_id]);
-        
-        if ($stmt->rowCount() > 0) {
-            // المنتج موجود بالفعل في قائمة الأمنيات
-            return [
-                'success' => false,
-                'message' => 'Item already in wishlist.' // رسالة تخبر المستخدم بأنه موجود
-            ];
-        }
+        try {
+            // Check if the item is already in the wishlist
+            $stmt = $this->pdo->prepare("SELECT * FROM wishlist WHERE user_id = ? AND product_id = ? AND is_deleted = 0");
+            $stmt->execute([$user_id, $product_id]);
+            
+            if ($stmt->rowCount() > 0) {
+                return [
+                    'success' => false,
+                    'message' => 'Item already in wishlist.' 
+                ];
+            }
     
-        // إدراج المنتج في قائمة الأمنيات
-        $stmt = $this->pdo->prepare("INSERT INTO wishlist (user_id, product_id) VALUES (?, ?)");
-        
-        if ($stmt->execute([$user_id, $product_id])) {
-            // تم إضافة المنتج بنجاح
-            return [
-                'success' => true,
-                'message' => 'Item added to wishlist!' // رسالة تؤكد الإضافة
-            ];
-        } else {
-            // حدث خطأ أثناء إضافة المنتج
+            // Insert the new item into the wishlist
+            $stmt = $this->pdo->prepare("INSERT INTO wishlist (user_id, product_id) VALUES (?, ?)");
+            
+            if ($stmt->execute([$user_id, $product_id])) {
+                return [
+                    'success' => true,
+                    'message' => 'Item added to wishlist!' 
+                ];
+            } else {
+                // Log error or return specific message
+                $errorInfo = $stmt->errorInfo();
+                return [
+                    'success' => false,
+                    'message' => 'Failed to add item to wishlist. Error: ' . $errorInfo[2]
+                ];
+            }
+        } catch (PDOException $e) {
+            // Log or return the exception message
             return [
                 'success' => false,
-                'message' => 'Failed to add item to wishlist.' // رسالة تخبر عن الخطأ
+                'message' => 'An error occurred: ' . $e->getMessage()
             ];
         }
     }
+    
+    
     }
 
 
