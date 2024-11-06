@@ -19,10 +19,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["submit"])) {
     if ($password !== $confirmPassword) {
         exit();
     }
-    if ($user->register($firstName, $lastName, $email, $password, $gender, $dob, $address, $phoneNumber)) {
+
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+    if ($user->register($firstName, $lastName, $email, $hashedPassword, $gender, $dob, $address, $phoneNumber)) {
         header("Location: login.php");
         exit();
     } else {
         echo "An error occurred while entering data.";
     }
 }
+?>

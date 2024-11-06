@@ -14753,7 +14753,7 @@ This is for the horizontal layout
         #main-wrapper[data-layout="horizontal"] .sidebar-nav #sidebarnav > .mega-dropdown .first-level {
           width: 100%; }
           #main-wrapper[data-layout="horizontal"] .sidebar-nav #sidebarnav > .mega-dropdown .first-level > li {
-            width: 25%;
+            width: 20%;
             float: left; }
       #main-wrapper[data-layout="horizontal"] .sidebar-nav #sidebarnav > .sidebar-item:hover {
         background: rgba(0, 0, 0, 0.025); }

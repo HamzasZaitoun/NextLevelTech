@@ -1,218 +1,239 @@
 <!DOCTYPE html>
-<html class="no-js" lang="zxx">
+<html class="no-js" lang="en">
+<?php
+require_once 'includes/productsClasss.php';
+$productId = isset($_GET['id']) ? $_GET['id'] : null;
+if ($productId) {
+    $productObj = new Product();
+    $product = $productObj->getProductById($productId);
+} else {
+    echo "No Product ID provided.";
+}
+?>
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <title>Product Details | GamifyTech</title>
-    <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.svg" />
-
-    <!-- ========================= CSS here ========================= -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
     <link rel="stylesheet" href="assets/css/LineIcons.3.0.css" />
     <link rel="stylesheet" href="assets/css/tiny-slider.css" />
     <link rel="stylesheet" href="assets/css/glightbox.min.css" />
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="trendingProducts.css">
+
+    <style>
+
+
+    </style>
 </head>
 
 <body>
-<?php
-require_once 'includes/productsClasss.php';
-$productId = isset($_GET['id']) ? $_GET['id'] : null;
-
-if ($productId) {
-    $productObj = new Product();
-    $product = $productObj->getProductById($productId);
-} else {
-    echo "<p>No Product ID provided.</p>";
-}
-?>
-
-<!-- Preloader -->
-<div class="preloader">
-    <div class="preloader-inner">
-        <div class="preloader-icon">
-            <span></span>
-            <span></span>
-        </div>
-    </div>
-</div>
-<!-- /End Preloader -->
-
-<header>
-    <?php include 'includes/header.php'; ?>
-</header>
-
-<!-- Start Breadcrumbs -->
-<div class="breadcrumbs">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-6 col-md-6 col-12">
-                <div class="breadcrumbs-content">
-                    <h1 class="page-title"><?= isset($product['product_name']) ? htmlspecialchars($product['product_name']) : 'Product Not Found'; ?></h1>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-12">
-                <ul class="breadcrumb-nav">
-                    <li><a href="index.php"><i class="lni lni-home"></i> Home</a></li>
-                    <li><a href="index.php">Shop</a></li>
-                    <li><?= isset($product['product_name']) ? htmlspecialchars($product['product_name']) : 'Product Not Found'; ?></li>
-                </ul>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-icon">
+                <span></span>
+                <span></span>
             </div>
         </div>
     </div>
-</div>
-<!-- End Breadcrumbs -->
+    <!-- /End Preloader -->
 
-<!-- Start Item Details -->
-<?php if ($product): ?>
-<section class="item-details section">
-    <div class="container">
-        <div class="top-area">
+    <?php include("includes/header.php"); ?>
+
+    <!-- Start Breadcrumbs -->
+    <div class="breadcrumbs">
+        <div class="container">
             <div class="row align-items-center">
-                <!-- Product Images Section -->
-                <div class="col-lg-6 col-md-12 col-12">
-                    <div class="product-images">
-                        <main id="gallery">
-                            <div class="main-img">
-                                <?php $imagePath="inserted_img/".($product['product_picture']);?>
-                                <img src="<?php echo htmlspecialchars($imagePath); ?>" alt="category_pic" id="current" class="product-image">
-                            </div>
-                        </main>
+                <div class="col-lg-6 col-md-6 col-12">
+                    <div class="breadcrumbs-content">
+                        <h1 class="page-title"><?= htmlspecialchars($product['product_name']); ?></h1>
                     </div>
                 </div>
-                <!-- Product Info Section -->
-                <div class="col-lg-6 col-md-12 col-12">
-                    <div class="product-info">
-                        <h2 class="title"><?= htmlspecialchars($product['product_name']); ?></h2>
-                        <p class="category"><?= htmlspecialchars($product['category_name']); ?></p>
-                        <h3 class="price"><i class="lni lni-tag"></i><?= htmlspecialchars($product['product_price']); ?> JOD</h3>
-                        <p class="info-text"><?= htmlspecialchars($product['product_description']); ?></p>
+            </div>
+        </div>
+    </div>
+    <!-- End Breadcrumbs -->
 
-                        <!-- Bottom Content Section with Buttons -->
-                        <div class="bottom-content mt-4">
-                            <div class="row align-items-end">
-                                <!-- Add to Cart Button -->
-                                <div class="col-lg-4 col-md-4 col-12">
-                                    <form id="add-to-cart-form">
-                                        <input type="hidden" name="product_id" value="<?= htmlspecialchars($product['product_id']); ?>">
-                                        <input type="hidden" name="quantity" id="quantity-hidden" value="1">
-                                        <div class="btn-div">
-                                            <div class="shopbtn">
-                                                <button type="button" class="btn-btn" id="add-to-cart-btn">
-                                                    <div class="default-btn">
-                                                        <i class="lni lni-cart"></i>
-                                                    </div>
-                                                    <div class="hover-btn">
-                                                        <span>Shop now</span>
-                                                    </div>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                    <div id="cart-response" class="mt-2"></div>
+    <!-- Start Item Details -->
+    <section class="item-details section">
+        <div class="container">
+            <div class="top-area">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-md-12 col-12">
+                        <div class="product-images">
+                            <main id="gallery">
+                                <div class="main-img">
+                                    <?php $imagePath="inserted_img/".($product['product_picture']);?>
+                                    <img src="<?php echo htmlspecialchars($imagePath); ?>" alt="category_pic"
+                                        id="current" class="product-image">
+                                </div>
+                            </main>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-12">
+                        <div class="product-info">
+                            <h2 class="title"><?= $product['product_name']; ?></h2>
+                            <p class="category"><?= $product['category_name']; ?></p>
+                            <?php
+                            $originalPrice = $product['product_price'];
+                            $discount = $product['product_discount'];
+                            $discountedPrice = $originalPrice - ($originalPrice * ($discount / 100));
+                            ?>
+                            <h3>
+                                <?php if ($discount > 0): ?>
+                                <span style="text-decoration: line-through; color: #888;"><?= $originalPrice; ?>
+                                    JOD</span>
+                                <span
+                                    style="color: #ff0000; font-weight: bold;"><?= number_format($discountedPrice, 2); ?>
+                                    JOD</span>
+                                <?php else: ?>
+                                <span><?= $originalPrice; ?> JOD</span>
+                                <?php endif; ?>
+                            </h3>
+                            <p class="info-text"><?= $product['product_description']; ?></p>
+
+                            <!-- Quantity Selector -->
+                            <div class="quantity-selector">
+                                <button class="quantity-btn" onclick="decreaseQuantity()">−</button>
+                                <input type="number" id="quantity" name="quantity" value="1" min="1" />
+                                <button class="quantity-btn" onclick="increaseQuantity()">+</button>
+                            </div>
+
+                            <!-- Action Buttons -->
+                            <div class="action-buttons">
+                                <!-- Shop Now Button -->
+                                <div class="shop-now-btn">
+                                    <button onclick="addToCart(<?= htmlspecialchars($product['product_id']); ?>)">
+                                        <div class="default-btn"><i class="lni lni-cart"></i> Shop now</div>
+                                    </button>
                                 </div>
 
                                 <!-- Add to Wishlist Button -->
-                                <div class="col-lg-4 col-md-4 col-12">
-                                    <form id="add-to-wishlist-form">
-                                        <input type="hidden" name="product_id" value="<?= htmlspecialchars($product['product_id']); ?>">
-                                        <div class="btn-div">
-                                            <div class="shopbtn">
-                                                <button type="button" class="btn-btn" id="add-to-wishlist-btn">
-                                                    <div class="default-btn">
-                                                        <i class="lni lni-heart"></i>
-                                                    </div>
-                                                    <div class="hover-btn">
-                                                        <span>To Wishlist</span>
-                                                    </div>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                    <div id="wishlist-response" class="mt-2"></div>
+                                <div class="add-to-wishlist-btn">
+                                    <button onclick="addToWishlist(<?= htmlspecialchars($product['product_id']); ?>)">
+                                        <div class="default-btn"><i class="lni lni-heart"></i> Add to wishlist</div>
+                                    </button>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-<?php endif; ?>
+    </section>
+    <!-- End Item Details -->
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-$(document).ready(function() {
-    // Add to Cart AJAX
-    $('#add-to-cart-btn').on('click', function() {
-        const product_id = $('input[name="product_id"]').val();
-        const quantity = $('#quantity-hidden').val() || 1;
+    <?php include("includes/footer.php"); ?>
 
-        $.ajax({
-            url: 'cart.php',
-            type: 'POST',
-            data: { product_id: product_id, quantity: quantity, add_to_cart: true },
-            success: function(response) {
-                $('#cart-response').html('<span class="text-success">Item added to cart!</span>');
-                setTimeout(function() { $('#cart-response').fadeOut('slow'); }, 2000);
-            },
-            error: function() {
-                $('#cart-response').html('<span class="text-danger">Failed to add item to cart. Try again.</span>');
-            }
-        });
-    });
+    <!-- ========================= JS here ========================= -->
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/tiny-slider.js"></script>
+    <script src="assets/js/glightbox.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    // Add to Wishlist AJAX
-    $('#add-to-wishlist-btn').on('click', function() {
-        const product_id = $('input[name="product_id"]').val();
 
-        $.ajax({
-            url: 'wishList.php',
-            type: 'POST',
-            data: { product_id: product_id, add_to_wishlist: true },
-            success: function(response) {
-                $('#wishlist-response').html('<span class="text-success">Item added to wishlist!</span>');
-                setTimeout(function() { $('#wishlist-response').fadeOut('slow'); }, 2000);
-            },
-            error: function() {
-                $('#wishlist-response').html('<span class="text-danger">Failed to add item to wishlist. Try again.</span>');
-            }
-        });
-    });
-});
-</script>
-
-<footer>
-    <?php include 'includes/footer.php'; ?>
-</footer>
-
-<a href="#" class="scroll-top">
-    <i class="lni lni-chevron-up"></i>
-</a>
-
-<!-- ========================= JS here ========================= -->
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/tiny-slider.js"></script>
-<script src="assets/js/glightbox.min.js"></script>
-<script src="assets/js/main.js"></script>
-
-<script type="text/javascript">
-const current = document.getElementById("current");
-const opacity = 0.6;
-const imgs = document.querySelectorAll(".img");
-if (imgs.length) {
-    imgs.forEach(img => {
-        img.addEventListener("click", (e) => {
-            imgs.forEach(img => img.style.opacity = 1);
-            current.src = e.target.src;
-            e.target.style.opacity = opacity;
+    <script>
+   function addToWishlist(productId) {
+    // Send POST request to wishlist.php
+    fetch('wishlist.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: 'add_to_wishlist=true&product_id=' + productId 
+    })
+    .then(response => {
+        // Parse response as JSON
+        return response.json();
+    })
+    .then(data => {
+        // Check if the item was successfully added to the wishlist
+        if (data.success) {
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: 'Item added to wishlist!',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        } else {
+            // Show error message if the item could not be added
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: data.message || "Something went wrong!"  // Use the response message or default one
+            });
+        }
+        console.log(data, "wishlist data");
+    })
+    .catch(error => {
+        console.error("Error:", error);  // Log the error
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'An error occurred while adding to wishlist.',
+            confirmButtonText: 'OK'
         });
     });
 }
-</script>
+
+    function addToCart(productId) {
+        // console.log("test dattttttttt");
+        const quantity = document.getElementById("quantity").value;
+
+        fetch('cart.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: 'add_to_cart=true&product_id=' + productId + '&quantity=' + quantity
+            })
+            .then(response => {
+                response.json()
+                console.log(response, "res");
+                console.log(response.data);
+
+            })
+            .then(data => {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Added to Cart',
+                    text: 'Product successfully added to cart.',
+                    confirmButtonText: 'OK'
+                });
+                console.log(data, "dattttttttt");
+
+            })
+            .catch(error => {
+                console.log("err");
+
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'An error occurred while adding to cart.',
+                    confirmButtonText: 'OK'
+                });
+            });
+    }
+
+    function increaseQuantity() {
+        const quantityInput = document.getElementById("quantity");
+        quantityInput.value = parseInt(quantityInput.value) + 1;
+    }
+
+    function decreaseQuantity() {
+        const quantityInput = document.getElementById("quantity");
+        if (parseInt(quantityInput.value) > 1) {
+            quantityInput.value = parseInt(quantityInput.value) - 1;
+        }
+    }
+    </script>
 </body>
+
 </html>

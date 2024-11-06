@@ -60,7 +60,7 @@
         
         .glassBox__title {
           text-align: center;
-          margin-top: 15px;
+          /* margin-top: 15px; */
           color: #FFF;
           font-size: 20px;
           font-weight: 400;

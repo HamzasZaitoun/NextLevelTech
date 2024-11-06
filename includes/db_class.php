@@ -8,6 +8,11 @@ class dbConnection
  private $password='';
  private $pdo;
  private static $instence = null; 
+// testt
+// testt
+// testt
+// testt
+// testt
 
  private function __construct()
  {
