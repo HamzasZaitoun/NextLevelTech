@@ -7,7 +7,10 @@
     if (isset($_SESSION['success_message'])) {
         echo "<div class='alert alert-success'>" . $_SESSION['success_message'] . "</div>";
         unset($_SESSION['success_message']);
+        header("Location: yourpage.php");
+        exit(); // تأكد من إضافة exit لإنهاء التنفيذ هنا
     }
+    
  
 ?>
 <!-- <link rel="stylesheet" href="assets/css/test.css"> -->
@@ -106,14 +109,14 @@
 
 <body>
     <!-- Preloader -->
-    <div class="preloader">
+    <!-- <div class="preloader">
         <div class="preloader-inner">
             <div class="preloader-icon">
                 <span></span>
                 <span></span>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <!-- /End Preloader -->
 
@@ -280,31 +283,28 @@
                                         </button>
                                     </div>
                                     <div class="shopbtn">
-                                        <button class="btn-btn"
-                                            onclick="window.location.href='productDetails.php?id=<?= htmlspecialchars($product['product_id']); ?>'">
-                                            <div class="default-btn">
-                                                <i class="lni lni-cart"></i>
-                                            </div>
-                                            <div class="hover-btn">
-                                                <span>Shop now</span>
-                                            </div>
-                                        </button>
-                                    </div>
-                                    <div class="shopbtn">
-                                        <form id="add-to-wishlist-form">
-                                            <input type="hidden" name="product_id"
-                                                value="<?= $product['product_id']; ?>">
-                                            <button id="add-to-wishlist-btn" type="button" class="btn-btn"
-                                                onclick="window.location.href='wishList.php?id=<?= htmlspecialchars($product['product_id']); ?>'">
-                                                <div class="default-btn">
-                                                    <i class="lni lni-heart"></i>
-                                                </div>
-                                                <div class="hover-btn">
-                                                    <span>add to wish list</span>
-                                                </div>
-                                            </button>
-                                        </form>
-                                    </div>
+                                    <button class="btn-btn"
+                                        onclick="addToCart(<?= htmlspecialchars($product['product_id']); ?>)">
+                                        <div class="default-btn">
+                                            <i class="lni lni-cart"></i>
+                                        </div>
+                                        <div class="hover-btn">
+                                            <span>Shop now</span>
+                                        </div>
+                                    </button>
+                                </div>
+                                <div class="shopbtn">
+                                    <button class="btn-btn"
+                                        onclick="addToWishlist(<?= htmlspecialchars($product['product_id']); ?>)">
+                                        <div class="default-btn"
+                                            id="heart-icon-<?= htmlspecialchars($product['product_id']); ?>">
+                                            <i class="lni lni-heart"></i>
+                                        </div>
+                                        <div class="hover-btn">
+                                            <span>Add to wish list</span>
+                                        </div>
+                                    </button>
+                                </div>
                                 </div>
                             </div>
                             <?php if ($product['product_discount'] > 0) : ?>
@@ -371,7 +371,7 @@
                                 </div>
                                 <div class="shopbtn">
                                     <button class="btn-btn"
-                                        onclick="window.location.href='productDetails.php?id=<?= htmlspecialchars($product['product_id']); ?>'">
+                                        onclick="addToCart(<?= htmlspecialchars($product['product_id']); ?>)">
                                         <div class="default-btn">
                                             <i class="lni lni-cart"></i>
                                         </div>
@@ -380,25 +380,17 @@
                                         </div>
                                     </button>
                                 </div>
-                                <!-- add to wish list button -->
-
-
-
                                 <div class="shopbtn">
-                                    <form id="add-to-wishlist-form">
-                                        <input type="hidden" name="product_id" value="<?= $product['product_id']; ?>">
-                                        <button id="add-to-wishlist-btn" type="button" class="btn-btn"
-                                            onclick="window.location.href='wishList.php?id=<?= htmlspecialchars($product['product_id']); ?>'">
-                                            <div class="default-btn">
-                                                <i class="lni lni-heart"></i>
-                                            </div>
-                                            <div class="hover-btn">
-                                                <span>add to wish list</span>
-
-                                            </div>
-
-                                        </button>
-                                    </form>
+                                    <button class="btn-btn"
+                                        onclick="addToWishlist(<?= htmlspecialchars($product['product_id']); ?>)">
+                                        <div class="default-btn"
+                                            id="heart-icon-<?= htmlspecialchars($product['product_id']); ?>">
+                                            <i class="lni lni-heart"></i>
+                                        </div>
+                                        <div class="hover-btn">
+                                            <span>Add to wish list</span>
+                                        </div>
+                                    </button>
                                 </div>
 
 
@@ -581,6 +573,68 @@
             });
         });
         </script>
+    </script>
+    <!-- add to wish list -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+    function addToWishlist(productId) {
+        const button = document.getElementById('heart-icon-' + productId); // احصل على الزر
+        button.disabled = true; // تعطيل الزر
+
+        fetch('wishlist.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: 'add_to_wishlist=true&product_id=' + productId
+        })
+        .then(response => response.json())
+        // .then(data => {
+        //     if (data.success) {
+        //         Swal.fire({
+        //             icon: 'success',
+        //             title: 'Success',
+        //             text: data.message,
+        //             confirmButtonText: 'OK'
+        //         });
+
+        //         // تغيير اللون إلى الأحمر
+        //         button.classList.add('added-to-wishlist');
+        //     } else {
+        //         Swal.fire({
+        //             icon: 'info',
+        //             title: 'Already Added',
+        //             text: data.message,
+        //             confirmButtonText: 'OK'
+        //         });
+        //     }
+        // })
+        // .catch(error => {
+        //     console.error('Error:', error);
+        //     Swal.fire({
+        //         icon: 'error',
+        //         title: 'Error',
+        //         text: 'An error occurred while adding to wishlist.',
+        //         confirmButtonText: 'OK'
+        //     });
+        // });
+    }
+
+
+    // add to cart
+    function addToCart(productId) {
+    fetch('cart.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: 'add_to_cart=true&product_id=' + productId
+    })
+    
+}
+
+    </script>
 
 
 </body>
