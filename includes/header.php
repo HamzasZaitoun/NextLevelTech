@@ -1,6 +1,16 @@
 <?php
+// بدء الجلسة
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
+}
+
+if (isset($_SESSION['user_id'])) {
+    if (isset($_GET['logout'])) {
+        session_unset();
+        session_destroy();
+        header("Location: ../NextLevelTech/index.php");
+        exit();
+    }
 }
 ?>
 
@@ -13,11 +23,12 @@ if (session_status() == PHP_SESSION_NONE) {
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/logo/1302365453812760631remix-1730585196342.png" />
+
     <head>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-</head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    </head>
 
     <!-- ========================= CSS here ========================= -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
@@ -26,16 +37,17 @@ if (session_status() == PHP_SESSION_NONE) {
     <link rel="stylesheet" href="assets/css/glightbox.min.css" />
     <link rel="stylesheet" href="assets/css/main.css" />
     <style>
-        
-    .logo {
-  font-family: "Righteous", sans-serif;
-  color: #0167F3;
-  text-transform: uppercase;
-  font-size: 10.4rem;
-  font-weight :600px;
-}
+        .logo {
+            font-family: "Righteous", sans-serif;
+            color: #0167F3;
+            text-transform: uppercase;
+            font-size: 10.4rem;
+            font-weight: 600px;
+        }
+
         .logo:hover {
-            transform: scale(1.5); /* تكبير الشعار عند المرور عليه */
+            transform: scale(1.5);
+            /* تكبير الشعار عند المرور عليه */
         }
 
         .navbar-nav {
@@ -330,7 +342,7 @@ if (session_status() == PHP_SESSION_NONE) {
                             <!-- Start Header Logo -->
                             <a class="logo" href="index.php">
                                 <!-- <img src="assets/images/logo/logo.svg" alt="Logo"> -->
-                                 <p>GamifyTech</p>
+                                <p>GamifyTech</p>
                             </a>
                             <!-- End Header Logo -->
                         </div>
@@ -415,10 +427,11 @@ if (session_status() == PHP_SESSION_NONE) {
                                         </a>
                                     </div>
                                     <?php if (isset($_SESSION['user_id'])): ?>
-                                        <a href="/NextLevelTech/login/login.php">Logout</a>
+                                        <a href="?logout=true">Logout</a> 
+
                                     <?php else: ?>
-                                        <a href="/NextLevelTech/login/login.php">Login</a>
-                                        <a href="/NextLevelTech/login/registration.php">Register</a>
+                                        <a href="../NextLevelTech/login/login.php">Login</a>
+                                        <a href="../NextLevelTech/login/registration.php">Register</a>
 
                                     <?php endif; ?>
 
@@ -446,11 +459,11 @@ if (session_status() == PHP_SESSION_NONE) {
                             <span class="toggler-icon"></span>
                             <span class="toggler-icon"></span>
                         </button>
-                      
+
                         <ul id="nav" class="navbar-nav mx-auto">
-                        <li class="nav-item">
-                            <a href="index.php" class="active" aria-label="Toggle navigation">Home</a>
-                        </li>
+                            <li class="nav-item">
+                                <a href="index.php" class="active" aria-label="Toggle navigation">Home</a>
+                            </li>
                             <!-- تغيير ms-auto إلى mx-auto لتوسيط المحتوى -->
                             <!-- <li class="nav-item">
                                 <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"

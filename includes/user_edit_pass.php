@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                            The password has been changed successfully.
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" onclick="window.location.href=\'/NextLevelTech main main/changePassword.php\';">Close</button>
+                            <button type="button" class="btn btn-secondary" onclick="window.location.href=\'../changePassword.php\';">Close</button>
                         </div>
                     </div>
                 </div>
@@ -68,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                            An error occurred while updating data.
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" onclick="window.location.href=\'/NextLevelTech main main/changePassword.php\';">Close</button>
+                            <button type="button" class="btn btn-secondary" onclick="window.location.href=\'../changePassword.php\';">Close</button>
                         </div>
                     </div>
                 </div>
@@ -93,7 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         The new password and password confirmation do not match.
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" onclick="window.location.href=\'/NextLevelTech main main/changePassword.php\';">Close</button>
+                        <button type="button" class="btn btn-secondary" onclick="window.location.href=\'../changePassword.php\';">Close</button>
                     </div>
                 </div>
             </div>
@@ -118,7 +118,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             The old password is incorrect.
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" onclick="window.location.href=\'/NextLevelTech main main/changePassword.php\';">Close</button>
+                            <button type="button" class="btn btn-secondary" onclick="window.location.href=\'../changePassword.php\';">Close</button>
                         </div>
                     </div>
                 </div>
