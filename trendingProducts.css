@@ -50,11 +50,10 @@
   
 .btn-btn {
     color: rgb(253, 119, 119);
-    background-color: #0167F3;
+    background-color:#ff3b3b; 
     border: solid 4px hsl(0, 0%, 100%);
     border-radius: 50px;
     padding: 1rem 1rem;
-    /* font-size: 17px; */
     font-weight: 500;
     text-transform: uppercase;
     font-family: inherit;
@@ -65,14 +64,13 @@
     gap: 10px;
     transition: all 0.6s ease;
     overflow: hidden;
-    width: 30px; /* العرض الابتدائي صغير */
+    width: 30px; 
     margin-top: 10px;
-    white-space: nowrap; /* منع التفاف النص */
+    white-space: nowrap;
 }
 
-/* التأثير عند التمرير */
 .btn-btn:hover {
-    width: 150px; /* العرض الكامل عند التمرير */
+    width: 150px; 
 }
 
 .btn-btn .default-btn,
@@ -87,7 +85,8 @@
 }
   
 .btn-btn .default-btn {
-    background-color: #0167F3;
+    background-color: #ce2929;
+    ; 
     color: hsl(0, 0%, 100%);
     z-index: 1;
 }
@@ -113,6 +112,91 @@
     justify-content: center;
 }
 
+/* random section */
+
+/* Scoped Red Line Background */
+.random-products-section .red-line-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  background-color: #ff3b3b; 
+  z-index: 1; 
+}
+.random-products-section {
+  padding: 60px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.random-products-section .container {
+  position: relative;
+  z-index: 2;
+} 
+
+.random-products-section .random-product-card {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  height: 350px;
+  display: flex;
+  align-items: flex-end;
+  margin: 15px 0;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.7);
+}
+
+/* Product Content Styling */
+.random-products-section .product-content {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Product Title */
+.random-products-section .product-title {
+  color: #fff;
+  font-size: 24px;
+  margin: 0 0 10px;
+  font-weight: 600;
+}
+
+/* Button Styling */
+.random-products-section .shopbtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.random-products-section .btn-btn {
+  color: #fff;
+  background-color: #0167F3;
+  border: none;
+  border-radius: 50px;
+  padding: 10px 20px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  text-transform: uppercase;
+}
+
+.random-products-section .btn-btn:hover {
+  background-color: #014cad;
+  transform: scale(1.05);
+}
+
+.random-products-section .btn-btn i {
+  font-size: 18px;
+}
+
+/* end random section *
 /* .button .btn {
   border: none;
   padding: 12px 24px;

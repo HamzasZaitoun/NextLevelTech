@@ -1,4 +1,7 @@
 <?php 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ob_start();
 session_start();
 require_once "includes/db_class.php"; 
 require_once "includes/cartClass.php";
@@ -13,17 +16,20 @@ if (!isset($_SESSION['user_id'])) {
 
 $cart = new Cart();
 $cartItems = $cart->getCart($user_id);
-
-// Initialize total quantity and total price
 $totalPrice = 0; 
 $discountAmount = 0;
-$taxAmount = 0;
+
 $finalTotal = 0; 
 
+foreach ($cartItems as $item) {
+    $totalPrice += $item['product_price'] * $item['quantity']; 
+}
 // Check if the form to add to the cart was submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_to_cart'])) {
     $product_id = $_POST['product_id'];
     $quantity = (int)$_POST['quantity'];
+    unset($_SESSION['applied_coupons']);
+
 
     try {
         if ($cart->addToCart($user_id, $product_id, $quantity)){
@@ -38,6 +44,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_to_cart'])) {
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['remove_from_cart'])) {
     $product_id = $_POST['product_id'];
+    unset($_SESSION['applied_coupons']);
+
 
     try {
         $cart->removeFromCart($user_id, $product_id);
@@ -51,6 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['remove_from_cart'])) {
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_quantity'])) {
     $product_id = $_POST['product_id'];
     $new_quantity = (int)$_POST['quantity'];
+    unset($_SESSION['applied_coupons']);
 
     try {
         $cart->updateCartQuantity($user_id, $product_id, $new_quantity);
@@ -63,32 +72,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_quantity'])) {
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['apply_coupon'])) {
     $couponCode = $_POST['coupon_code'];
-    $userId = $_SESSION['user_id']; 
+    $userId = $_SESSION['user_id'];
 
-    
-    
+    // Check if the coupon has already been applied
+    if (!isset($_SESSION['applied_coupons']) || !in_array($couponCode, $_SESSION['applied_coupons'])) {
+        // Apply the coupon
+        $result = $cart->applyCoupon($couponCode, $userId);
 
-    // Apply coupon
-    $result = $cart->applyCoupon($couponCode, $userId);
+        if ($result['success']) {
+            echo "<div class='alert alert-success'>Coupon applied! New total: $" . number_format($_SESSION['final_total'], 2) . " (Discount: $" . number_format($result['discount'], 2) . ")</div>";
+            
+            // Update the final total
+            $discountAmount = $result['discount'];
+            $finalTotal = $_SESSION['final_total'] - $discountAmount;
+            $_SESSION['final_total'] = $finalTotal; 
 
-    // Check the result
-    if ($result['success']) {
-        echo "<div class='alert alert-success'> Apply Successfully</div>";
-        $discountAmount = $result['discount'];
-        
-        // Update the final total
-        $finalTotal = $_SESSION['final_total'] - $discountAmount;
-        $_SESSION['final_total'] = $finalTotal; // Save the new final total in the session
+            // Add the coupon to applied_coupons session to prevent reapplying
+            $_SESSION['applied_coupons'][] = $couponCode;
+        } else {
+            echo "<div class='alert alert-danger'>" . $result['message'] . "</div>";
+        }
     } else {
-        echo "<div class='alert alert-danger'>" . $result['message'] . "</div>";
+        echo "<div class='alert alert-warning'>Coupon already applied and cannot be reused.</div>";
     }
 }
 
+
+
 // Calculate total price from cart items
 
-foreach ($cartItems as $item) {
-    $totalPrice += $item['product_price'] * $item['quantity']; 
-}
 
 $finalTotal = $totalPrice - $discountAmount;
 $_SESSION['final_total'] = $finalTotal;
@@ -123,7 +135,7 @@ input::-webkit-inner-spin-button {
             <!-- cart -->
             <div class="col-lg-9">
                 <div class="card border shadow-sm">
-                    <div style="min-height: 390px;" class="card-body">
+                    <div class="card-body">
                         <h4 class="card-title mb-4">Your Shopping Cart</h4>
                         <?php if (!empty($cartItems)): ?>
                             <?php foreach ($cartItems as $item): ?>
@@ -139,36 +151,34 @@ input::-webkit-inner-spin-button {
                                         </div>
                                     </div>
 
-                                    
-
                                     <div class="col-lg-3 col-md-3 col-6 d-flex align-items-center">
-                                    <form method="POST" action="cart.php" class="d-flex align-items-center">
+                                    <form method="POST" action="cart.php" class="d-flex align-items-center w-100">
                                         <input type="hidden" name="product_id" value="<?= $item['product_id']; ?>">
                                         <input type="hidden" name="update_quantity" value="1">
-
-                                        <!-- Minus button -->
-                                        <button type="button" class="btn btn-secondary" onclick="updateQuantity(this, -1)">-</button>
-
-                                        <!-- Quantity input -->
-                                        <input type="number" name="quantity" value="<?= $item['quantity']; ?>" required min="1" class="form-control text-center mx-2" readonly>
-
-                                        <!-- Plus button -->
-                                        <button type="button" class="btn btn-secondary" onclick="updateQuantity(this, 1)">+</button>
-                                    </form>
-                                    </div>
+                                        <button type="button" class="btn btn-outline-secondary btn-sm px-2" onclick="updateQuantity(this, -1)" style="min-width: 32px;">-</button>
+                                        <input type="number" name="quantity" value="<?= $item['quantity']; ?>" required min="1" 
+                                            class="form-control text-center mx-2 border-secondary" style="max-width: 60px;" >
+                                        <button type="button" class="btn btn-outline-secondary btn-sm px-2" onclick="updateQuantity(this, 1)" style="min-width: 32px;">+</button>
+                                        </form>
+                                        </div>
 
                                     <div class="col-lg-2 col-md-3 col-6 text-end text-md-center">
-                                        <span class="h6 item-price" data-price="<?= htmlspecialchars($item['product_price']); ?>"><?= htmlspecialchars($item['product_price']); ?> JD</span>
-                                        <small class="text-muted d-block">per item</small>
+                                        <span class="h6 item-price" da  ta-price="<?= htmlspecialchars($item['product_price']); ?>"><?= htmlspecialchars($item['product_price']); ?> JD</span>
+                                        <span class="text-muted">per item</span>
                                     </div>
 
-                                    <div class="col-lg-2 col-md-12 text-end text-md-center mt-2 mt-md-0">
-                                        <form method="POST" action="cart.php" onsubmit="return false;">
-                                            <input type="hidden" name="product_id" value="<?= $item['product_id']; ?>">
-                                            <input type="hidden" name="remove_from_cart" value="1">
-                                            <button type="submit" class="btn btn-danger btn-sm w-100" onclick="confirmDeletion(this.form)">Remove</button>
-                                        </form>
-                                    </div>
+                                    <div class="col-lg-2 col-md-12 text-md-center text-end mt-2 mt-md-0">
+                                            <form method="POST" action="cart.php" onsubmit="return false;">
+                                                <input type="hidden" name="product_id" value="<?= $item['product_id']; ?>">
+                                                <input type="hidden" name="remove_from_cart" value="1"><button type="submit" 
+                                                    class="btn btn-danger btn-sm py-1 w-100 shadow-sm rounded-pill font-weight-bold" 
+                                                    onclick="confirmDeletion(this.form)" 
+                                                    style="max-width: 120px; font-size: 0.9em;">
+                                                    Remove
+                                                </button>
+                                            </form>
+                                        </div>
+
                                 </div>
                             <?php endforeach; ?>
                         <?php else: ?>
@@ -195,25 +205,23 @@ input::-webkit-inner-spin-button {
                             <p class="mb-2">Discount:</p>
                             <p class="mb-2 text-success">- <span class="discount-amount"><?php echo number_format($discountAmount, 2); ?></span> JD</p>
                         </div>
-                        <div class="d-flex justify-content-between">
-                            <p class="mb-2">TAX:</p>
-                            <p class="mb-2"><?php echo number_format($taxAmount, 2) . " JD"; ?></p>
-                        </div>
+                        
                         <hr />
                         <div class="d-flex justify-content-between">
                             <p class="mb-2">Final Total:</p>
                             <p class="mb-2 fw-bold final-total"><?php echo number_format($finalTotal, 2) . " JD"; ?></p>
                         </div>
                         <div class="mt-4">
-                            <form method="POST" action="cart.php">
-                                <input type="text" name="coupon_code" placeholder="Enter coupon code" class="form-control" required />
-                                <button type="submit" name="apply_coupon" class="btn btn-primary w-100">Apply Coupon</button>
+                            <form method="POST" action="cart.php" class="d-flex flex-column align-items-center">
+                                <input type="text" name="coupon_code" placeholder="Enter coupon code" class="form-control text-center py-2 mb-2 shadow-sm rounded-pill" style="max-width: 300px;" required />
+                                <button type="submit" name="apply_coupon" class="btn btn-primary w-100 py-2 rounded-pill font-weight-bold shadow-sm" style="max-width: 300px;">Apply Coupon</button>
                             </form>
                         </div>
-                        <div class="mt-3">
-                <a href="checkout.php" class="btn btn-success w-100 shadow-0 mb-2">Make Purchase</a>
-                <a href="index.php" class="btn btn-light w-100 border mt-2">Back to shop</a>
-            </div>
+
+                        <div class="mt-4 d-flex flex-column align-items-center">
+                            <a href="checkout.php" class="btn btn-success w-100 py-2 rounded-pill shadow-sm font-weight-bold mb-3" style="max-width: 300px;">Make Purchase</a>
+                            <a href="index.php" class="btn btn-outline-secondary w-100 py-2 rounded-pill font-weight-bold shadow-sm" style="max-width: 300px;">Back to shop</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -314,7 +322,6 @@ input::-webkit-inner-spin-button {
         if (newQuantity > 0) {
             quantityInput.value = newQuantity;
 
-            // Submit the form after updating the quantity
             form.submit();
         }
     }
@@ -322,8 +329,7 @@ input::-webkit-inner-spin-button {
     function updateTotalPrice() {
         let totalPrice = 0;
         let discount = parseFloat("<?= $discountAmount; ?>");
-        let tax = parseFloat("<?= $taxAmount; ?>");
-
+        
         document.querySelectorAll('.item-price').forEach(item => {
             let price = parseFloat(item.dataset.price);
             let quantityInput = item.closest('.row').querySelector('.quantity-input');
@@ -332,7 +338,7 @@ input::-webkit-inner-spin-button {
         });
 
         let discountAmount = calculateDiscount(totalPrice); // Function to calculate discount based on the total price
-        let finalTotal = totalPrice - discountAmount + tax;
+        let finalTotal = totalPrice - discountAmount;
 
         document.querySelector('.total-price').textContent = totalPrice.toFixed(2) + " JD";
         document.querySelector('.discount-amount').textContent = discountAmount.toFixed(2);
@@ -362,4 +368,4 @@ input::-webkit-inner-spin-button {
     }
 </script>
 
-<?php include("includes/footer.php"); ?>
+<?php include("includes/footer.php");

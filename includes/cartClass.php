@@ -215,14 +215,14 @@ public function placeOrder($userId, $totalAmount, $address, $paymentMethod) {
     try {
         $query = "INSERT INTO orders (user_id, total_amount, address, payment_method, order_date) 
                 VALUES (:user_id, :total_amount, :address, :payment_method, NOW())";
-        $stmt = $this->db->prepare($query);
+        $stmt = $this->pdo->prepare($query);
         $stmt->bindParam(":user_id", $userId);
         $stmt->bindParam(":total_amount", $totalAmount);
         $stmt->bindParam(":address", $address);
         $stmt->bindParam(":payment_method", $paymentMethod);
         $stmt->execute();
 
-        return $this->db->lastInsertId();  
+        return $this->pdo->lastInsertId();  
     } catch (PDOException $e) {
         throw new Exception("Order placement failed: " . $e->getMessage());
     }
