@@ -56,7 +56,7 @@ $products = $productModel->getAllProducts();
         <td data-label="Product Name"><?= htmlspecialchars($product['product_name']) ?></td>
         <td data-label="Description"><?= htmlspecialchars($product['product_description']) ?></td>
         <td data-label="Image">
-            <img src="../inserted_img/<?= $product['product_picture'] ?>" alt="Product Image" width="50" style="border-radius:10%;">
+            <img src="../../inserted_img/<?= $product['product_picture'] ?>" alt="Product Image" width="50" style="border-radius:10%;">
         </td>
         <td data-label="Category"><?= htmlspecialchars($product['product_category']) ?></td>
         <td data-label="Quantity"><?= htmlspecialchars($product['product_quantity']) ?></td>
@@ -96,7 +96,7 @@ $products = $productModel->getAllProducts();
 
                 <div class="form-group">
                     <label for="productImage">Old Product Image:</label><br>
-                    <img src="../inserted_img/<?= $product['product_picture'] ?>" alt="Old Product Image" class="old-product-image">
+                    <img src="../../inserted_img/<?= $product['product_picture'] ?>" alt="Old Product Image" class="old-product-image">
                 </div>
 
                 <div class="form-group">
