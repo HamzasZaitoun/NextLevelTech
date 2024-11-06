@@ -409,40 +409,6 @@
         <!-- End top selling Area -->
 
 
-<<<<<<< HEAD
-                    if (!empty($randomProducts)):
-                        foreach ($randomProducts as $randomProduct):
-                            $imagePath = "inserted_img/" . ($randomProduct['product_picture']);
-                            ?>
-                    <div class="col-lg-6 col-md-6 col-12">
-                        <div class="random-product-card" style="background-image: url('<?php echo $imagePath; ?>');">
-                            <div class="product-content">
-                                <h2 class="product-title"><?= htmlspecialchars($randomProduct['product_name']); ?></h2>
-                                <div class="shopbtn">
-                                        <button class="btn-btn"
-                                            onclick="window.location.href='productDetails.php?id=<?= htmlspecialchars($randomProduct['product_id']); ?>'">
-                                            <div class="default-btn">
-                                                <i class="lni lni-eye"></i>
-                                            </div>
-                                            <div class="hover-btn">
-                                                <span>Quick View</span>
-                                            </div>
-                                        </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <?php endforeach; 
-                        else: ?>
-                    <div class="col-12">
-                        <p>No products available at the moment.</p>
-                    </div>
-                    <?php endif; ?>
-                </div>
-            </div>
-        </section>
-=======
->>>>>>> 0850ec654c8f83e8f07423cc56d8e8ead547a922
 
 
 
