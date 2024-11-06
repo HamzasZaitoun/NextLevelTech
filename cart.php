@@ -18,18 +18,16 @@ $cart = new Cart();
 $cartItems = $cart->getCart($user_id);
 $totalPrice = 0; 
 $discountAmount = 0;
-
 $finalTotal = 0; 
 
-foreach ($cartItems as $item) {
-    $totalPrice += $item['product_price'] * $item['quantity']; 
-}
+// foreach ($cartItems as $item) {
+//     $totalPrice += $item['product_price'] * $item['quantity']; 
+// }
+
 // Check if the form to add to the cart was submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_to_cart'])) {
     $product_id = $_POST['product_id'];
     $quantity = (int)$_POST['quantity'];
-    unset($_SESSION['applied_coupons']);
-
 
     try {
         if ($cart->addToCart($user_id, $product_id, $quantity)){
@@ -44,8 +42,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_to_cart'])) {
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['remove_from_cart'])) {
     $product_id = $_POST['product_id'];
-    unset($_SESSION['applied_coupons']);
-
 
     try {
         $cart->removeFromCart($user_id, $product_id);
@@ -59,7 +55,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['remove_from_cart'])) {
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_quantity'])) {
     $product_id = $_POST['product_id'];
     $new_quantity = (int)$_POST['quantity'];
-    unset($_SESSION['applied_coupons']);
 
     try {
         $cart->updateCartQuantity($user_id, $product_id, $new_quantity);
@@ -70,37 +65,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_quantity'])) {
     $cartItems = $cart->getCart($user_id);
 }
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['apply_coupon'])) {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['coupon_code'])){
+    $user_id = $_SESSION['user_id'];
     $couponCode = $_POST['coupon_code'];
-    $userId = $_SESSION['user_id'];
 
-    // Check if the coupon has already been applied
-    if (!isset($_SESSION['applied_coupons']) || !in_array($couponCode, $_SESSION['applied_coupons'])) {
-        // Apply the coupon
-        $result = $cart->applyCoupon($couponCode, $userId);
+    
+    $result = $cart->applyCoupon($couponCode, $user_id);
 
-        if ($result['success']) {
-            echo "<div class='alert alert-success'>Coupon applied! New total: $" . number_format($_SESSION['final_total'], 2) . " (Discount: $" . number_format($result['discount'], 2) . ")</div>";
-            
-            // Update the final total
-            $discountAmount = $result['discount'];
-            $finalTotal = $_SESSION['final_total'] - $discountAmount;
-            $_SESSION['final_total'] = $finalTotal; 
 
-            // Add the coupon to applied_coupons session to prevent reapplying
-            $_SESSION['applied_coupons'][] = $couponCode;
-        } else {
-            echo "<div class='alert alert-danger'>" . $result['message'] . "</div>";
-        }
-    } else {
-        echo "<div class='alert alert-warning'>Coupon already applied and cannot be reused.</div>";
+
+    if ($result['success']) {
+
+        $discountAmount = $result['discount'];
+        $finalTotal = $totalPrice - $discountAmount;
+    
+    }else{
+        echo "<div class='alert alert-danger'>" . $result['message'] . "</div>";
     }
 }
 
 
-
-// Calculate total price from cart items
-
+foreach ($cartItems as $item) {
+    $totalPrice += $item['product_price'] * $item['quantity']; 
+}
 
 $finalTotal = $totalPrice - $discountAmount;
 $_SESSION['final_total'] = $finalTotal;
@@ -312,44 +299,47 @@ input::-webkit-inner-spin-button {
 
 <script>
    function updateQuantity(button, change) {
-        const form = button.closest('form');
-        const quantityInput = form.querySelector('input[name="quantity"]');
-        
-        let currentQuantity = parseInt(quantityInput.value);
-        let newQuantity = currentQuantity + change;
+    const form = button.closest('form');
+    const quantityInput = form.querySelector('input[name="quantity"]');
+    
+    let currentQuantity = parseInt(quantityInput.value);
+    let newQuantity = currentQuantity + change;
 
-        // Ensure quantity is at least 1
-        if (newQuantity > 0) {
-            quantityInput.value = newQuantity;
+    if (newQuantity > 0) {
+        quantityInput.value = newQuantity;
+        form.submit(); // Trigger form submission for backend update
 
-            form.submit();
-        }
+        // Call function to update total price and discount dynamically on the frontend
+        updateTotalPrice();
     }
+}
 
-    function updateTotalPrice() {
-        let totalPrice = 0;
-        let discount = parseFloat("<?= $discountAmount; ?>");
-        
-        document.querySelectorAll('.item-price').forEach(item => {
-            let price = parseFloat(item.dataset.price);
-            let quantityInput = item.closest('.row').querySelector('.quantity-input');
-            let quantity = parseInt(quantityInput.value);
-            totalPrice += price * quantity;
-        });
+function updateTotalPrice() {
+    let totalPrice = 0;
 
-        let discountAmount = calculateDiscount(totalPrice); // Function to calculate discount based on the total price
-        let finalTotal = totalPrice - discountAmount;
+    // Loop through all items and calculate the total price
+    document.querySelectorAll('.cart-item').forEach(item => {
+        const price = parseFloat(item.dataset.price); // Assuming each item has a data-price attribute
+        const quantity = parseInt(item.querySelector('input[name="quantity"]').value); // Get the current quantity
+        totalPrice += price * quantity; // Add item total price
+    });
 
-        document.querySelector('.total-price').textContent = totalPrice.toFixed(2) + " JD";
-        document.querySelector('.discount-amount').textContent = discountAmount.toFixed(2);
-        document.querySelector('.final-total').textContent = finalTotal.toFixed(2) + " JD";
-    }
+    // Assuming discountRate is passed dynamically via PHP (see below)
+    let discountAmount = calculateDiscount(totalPrice);
+    let finalTotal = totalPrice - discountAmount;
 
-    function calculateDiscount(total) {
-        // Placeholder for discount logic, can be modified as needed
-        let discountRate = 0.1; // Example: 10% discount for demonstration
-        return total * discountRate; // Calculate discount based on total
-    }
+    // Update displayed prices
+    document.querySelector('.total-price').textContent = totalPrice.toFixed(2) + " JD";
+    document.querySelector('.discount-amount').textContent = discountAmount.toFixed(2);
+    document.querySelector('.final-total').textContent = finalTotal.toFixed(2) + " JD";
+}
+
+function calculateDiscount(totalPrice) {
+    // Adjust the discount rate dynamically, this should be passed by PHP
+    let discountRate = <?= isset($discountAmount) ? $discountAmount / $totalPrice : 0; ?>;
+    return totalPrice * discountRate;
+}
+
 
     function confirmDeletion(form) {
         Swal.fire({

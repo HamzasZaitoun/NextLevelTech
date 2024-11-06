@@ -163,43 +163,40 @@ public function applyCoupon($couponCode, $userId) {
     $stmt = $this->pdo->prepare("
         SELECT coupon_discount, coupon_expiry_date 
         FROM coupons 
-        WHERE coupon_name = ? AND coupon_status = 1 AND is_deleted = 0 AND coupon_expiry_date >= NOW()
+        WHERE coupon_name = ? 
+          AND coupon_status = 1 
+          AND is_deleted = 0 
+          AND coupon_expiry_date >= NOW()
     ");
     $stmt->execute([$couponCode]);
     $coupon = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($coupon) {
-        $orderId = $this->getPendingOrderId($userId); 
+        // Calculate the discount amount on the cart's total price
+        $cartItems = $this->getCart($userId);
+        $totalPrice = 0;
 
-        if ($orderId) {
-            $stmt = $this->pdo->prepare("SELECT order_total FROM orders WHERE order_id = ?");
-            $stmt->execute([$orderId]);
-            $orderTotal = $stmt->fetchColumn();
-
-            $discountAmount = ($orderTotal * $coupon['coupon_discount']) / 100; // Assuming coupon_discount is a percentage
-
-            if ($discountAmount > $orderTotal) {
-                $discountAmount = $orderTotal;
-            }
-
-            $newTotal = $orderTotal - $discountAmount;
-
-            $updateStmt = $this->pdo->prepare("UPDATE orders SET order_total = ? WHERE order_id = ?");
-            $updateStmt->execute([$newTotal, $orderId]);
-
-            return [
-                'success' => true,
-                'new_total' => $newTotal,
-                'discount' => $discountAmount,
-            ];
+        foreach ($cartItems as $item) {
+            $totalPrice += $item['product_price'] * $item['quantity'];
         }
+
+        // Calculate discount amount
+        $discountAmount = ($totalPrice * $coupon['coupon_discount']) / 100;
+        $newTotal = $totalPrice - $discountAmount;
+
+        return [
+            'success' => true,
+            'new_total' => $newTotal,
+            'discount' => $discountAmount,
+        ];
     }
 
     return [
         'success' => false,
-        'message' => 'Invalid coupon code or order not found.',
+        'message' => 'Invalid coupon code or coupon expired.',
     ];
 }
+
 
 
 
