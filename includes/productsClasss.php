@@ -78,11 +78,12 @@ class Product {
             FROM products 
             WHERE products.is_deleted = 0 
             ORDER BY product_id DESC 
-            LIMIT 1
+            LIMIT 2
         ");
         $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_ASSOC); 
+        return $stmt->fetchAll(PDO::FETCH_ASSOC); 
     }
+    
     
     public function fetchHighestDiscountProduct() {
         $stmt = $this->pdo->prepare("SELECT * FROM products WHERE products.is_deleted = 0 ORDER BY product_discount DESC LIMIT 1");
