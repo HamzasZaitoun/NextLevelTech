@@ -43,7 +43,6 @@
 
 .shopbtn {
     position: relative;
-    overflow: hidden;
     display: inline-block;
     width: auto;
 }
