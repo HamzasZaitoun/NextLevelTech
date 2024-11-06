@@ -31,17 +31,23 @@ class User {
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindParam(':email', $email);
         $stmt->execute();
-
+    
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if ($user && $password == $user['user_password']) {
-            $_SESSION['user_id'] = $user['user_id'];
-            $_SESSION['user_email'] = $user['user_email'];
-            return true;
+    
+        
+        if ($user) {
+            if (password_verify($password, $user['user_password'])) {
+                $_SESSION['user_id'] = $user['user_id'];
+                $_SESSION['user_email'] = $user['user_email'];
+                return true;
+            } else {
+                return false;
+            }
         } else {
             return false;
         }
     }
+    
 
     public function displayUserById($user_id) {
         $sql = "SELECT * FROM users WHERE user_id = :user_id";

@@ -115,6 +115,16 @@ if (isset($_GET['filter'])) {
                             <!-- <label for="range">Determine the price</label><br><br> -->
                             <input style="width: 120px;" type="number" name="ssalry" placeholder="Lowest price">
                             <input style="width: 124px;" type="number" name="esalry" placeholder="Highest price">
+                            <select name="category_id" style="width: 250px; margin-top: 10px; border-radius: 5px; padding: 5px;">
+                                <option  value="">Select Category</option>
+                                <?php
+                                $category = new Category();
+                                $categories = $category->getAllCategories();
+                                foreach ($categories as $category) {
+                                    echo "<option value='{$category['category_id']}'>{$category['category_name']}</option>";
+                                }
+                                ?>
+                            </select>
                             <button
                                 style="border: 0; border-radius: 5px; background-color: #0167F3; color: #fff; width: 45px; height: 30px;"
                                 type="submit" name="filter">Go</button>
@@ -149,69 +159,69 @@ if (isset($_GET['filter'])) {
                 </div>
             </div>
             <?php if (!empty($products)) : ?>
-            <div class="row">
-                <?php foreach ($products as $product) : ?>
-                <div class="col-lg-3 col-md-6 col-12">
-                    <div class="single-product">
-                        <div class="product-image">
-                            <?php $imagePath = "inserted_img/" . htmlspecialchars($product['product_picture']); ?>
-                            <img src="<?php echo $imagePath; ?>" alt="product_img">
-                            <?php if ($product['product_discount'] > 0) : ?>
-                            <div class="product-discount">
-                                <span>-<?= htmlspecialchars($product['product_discount']); ?>%</span>
-                            </div>
-                            <?php endif; ?>
-                            <div class="btn-div">
-                                <div class="shopbtn">
-                                    <button class="btn-btn"
-                                        onclick="window.location.href='productDetails.php?id=<?= htmlspecialchars($product['product_id']); ?>'">
-                                        <div class="default-btn">
-                                            <i class="lni lni-eye"></i>
+                <div class="row">
+                    <?php foreach ($products as $product) : ?>
+                        <div class="col-lg-3 col-md-6 col-12">
+                            <div class="single-product">
+                                <div class="product-image">
+                                    <?php $imagePath = "inserted_img/" . htmlspecialchars($product['product_picture']); ?>
+                                    <img src="<?php echo $imagePath; ?>" alt="product_img">
+                                    <?php if ($product['product_discount'] > 0) : ?>
+                                        <div class="product-discount">
+                                            <span>-<?= htmlspecialchars($product['product_discount']); ?>%</span>
                                         </div>
-                                        <div class="hover-btn">
-                                            <span>Quick View</span>
+                                    <?php endif; ?>
+                                    <div class="btn-div">
+                                        <div class="shopbtn">
+                                            <button class="btn-btn"
+                                                onclick="window.location.href='productDetails.php?id=<?= htmlspecialchars($product['product_id']); ?>'">
+                                                <div class="default-btn">
+                                                    <i class="lni lni-eye"></i>
+                                                </div>
+                                                <div class="hover-btn">
+                                                    <span>Quick View</span>
+                                                </div>
+                                            </button>
                                         </div>
-                                    </button>
+                                        <div class="shopbtn">
+                                            <button class="btn-btn"
+                                                onclick="addToCart(<?= htmlspecialchars($product['product_id']); ?>)">
+                                                <div class="default-btn">
+                                                    <i class="lni lni-cart"></i>
+                                                </div>
+                                                <div class="hover-btn">
+                                                    <span>Shop now</span>
+                                                </div>
+                                            </button>
+                                        </div>
+                                        <div class="shopbtn">
+                                            <button class="btn-btn"
+                                                onclick="addToWishlist(<?= htmlspecialchars($product['product_id']); ?>)">
+                                                <div class="default-btn"
+                                                    id="heart-icon-<?= htmlspecialchars($product['product_id']); ?>">
+                                                    <i class="lni lni-heart"></i>
+                                                </div>
+                                                <div class="hover-btn">
+                                                    <span>Add to wish list</span>
+                                                </div>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="shopbtn">
-                                    <button class="btn-btn"
-                                        onclick="addToCart(<?= htmlspecialchars($product['product_id']); ?>)">
-                                        <div class="default-btn">
-                                            <i class="lni lni-cart"></i>
-                                        </div>
-                                        <div class="hover-btn">
-                                            <span>Shop now</span>
-                                        </div>
-                                    </button>
-                                </div>
-                                <div class="shopbtn">
-                                    <button class="btn-btn"
-                                        onclick="addToWishlist(<?= htmlspecialchars($product['product_id']); ?>)">
-                                        <div class="default-btn"
-                                            id="heart-icon-<?= htmlspecialchars($product['product_id']); ?>">
-                                            <i class="lni lni-heart"></i>
-                                        </div>
-                                        <div class="hover-btn">
-                                            <span>Add to wish list</span>
-                                        </div>
-                                    </button>
+                                <div class="product-info">
+                                    <h6 class="title">
+                                        <?= htmlspecialchars($product['product_name']); ?>
+                                    </h6>
+                                    <div class="price">
+                                        <span><?php echo htmlspecialchars($product['product_price']); ?> JOD</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="product-info">
-                            <h6 class="title">
-                                <?= htmlspecialchars($product['product_name']); ?>
-                            </h6>
-                            <div class="price">
-                                <span><?php echo htmlspecialchars($product['product_price']); ?> JOD</span>
-                            </div>
-                        </div>
-                    </div>
+                    <?php endforeach; ?>
                 </div>
-                <?php endforeach; ?>
-            </div>
             <?php else : ?>
-            <p>No products available.</p>
+                <p>No products available.</p>
             <?php endif; ?>
         </div>
     </section>
@@ -421,88 +431,87 @@ if (isset($_GET['filter'])) {
     <script src="assets/js/glightbox.min.js"></script>
     <script src="assets/js/main.js"></script>
     <script type="text/javascript">
-    const current = document.getElementById("current");
-    const opacity = 0.6;
-    const imgs = document.querySelectorAll(".img");
-    imgs.forEach(img => {
-        img.addEventListener("click", (e) => {
-            //reset opacity
-            imgs.forEach(img => {
-                img.style.opacity = 1;
+        const current = document.getElementById("current");
+        const opacity = 0.6;
+        const imgs = document.querySelectorAll(".img");
+        imgs.forEach(img => {
+            img.addEventListener("click", (e) => {
+                //reset opacity
+                imgs.forEach(img => {
+                    img.style.opacity = 1;
+                });
+                current.src = e.target.src;
+                //adding class 
+                //current.classList.add("fade-in");
+                //opacity
+                e.target.style.opacity = opacity;
             });
-            current.src = e.target.src;
-            //adding class 
-            //current.classList.add("fade-in");
-            //opacity
-            e.target.style.opacity = opacity;
         });
-    });
 
-    function toggleFilterForm() {
-        const filterForm = document.getElementById('filterForm');
-        filterForm.style.display = filterForm.style.display === 'none' ? 'inline-block' : 'none';
-    }
+        function toggleFilterForm() {
+            const filterForm = document.getElementById('filterForm');
+            filterForm.style.display = filterForm.style.display === 'none' ? 'inline-block' : 'none';
+        }
     </script>
     <!-- add to wish list -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
-    function addToWishlist(productId) {
-        const button = document.getElementById('heart-icon-' + productId); // احصل على الزر
-        button.disabled = true; // تعطيل الزر
+        function addToWishlist(productId) {
+            const button = document.getElementById('heart-icon-' + productId); // احصل على الزر
+            button.disabled = true; // تعطيل الزر
 
-        fetch('wishlist.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            body: 'add_to_wishlist=true&product_id=' + productId
-        })
-        .then(response => response.json())
-        // .then(data => {
-        //     if (data.success) {
-        //         Swal.fire({
-        //             icon: 'success',
-        //             title: 'Success',
-        //             text: data.message,
-        //             confirmButtonText: 'OK'
-        //         });
+            fetch('wishlist.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: 'add_to_wishlist=true&product_id=' + productId
+                })
+                .then(response => response.json())
+            // .then(data => {
+            //     if (data.success) {
+            //         Swal.fire({
+            //             icon: 'success',
+            //             title: 'Success',
+            //             text: data.message,
+            //             confirmButtonText: 'OK'
+            //         });
 
-        //         // تغيير اللون إلى الأحمر
-        //         button.classList.add('added-to-wishlist');
-        //     } else {
-        //         Swal.fire({
-        //             icon: 'info',
-        //             title: 'Already Added',
-        //             text: data.message,
-        //             confirmButtonText: 'OK'
-        //         });
-        //     }
-        // })
-        // .catch(error => {
-        //     console.error('Error:', error);
-        //     Swal.fire({
-        //         icon: 'error',
-        //         title: 'Error',
-        //         text: 'An error occurred while adding to wishlist.',
-        //         confirmButtonText: 'OK'
-        //     });
-        // });
-    }
+            //         // تغيير اللون إلى الأحمر
+            //         button.classList.add('added-to-wishlist');
+            //     } else {
+            //         Swal.fire({
+            //             icon: 'info',
+            //             title: 'Already Added',
+            //             text: data.message,
+            //             confirmButtonText: 'OK'
+            //         });
+            //     }
+            // })
+            // .catch(error => {
+            //     console.error('Error:', error);
+            //     Swal.fire({
+            //         icon: 'error',
+            //         title: 'Error',
+            //         text: 'An error occurred while adding to wishlist.',
+            //         confirmButtonText: 'OK'
+            //     });
+            // });
+        }
 
 
-    // add to cart
-    function addToCart(productId) {
-    fetch('cart.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: 'add_to_cart=true&product_id=' + productId
-    })
-    
-}
+        // add to cart
+        function addToCart(productId) {
+            fetch('cart.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: 'add_to_cart=true&product_id=' + productId
+            })
 
+        }
     </script>
 </body>
 
