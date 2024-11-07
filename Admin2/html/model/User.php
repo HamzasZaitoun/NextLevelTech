@@ -125,6 +125,8 @@ class User {
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+<<<<<<< HEAD
+=======
     public function countActiveUsers() {
         $query = "
             SELECT COUNT(*) 
@@ -137,5 +139,6 @@ class User {
         $stmt->execute();
         return $stmt->fetchColumn();
     }
+>>>>>>> 50f529a02c920b0beb6c96ebb0d0c3cdf02f72ac
 }
 ?>

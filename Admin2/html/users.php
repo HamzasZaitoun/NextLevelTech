@@ -33,7 +33,11 @@
         <h2 class="h2">Users Dashboard</h2>
         <button class="add-btn" onclick="openAddModal()">Add user <i class="bi bi-plus-circle"></i></button>
         <div class="row">
+<<<<<<< HEAD
+            <table class="table tb table-hover">
+=======
             <table class="table tb table-hover" id="myTable">
+>>>>>>> 50f529a02c920b0beb6c96ebb0d0c3cdf02f72ac
                 <thead class="t-head">
                     <tr>
                         <th>User ID</th>
@@ -142,10 +146,15 @@
                     <option value="customer" <?= ($u['user_role'] == 'customer') ? 'selected' : ''; ?>>User</option>
                 </select>
             </div>
+<<<<<<< HEAD
+
+            <button class="save-btn" type="submit">Save User</button>
+=======
             <div class="save-btn-container">
                 <button class="save-btn" type="submit">Save User</button>
             </div>
             
+>>>>>>> 50f529a02c920b0beb6c96ebb0d0c3cdf02f72ac
         </form>
     </div>
 </div>
@@ -167,9 +176,13 @@
                 <div class="form-group"><label for="newAddress">Address:</label><input type="text" id="newAddress" name="newAddress" required></div>
                 <div class="form-group"><label for="newState">State:</label><select id="newState" name="newState" required><option value="active">Active</option><option value="deactivated">Deactivated</option></select></div>
                 <div class="form-group"><label for="newRole">Role:</label><select id="newRole" name="newRole" required><option value="superAdmin">Super Admin</option><option value="admin">Admin</option><option value="customer">User</option></select></div>
+<<<<<<< HEAD
+                <button class="save-btn" type="submit">Add User</button>
+=======
                 <div class="save-btn-container">
                 <button class="save-btn" type="submit">Add User</button>
                 </div>
+>>>>>>> 50f529a02c920b0beb6c96ebb0d0c3cdf02f72ac
             </form>
         </div>
     </div>
@@ -178,4 +191,8 @@
 
 <?php
 include "includes/footer.php";
+<<<<<<< HEAD
 ?>
+=======
+?>
+>>>>>>> 50f529a02c920b0beb6c96ebb0d0c3cdf02f72ac

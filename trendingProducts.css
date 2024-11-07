@@ -426,7 +426,6 @@
 /* Style for the action buttons */
 .action-buttons {
   display: flex;
-  flex-direction: column;
   gap: 10px;
   margin-top: 20px;
 }
@@ -436,7 +435,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
   background-color: #212529;
   color: #fff;
   border-radius: 5px;
@@ -471,7 +469,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
   background-color: #212529;
   color: #fff;
   font-weight: bold;

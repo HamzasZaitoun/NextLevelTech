@@ -6,6 +6,8 @@ require_once 'model/Category.php';
 $productModel = new Product();
 $products = $productModel->getAllProducts();
 ?>
+<<<<<<< HEAD
+=======
 <style>
   /* Modal Styles */
 .modal {
@@ -164,6 +166,7 @@ h3 {
 
 
 </style>
+>>>>>>> 50f529a02c920b0beb6c96ebb0d0c3cdf02f72ac
 <!-- ============================================================== -->
 <!-- Page wrapper  -->
 <!-- ============================================================== -->
@@ -192,7 +195,11 @@ h3 {
         <h2 class="h2">Products Dashboard</h2>
         <button class="add-btn" onclick="openAddModal()">Add product <i class="bi bi-plus-circle"></i></button>
         <div class="row">
+<<<<<<< HEAD
+            <table class="table tb table-hover">
+=======
             <table class="table tb table-hover"id="myTable" >
+>>>>>>> 50f529a02c920b0beb6c96ebb0d0c3cdf02f72ac
                 <thead class="t-head">
                     <tr>
                         <th>#</th>
@@ -207,6 +214,10 @@ h3 {
                     </tr>
                 </thead>
                 <tbody>
+<<<<<<< HEAD
+                <tbody>
+=======
+>>>>>>> 50f529a02c920b0beb6c96ebb0d0c3cdf02f72ac
     <?php foreach ($products as $product): ?>
     <tr>
         <td data-label="Product Id"><?= htmlspecialchars($product['product_id']) ?></td>
@@ -234,14 +245,21 @@ h3 {
     <!-- Edit Modal for each product -->
     <div id="editModal<?= $product['product_id'] ?>" class="modal">
         <div class="modal-content">
+<<<<<<< HEAD
+=======
            
+>>>>>>> 50f529a02c920b0beb6c96ebb0d0c3cdf02f72ac
             <button class="close-btn delete-btn" onclick="hideModal('editModal<?= $product['product_id'] ?>')">X</button>
             <h3>Edit Product</h3>
             <form id="editForm" enctype="multipart/form-data" method="POST" action="process/process_product.php">
                 <input type="hidden" name="action" value="edit">
                 <input type="hidden" name="product_id" value="<?= $product['product_id'] ?>">
                 <input type="hidden" name="oldImage" value="<?= $product['product_picture'] ?>">
+<<<<<<< HEAD
+
+=======
                 <div class="form-container">
+>>>>>>> 50f529a02c920b0beb6c96ebb0d0c3cdf02f72ac
                 <div class="form-group">
                     <label for="productName">Product Name:</label>
                     <input type="text" name="newProductName" value="<?= htmlspecialchars($product['product_name']) ?>" required>
@@ -254,7 +272,11 @@ h3 {
 
                 <div class="form-group">
                     <label for="productImage">Old Product Image:</label><br>
+<<<<<<< HEAD
+                    <img src="../../inserted_img/<?= $product['product_picture'] ?>" alt="Old Product Image" class="old-product-image">
+=======
                     <img src="../../inserted_img/<?= $product['product_picture'] ?>" alt="Old Product Image" class="old-image">
+>>>>>>> 50f529a02c920b0beb6c96ebb0d0c3cdf02f72ac
                 </div>
 
                 <div class="form-group">
@@ -293,6 +315,15 @@ h3 {
                         <option value="outOfStock" <?= ($product['product_state'] == 'outOfStock') ? 'selected' : ''; ?>>Out of Stock</option>
                     </select>
                 </div>
+<<<<<<< HEAD
+
+                <button class="save-btn" type="submit">Save</button>
+            </form>
+        </div>
+    </div>
+    <?php endforeach; ?>
+</tbody>
+=======
                 <div class="save-btn-container text-center">
                 <button class="save-btn" type="submit">Save</button>
             </form>
@@ -302,6 +333,7 @@ h3 {
             </div>
         <?php endforeach?>
                 </tbody>
+>>>>>>> 50f529a02c920b0beb6c96ebb0d0c3cdf02f72ac
             </table>
         </div>
     </div>
@@ -313,7 +345,11 @@ h3 {
         <h3>Add Product</h3>
         <form id="addForm" enctype="multipart/form-data" method="POST" action="process/process_product.php">
             <input type="hidden" name="action" value="create">
+<<<<<<< HEAD
+
+=======
             <div class="form-container">
+>>>>>>> 50f529a02c920b0beb6c96ebb0d0c3cdf02f72ac
             <div class="form-group">
                 <label for="newProductName">Product Name:</label>
                 <input type="text" id="newProductName" name="newProductName" required>
@@ -360,6 +396,10 @@ h3 {
                 </select>
             </div>
 
+<<<<<<< HEAD
+            <button class="save-btn" type="submit">Add Product</button>
+        </form>
+=======
             
         </form>
         
@@ -367,6 +407,7 @@ h3 {
         <div class="save-btn-container">
             <button class="save-btn" type="submit">Add Product</button>
         </div>
+>>>>>>> 50f529a02c920b0beb6c96ebb0d0c3cdf02f72ac
     </div>
 </div>
 
@@ -376,4 +417,8 @@ h3 {
 
 <?php 
 include "includes/footer.php"; 
+<<<<<<< HEAD
 ?>
+=======
+?>
+>>>>>>> 50f529a02c920b0beb6c96ebb0d0c3cdf02f72ac
