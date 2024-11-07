@@ -197,7 +197,7 @@ img {
 /****-----start-body----****/
 body {
     text-align: center;
-    background: url("https://img.freepik.com/free-vector/simple-blank-red-background-vector-business_53876-174918.jpg?uid=R171478506&ga=GA1.1.1664634095.1726502114&semt=ais_hybrid") 0px 0px no-repeat;
+    background: url("../images/1.jpg") 0px 0px no-repeat;
     background-size: cover;
     background-attachment: fixed;
 }
