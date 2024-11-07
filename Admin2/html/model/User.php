@@ -125,5 +125,20 @@ class User {
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+<<<<<<< HEAD
+=======
+    public function countActiveUsers() {
+        $query = "
+            SELECT COUNT(*) 
+            FROM users 
+            WHERE user_status = 'active' 
+            AND is_deleted = 0 
+            AND user_role = 'customer'
+        ";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchColumn();
+    }
+>>>>>>> 50f529a02c920b0beb6c96ebb0d0c3cdf02f72ac
 }
 ?>

@@ -6,6 +6,167 @@ require_once 'model/Category.php';
 $productModel = new Product();
 $products = $productModel->getAllProducts();
 ?>
+<<<<<<< HEAD
+=======
+<style>
+  /* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1080;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: #f2f7fa;
+  padding: 20px;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 100%;
+  height: 95%;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;  /* Stack content vertically */
+  justify-content:space-between;  /* Align to the top */
+}
+
+/* Close Button */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+/* Heading */
+h3 {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #0070da;
+}
+
+/* Form Container - Grid with Two Columns */
+.form-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two equal columns */
+  gap: 20px; /* Space between grid items */
+  margin-bottom: 20px;
+  align-self: center;
+}
+
+/* Form Group */
+.form-group {
+  display: flex;
+  flex-direction: column; /* Align label and input vertically */
+}
+
+.form-group label {
+  color: #0070da;
+  margin-bottom: 5px; /* Space between label and input */
+}
+
+.form-group input,
+.form-group select {
+  padding: 8px;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 10px;
+  outline: 1px solid #26c6da;
+  border: 0;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  outline-offset: 3px;
+  padding: 10px 1rem;
+  transition: 0.25s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline-offset: 5px;
+  background-color: #DFF2EB;
+}
+
+/* Save Button Container - Centered */
+.save-btn-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  
+}
+
+.save-btn {
+  font-size: 18px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: inline-block;
+  text-align: center;
+  font-weight: bold;
+  padding: 0.7em 2em;
+  border: 3px solid #26c6da;
+  border-radius: 8px;
+  position: relative;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.1);
+  color: #26c6da;
+  text-decoration: none;
+  transition: 0.3s ease all;
+  z-index: 1;
+  width: 30vh;
+  position: relative;
+}
+
+.save-btn:before {
+  transition: 0.5s all ease;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  right: 50%;
+  bottom: 0;
+  opacity: 0;
+  content: '';
+  background-color: #26c6da;
+  z-index: -1;
+}
+
+.save-btn:hover,
+.save-btn:focus {
+  color: white;
+}
+
+.save-btn:hover:before,
+.save-btn:focus:before {
+  transition: 0.5s all ease;
+  left: 0;
+  right: 0;
+  opacity: 1;
+}
+
+.save-btn:active {
+  transform: scale(0.9);
+}
+
+/* Old Image Styling */
+.old-image {
+  max-width: 30%;
+  height: auto;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+
+</style>
+>>>>>>> 50f529a02c920b0beb6c96ebb0d0c3cdf02f72ac
 <!-- ============================================================== -->
 <!-- Page wrapper  -->
 <!-- ============================================================== -->
@@ -34,7 +195,11 @@ $products = $productModel->getAllProducts();
         <h2 class="h2">Products Dashboard</h2>
         <button class="add-btn" onclick="openAddModal()">Add product <i class="bi bi-plus-circle"></i></button>
         <div class="row">
+<<<<<<< HEAD
             <table class="table tb table-hover">
+=======
+            <table class="table tb table-hover"id="myTable" >
+>>>>>>> 50f529a02c920b0beb6c96ebb0d0c3cdf02f72ac
                 <thead class="t-head">
                     <tr>
                         <th>#</th>
@@ -49,7 +214,10 @@ $products = $productModel->getAllProducts();
                     </tr>
                 </thead>
                 <tbody>
+<<<<<<< HEAD
                 <tbody>
+=======
+>>>>>>> 50f529a02c920b0beb6c96ebb0d0c3cdf02f72ac
     <?php foreach ($products as $product): ?>
     <tr>
         <td data-label="Product Id"><?= htmlspecialchars($product['product_id']) ?></td>
@@ -77,13 +245,21 @@ $products = $productModel->getAllProducts();
     <!-- Edit Modal for each product -->
     <div id="editModal<?= $product['product_id'] ?>" class="modal">
         <div class="modal-content">
+<<<<<<< HEAD
+=======
+           
+>>>>>>> 50f529a02c920b0beb6c96ebb0d0c3cdf02f72ac
             <button class="close-btn delete-btn" onclick="hideModal('editModal<?= $product['product_id'] ?>')">X</button>
             <h3>Edit Product</h3>
             <form id="editForm" enctype="multipart/form-data" method="POST" action="process/process_product.php">
                 <input type="hidden" name="action" value="edit">
                 <input type="hidden" name="product_id" value="<?= $product['product_id'] ?>">
                 <input type="hidden" name="oldImage" value="<?= $product['product_picture'] ?>">
+<<<<<<< HEAD
 
+=======
+                <div class="form-container">
+>>>>>>> 50f529a02c920b0beb6c96ebb0d0c3cdf02f72ac
                 <div class="form-group">
                     <label for="productName">Product Name:</label>
                     <input type="text" name="newProductName" value="<?= htmlspecialchars($product['product_name']) ?>" required>
@@ -96,7 +272,11 @@ $products = $productModel->getAllProducts();
 
                 <div class="form-group">
                     <label for="productImage">Old Product Image:</label><br>
+<<<<<<< HEAD
                     <img src="../../inserted_img/<?= $product['product_picture'] ?>" alt="Old Product Image" class="old-product-image">
+=======
+                    <img src="../../inserted_img/<?= $product['product_picture'] ?>" alt="Old Product Image" class="old-image">
+>>>>>>> 50f529a02c920b0beb6c96ebb0d0c3cdf02f72ac
                 </div>
 
                 <div class="form-group">
@@ -135,6 +315,7 @@ $products = $productModel->getAllProducts();
                         <option value="outOfStock" <?= ($product['product_state'] == 'outOfStock') ? 'selected' : ''; ?>>Out of Stock</option>
                     </select>
                 </div>
+<<<<<<< HEAD
 
                 <button class="save-btn" type="submit">Save</button>
             </form>
@@ -142,6 +323,17 @@ $products = $productModel->getAllProducts();
     </div>
     <?php endforeach; ?>
 </tbody>
+=======
+                <div class="save-btn-container text-center">
+                <button class="save-btn" type="submit">Save</button>
+            </form>
+            </div>
+           
+            </div>
+            </div>
+        <?php endforeach?>
+                </tbody>
+>>>>>>> 50f529a02c920b0beb6c96ebb0d0c3cdf02f72ac
             </table>
         </div>
     </div>
@@ -153,7 +345,11 @@ $products = $productModel->getAllProducts();
         <h3>Add Product</h3>
         <form id="addForm" enctype="multipart/form-data" method="POST" action="process/process_product.php">
             <input type="hidden" name="action" value="create">
+<<<<<<< HEAD
 
+=======
+            <div class="form-container">
+>>>>>>> 50f529a02c920b0beb6c96ebb0d0c3cdf02f72ac
             <div class="form-group">
                 <label for="newProductName">Product Name:</label>
                 <input type="text" id="newProductName" name="newProductName" required>
@@ -200,8 +396,18 @@ $products = $productModel->getAllProducts();
                 </select>
             </div>
 
+<<<<<<< HEAD
             <button class="save-btn" type="submit">Add Product</button>
         </form>
+=======
+            
+        </form>
+        
+        </div>
+        <div class="save-btn-container">
+            <button class="save-btn" type="submit">Add Product</button>
+        </div>
+>>>>>>> 50f529a02c920b0beb6c96ebb0d0c3cdf02f72ac
     </div>
 </div>
 
@@ -211,4 +417,8 @@ $products = $productModel->getAllProducts();
 
 <?php 
 include "includes/footer.php"; 
+<<<<<<< HEAD
 ?>
+=======
+?>
+>>>>>>> 50f529a02c920b0beb6c96ebb0d0c3cdf02f72ac
