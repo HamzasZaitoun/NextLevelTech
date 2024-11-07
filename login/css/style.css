@@ -66,7 +66,6 @@ details,
 embed,
 figure,
 figcaption,
-footer,
 header,
 hgroup,
 menu,
@@ -92,7 +91,6 @@ aside,
 details,
 figcaption,
 figure,
-footer,
 header,
 hgroup,
 menu,
@@ -199,7 +197,7 @@ img {
 /****-----start-body----****/
 body {
     text-align: center;
-    background: url("../images/1.jpg") 0px 0px no-repeat;
+    background: url("https://img.freepik.com/free-vector/simple-blank-red-background-vector-business_53876-174918.jpg?uid=R171478506&ga=GA1.1.1664634095.1726502114&semt=ais_hybrid") 0px 0px no-repeat;
     background-size: cover;
     background-attachment: fixed;
 }
@@ -304,33 +302,6 @@ a {
     background: rgba(91, 157, 214, 0.76);
 }
 
-.footer {
-    text-align: center;
-    padding-top: 75px;
-    letter-spacing: 1.6px;
-    line-height: 22px;
-}
-
-.footer p {
-    font-size: 16px;
-    color: #fff;
-    margin: 0px;
-    letter-spacing: 1.4px;
-}
-
-.footer p a {
-    color: #D65B88;
-    font-weight: blod;
-    -webkit-transition-duration: 0.8s;
-    transition-duration: 0.8s;
-}
-
-.footer p a:hover {
-    color: #51cbe1;
-    -webkit-transition-duration: 0.8s;
-    transition-duration: 0.8s;
-}
-
 
 
 
@@ -402,9 +373,7 @@ a {
         padding-bottom: 50px;
     }
 
-    .footer {
-        padding-top: 50px;
-    }
+  
 
 
 
@@ -440,9 +409,7 @@ a {
         font-size: 16px;
     }
 
-    .footer p {
-        font-size: 14px;
-    }
+   
 
 }
 
@@ -471,9 +438,7 @@ a {
         font-size: 14px;
     }
 
-    .footer p {
-        font-size: 13px;
-    }
+    
 
 }
 

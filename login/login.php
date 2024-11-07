@@ -20,6 +20,8 @@
             color: red;
             font-size: 0.9em;
         }
+        
+        
     </style>
 
 </head>
@@ -59,9 +61,7 @@
             <div class="clear"></div>
         </div>
 
-        <div class="footer">
-            <p>© 2024 Gaming Login form. All Rights Reserved | Design by <a href="#">Group 5</a></p>
-        </div>
+     
     </div>
 
     <script type="application/x-javascript">

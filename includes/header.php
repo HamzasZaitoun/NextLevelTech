@@ -138,8 +138,6 @@ if (isset($_SESSION['user_id'])) {
     }
 
     /* Wishlist Icon */
-    .wishlist a,
-    .cart-items a,
     .profile-icon {
         display: flex;
         align-items: center;
@@ -148,7 +146,16 @@ if (isset($_SESSION['user_id'])) {
         text-decoration: none;
         font-size: 20px;
     }
-
+    
+    .wishlist a,
+    .cart-items a{
+        display: flex;
+        align-items: center;
+        position: relative;
+        color: #333;
+        text-decoration: none;
+        font-size: 20px;
+    }
     /* Badge Style */
     .total-items {
         position: absolute;
@@ -330,13 +337,7 @@ if (isset($_SESSION['user_id'])) {
             position: relative;
         }
 
-        #nav {
-            display: flex;
-            gap: 5px;
-            /* مسافة بين العناصر */
-            align-items: center;
-            /* لضبط العناصر في منتصف الخط */
-        }
+     
 
         #nav .nav-item a {
             white-space: nowrap;
@@ -395,7 +396,7 @@ if (isset($_SESSION['user_id'])) {
                                 <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
                                     <ul id="nav" class="navbar-nav mx-auto">
                                         <li class="nav-item">
-                                            <a href="index.php" class="active" aria-label="Toggle navigation">Home</a>
+                                            <a href="index.php"" aria-label="Toggle navigation">Home</a>
                                         </li>
                                         <li class="nav-item">
                                             <a href="index.php#product_Categories"
@@ -406,12 +407,12 @@ if (isset($_SESSION['user_id'])) {
                                                 Arrivals</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="flashSale.php" aria-label="Toggle navigation">Flash Sales</a>
-                                        </li>
-                                        <li class="nav-item">
                                             <a href="index.php#trend_product" aria-label="Toggle navigation">Top Selling
                                                 Products</a>
-                                        </li>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="flashSale.php" aria-label="Toggle navigation">Flash Sales</a>
+                                            </li>
                                         <li class="nav-item">
                                             <a class="dd-menu collapsed" href="javascript:void(0)"
                                                 data-bs-toggle="collapse" data-bs-target="#submenu-1-2"
@@ -433,14 +434,12 @@ if (isset($_SESSION['user_id'])) {
                                                     <i class="lni lni-heart"></i>
                                                 </a>
                                             
-                                                <span class="icon-text">wish list</span>
                                             </div>
 
                                             <div class="cart-items text-center">
                                                 <a href="cart.php" class="main-btn icons">
                                                     <i class="lni lni-cart"></i>
                                                 </a>
-                                                <span class="icon-text">cart</span>
                                             </div>
 
                                             <div class="profile-item text-center">
