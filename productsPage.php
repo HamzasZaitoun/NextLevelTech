@@ -54,7 +54,17 @@ elseif (isset($_GET['category_id'])) {
 // في حالة عدم وجود فلترة أو بحث
 else {
     $productObj = new Product();
-    $products = $productObj->getAllProducts();
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    $productsPerPage = 8;
+
+    // Get the total number of products
+    $totalProducts = $productObj->getTotalProducts();
+
+    // Calculate total number of pages
+    $totalPages = ceil($totalProducts / $productsPerPage);
+
+    // Get the products for the current page
+    $products = $productObj->getAllProducts($page, $productsPerPage);
 }
 ?>
 
@@ -235,7 +245,7 @@ else {
     <!-- ....................................................................... -->
 
 
-    <section id="products" class="trending-product section" style="margin-top: 12px;">
+    <!-- <section id="products" class="trending-product section" style="margin-top: 12px;">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -311,9 +321,102 @@ else {
                 <p>No products available.</p>
             <?php endif; ?>
         </div>
-    </section>
+    </section> -->
 
+    <section id="products" class="trending-product section" style="margin-top: 12px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-title">
+                    <h2>Products</h2>
+                    <p>Discover our products, carefully curated to enhance your gaming experience.</p>
+                </div>
+            </div>
+        </div>
+        <?php if (!empty($products)) : ?>
+            <div class="row">
+                <?php foreach ($products as $product) : ?>
+                    <div class="col-lg-3 col-md-6 col-12">
+                        <div class="single-product">
+                            <div class="product-image">
+                                <?php $imagePath = "inserted_img/" . htmlspecialchars($product['product_picture']); ?>
+                                <img src="<?php echo $imagePath; ?>" alt="product_img">
+                                <?php if ($product['product_discount'] > 0) : ?>
+                                    <div class="product-discount">
+                                        <span>-<?= htmlspecialchars($product['product_discount']); ?>%</span>
+                                    </div>
+                                <?php endif; ?>
+                                <div class="btn-div">
+                                    <div class="shopbtn">
+                                        <button class="btn-btn"
+                                            onclick="window.location.href='productDetails.php?id=<?= htmlspecialchars($product['product_id']); ?>'">
+                                            <div class="default-btn">
+                                                <i class="lni lni-eye"></i>
+                                            </div>
+                                            <div class="hover-btn">
+                                                <span>Quick View</span>
+                                            </div>
+                                        </button>
+                                    </div>
+                                    <div class="shopbtn">
+                                        <button class="btn-btn"
+                                            onclick="addToCart(<?= htmlspecialchars($product['product_id']); ?>)">
+                                            <div class="default-btn">
+                                                <i class="lni lni-cart"></i>
+                                            </div>
+                                            <div class="hover-btn">
+                                                <span>Shop now</span>
+                                            </div>
+                                        </button>
+                                    </div>
+                                    <div class="shopbtn">
+                                        <button class="btn-btn"
+                                            onclick="addToWishlist(<?= htmlspecialchars($product['product_id']); ?>)">
+                                            <div class="default-btn"
+                                                id="heart-icon-<?= htmlspecialchars($product['product_id']); ?>">
+                                                <i class="lni lni-heart"></i>
+                                            </div>
+                                            <div class="hover-btn">
+                                                <span>Add to wish list</span>
+                                            </div>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <h6 class="title"><?= htmlspecialchars($product['product_name']); ?></h6>
+                                <div class="price">
+                                    <span><?php echo htmlspecialchars($product['product_price']); ?> JOD</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        <?php else : ?>
+            <p>No products available.</p>
+        <?php endif; ?>
 
+        <!-- Pagination -->
+        <div class="pagination">
+            <?php if ($totalPages > 1) : ?>
+                <ul class = "pagination_cont">
+                    <?php if ($page > 1) : ?>
+                        <li><a href="?page=<?= $page - 1; ?>">Previous</a></li>
+                    <?php endif; ?>
+
+                    <?php for ($i = 1; $i <= $totalPages; $i++) : ?>
+                        <li class="<?= ($i == $page) ? 'active' : ''; ?>"><a href="?page=<?= $i; ?>"><?= $i; ?></a></li>
+                    <?php endfor; ?>
+
+                    <?php if ($page < $totalPages) : ?>
+                        <li><a href="?page=<?= $page + 1; ?>">Next</a></li>
+                    <?php endif; ?>
+                </ul>
+            <?php endif; ?>
+        </div>
+    </div>
+</section>
 
 
     <!-- ......................................................................... -->
