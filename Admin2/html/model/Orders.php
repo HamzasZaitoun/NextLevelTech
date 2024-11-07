@@ -77,8 +77,50 @@ class order
             return ['success' => false, 'message' => 'Database error: ' . $e->getMessage()];
         }
     }
+    public function getTotalSales() {
+        $query = "SELECT SUM(order_total) AS total_sales
+                  FROM orders               
+                WHERE order_status IN ('delivered', 'pending')"; 
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['total_sales'] ? (float)$result['total_sales'] : 0; 
+    }
+
+    public function getOrderCount() {
+        $query = "SELECT COUNT(order_id) AS total_orders FROM orders";
     
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
     
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['total_orders'] ? (int)$result['total_orders'] : 0; // Return total orders or 0 if none
+    }
+
+    // public function getLastMonthSales() {
+    //     $query = "
+    //         SELECT 
+    //             DATE_FORMAT(order_date, '%Y-%m') AS month, 
+    //             SUM(order_total) AS total_sales 
+    //         FROM orders 
+    //         WHERE order_date >= DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 MONTH), '%Y-%m-01')
+    //         AND order_date < DATE_FORMAT(CURDATE(), '%Y-%m-01')
+    //         GROUP BY month
+    //     ";
+    
+    //     $stmt = $this->conn->prepare($query);
+    //     $stmt->execute();
+    
+    //     $lastMonthSales = $stmt->fetch(PDO::FETCH_ASSOC);
+    //     return [
+    //         'month' => $lastMonthSales['month'] ?? null,
+    //         'total_sales' => $lastMonthSales['total_sales'] ? (float)$lastMonthSales['total_sales'] : 0,
+    //     ];
+    // }
+    
+
     
     
 
@@ -89,7 +131,7 @@ class order
 
 }
 // $order=new order();
-// $order->viewOrderDetails(2);
+// var_dump($order->getTotalSales());
 
 
 ?>

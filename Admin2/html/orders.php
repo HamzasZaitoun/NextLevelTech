@@ -4,7 +4,18 @@ include "model/Orders.php";
 $orders = new Order();
 $allOrders = $orders->getAllOrders();
 ?>
+<style>
+      .save-btn-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    
+  }
 
+  .modal-content {
+  width: 30%;
+  }
+</style>
 <!-- ============================================================== -->
 <!-- Page wrapper  -->
 <!-- ============================================================== -->
@@ -66,7 +77,7 @@ $allOrders = $orders->getAllOrders();
                                         )">
                                     <i class="bi bi-eye"></i>
                                 </button>
-                                <button class="edit-status-btn"
+                                <button class="edit-status-btn edit-btn "
                                         onclick="openEditStatusModal(
                                             '<?php echo htmlspecialchars($order['order_id']); ?>',
                                             '<?php echo htmlspecialchars($order['order_status']); ?>'
@@ -120,7 +131,11 @@ $allOrders = $orders->getAllOrders();
                     <option value="delivered">delivered</option>
                  
                 </select>
-                <button type="submit">Save</button>
+                <br><br>
+                <div class="save-btn-container">
+                <button type="submit" class="save-btn">Save</button>    
+                </div>
+                
             </form>
         </div>
     </div>

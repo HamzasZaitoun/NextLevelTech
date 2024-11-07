@@ -4,6 +4,12 @@ include 'model/contactUsClass.php';  // Include the messages model
 $messages = new messages();
 $allmessages = $messages->getAllMessages();
 ?>
+<style>
+    .modal-content
+    {
+        width: 50%;
+    }
+</style>
 <div class="page-wrapper">
     <!-- ============================================================== -->
     <!-- Bread crumb and right sidebar toggle -->

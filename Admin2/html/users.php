@@ -142,8 +142,10 @@
                     <option value="customer" <?= ($u['user_role'] == 'customer') ? 'selected' : ''; ?>>User</option>
                 </select>
             </div>
-
-            <button class="save-btn" type="submit">Save User</button>
+            <div class="save-btn-container">
+                <button class="save-btn" type="submit">Save User</button>
+            </div>
+            
         </form>
     </div>
 </div>
@@ -165,7 +167,9 @@
                 <div class="form-group"><label for="newAddress">Address:</label><input type="text" id="newAddress" name="newAddress" required></div>
                 <div class="form-group"><label for="newState">State:</label><select id="newState" name="newState" required><option value="active">Active</option><option value="deactivated">Deactivated</option></select></div>
                 <div class="form-group"><label for="newRole">Role:</label><select id="newRole" name="newRole" required><option value="superAdmin">Super Admin</option><option value="admin">Admin</option><option value="customer">User</option></select></div>
+                <div class="save-btn-container">
                 <button class="save-btn" type="submit">Add User</button>
+                </div>
             </form>
         </div>
     </div>
