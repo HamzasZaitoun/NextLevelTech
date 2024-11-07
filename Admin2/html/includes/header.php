@@ -26,6 +26,7 @@
     <!-- Custom CSS -->
     <link href="css/style.min.css" rel="stylesheet">
     <link href="css/layout.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css" />
 </head>
 
 <body>
@@ -47,7 +48,7 @@
         <!-- Topbar header - style you can find in pages.scss -->
         <!-- ============================================================== -->
         <header class="topbar" data-navbarbg="skin6">
-            <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+            <nav class="navbar top-navbar navbar-expand-md">
                 <div class="navbar-header" data-logobg="skin6">
                     <!-- ============================================================== -->
                     <!-- Logo -->
@@ -108,16 +109,34 @@ GamifyTech                        </span>
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
+                        <!-- Dropdown Menu -->
+
+                            
+                        
+                            <li class="nav-item">
+                            <a class="nav-link  text-muted waves-effect waves-dark" href="messages.php"  role="button"  aria-expanded="false">
+                            <i class="bi bi-envelope-fill"></i>
+                            </a></li>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="profile.php"><i class="bi bi-person-arms-up"></i> Profile</a></li>
+                                <li><a class="dropdown-item" href="login.php"><i class="bi bi-power"></i> Logout</a></li>
+                            </ul>
+                        </li>    
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <img src="../assets/images/users/1.jpg" alt="user" class="profile-pic me-2">Markarn Doe
                             </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown"></ul>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="profile.php"><i class="bi bi-person-arms-up"></i> Profile</a></li>
+                                <li><a class="dropdown-item" href="login.php"><i class="bi bi-power"></i> Logout</a></li>
+                            </ul>
                         </li>
+
                     </ul>
                 </div>
             </nav>
         </header>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
         <!-- ============================================================== -->
         <!-- End Topbar header -->
         <!-- ============================================================== -->
@@ -135,11 +154,6 @@ GamifyTech                        </span>
                     <a class="sidebar-link waves-effect waves-dark sidebar-link"href="index.php" aria-expanded="false">
                     <i class="bi bi-speedometer2"></i><span class="hide-menu">Dashboard</span></a>
                 </li>
-   
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                href="profile.php" aria-expanded="false">
-                                <i class="bi bi-person-arms-up"></i><span class="hide-menu">Profile</span></a>
-                        </li>
                         <li class="sidebar-item">
                              <a class="sidebar-link waves-effect waves-dark sidebar-link"href="users.php" aria-expanded="false">
                              <i class="bi bi-person"></i><span class="hide-menu">Users</span></a>
@@ -170,18 +184,16 @@ GamifyTech                        </span>
                 <div class="row">
                     <div class="col-4 link-wrap">
                         <!-- item-->
-                        <a href="" class="link" data-toggle="tooltip" title="" data-original-title="Settings"><i
-                                class="ti-settings"></i></a>
-                    </div>
-                    <div class="col-4 link-wrap">
-                        <!-- item-->
-                        <a href="messages.php" class="link" data-toggle="tooltip" title="" data-original-title="Email"><i
-                                class="mdi mdi-gmail"></i></a>
+
                     </div>
                     <div class="col-4 link-wrap">
                         <!-- item-->
                         <a href="login.php" class="link" data-toggle="tooltip" title="" data-original-title="Logout"><i
                                 class="mdi mdi-power"></i></a>
+                    </div>
+                    <div class="col-4 link-wrap">
+                        <!-- item-->
+
                     </div>
                 </div>
             </div>
@@ -189,4 +201,3 @@ GamifyTech                        </span>
         <!-- ============================================================== -->
         <!-- End Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->
-      

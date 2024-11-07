@@ -4,7 +4,7 @@ require_once "includes/db_class.php";
 require_once "includes/cartClass.php"; 
 
 if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
+    header("Location: login/login.php");
     exit;
 }
 

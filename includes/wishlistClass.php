@@ -10,7 +10,6 @@ class Wishlist
         $this->pdo = dbConnection::getInstence()->getConnection();
     }
 
-    // استرجاع جميع المنتجات من قائمة الرغبات للمستخدم
     public function getAllProductsFromWishlist($user_id) {
         $stmt = $this->pdo->prepare("SELECT wishlist.*, products.*, users.*
                                       FROM wishlist
@@ -53,6 +52,14 @@ class Wishlist
         }
     }
     
+    public function deleteItem($user_id, $wishlist_id) {
+        // SQL query to delete the item based on user and wishlist item
+        $sql = "DELETE FROM wishlist WHERE user_id = :user_id AND wishlist_id = :wishlist_id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+        $stmt->bindParam(':wishlist_id', $wishlist_id, PDO::PARAM_INT);
+        return $stmt->execute();
+    }
     
     }
 

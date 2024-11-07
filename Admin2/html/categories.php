@@ -5,6 +5,15 @@ require_once 'model/Category.php';
 $categoryModel = new Category();
 $categories = $categoryModel->getAllCategories();
 ?>
+<style>
+    .old-image {
+  max-width: 30%;
+  height: 80px;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+</style>
 <!-- ============================================================== -->
 <!-- Page wrapper  -->
 <!-- ============================================================== -->
@@ -33,7 +42,7 @@ $categories = $categoryModel->getAllCategories();
         <h2 class="h2">Categories Dashboard</h2>
         <button class="add-btn" onclick="openAddModal()">Add Category <i class="bi bi-plus-circle"></i></button>
         <div class="row">
-            <table class="table tb table-hover">
+            <table class="table tb table-hover" id="myTable">
                 <thead class="t-head">
                     <tr>
                         <th>#</th>
@@ -50,7 +59,7 @@ $categories = $categoryModel->getAllCategories();
                             <td data-label="Category Name"><?= htmlspecialchars($category['category_name']) ?></td>
                             <td data-label="Description"><?= htmlspecialchars($category['category_description']) ?></td>
                             <td data-label="Picture">
-                                <img src="../category_img/<?php echo $category['category_picture']; ?>" alt="Category Image" width="50">
+                                <img src="../../category_img/<?php echo $category['category_picture']; ?>" alt="Category Image" width="50">
                             </td>
                             <td data-label="Actions">
                                 <div class="action-buttons">
@@ -87,7 +96,7 @@ $categories = $categoryModel->getAllCategories();
                                     <div class="form-group">
                                         <label for="oldCategoryImage">Current Category Image:</label><br>
                                         <input type="hidden" name="oldImage" value="<?= htmlspecialchars($category['category_picture']); ?>">
-                                        <img src="../category_img/<?= htmlspecialchars($category['category_picture']) ?>" alt="Current Category Picture" class="old-category-image">
+                                        <img src="../../category_img/<?= htmlspecialchars($category['category_picture']) ?>" alt="Current Category Picture" class="old-image">
                                     </div>
 
                                     <div class="form-group">
@@ -109,8 +118,10 @@ $categories = $categoryModel->getAllCategories();
                                             ?>
                                         </select>
                                     </div>
-
+                                    <div class="save-btn-container">
                                     <button class="save-btn" type="submit">Save</button>
+                                    </div>
+                                    
                                 </form>
                             </div>
                         </div>
@@ -138,7 +149,9 @@ $categories = $categoryModel->getAllCategories();
                     <label for="newCategoryImage">Category Picture:</label>
                     <input type="file" id="newCategoryImage" name="newCategoryImage" accept="image/*" required><br><br>
                 </div>
+                <div class="save-btn-container">
                 <button class="save-btn" type="submit">Add Category</button>
+                </div>
             </form>
         </div>
     </div>

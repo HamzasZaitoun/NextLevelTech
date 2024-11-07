@@ -8,9 +8,9 @@ if (!isset($_SESSION['user_id'])) {
   exit();
 }
 
-include('./includes/db_class.php');
-include('./includes/usersClass.php');
-include('./includes/cartClass.php');
+include('includes/db_class.php');
+include('includes/usersClass.php');
+include('includes/cartClass.php');
 
 $userId = $_SESSION['user_id'];
 
