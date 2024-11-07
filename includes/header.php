@@ -337,15 +337,11 @@ if (isset($_SESSION['user_id'])) {
             position: relative;
         }
 
-<<<<<<< HEAD
-     
-=======
         #nav {
             display: flex;
             gap: 5px;
             align-items: center;
         }
->>>>>>> 50f529a02c920b0beb6c96ebb0d0c3cdf02f72ac
 
         #nav .nav-item a {
             white-space: nowrap;
