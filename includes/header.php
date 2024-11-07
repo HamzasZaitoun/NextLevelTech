@@ -384,7 +384,10 @@ if (isset($_SESSION['user_id'])) {
                                     <span class="toggler-icon"></span>
                                 </button>
                                 <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
-                                    <ul id="nav" class="navbar-nav mx-auto">
+                                    <ul id="nav" class="navbar-nav mx-auto"style="
+    padding-right: 70px;
+    padding-left: 50px;
+">
                                         <li class="nav-item">
                                             <a href="index.php" class="active" aria-label="Toggle navigation">Home</a>
                                         </li>

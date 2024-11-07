@@ -5504,7 +5504,7 @@
     border-radius: 50% !important; }
   
   .rounded-pill {
-    border-radius: 50rem !important; }
+    border-radius: 5px !important; }
   
   .rounded-0 {
     border-radius: 0 !important; }

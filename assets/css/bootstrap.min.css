@@ -3202,14 +3202,14 @@ fieldset:disabled .btn {
 
 .btn-success {
     color: #fff;
-    background-color: #198754;
-    border-color: #198754
+    background-color: #000000;
+    border-color: #000000
 }
 
 .btn-success:hover {
     color: #fff;
-    background-color: #157347;
-    border-color: #146c43
+    background-color: #ce2929;
+    border-color: #ce2929;
 }
 
 .btn-check:focus+.btn-success,
@@ -8230,7 +8230,7 @@ fieldset:disabled .btn {
 }
 
 .rounded-pill {
-    border-radius: 50rem !important
+    border-radius: 5px !important
 }
 
 .rounded-top {

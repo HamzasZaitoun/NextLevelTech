@@ -2682,7 +2682,6 @@ top: 2px;
 .navbar-nav .nav-item {
   z-index: 1;
   position: relative;
-  margin-right: 23px;
 }
 
 .navbar-nav .nav-item:last-child {
@@ -4786,17 +4785,17 @@ top: 2px;
 }
 
 .btn-primary {
-  background-color: #28a745; 
+  background-color: #000000; 
   color: #fff;
   border: none; 
-  border-radius: 25px;
+  border-radius: 5px;
   padding: 10px 20px;
   font-size: 1rem; 
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .btn-primary:hover {
-  background-color: #218838; 
+  background-color: #ce2929; 
   transform: scale(1.05); /* تأثير تكبير عند التمرير */
 }
 
