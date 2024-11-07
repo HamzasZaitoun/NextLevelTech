@@ -87,15 +87,16 @@ if (!isset($_SESSION['user_id'])) {
                                     <input type="text" class="form-control" name="phone" value="<?php echo htmlspecialchars($userDetails['user_phone_number']); ?>">
                                 </div>
                             </div>
-                            
                             <div class="row mb-3">
                                 <div class="col-sm-3">
                                     <h6 class="mb-0">Address</h6>
                                 </div>
-                                <div class="c">
-                                    <input type="text" class="form-control" name="address" value="<?php echo htmlspecialchars($userDetails['user_address']); ?>">
+                                <div class="col-sm-9 ">
+                                <input type="text" class="form-control" name="address" value="<?php echo htmlspecialchars($userDetails['user_address']); ?>">
                                 </div>
                             </div>
+                            
+                            
                             <div class="row">
                                 <div class="col-sm-3"></div>
                                 <div class="col-sm-9 ">

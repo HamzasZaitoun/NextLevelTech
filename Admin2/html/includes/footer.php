@@ -24,7 +24,11 @@
     <script src="js/custom.js"></script>
     <script src="js/modal.js"></script>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+>>>>>>> 853ac725b301c69f22d684e0ba106c926a226a38
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
     <script>
