@@ -291,11 +291,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <?php if ($product['product_discount'] > 0) : ?>
+                            <!-- <?php if ($product['product_discount'] > 0) : ?>
                             <div class="product-discount">
                                 <span>-<?= htmlspecialchars($product['product_discount']); ?>%</span>
                             </div>
-                            <?php endif; ?>
+                            <?php endif; ?> -->
                         </div>
                     </div>
                     <?php endforeach; ?>

@@ -42,14 +42,11 @@ if (isset($_SESSION['user_id'])) {
         font-family: "Righteous", sans-serif;
         color: #ce2929;
         text-transform: uppercase;
-        font-size: 10.4rem;
+        font-size: 17px;
         font-weight: 600px;
     }
 
-    .logo:hover {
-        transform: scale(1.5);
-        /* تكبير الشعار عند المرور عليه */
-    }
+  
 
     .navbar-nav {
         display: flex;
@@ -138,8 +135,6 @@ if (isset($_SESSION['user_id'])) {
     }
 
     /* Wishlist Icon */
-    .wishlist a,
-    .cart-items a,
     .profile-icon {
         display: flex;
         align-items: center;
@@ -148,7 +143,16 @@ if (isset($_SESSION['user_id'])) {
         text-decoration: none;
         font-size: 20px;
     }
-
+    
+    .wishlist a,
+    .cart-items a{
+        display: flex;
+        align-items: center;
+        position: relative;
+        color: #333;
+        text-decoration: none;
+        font-size: 20px;
+    }
     /* Badge Style */
     .total-items {
         position: absolute;
@@ -373,7 +377,7 @@ if (isset($_SESSION['user_id'])) {
                             <nav class="navbar navbar-expand-lg">
                                 <div class="col-lg-3 col-md-3 col-7">
                                     <a class="logo" href="index.php">
-                                        <p>GamifyTech</p>
+                                        <p class="logo">GamifyTech</p>
                                     </a>
                                 </div>
                                 <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse"
@@ -400,9 +404,6 @@ if (isset($_SESSION['user_id'])) {
                                                 Arrivals</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="flashSale.php" aria-label="Toggle navigation">Flash Sales</a>
-                                        </li>
-                                        <li class="nav-item">
                                             <a href="index.php#trend_product" aria-label="Toggle navigation">Top Selling
                                                 Products</a>
                                         </li>
@@ -427,14 +428,12 @@ if (isset($_SESSION['user_id'])) {
                                                     <i class="lni lni-heart"></i>
                                                 </a>
                                             
-                                                <span class="icon-text">wish list</span>
                                             </div>
 
                                             <div class="cart-items text-center">
                                                 <a href="cart.php" class="main-btn icons">
                                                     <i class="lni lni-cart"></i>
                                                 </a>
-                                                <span class="icon-text">cart</span>
                                             </div>
 
                                             <div class="profile-item text-center">
