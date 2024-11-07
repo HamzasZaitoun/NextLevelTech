@@ -42,14 +42,11 @@ if (isset($_SESSION['user_id'])) {
         font-family: "Righteous", sans-serif;
         color: #ce2929;
         text-transform: uppercase;
-        font-size: 10.4rem;
+        font-size: 17px;
         font-weight: 600px;
     }
 
-    .logo:hover {
-        transform: scale(1.5);
-        /* تكبير الشعار عند المرور عليه */
-    }
+  
 
     .navbar-nav {
         display: flex;
@@ -373,7 +370,7 @@ if (isset($_SESSION['user_id'])) {
                             <nav class="navbar navbar-expand-lg">
                                 <div class="col-lg-3 col-md-3 col-7">
                                     <a class="logo" href="index.php">
-                                        <p>GamifyTech</p>
+                                        <p class="logo">GamifyTech</p>
                                     </a>
                                 </div>
                                 <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse"
@@ -386,7 +383,7 @@ if (isset($_SESSION['user_id'])) {
                                 <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
                                     <ul id="nav" class="navbar-nav mx-auto">
                                         <li class="nav-item">
-                                            <a href="index.php" class="active" aria-label="Toggle navigation">Home</a>
+                                            <a href="index.php" class="" aria-label="Toggle navigation">Home</a>
                                         </li>
                                         <li class="nav-item">
                                             <a href="index.php#product_Categories"
@@ -397,12 +394,14 @@ if (isset($_SESSION['user_id'])) {
                                                 Arrivals</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="flashSale.php" aria-label="Toggle navigation">Flash Sales</a>
-                                        </li>
-                                        <li class="nav-item">
                                             <a href="index.php#trend_product" aria-label="Toggle navigation">Top Selling
                                                 Products</a>
                                         </li>
+
+                                        <li class="nav-item">
+                                            <a href="flashSale.php" aria-label="Toggle navigation">Flash Sales</a>
+                                        </li>
+
                                         <li class="nav-item">
                                             <a class="dd-menu collapsed" href="javascript:void(0)"
                                                 data-bs-toggle="collapse" data-bs-target="#submenu-1-2"
