@@ -1,5 +1,5 @@
 <?php
-// بدء الجلسة
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -337,18 +337,23 @@ if (isset($_SESSION['user_id'])) {
             position: relative;
         }
 
+<<<<<<< HEAD
      
+=======
+        #nav {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+        }
+>>>>>>> 50f529a02c920b0beb6c96ebb0d0c3cdf02f72ac
 
         #nav .nav-item a {
             white-space: nowrap;
-            /* لمنع النص من الانتقال إلى سطر جديد */
         }
 
         #nav .sub-menu {
             position: absolute;
-            /* لجعل القائمة الفرعية تظهر فوق المحتوى وليس تحته */
             display: none;
-            /* إخفاء القائمة الفرعية حتى يتم تمرير الفأرة عليها */
         }
 
         #nav .nav-item:hover .sub-menu {
@@ -365,10 +370,6 @@ if (isset($_SESSION['user_id'])) {
 
 
         </style>
-
-        
-
-
         <!-- Start Header Area -->
         <header class="header navbar-area">
             <!-- Start Header Middle -->

@@ -4,14 +4,6 @@
     include("includes/productsClasss.php");
     include("includes/categoriesClass.php");
 
-    if (isset($_SESSION['success_message'])) {
-        echo "<div class='alert alert-success'>" . $_SESSION['success_message'] . "</div>";
-        unset($_SESSION['success_message']);
-        header("Location: yourpage.php");
-        exit(); // تأكد من إضافة exit لإنهاء التنفيذ هنا
-    }
-    
- 
 ?>
 <!-- <link rel="stylesheet" href="assets/css/test.css"> -->
 <link rel="stylesheet" href="cat.css">

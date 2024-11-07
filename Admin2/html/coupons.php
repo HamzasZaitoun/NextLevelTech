@@ -33,7 +33,7 @@ $coupons = $couponModel->getAllCoupons();
         <h2 class="h2">Coupons Dashboard</h2>
         <button class="add-btn" onclick="openAddModal()">Add Coupon <i class="bi bi-plus-circle"></i></button>
         <div class="row">
-            <table class="table tb table-hover">
+            <table class="table tb table-hover" id="myTable">
                 <thead class="t-head">
                         <tr>
                             <th>Coupon Id</th>
@@ -103,8 +103,10 @@ $coupons = $couponModel->getAllCoupons();
                     <option value="Invalid" <?= ($coupon['coupon_status'] == 'Invalid') ? 'selected' : ''; ?>>Invalid</option>
                 </select>
             </div>
-
-            <button class="save-btn" type="submit">Save</button>
+            <div class="save-btn-container">
+            <button class="save-btn" type="submit">Save</button>        
+            </div>
+            
         </form>
     </div>
 </div>
@@ -137,7 +139,10 @@ $coupons = $couponModel->getAllCoupons();
                     <option value="Invalid">Invalid</option>
                 </select>
             </div>
-            <button class="save-btn" type="submit">Save</button>
+            <div class="save-btn-container">
+            <button class="save-btn" type="submit">Save</button>        
+            </div>
+            
         </form>
     </div>
 </div>

@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $productStatus      = $_POST['newProductStatus'];
 
         // Set up the target directory and file path for image upload
-        $targetDir = "../../inserted_img/";
+        $targetDir = "../../../inserted_img/";
         $targetFile = $targetDir . basename($_FILES["newProductImage"]["name"]);
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
@@ -89,7 +89,7 @@ if (isset($_POST['action']) && $_POST['action'] === 'edit') {
     $oldImage = htmlspecialchars($_POST['oldImage']); // Ensure you pass this from the edit form
 
     // Handle image upload
-    $targetDir = "../inserted_img/";
+    $targetDir = "../../../inserted_img/";
     $uploadOk = 1;
     $targetFile = $oldImage; // Default to old image
 
