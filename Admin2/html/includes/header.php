@@ -26,6 +26,7 @@
     <!-- Custom CSS -->
     <link href="css/style.min.css" rel="stylesheet">
     <link href="css/layout.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css" />
 </head>
 
 <body>

@@ -33,7 +33,7 @@
         <h2 class="h2">Users Dashboard</h2>
         <button class="add-btn" onclick="openAddModal()">Add user <i class="bi bi-plus-circle"></i></button>
         <div class="row">
-            <table class="table tb table-hover">
+            <table class="table tb table-hover" id="myTable">
                 <thead class="t-head">
                     <tr>
                         <th>User ID</th>

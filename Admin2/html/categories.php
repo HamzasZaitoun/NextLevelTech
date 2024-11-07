@@ -42,7 +42,7 @@ $categories = $categoryModel->getAllCategories();
         <h2 class="h2">Categories Dashboard</h2>
         <button class="add-btn" onclick="openAddModal()">Add Category <i class="bi bi-plus-circle"></i></button>
         <div class="row">
-            <table class="table tb table-hover">
+            <table class="table tb table-hover" id="myTable">
                 <thead class="t-head">
                     <tr>
                         <th>#</th>

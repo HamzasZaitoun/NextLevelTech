@@ -33,7 +33,7 @@ $allmessages = $messages->getAllMessages();
         <!-- Start Page Content -->
         <h2 class="h2">Contact Messages Dashboard</h2>
         <div class="row">
-            <table class="table tb table-hover">
+            <table class="table tb table-hover" id="myTable">
                 <thead class="t-head">
                     <tr>
                         <th>Message ID</th>
