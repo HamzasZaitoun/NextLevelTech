@@ -5,8 +5,6 @@ require_once 'model/Category.php';
 $categoryModel = new Category();
 $categories = $categoryModel->getAllCategories();
 ?>
-<<<<<<< HEAD
-=======
 <style>
     .old-image {
   max-width: 30%;
@@ -16,7 +14,6 @@ $categories = $categoryModel->getAllCategories();
 }
 
 </style>
->>>>>>> 50f529a02c920b0beb6c96ebb0d0c3cdf02f72ac
 <!-- ============================================================== -->
 <!-- Page wrapper  -->
 <!-- ============================================================== -->
@@ -45,16 +42,11 @@ $categories = $categoryModel->getAllCategories();
         <h2 class="h2">Categories Dashboard</h2>
         <button class="add-btn" onclick="openAddModal()">Add Category <i class="bi bi-plus-circle"></i></button>
         <div class="row">
-<<<<<<< HEAD
-            <table class="table tb table-hover">
-=======
             <table class="table tb table-hover" id="myTable">
->>>>>>> 50f529a02c920b0beb6c96ebb0d0c3cdf02f72ac
                 <thead class="t-head">
                     <tr>
                         <th>#</th>
                         <th>Category Name</th>
-                        <th>Category Description</th>
                         <th>Category Picture</th>
                         <th>Actions</th>
                     </tr>
@@ -64,13 +56,9 @@ $categories = $categoryModel->getAllCategories();
                         <tr>
                             <td data-label="Category Id"><?= htmlspecialchars($category['category_id']) ?></td>
                             <td data-label="Category Name"><?= htmlspecialchars($category['category_name']) ?></td>
-                            <td data-label="Description"><?= htmlspecialchars($category['category_description']) ?></td>
+                          
                             <td data-label="Picture">
-<<<<<<< HEAD
-                                <img src="../category_img/<?php echo $category['category_picture']; ?>" alt="Category Image" width="50">
-=======
                                 <img src="../../category_img/<?php echo $category['category_picture']; ?>" alt="Category Image" width="50">
->>>>>>> 50f529a02c920b0beb6c96ebb0d0c3cdf02f72ac
                             </td>
                             <td data-label="Actions">
                                 <div class="action-buttons">
@@ -107,11 +95,7 @@ $categories = $categoryModel->getAllCategories();
                                     <div class="form-group">
                                         <label for="oldCategoryImage">Current Category Image:</label><br>
                                         <input type="hidden" name="oldImage" value="<?= htmlspecialchars($category['category_picture']); ?>">
-<<<<<<< HEAD
-                                        <img src="../category_img/<?= htmlspecialchars($category['category_picture']) ?>" alt="Current Category Picture" class="old-category-image">
-=======
                                         <img src="../../category_img/<?= htmlspecialchars($category['category_picture']) ?>" alt="Current Category Picture" class="old-image">
->>>>>>> 50f529a02c920b0beb6c96ebb0d0c3cdf02f72ac
                                     </div>
 
                                     <div class="form-group">
@@ -133,15 +117,10 @@ $categories = $categoryModel->getAllCategories();
                                             ?>
                                         </select>
                                     </div>
-<<<<<<< HEAD
-
-                                    <button class="save-btn" type="submit">Save</button>
-=======
                                     <div class="save-btn-container">
                                     <button class="save-btn" type="submit">Save</button>
                                     </div>
                                     
->>>>>>> 50f529a02c920b0beb6c96ebb0d0c3cdf02f72ac
                                 </form>
                             </div>
                         </div>
@@ -169,20 +148,12 @@ $categories = $categoryModel->getAllCategories();
                     <label for="newCategoryImage">Category Picture:</label>
                     <input type="file" id="newCategoryImage" name="newCategoryImage" accept="image/*" required><br><br>
                 </div>
-<<<<<<< HEAD
-                <button class="save-btn" type="submit">Add Category</button>
-=======
                 <div class="save-btn-container">
                 <button class="save-btn" type="submit">Add Category</button>
                 </div>
->>>>>>> 50f529a02c920b0beb6c96ebb0d0c3cdf02f72ac
             </form>
         </div>
     </div>
 <?php 
 include "includes/footer.php"; 
-<<<<<<< HEAD
 ?>
-=======
-?>
->>>>>>> 50f529a02c920b0beb6c96ebb0d0c3cdf02f72ac

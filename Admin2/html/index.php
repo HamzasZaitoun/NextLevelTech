@@ -1,24 +1,3 @@
-<<<<<<< HEAD
- <?php 
- session_start();
- include "includes/header.php";
- require_once 'model/User.php';
- require_once 'model/Orders.php';
- require_once 'model/Product.php';
- 
- 
- $user = new User();
- $order = new order();
- $product = new Product();
-//  $totalSales = $order->getTotalSales();
-//  $totalProducts = $product->getTotalProducts();
-//  $activeUserCount = $user->countActiveUsers();
-//  $totalOrders = $order->getOrderCount();
-//  $monthlySalesData = $order->getMonthlySales();
-//  $months = json_encode(array_column($monthlySalesData, 'month'));
-//  $sales = json_encode(array_column($monthlySalesData, 'total_sales'));
- ?>
-=======
 <?php 
 session_start();
 include "includes/header.php";
@@ -109,7 +88,6 @@ $activeUserCount = $user->countActiveUsers();
     color: #fff;
 }
  </style>
->>>>>>> 50f529a02c920b0beb6c96ebb0d0c3cdf02f72ac
 
  <!-- ============================================================== -->
         <!-- Page wrapper  -->
@@ -136,10 +114,7 @@ $activeUserCount = $user->countActiveUsers();
                     </div>
                 </div>
             </div>
-<<<<<<< HEAD
-=======
             
->>>>>>> 50f529a02c920b0beb6c96ebb0d0c3cdf02f72ac
             <!-- ============================================================== -->
             <!-- End Bread crumb and right sidebar toggle -->
             <!-- ============================================================== -->
@@ -149,9 +124,6 @@ $activeUserCount = $user->countActiveUsers();
             <div class="container-fluid">
                 <!-- ============================================================== -->
                 <!-- Sales chart -->
-<<<<<<< HEAD
-                <!-- ============================================================== -->
-=======
                 <div class="row">
     <div class="row ">
     <div class="col-xl-6 col-lg-6">
@@ -224,10 +196,9 @@ $activeUserCount = $user->countActiveUsers();
                
                 <!-- ============================================================== -->
                
->>>>>>> 50f529a02c920b0beb6c96ebb0d0c3cdf02f72ac
                 <div class="row">
                     <!-- Column -->
-                    <div class="col-lg-12">
+                    <div class="col-lg-8">
                         <div class="card">
                             <div class="card-body">
                                 <div class="row">
@@ -260,24 +231,48 @@ $activeUserCount = $user->countActiveUsers();
                             </div>
                         </div>
                     </div>
-                   
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3 class="card-title">Our Visitors </h3>
+                                <h6 class="card-subtitle">Different Devices Used to Visit</h6>
+                                <div id="visitor"
+                                    style="height: 290px; width: 100%; max-height: 290px; position: relative;"
+                                    class="c3">
+                                    <div class="c3-tooltip-container"
+                                        style="position: absolute; pointer-events: none; display: none;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <hr class="mt-0 mb-0">
+                            </div>
+                            <div class="card-body text-center ">
+                                <ul class="list-inline d-flex justify-content-center align-items-center mb-0">
+                                    <li class="me-4">
+                                        <h6 class="text-info"><i class="fa fa-circle font-10 me-2 "></i>Mobile</h6>
+                                    </li>
+                                    <li class="me-4">
+                                        <h6 class=" text-primary"><i class="fa fa-circle font-10 me-2"></i>Desktop</h6>
+                                    </li>
+                                    <li class="me-4">
+                                        <h6 class=" text-success"><i class="fa fa-circle font-10 me-2"></i>Tablet</h6>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
              
                 <!-- ============================================================== -->
 
-<<<<<<< HEAD
-                
-=======
               
->>>>>>> 50f529a02c920b0beb6c96ebb0d0c3cdf02f72ac
             </div>
             <!-- ============================================================== -->
             <!-- End Container fluid  -->
             <!-- ============================================================== -->
             <!-- ============================================================== -->
-<<<<<<< HEAD
-=======
         
->>>>>>> 50f529a02c920b0beb6c96ebb0d0c3cdf02f72ac
         </div>
         <!-- ============================================================== -->
         <!-- End Page wrapper  -->
@@ -287,9 +282,6 @@ $activeUserCount = $user->countActiveUsers();
     <!-- End Wrapper -->
     <!-- ============================================================== -->
     <!-- ============================================================== -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-  <?php 
+    <?php 
  include "includes/footer.php";
  ?>
- 
