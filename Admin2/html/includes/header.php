@@ -119,7 +119,7 @@ GamifyTech                        </span>
                             </a></li>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="profile.php"><i class="bi bi-person-arms-up"></i> Profile</a></li>
-                                <li><a class="dropdown-item" href="login.php"><i class="bi bi-power"></i> Logout</a></li>
+                                <li><a class="dropdown-item link"click="confirmLogout();" data-toggle="tooltip"title="Logout"><i class="bi bi-power" ></i> Logout</a></li>
                             </ul>
                         </li>    
                         <li class="nav-item dropdown">
@@ -201,3 +201,20 @@ GamifyTech                        </span>
         <!-- ============================================================== -->
         <!-- End Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->
+        <script>
+function confirmLogout() {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You will be logged out of the session.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, log out!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = 'process/logout.php';  // Redirect to logout PHP page
+        }
+    })
+}
+</script>

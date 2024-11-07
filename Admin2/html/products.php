@@ -293,10 +293,11 @@ h3 {
                         <option value="outOfStock" <?= ($product['product_state'] == 'outOfStock') ? 'selected' : ''; ?>>Out of Stock</option>
                     </select>
                 </div>
+                <div class="save-btn-container text-center">
+                <button class="save-btn" type="submit">Save</button>
             </form>
             </div>
-            <div class="save-btn-container text-center">
-                <button class="save-btn" type="submit">Save</button>
+           
             </div>
             </div>
         <?php endforeach?>
