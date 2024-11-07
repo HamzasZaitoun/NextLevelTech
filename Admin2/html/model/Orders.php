@@ -43,6 +43,8 @@ class order
 }
 
     }
+<<<<<<< HEAD
+=======
     public function updateOrderStatus($orderId, $newStatus) {
         // Define allowed values for the ENUM column in the database
         $allowedStatuses = ['pending', 'cancelled', 'delivered'];
@@ -123,6 +125,7 @@ class order
 
     
     
+>>>>>>> 50f529a02c920b0beb6c96ebb0d0c3cdf02f72ac
 
     
 
@@ -131,7 +134,11 @@ class order
 
 }
 // $order=new order();
+<<<<<<< HEAD
+// $order->viewOrderDetails(2);
+=======
 // var_dump($order->getTotalSales());
+>>>>>>> 50f529a02c920b0beb6c96ebb0d0c3cdf02f72ac
 
 
 ?>

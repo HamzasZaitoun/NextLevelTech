@@ -1,3 +1,24 @@
+<<<<<<< HEAD
+ <?php 
+ session_start();
+ include "includes/header.php";
+ require_once 'model/User.php';
+ require_once 'model/Orders.php';
+ require_once 'model/Product.php';
+ 
+ 
+ $user = new User();
+ $order = new order();
+ $product = new Product();
+//  $totalSales = $order->getTotalSales();
+//  $totalProducts = $product->getTotalProducts();
+//  $activeUserCount = $user->countActiveUsers();
+//  $totalOrders = $order->getOrderCount();
+//  $monthlySalesData = $order->getMonthlySales();
+//  $months = json_encode(array_column($monthlySalesData, 'month'));
+//  $sales = json_encode(array_column($monthlySalesData, 'total_sales'));
+ ?>
+=======
 <?php 
 session_start();
 include "includes/header.php";
@@ -88,6 +109,7 @@ $activeUserCount = $user->countActiveUsers();
     color: #fff;
 }
  </style>
+>>>>>>> 50f529a02c920b0beb6c96ebb0d0c3cdf02f72ac
 
  <!-- ============================================================== -->
         <!-- Page wrapper  -->
@@ -114,7 +136,10 @@ $activeUserCount = $user->countActiveUsers();
                     </div>
                 </div>
             </div>
+<<<<<<< HEAD
+=======
             
+>>>>>>> 50f529a02c920b0beb6c96ebb0d0c3cdf02f72ac
             <!-- ============================================================== -->
             <!-- End Bread crumb and right sidebar toggle -->
             <!-- ============================================================== -->
@@ -124,6 +149,9 @@ $activeUserCount = $user->countActiveUsers();
             <div class="container-fluid">
                 <!-- ============================================================== -->
                 <!-- Sales chart -->
+<<<<<<< HEAD
+                <!-- ============================================================== -->
+=======
                 <div class="row">
     <div class="row ">
     <div class="col-xl-6 col-lg-6">
@@ -196,6 +224,7 @@ $activeUserCount = $user->countActiveUsers();
                
                 <!-- ============================================================== -->
                
+>>>>>>> 50f529a02c920b0beb6c96ebb0d0c3cdf02f72ac
                 <div class="row">
                     <!-- Column -->
                     <div class="col-lg-8">
@@ -266,13 +295,20 @@ $activeUserCount = $user->countActiveUsers();
              
                 <!-- ============================================================== -->
 
+<<<<<<< HEAD
+                
+=======
               
+>>>>>>> 50f529a02c920b0beb6c96ebb0d0c3cdf02f72ac
             </div>
             <!-- ============================================================== -->
             <!-- End Container fluid  -->
             <!-- ============================================================== -->
             <!-- ============================================================== -->
+<<<<<<< HEAD
+=======
         
+>>>>>>> 50f529a02c920b0beb6c96ebb0d0c3cdf02f72ac
         </div>
         <!-- ============================================================== -->
         <!-- End Page wrapper  -->
