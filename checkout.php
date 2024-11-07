@@ -21,8 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['checkout'])) {
     $paymentMethod = $_POST['payment_method'] ?? '';
     if ($cart->checkout($user_id, $paymentMethod)) {
         unset($_SESSION['final_total']);
-        $_SESSION['success_message'] = "Thank you for your purchase!";
-        header("Location: index.php");
+        header("Location: thanks.php");
         exit();
     } else {
         echo "<div class='alert alert-danger'>There was an error processing your order. Please try again.</div>";
@@ -54,10 +53,15 @@ $finalTotal = $_SESSION['final_total'] ?? 0;
             font-weight: bold;
             font-size: 1.2em;
         }
+
+        
     </style>
+    
 </head>
 <body>
-
+<?php
+  include("includes/header.php");
+  ?>
 <section class="h-100 h-custom">
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
@@ -159,7 +163,7 @@ $finalTotal = $_SESSION['final_total'] ?? 0;
                                             <div class="d-flex justify-content-between">
                                             <button type="submit" name="checkout" class="btn btn-primary btn-block btn-lg" onclick="ordersubmit(this)">
                                                 <div class="d-flex justify-content-between">
-                                                    <span>Complete Order</span>
+                                                    <span>Proceed to checkout</span>
                                                     <span><i class="fas fa-long-arrow-alt-right ms-2"></i></span>
                                                 </div>
                                             </button>

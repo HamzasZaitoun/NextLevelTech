@@ -122,7 +122,7 @@ public function getOrderHistoryDetailed($userId) {
     $sql = "
         SELECT 
             o.order_id, o.order_date, o.coupon_id, o.order_total, o.order_status,
-            oi.product_id, oi.quantity, p.product_name, p.product_price
+            oi.order_item_id, oi.product_id, oi.quantity, p.product_name, p.product_price
         FROM orders AS o
         JOIN order_items AS oi ON o.order_id = oi.order_id
         JOIN products AS p ON oi.product_id = p.product_id
@@ -136,24 +136,41 @@ public function getOrderHistoryDetailed($userId) {
 
     $orders = [];
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        // Check if this order_id already exists in the orders array
         if (!isset($orders[$row['order_id']])) {    
             $orders[$row['order_id']] = [
                 'order_date' => $row['order_date'],
                 'coupon_id' => $row['coupon_id'],
                 'order_total' => $row['order_total'],
                 'order_status' => $row['order_status'],
-                'items' => []
+                'items' => [],
             ];
         }
+        
+        // Add item to the specific order
         $orders[$row['order_id']]['items'][] = [
+            'order_item_id' => $row['order_item_id'],
             'product_name' => $row['product_name'],
             'quantity' => $row['quantity'],
             'price' => $row['product_price']
         ];
     }
 
+    // Check if there are multiple items with the same order_id
+    foreach ($orders as $orderId => $order) {
+        $orderItems = $order['items'];
+        $orderIds = array_column($orderItems, 'order_item_id');
+        
+        // Verify if there are duplicate order_item_ids (indicating the same order ID in different items)
+        if (count($orderItems) != count(array_unique($orderIds))) {
+            // Handle duplicate items if needed (e.g., log an error, notify user)
+            echo "Duplicate order_item_id found for order ID $orderId\n";
+        }
+    }
+
     return $orders;
 }
+
 
 
 
