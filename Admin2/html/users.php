@@ -33,23 +33,14 @@
         <h2 class="h2">Users Dashboard</h2>
         <button class="add-btn" onclick="openAddModal()">Add user <i class="bi bi-plus-circle"></i></button>
         <div class="row">
-<<<<<<< HEAD
-            <table class="table tb table-hover">
-=======
             <table class="table tb table-hover" id="myTable">
->>>>>>> 50f529a02c920b0beb6c96ebb0d0c3cdf02f72ac
                 <thead class="t-head">
                     <tr>
                         <th>User ID</th>
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Email</th>
-                        <th>Gender</th>
-                        <th>Birth Date</th>
-                        <th>Phone Number</th>
-                        <th>Address</th>
-                        <th>State</th>
-                        <th>Role</th>
+                        <th>user Role</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -60,11 +51,8 @@
                             <td data-label="First Name"><?php echo htmlspecialchars($u['user_first_name']); ?></td>
                             <td data-label="Last Name"><?php echo htmlspecialchars($u['user_last_name']); ?></td>
                             <td data-label="Email"><?php echo htmlspecialchars($u['user_email']); ?></td>
-                            <td data-label="Gender"><?php echo htmlspecialchars($u['user_gender']); ?></td>
-                            <td data-label="Birth Date"><?php echo htmlspecialchars($u['user_birth_date']); ?></td>
-                            <td data-label="Phone Number"><?php echo htmlspecialchars($u['user_phone_number']); ?></td>
-                            <td data-label="Address"><?php echo htmlspecialchars($u['user_address']); ?></td>
-                            <td data-label="State"><?php echo htmlspecialchars($u['user_status']); ?></td>
+                           
+                        
                             <td data-label="Role"><?php echo htmlspecialchars($u['user_role']); ?></td>
                             <td data-label="Actions">
                                 <div class="action-buttons">
@@ -146,15 +134,10 @@
                     <option value="customer" <?= ($u['user_role'] == 'customer') ? 'selected' : ''; ?>>User</option>
                 </select>
             </div>
-<<<<<<< HEAD
-
-            <button class="save-btn" type="submit">Save User</button>
-=======
             <div class="save-btn-container">
                 <button class="save-btn" type="submit">Save User</button>
             </div>
             
->>>>>>> 50f529a02c920b0beb6c96ebb0d0c3cdf02f72ac
         </form>
     </div>
 </div>
@@ -176,13 +159,9 @@
                 <div class="form-group"><label for="newAddress">Address:</label><input type="text" id="newAddress" name="newAddress" required></div>
                 <div class="form-group"><label for="newState">State:</label><select id="newState" name="newState" required><option value="active">Active</option><option value="deactivated">Deactivated</option></select></div>
                 <div class="form-group"><label for="newRole">Role:</label><select id="newRole" name="newRole" required><option value="superAdmin">Super Admin</option><option value="admin">Admin</option><option value="customer">User</option></select></div>
-<<<<<<< HEAD
-                <button class="save-btn" type="submit">Add User</button>
-=======
                 <div class="save-btn-container">
                 <button class="save-btn" type="submit">Add User</button>
                 </div>
->>>>>>> 50f529a02c920b0beb6c96ebb0d0c3cdf02f72ac
             </form>
         </div>
     </div>
@@ -191,8 +170,4 @@
 
 <?php
 include "includes/footer.php";
-<<<<<<< HEAD
 ?>
-=======
-?>
->>>>>>> 50f529a02c920b0beb6c96ebb0d0c3cdf02f72ac
