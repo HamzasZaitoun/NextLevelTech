@@ -31,7 +31,6 @@ class category
         $stmt->execute([$id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
-
     public function updateCategory($id, $name,$description,$picture)
     {
         $stmt= $this->pdo->prepare("UPDATE categories SET category_name=?, category_description=?,category_picture=? WHERE category_id=?");

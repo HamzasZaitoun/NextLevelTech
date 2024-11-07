@@ -40,12 +40,7 @@
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Email</th>
-                        <th>Gender</th>
-                        <th>Birth Date</th>
-                        <th>Phone Number</th>
-                        <th>Address</th>
-                        <th>State</th>
-                        <th>Role</th>
+                        <th>user Role</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -56,11 +51,8 @@
                             <td data-label="First Name"><?php echo htmlspecialchars($u['user_first_name']); ?></td>
                             <td data-label="Last Name"><?php echo htmlspecialchars($u['user_last_name']); ?></td>
                             <td data-label="Email"><?php echo htmlspecialchars($u['user_email']); ?></td>
-                            <td data-label="Gender"><?php echo htmlspecialchars($u['user_gender']); ?></td>
-                            <td data-label="Birth Date"><?php echo htmlspecialchars($u['user_birth_date']); ?></td>
-                            <td data-label="Phone Number"><?php echo htmlspecialchars($u['user_phone_number']); ?></td>
-                            <td data-label="Address"><?php echo htmlspecialchars($u['user_address']); ?></td>
-                            <td data-label="State"><?php echo htmlspecialchars($u['user_status']); ?></td>
+                           
+                        
                             <td data-label="Role"><?php echo htmlspecialchars($u['user_role']); ?></td>
                             <td data-label="Actions">
                                 <div class="action-buttons">

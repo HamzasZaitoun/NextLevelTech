@@ -47,7 +47,6 @@ $categories = $categoryModel->getAllCategories();
                     <tr>
                         <th>#</th>
                         <th>Category Name</th>
-                        <th>Category Description</th>
                         <th>Category Picture</th>
                         <th>Actions</th>
                     </tr>
@@ -57,7 +56,7 @@ $categories = $categoryModel->getAllCategories();
                         <tr>
                             <td data-label="Category Id"><?= htmlspecialchars($category['category_id']) ?></td>
                             <td data-label="Category Name"><?= htmlspecialchars($category['category_name']) ?></td>
-                            <td data-label="Description"><?= htmlspecialchars($category['category_description']) ?></td>
+                          
                             <td data-label="Picture">
                                 <img src="../../category_img/<?php echo $category['category_picture']; ?>" alt="Category Image" width="50">
                             </td>

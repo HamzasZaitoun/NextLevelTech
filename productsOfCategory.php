@@ -62,7 +62,7 @@ include ('includes/header.php');
                                 </div>
                                 <div class="shopbtn">
                                     <button class="btn-btn"
-                                        onclick="addToCart(<?= htmlspecialchars($product['product_id']); ?>)">
+                                       onclick="addToCart(<?= htmlspecialchars($product['product_id']); ?>)">
                                         <div class="default-btn">
                                             <i class="lni lni-cart"></i>
                                         </div>
@@ -109,20 +109,37 @@ include ('includes/header.php');
 
 
 <script>
-    function addToCart(productId) {
-        fetch('cart.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            body: 'add_to_cart=true&product_id=' + productId
-        })
-        .then(response => response.json())
-        .then(data => {
-            alert("Product added to cart!");
-        })
-        .catch(error => console.error('Error:', error));
-    }
+function addToCart(productId) {
+    // Try to get the quantity input if it exists
+    const quantityInput = document.getElementById("quantity");
+    const quantity = quantityInput ? quantityInput.value : 1; // Default to 1 if not found
+
+    fetch('cart.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: 'add_to_cart=true&product_id=' + productId + '&quantity=' + quantity
+    })
+    .then(response => response.json())
+    .then(data => {
+        Swal.fire({
+            icon: 'success',
+            title: 'Added to Cart',
+            text: 'Product successfully added to cart.',
+            confirmButtonText: 'OK'
+        });
+    })
+    .catch(error => {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'An error occurred while adding to cart.',
+            confirmButtonText: 'OK'
+        });
+    });
+}
+
 
     function addToWishlist(productId) {
         const button = document.getElementById('heart-icon-' + productId);

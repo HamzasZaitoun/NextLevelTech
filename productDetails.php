@@ -25,7 +25,39 @@ if ($productId) {
     <link rel="stylesheet" href="trendingProducts.css">
 
     <style>
+.action-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
 
+.shop-now-btn button,
+.add-to-wishlist-btn button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #212529;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  font-weight: bold;
+  padding: 10px;
+  border: none;
+}
+
+.shop-now-btn button:hover {
+  background-color: #ce2929;
+}
+
+.add-to-wishlist-btn button:hover {
+  background-color: #ce2929;
+}
+
+.default-btn {
+  margin-right: 5px;
+  font-size: 18px;
+}
 
     </style>
 </head>
@@ -120,6 +152,7 @@ if ($productId) {
                                 </div>
                             </div>
 
+
                         </div>
                     </div>
                 </div>
@@ -139,49 +172,17 @@ if ($productId) {
 
 
     <script>
-   function addToWishlist(productId) {
-    // Send POST request to wishlist.php
-    fetch('wishlist.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: 'add_to_wishlist=true&product_id=' + productId 
-    })
-    .then(response => {
-        // Parse response as JSON
-        return response.json();
-    })
-    .then(data => {
-        // Check if the item was successfully added to the wishlist
-        if (data.success) {
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: 'Item added to wishlist!',
-                showConfirmButton: false,
-                timer: 1500
-            });
-        } else {
-            // Show error message if the item could not be added
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: data.message || "Something went wrong!"  // Use the response message or default one
-            });
-        }
-        console.log(data, "wishlist data");
-    })
-    .catch(error => {
-        console.error("Error:", error);  // Log the error
-        Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'An error occurred while adding to wishlist.',
-            confirmButtonText: 'OK'
-        });
-    });
-}
+    function addToWishlist(productId) {
+        // Send POST request to wishlist.php
+        fetch('wishlist.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: 'add_to_wishlist=true&product_id=' + productId
+        })
+
+    }
 
     function addToCart(productId) {
         // console.log("test dattttttttt");

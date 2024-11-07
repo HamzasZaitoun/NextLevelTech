@@ -291,11 +291,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <?php if ($product['product_discount'] > 0) : ?>
+                            <!-- <?php if ($product['product_discount'] > 0) : ?>
                             <div class="product-discount">
                                 <span>-<?= htmlspecialchars($product['product_discount']); ?>%</span>
                             </div>
-                            <?php endif; ?>
+                            <?php endif; ?> -->
                         </div>
                     </div>
                     <?php endforeach; ?>
@@ -608,6 +608,7 @@
 
         // add to cart
         function addToCart(productId) {
+            
             fetch('cart.php', {
                 method: 'POST',
                 headers: {
@@ -619,6 +620,7 @@
         }
         </script>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>
 

@@ -192,15 +192,14 @@ h3 {
         <h2 class="h2">Products Dashboard</h2>
         <button class="add-btn" onclick="openAddModal()">Add product <i class="bi bi-plus-circle"></i></button>
         <div class="row">
-            <table class="table tb table-hover"id="myTable" >
+            <table class="table tb table-hover text-center"id="myTable" >
                 <thead class="t-head">
                     <tr>
                         <th>#</th>
                         <th>Product Name</th>
-                        <th>Product Description</th>
+                        
                         <th>Product Image</th>
-                        <th>Product Category</th>
-                        <th>Product Quantity</th>
+
                         <th>Product Price</th>
                         <th>Product State</th>
                         <th>Actions</th>
@@ -211,12 +210,12 @@ h3 {
     <tr>
         <td data-label="Product Id"><?= htmlspecialchars($product['product_id']) ?></td>
         <td data-label="Product Name"><?= htmlspecialchars($product['product_name']) ?></td>
-        <td data-label="Description"><?= htmlspecialchars($product['product_description']) ?></td>
+      
         <td data-label="Image">
             <img src="../../inserted_img/<?= $product['product_picture'] ?>" alt="Product Image" width="50" style="border-radius:10%;">
         </td>
-        <td data-label="Category"><?= htmlspecialchars($product['product_category']) ?></td>
-        <td data-label="Quantity"><?= htmlspecialchars($product['product_quantity']) ?></td>
+       
+     
         <td data-label="Price"><?= htmlspecialchars($product['product_price']) ?></td>
         <td data-label="Status"><?= $product['product_state'] ?></td>
         <td data-label="Actions">

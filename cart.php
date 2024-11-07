@@ -145,7 +145,7 @@ input::-webkit-inner-spin-button {
                                         <button type="button" class="btn btn-outline-secondary btn-sm px-2" onclick="updateQuantity(this, -1)" style="min-width: 32px;">-</button>
                                         <input type="number" name="quantity" value="<?= $item['quantity']; ?>" required min="1" 
                                             class="form-control text-center mx-2 border-secondary" style="max-width: 60px;" >
-                                        <button type="button" class="btn btn-outline-secondary btn-sm px-2" onclick="updateQuantity(this, 1)" style="min-width: 32px;">+</button>
+                                        <button  type="button" class="btn btn-outline-secondary btn-sm px-2" onclick="updateQuantity(this, 1)" style="min-width: 32px;">+</button>
                                         </form>
                                         </div>
 

@@ -96,7 +96,7 @@
                 <div class="col-md-12">
                     <div class="wrapper">
                         <div class="row no-gutters">
-                            <div class="col-lg-8 col-md-7 order-md-last d-flex align-items-stretch">
+                            <div class="col-lg-6 col-md-7 order-md-last d-flex align-items-stretch">
                                 <div class="contact-wrap w-100 p-md-5 p-4">
                                     <h3 class="mb-4">Get in touch</h3>
                                     <div id="form-message-warning" class="mb-4"></div>

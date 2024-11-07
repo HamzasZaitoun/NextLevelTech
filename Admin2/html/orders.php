@@ -1,5 +1,5 @@
 <?php
-include("includes/header.php");
+include "includes/header.php";
 include "model/Orders.php";
 $orders = new Order();
 $allOrders = $orders->getAllOrders();
@@ -39,15 +39,15 @@ $allOrders = $orders->getAllOrders();
         <!-- Start Page Content -->
         <h2 class="h2">Orders Dashboard</h2>
         <div class="row">
-            <table class="table tb table-hover" id="myTable">
+            <table class="table tb table-hover text-center" id="myTable">
                 <thead class="t-head">
                 <tr>
                     <th>Order ID</th>
-                    <th>User Name</th>
+                   
                     <th>Order Date</th>
                     <th>Order Total</th>
-                    <th>Order Coupon</th>
-                    <th>Discount</th>
+                
+                 
                     <th>Order Status</th>
                     <th>Actions</th>
                 </tr>
@@ -57,11 +57,11 @@ $allOrders = $orders->getAllOrders();
                     <?php foreach ($allOrders as $order): ?>
                         <tr id="order-row-<?php echo htmlspecialchars($order['order_id']); ?>">
                             <td data-label="Order ID"><?php echo htmlspecialchars($order['order_id']); ?></td>
-                            <td data-label="User Name"><?php echo htmlspecialchars($order['user_name']); ?></td>
+                           
                             <td data-label="Order Date"><?php echo htmlspecialchars($order['order_date']); ?></td>
                             <td data-label="Order Total"><?php echo htmlspecialchars($order['order_total']); ?></td>
-                            <td data-label="Order Coupon"><?php echo htmlspecialchars($order['order_coupon']); ?></td>
-                            <td data-label="Discount"><?php echo htmlspecialchars($order['order_discount']); ?>%</td>
+                            
+                           
                             <td data-label="Order Status" id="status-<?php echo htmlspecialchars($order['order_id']); ?>">
                                 <?php echo htmlspecialchars($order['order_status']); ?>
                             </td>
